@@ -1,3 +1,10 @@
+/* Declarando as variáveis */
+:root{
+    --amarelo: rgb(255,211,80);
+    --marrom: rgb(175,66,0);
+}
+
+/*  Padronizando as margens */
 * {
     margin: 0;
     padding: 0;
@@ -8,7 +15,7 @@ html {
 }
 
 .navBar {
-    background-color: rgb(255,211,80);
+    background-color:var(--amarelo);
     position: fixed;
     width: 100%;
     height: 100px;
@@ -38,7 +45,7 @@ html {
 .navBar ul a {
     font-weight: bolder;
     text-decoration: none;
-    color: rgb(117, 66, 0);
+    color: var(--marrom);
     z-index: 100000;
 }
 
@@ -160,7 +167,7 @@ html {
 
 
 .footer {
-    background-color: rgb(255,211,80);
+    background-color:var(--amarelo);
     padding: 30px;
 }
 
@@ -168,3 +175,17 @@ html {
     display: flex;
     justify-content: center;
 }	
+
+/*  LOGIN  */
+
+.form_login {
+    background-color: var(--marrom);
+    height: 400px;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 20px;
+    margin-left: 450px;
+}

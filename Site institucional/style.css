@@ -240,3 +240,9 @@ html {
     border-radius: 20px;
     margin-top: 2cm;
 }
+
+.form_login_container input{
+    display: flex;
+    align-items: center;
+    border: 3px ridge var(--amarelo);
+}

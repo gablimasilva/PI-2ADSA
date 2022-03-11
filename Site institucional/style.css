@@ -8,7 +8,8 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Montserrat';
+    font-size: 22px;
 }
 html {
     scroll-behavior: smooth;
@@ -19,6 +20,7 @@ html {
     position: fixed;
     width: 100%;
     height: 100px;
+    z-index: 1;
 }
 .container {
     height: 100%;
@@ -54,19 +56,40 @@ html {
 
 }
 
+.btnLogin {
+    padding: 15px;
+    background-color: var(--marrom);
+    color: var(--amarelo) !important;
+    border-radius: 8px;
+}
+
 .banner {
     height: 100vh;
-    background-color: black;
-    background-image: url('img/banner.png');
-    background-repeat: no-repeat;
-    background-size: cover;
     
 }
 
 .banner .container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+}
+
+.imgLink {
+    position: absolute;
+    right: 0%;
+    width: 50%;
+    height: 90%;
+    
+}
+
+.imgLink img {
+    margin-top: 69px;
+    width: 100%;
+    height: 100%;
+}
+
+.s {
+    margin-top: 50px;
 }
 
 .titulo {
@@ -98,6 +121,15 @@ html {
     width: 90%;
 }
 
+.mvv {
+    padding-bottom: 15px;
+    padding-top: 100px;
+}
+
+.s {
+    background-color: #f1f1f1;
+}
+
 .mvv .container {
  
     display: flex;
@@ -118,17 +150,22 @@ html {
 
 .card {
     margin-top: 50px;
-    background-color: white;
+    background-color: #f1f1f1;
     width: 250px;
     padding-top: 15px;
     border-radius: 10px;
     border: 2px solid black;
     text-align: center;
+    
 }
 
 .card img {
     margin-top: 15px;
 
+}
+
+.card .texto {
+    font-size: 15px;
 }
 
 .contato {
@@ -147,6 +184,11 @@ html {
 
 .localizacao p {
     margin-top: 10px;
+}
+
+.contato {
+    padding-top: 110px;
+    margin-bottom: 25px;
 }
 
 .contato .container {
@@ -178,6 +220,15 @@ html {
 
 /*  LOGIN  */
 
+.form_login_container{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+}
+
 .form_login {
     background-color: var(--marrom);
     height: 400px;
@@ -187,5 +238,5 @@ html {
     align-items: center;
     justify-content: space-around;
     border-radius: 20px;
-    margin-left: 450px;
+    margin-top: 2cm;
 }

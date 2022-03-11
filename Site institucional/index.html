@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Food</title>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -22,8 +23,9 @@
                 <li><a href="#banner">Home</a></li>
                 <li><a href="#sobreNos">Sobre nós</a></li>
                 <li><a href="#sobreProduto">Produtos</a></li>
+                <li><a href="#mvv">MVV</a></li>
                 <li><a href="#contato">Contato</a></li>
-                <li><a href="login.html">Login</a></li>
+                <li><a class="btnLogin" href="login.html">Login</a></li>
             </ul>
         </div>
     </div>
@@ -32,11 +34,16 @@
     <div class="banner" id="banner">
 
         <div class="container">
-            <h1>Garantindo a melhor experiência sempre</h1>
+            <div class="texto" style="width: 50%;">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente, quo dolorem pariatur alias sint repellendus ipsam exercitationem ullam officiis minus tenetur placeat ducimus illo. Perferendis veritatis aspernatur similique est inventore.
+            </div>
+            <div class="imgLink">
+                <img src="img/1.jpg" alt="" >
+            </div>
         </div>
 
     </div>
-
+    <!--
     <div class="sobre" id="sobreNos">
         <h1 class="titulo">Sobre nós</h1>
         <div class="container">
@@ -49,9 +56,24 @@
                 </div>
             </div>
         </div>
+        
     </div>
+-->
+    <div class="banner s" id="sobreNos">
 
-    <div class="mvv">
+        <div class="container">
+            <div class="imgLink">
+                <img src="img/quemSomos.png" style="margin-top: 0px;" >
+            </div>
+            <div class="texto" style="width: 50%; ">
+                <h1 class="titulo">Quem somos</h1>
+                A empresa Tech Food nasceu a partir da ideia de ajudar a expandir, melhorar e digitalizar o
+                    mercado de serviços de alimentação
+            </div>
+        </div>
+
+    </div>
+    <div class="mvv" id="mvv">
         <div class="container">
             <div class="card">
                 <h2>Missão</h2>
@@ -80,18 +102,31 @@
 
         </div>
     </div>
-
+    <!--
     <div class="sobre" id="sobreProduto">
         <div class="container">
             <img src="img/Produtos.png" alt="">
-
             <div class="texto">
                 <h1 class="titulo">Produtos</h1>
                 A Tech fornece o serviço de monitoramento para garantir o bom funcionamento dos computadores
                 e totens usados em redes de fast food.
             </div>
-
         </div>
+    </div>-->
+
+    <div class="banner" id="sobreProduto">
+
+        <div class="container">
+            <div class="imgLink">
+                <img src="img/Produtos.png" style="margin-top: 0px;" >
+            </div>
+            <div class="texto" style="width: 50%; ">
+                <h1 class="titulo">Produtos</h1>
+                A Tech fornece o serviço de monitoramento para garantir o bom funcionamento dos computadores
+                e totens usados em redes de fast food.
+            </div>
+        </div>
+
     </div>
 
     <div class="contato" id="contato">
@@ -109,7 +144,7 @@
                 <p>Rua Haddock Lobo - Cerqueira </p>
                 <p>César, São Paulo - SP </p>
                 <p>Telefone: (11)99999-9999 </p>
-                <p>E-Mail: techfood.contato@gmail.com</p>
+                
             </div>
         </div>
     </div>

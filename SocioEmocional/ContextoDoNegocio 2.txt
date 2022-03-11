@@ -1,0 +1,31 @@
+Introdução do Negócio
+
+O ser humano precisa suprir 5 necessidades para sobreviver, dentre elas são respiração, descanso, sono, hidratação e a alimentação. Ultimamente com os tempos modernos, cada vez menos as pessoas possuem tempo para preparar sua comida, assim nasce os fast-foods que signifca "comida rápida".
+
+Essas empresas dominam o mercado gastronômico ao ponto de arrecadarem bilhões de reais anualmente, uma das empresas mais famosas de fast-food no quarto trimestre de 2019 arrecadou cerca de 5.3 bilhões de dólares, com o crescimento surge a necessidade de otimização e automatização de processos, e para esse problema temos a solução de usar a tecnologia, que por mais que muitos pensem que veio para substituir o fator humano, ela vem para melhorar o trabalho desenvolvido. A tecnologia apresenta diversos benefícios e é essencial para um negócio atualmente.
+
+Para solucionar problemas de automação e otimização de processos, os totens são perfeitos para tal tarefa, os maiores benefícios dos totens são: Atendimento mais rápido, Modernização do espaço, Diminuição de custos, Redução do tempo de fila, Melhor aproveitamento de espaço.
+
+Juntando todos os benefícios podemos criar um cenário onde a empresa vende mais e também vende melhor, porém, toda tecnologia deve ser monitorada, uma vez que implantada na empresa a mesma fica a mercê de seu funcionamento contínuo, para isso apresentamos nosso sistema de monitoramento de totens de redes de fast-food, para reduzir e prevenir possíveis falhas acarretando em perda de receita.
+
+-------------   LUCRO BRUTO / PERÍODO / LUCRO TOTEN -------------- MC DONALD'S 2019 -------------- (Dólares) ------------
+
+          - 2.3 bilhões // 4° trimestre // 530 milhões 
+          - 2.2 bilhões // 3° trimestre // 507 milhões
+          - 2.1 bilhões // 2° trimestre // 484 milhões
+          - 1.3 bilhões // 1° trimestre // 300 milhões
+          - 7.9 bilhões //    ANUAL     // 1.82 bilhão
+          
+          Por mês : 34.9 milhões
+          Por dia : 4.98 milhões
+          Por hora : 207 mil
+          Por minuto : 3.4 mil
+          
+--------------------------------------------------------------------------------------------------------------------------
+Contexto - Inovação
+
+Nível de preocupação com o processamento da máquina é configurado por quartis ( 25% / 50% / 75% / 100% ). 
+- Primeiro Quartil(25%): não é necessário a emissão de alertas ou a manipulação dos processos da máquina.
+- Segundo Quartil(50%): Envio de alertas via e-mail.
+- Terceiro Quartil(75%): Acesso remoto ou por pen drive para finalizar processos desnecessários.
+- Quarto Quartil(100%): Acesso remoto ou por pen drive para reiniciar a máquina em estado crítico.

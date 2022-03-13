@@ -1,7 +1,7 @@
 /* Declarando as variáveis */
 :root{
     --amarelo: rgb(255,211,80);
-    --marrom: rgb(175,66,0);
+    --marrom: rgb(117,66,0);
 }
 
 /*  Padronizando as margens */
@@ -63,10 +63,14 @@ html {
     border-radius: 8px;
 }
 
-.banner {
+/*.banner {
     background-image: url('img/banner.png');
     background-size: cover;
     background-repeat: no-repeat;
+}*/
+
+.banner {
+    background-color: #f1f1f1;
 }
 
 .artigo {
@@ -259,32 +263,43 @@ html {
 }
 
 .form_login {
-    background-color: var(--marrom);
-    height: 400px;
+    background-color: white;
+    height: 350px;
     width: 30%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    border-radius: 20px;
     margin-top: 125px;
-    
+    margin-bottom: 50px;
+    box-shadow: gray 3px 3px 3px 3px;
 }
 
-.form_login span, .form_login h2 {
-    font-size: 22px;
+.form_login h2 {
+    font-size: 20px;
+    color: var(--marrom);
+}
+
+.form_login span {
+    font-size: 16px;
+    color: var(--marrom);
 }
 
 .form_login_container input{
     display: flex;
     align-items: center;
-    border: 3px ridge var(--amarelo);
+    border-radius: 10px;
+    height: 20px;
+    font-size: 16px;
+    padding: 8px;
+    width: 90%;
 }
 
 .btn {
-    background-color: var(--amarelo);
-    padding: 10px;
-    border: 1px solid brown;
-    border-radius: 5px;
-
+    background-color: var(--marrom);
+    padding: 8px;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    width: 150px;
 }

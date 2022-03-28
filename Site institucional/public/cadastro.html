@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AcquaTec | Página Inicial</title>
+
+
+    <script src="./assets/js/funcoes.js"></script>
+
+
+    <link rel="icon" href="./assets/icon/favicon.ico">
+    <link rel="stylesheet" href="./css/style_Cadastro_login.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <!--header inicio-->
+    <div class="header">
+        <div class="container">
+            <h1>AcquaTec</h1>
+            <ul class="navbar">
+                <li>
+                    <a href="./index.html">
+                        Inicial
+                    </a>
+                </li>
+                <li>
+                    <a href="./simulador.html">Simulador</a>
+                </li>
+                <li>|</li>
+                <li>
+                    <a href="./login.html">Login</a>
+                </li>
+                <li class="agora">
+                    <a href="./cadastro.html">Cadastro</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--header fim-->
+
+    <div class="banner-login ">
+        <div class="container ">
+            <div class="card medio">
+                <h2>Bem-vindo!</h2>
+                <div class="formulario">
+                    <form id="form_cadastro" method="post" onsubmit="return cadastrar()">
+                        Nome Loja:
+                        <input name="nomeLoja" type="text" placeholder="Ada Lovelace">
+                        <br>
+                        E-mail Loja:
+                        <input name="emailLoja" type="text" placeholder="meuemail@provedor.com">
+                        <br>
+                        Telefone Loja:
+                        <input name="telefoneLoja" type="text" placeholder="()****-****">
+                        <br>
+                        Cep:
+                        <input name="cepLoja" type="text" placeholder="*****-***">
+                        <br>
+                        Numero Rua:
+                        <input name="numeroRua" type="text" placeholder="1234">
+                        <br>
+                        Cnpj:
+                        <input name="cnpjMatriz" type="text" placeholder="">
+                        <br>
+                        Senha Loja:
+                        <input name="senhaLoja" type="text" placeholder="">
+                        <br>
+                        Confirmacao Senha:
+                        <input name="confirmacaoSenha" type="text" placeholder="">
+                        <br>
+                        <button class="btn">Cadastrar</button>
+                    </form>
+                </div>
+                <div id="div_aguardar" class="loading-div">
+                    <img src="./assets/circle-loading.gif" id="loading-gif">
+                </div>
+
+                <div id="div_erros_login">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--footer inicio-->
+    <div class="footer">
+        <div class="container">
+            <h4>Feito com amor por um aluno BandTec &copy; 2021</h4>
+        </div>
+    </div>
+    <!--footer fim-->
+
+
+</body>
+
+</html>
+
+<script>
+
+    function limparFormulario() {
+        document.getElementById("form_cadastro").reset();
+    }
+
+    function cadastrar() {
+        aguardar();
+
+        var formulario = new URLSearchParams(new FormData(document.getElementById("form_cadastro")));
+
+        var nomeLoja = formulario.get("nomeLoja");
+        var emailLoja = formulario.get("emailLoja");
+        var telefoneLoja = formulario.get("telefoneLoja");
+        var cepLoja = formulario.get("cepLoja");
+        var numeroRua = formulario.get("numeroRua");
+        var cnpjMatriz = formulario.get("cnpjMatriz");
+        var senhaLoja = formulario.get("senhaLoja");
+        var confirmacaoSenha = formulario.get("confirmacaoSenha");
+
+        // TODO: VERIFICAR AS VALIDAÇÕES QUE ELES ESTÃO APRENDENDO EM ALGORITMOS 
+        if (nomeLoja == "" || emailLoja == "" || telefoneLoja == "" || cepLoja == "" || numeroRua == "" || cnpjMatriz == "" || senhaLoja == "" || confirmacaoSenha == "") {
+
+            window.alert("Preencha todos os campos para prosseguir!");
+            if (nomeLoja == "") {
+                console.log('Nome da loja está em branco')
+            }
+            if (emailLoja == "") {
+                console.log('Email da loja está em branco')
+            }
+            if (telefoneLoja == "") {
+                console.log('Telefone da loja está em branco')
+            }
+            if (cepLoja == "") {
+                console.log('Cep da loja está em branco')
+            }
+            if (numeroRua == "") {
+                console.log('Numero da rua está em branco')
+            }
+            if (cnpjMatriz == "") {
+                console.log('Cnpj está em branco')
+            }
+            if (senhaLoja == "") {
+                console.log('Senha está em branco')
+            }
+            if (confirmacaoSenha == "") {
+                console.log('Confirmação de senha está em branco')
+            }
+            finalizarAguardar();
+            return false;
+        }
+
+        if (emailLoja.indexOf("@") == -1 || emailLoja.indexOf(".com") == -1) {
+            window.alert("Ops, e-mail inválido! Verifique e tente novamente.");
+            finalizarAguardar();
+            return false;
+        }
+
+        if (senhaLoja != confirmacaoSenha) {
+            window.alert("As senhas inseridas devem ser iguais para prosseguir!");
+            finalizarAguardar();
+            return false;
+        }
+
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            body: formulario
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                window.alert("Cadastro realizado com sucesso!");
+                window.location = "login.html";
+                limparFormulario();
+                finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        return false;
+    }
+
+</script>

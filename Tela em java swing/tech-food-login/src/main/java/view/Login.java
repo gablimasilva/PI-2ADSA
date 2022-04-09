@@ -2,8 +2,10 @@ package view;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.util.List;
 import javax.swing.Icon;
 import javax.xml.transform.Templates;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
@@ -55,6 +57,8 @@ public class Login extends javax.swing.JFrame {
                 + "senha VARCHAR(255)"
                 + ")";
 
+        template.execute(criacaoTabelaUsuario);
+
         String inserirScript = "INSERT INTO usuario (ip, senha) VALUES (?, ?)";
 
         template.update(inserirScript, "172.11.1", "12345");
@@ -94,6 +98,7 @@ public class Login extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         login = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        iconKey = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -145,7 +150,6 @@ public class Login extends javax.swing.JFrame {
         usuario.setText("IP da Máquina");
         getContentPane().add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, -1));
 
-        inputUsuario.setText("Insira um IP");
         inputUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 211, 80)));
         inputUsuario.setName(""); // NOI18N
         inputUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -178,6 +182,7 @@ public class Login extends javax.swing.JFrame {
         passwdUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 211, 80)));
         passwdUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         passwdUsuario.setDisabledTextColor(new java.awt.Color(117, 91, 95));
+        passwdUsuario.add(iconKey);
         passwdUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passwdUsuarioActionPerformed(evt);
@@ -238,10 +243,18 @@ public class Login extends javax.swing.JFrame {
 
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 110));
 
+        iconKey.setIcon(new javax.swing.ImageIcon(getClass().getResource("/key-16.png"))); // NOI18N
+        getContentPane().add(iconKey, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 290, 20, 30));
+        iconKey.setLocation(5,5);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogarActionPerformed
+
+        Connection config = new Connection();
+        JdbcTemplate login = new JdbcTemplate(config.getDataSource());
+
         String codigo = "", senha = "";
         Boolean logado = false;
 
@@ -250,10 +263,19 @@ public class Login extends javax.swing.JFrame {
         } else if (passwdUsuario.getText().equals("")) {
             System.out.println("Insira sua senha!");
         } else {
-            System.out.println("Logado com Sucesso!");
-            logado = true;
-        }
+            List<Usuario> listaUsuario = login.query("select * from usuario where ip = ? and senha = ?;",
+                    new BeanPropertyRowMapper<>(Usuario.class), inputUsuario.getText(), passwdUsuario.getText());
+            if (listaUsuario.isEmpty()) {
+                System.out.println("IP e/ou senha inválidos!");
+            }
+            for (Usuario usuario : listaUsuario) {
+                System.out.println(usuario.getIp());
+                System.out.println(usuario.getSenha());
 
+                System.out.println("Logado com Sucesso!");
+                logado = true;
+            }
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLogarActionPerformed
 
@@ -268,14 +290,14 @@ public class Login extends javax.swing.JFrame {
     private void inputUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputUsuarioFocusLost
         // TODO add your handling code here:
         if (inputUsuario.getText().equals("")) {
-            inputUsuario.setText("Insira um usuário");
+            inputUsuario.setText("Insira um IP");
             inputUsuario.setForeground(new Color(153, 153, 153));
         }
     }//GEN-LAST:event_inputUsuarioFocusLost
 
     private void inputUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputUsuarioFocusGained
         // TODO add your handling code here:
-        if (inputUsuario.getText().equals("Insira um usuário")) {
+        if (inputUsuario.getText().equals("Insira um IP")) {
             inputUsuario.setText("");
             inputUsuario.setForeground(new Color(153, 153, 153));
         }
@@ -287,6 +309,7 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogar;
+    private javax.swing.JLabel iconKey;
     private javax.swing.JTextField inputUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;

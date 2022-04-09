@@ -18,7 +18,6 @@ public class Connection {
         dataSource.setUsername("root");
         dataSource.setPassword("programador.2021");
         
-        dataSource.set
 
     }
 

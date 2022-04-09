@@ -3,12 +3,64 @@ package view;
 import java.awt.Color;
 import java.awt.Image;
 import javax.swing.Icon;
+import javax.xml.transform.Templates;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  *
  * @author bruno.dearaujo
  */
 public class Login extends javax.swing.JFrame {
+
+    public static void main(String[] args) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Login().setVisible(true);
+            }
+        });
+        // Esse objeto guarda as configurações do banco de dados                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+        Connection config = new Connection();
+
+        JdbcTemplate template = new JdbcTemplate(config.getDataSource());
+
+        template.execute("DROP TABLE IF EXISTS usuario");
+
+        String criacaoTabelaUsuario = "CREATE TABLE usuario ("
+                + "id INT PRIMARY KEY AUTO_INCREMENT,"
+                + "ip VARCHAR(255),"
+                + "senha VARCHAR(255)"
+                + ")";
+
+        String inserirScript = "INSERT INTO usuario (ip, senha) VALUES (?, ?)";
+
+        template.update(inserirScript, "172.11.1", "12345");
+        template.update(inserirScript, "172.22.2", "54321");
+
+    }
 
     /**
      * Creates new form Login
@@ -34,12 +86,10 @@ public class Login extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         usuario = new javax.swing.JLabel();
-        inputEmpresa = new javax.swing.JTextField();
         inputUsuario = new javax.swing.JTextField();
         btnLogar = new javax.swing.JButton();
         passwdUsuario = new javax.swing.JPasswordField();
         jPanel4 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         login = new javax.swing.JLabel();
@@ -92,19 +142,10 @@ public class Login extends javax.swing.JFrame {
 
         usuario.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         usuario.setForeground(new java.awt.Color(117, 66, 0));
-        usuario.setText("Usuário");
-        getContentPane().add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, -1, -1));
+        usuario.setText("IP da Máquina");
+        getContentPane().add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, -1));
 
-        inputEmpresa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 211, 80)));
-        inputEmpresa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputEmpresaActionPerformed(evt);
-            }
-        });
-        getContentPane().add(inputEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 300, 30));
-
-        inputUsuario.setForeground(new java.awt.Color(0, 222, 222));
-        inputUsuario.setText("Insira um usuário");
+        inputUsuario.setText("Insira um IP");
         inputUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 211, 80)));
         inputUsuario.setName(""); // NOI18N
         inputUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -120,7 +161,7 @@ public class Login extends javax.swing.JFrame {
                 inputUsuarioActionPerformed(evt);
             }
         });
-        getContentPane().add(inputUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 300, 30));
+        getContentPane().add(inputUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 300, 30));
 
         btnLogar.setBackground(new java.awt.Color(243, 242, 241));
         btnLogar.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
@@ -156,11 +197,6 @@ public class Login extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 447, -1, -1));
-
-        jLabel2.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(117, 66, 0));
-        jLabel2.setText("Cód. filial");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(117, 66, 0));
@@ -206,13 +242,11 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogarActionPerformed
-        String login = "", codigo = "", senha = "";
+        String codigo = "", senha = "";
         Boolean logado = false;
 
         if (inputUsuario.getText().equals("")) {
-            System.out.println("Insira seu usuário!");
-        } else if (inputEmpresa.getText().equals("")) {
-            System.out.println("Insira sua empresa!");
+            System.out.println("Insira seu IP!");
         } else if (passwdUsuario.getText().equals("")) {
             System.out.println("Insira sua senha!");
         } else {
@@ -223,26 +257,13 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLogarActionPerformed
 
-    private void inputEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputEmpresaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inputEmpresaActionPerformed
-
     private void passwdUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwdUsuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_passwdUsuarioActionPerformed
 
     private void inputUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputUsuarioActionPerformed
         // TODO add your handling code here:
-
     }//GEN-LAST:event_inputUsuarioActionPerformed
-
-    private void inputUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputUsuarioFocusGained
-        // TODO add your handling code here:
-        if (inputUsuario.getText().equals("Insira um usuário")) {
-            inputUsuario.setText("");
-            inputUsuario.setForeground(new Color(153, 153, 153));
-        }
-    }//GEN-LAST:event_inputUsuarioFocusGained
 
     private void inputUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputUsuarioFocusLost
         // TODO add your handling code here:
@@ -252,47 +273,22 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_inputUsuarioFocusLost
 
+    private void inputUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_inputUsuarioFocusGained
+        // TODO add your handling code here:
+        if (inputUsuario.getText().equals("Insira um usuário")) {
+            inputUsuario.setText("");
+            inputUsuario.setForeground(new Color(153, 153, 153));
+        }
+    }//GEN-LAST:event_inputUsuarioFocusGained
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogar;
-    private javax.swing.JTextField inputEmpresa;
     private javax.swing.JTextField inputUsuario;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

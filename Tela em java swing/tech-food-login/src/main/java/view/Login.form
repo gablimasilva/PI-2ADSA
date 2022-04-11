@@ -60,6 +60,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="Tech Food"/>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="50" green="d3" red="ff" type="rgb"/>
     </Property>
@@ -127,6 +128,9 @@
         <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="inputUsuarioFocusLost"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inputUsuarioActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="JLabel computerIcon = new JLabel();&#xa;computerIcon.setBounds(275, 4, 20, 20);&#xa;computerIcon.setIcon(new javax.swing.ImageIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/computer-32.png&quot;)).getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT)));&#xa;&#xa;inputUsuario.add(computerIcon);"/>
+      </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
           <AbsoluteConstraints x="60" y="210" width="300" height="30"/>
@@ -182,7 +186,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="passwdUsuarioActionPerformed"/>
       </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="passwdUsuario.add(iconKey);"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="JLabel iconKey = new JLabel();&#xa;iconKey.setBounds(275, 4, 20, 20);&#xa;iconKey.setIcon(new javax.swing.ImageIcon(new javax.swing.ImageIcon(getClass().getResource(&quot;/key-32.png&quot;)).getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT)));&#xa;        &#xa;passwdUsuario.add(iconKey);"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -290,20 +294,5 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="iconKey">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/key-16.png"/>
-        </Property>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="iconKey.setLocation(5,5);"/>
-      </AuxValues>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="370" y="290" width="20" height="30"/>
-        </Constraint>
-      </Constraints>
-    </Component>
   </SubComponents>
 </Form>

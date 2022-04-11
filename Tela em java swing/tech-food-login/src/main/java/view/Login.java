@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Image;
 import java.util.List;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.xml.transform.Templates;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -98,7 +100,6 @@ public class Login extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         login = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        iconKey = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -138,6 +139,7 @@ public class Login extends javax.swing.JFrame {
         jLabel5.setText("jLabel5");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Tech Food");
         setBackground(new java.awt.Color(255, 211, 80));
         setLocation(new java.awt.Point(0, 0));
         setMinimumSize(new java.awt.Dimension(400, 500));
@@ -152,6 +154,11 @@ public class Login extends javax.swing.JFrame {
 
         inputUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 211, 80)));
         inputUsuario.setName(""); // NOI18N
+        JLabel computerIcon = new JLabel();
+        computerIcon.setBounds(275, 4, 20, 20);
+        computerIcon.setIcon(new javax.swing.ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/computer-32.png")).getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
+
+        inputUsuario.add(computerIcon);
         inputUsuario.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 inputUsuarioFocusGained(evt);
@@ -182,6 +189,10 @@ public class Login extends javax.swing.JFrame {
         passwdUsuario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 211, 80)));
         passwdUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         passwdUsuario.setDisabledTextColor(new java.awt.Color(117, 91, 95));
+        JLabel iconKey = new JLabel();
+        iconKey.setBounds(275, 4, 20, 20);
+        iconKey.setIcon(new javax.swing.ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/key-32.png")).getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT)));
+
         passwdUsuario.add(iconKey);
         passwdUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -242,10 +253,6 @@ public class Login extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 110));
-
-        iconKey.setIcon(new javax.swing.ImageIcon(getClass().getResource("/key-16.png"))); // NOI18N
-        getContentPane().add(iconKey, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 290, 20, 30));
-        iconKey.setLocation(5,5);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -309,7 +316,6 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogar;
-    private javax.swing.JLabel iconKey;
     private javax.swing.JTextField inputUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;

@@ -65,7 +65,9 @@ function cadastrar(req, res) {
     var telefoneLoja = req.body.telefoneLoja;
     var cepLoja = req.body.cepLoja;
     var numeroRua = req.body.numeroRua;
+    var complemento = req.body.complemento;
     var cnpjMatriz = req.body.cnpjMatriz;
+    var responsavel = req.body.responsavel;
     var senhaLoja = req.body.senhaLoja;
     // var confirmacaoSenha = req.body.confirmacaoSenha;
 
@@ -76,21 +78,20 @@ function cadastrar(req, res) {
         res.status(400).send("Seu email da loja está undefined!");
     } else if (telefoneLoja == undefined) {
         res.status(400).send("Telefone da loja está undefined!");
-    }
-    else if (cepLoja == undefined) {
+    } else if (cepLoja == undefined) {
         res.status(400).send("Cep da loja está undefined!");
-    }
-    else if (numeroRua == undefined) {
+    } else if (numeroRua == undefined) {
         res.status(400).send("Numero da rua está undefined!");
-    }
-    else if (cnpjMatriz == undefined) {
+    } else if (complemento == undefined) {
+        res.status(400).send("");
+    } else if (cnpjMatriz == undefined) {
         res.status(400).send("CNPJ está undefined!");
-    }
-    else if (senhaLoja == undefined) {
+    } else if (responsavel == undefined) {
+        res.status(400).send("Técnico responsável está undefined!");
+    } else if (senhaLoja == undefined) {
         res.status(400).send("Senha da loja está undefined!");
-    }
-    else {
-        usuarioModel.cadastrar(nomeLoja, emailLoja, telefoneLoja, cepLoja, numeroRua, cnpjMatriz, senhaLoja)
+    } else {
+        usuarioModel.cadastrar(nomeLoja, emailLoja, telefoneLoja, cepLoja, numeroRua, complemento, cnpjMatriz, responsavel, senhaLoja)
             .then(
                 function (resultado) {
                     res.json(resultado);

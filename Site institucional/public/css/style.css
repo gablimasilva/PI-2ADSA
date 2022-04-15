@@ -102,14 +102,18 @@ html {
     height: 75%;
     width: 100%;
   
-
 }
 
 .carouselImg {
     position: absolute;
     height: 74%;
    width: 100%;
-    
+    opacity: 0;
+    transition: 1s;
+}
+
+.carouselImgActive {
+    opacity: 1;
 }
 
 .arrow {
@@ -120,14 +124,15 @@ html {
     border-top: 0;
     position: absolute;
     top: 50%;
+    cursor: pointer;
     z-index: 50;
 }
 
-.aLeft { 
+.aRight { 
     transform: rotate(-45deg); 
     right: 1%;
 }
-.aRight { 
+.aLeft { 
     transform: rotate(135deg); 
 }
 
@@ -140,6 +145,7 @@ html {
 .carouselDots {
     display: flex;
     justify-content: center;
+    
     z-index: 50;
 }
 
@@ -148,6 +154,8 @@ html {
     width: 20px;
     height: 20px;
     border-radius: 50px;
+    margin-left: 5px;
+    cursor: pointer;
 }
 
 .dotsActive {
@@ -206,6 +214,10 @@ html {
 
 .card .texto .topicos {
     list-style-position: inside;
+}
+
+.topicos {
+    text-align: left;
 }
 
 #mvv .container{
@@ -316,7 +328,7 @@ html {
     width: 150px;
 }
 
-@media (maX-width: 1132px) {
+@media (max-width: 1132px) {
     #mvv {
         height: fit-content;
         align-items: center;

@@ -94,12 +94,22 @@ html {
 .carouselContainer {
 
     margin-top: 69px;
+    height: 100%;
+    width: 100%;
+}
+
+.carouselImgs {
+    height: 75%;
+    width: 100%;
+  
+
 }
 
 .carouselImg {
-
-    height: 75%;
-    width: 100%;
+    position: absolute;
+    height: 74%;
+   width: 100%;
+    
 }
 
 .arrow {
@@ -110,6 +120,7 @@ html {
     border-top: 0;
     position: absolute;
     top: 50%;
+    z-index: 50;
 }
 
 .aLeft { 
@@ -129,6 +140,7 @@ html {
 .carouselDots {
     display: flex;
     justify-content: center;
+    z-index: 50;
 }
 
 .dots {
@@ -302,4 +314,11 @@ html {
     color: white;
     font-weight: bold;
     width: 150px;
+}
+
+@media (maX-width: 1132px) {
+    #mvv {
+        height: fit-content;
+        align-items: center;
+    }
 }

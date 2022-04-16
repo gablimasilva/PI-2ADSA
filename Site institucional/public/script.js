@@ -18,6 +18,23 @@ aLeft.addEventListener('click', ()=>{
     chengePreviousSlide(currentSlide-1)
 })
 
+const hamburguerMenu = document.querySelector('.hamburguerMenu');
+hamburguerMenu.addEventListener('click', openNavBar);
+
+function openNavBar(){
+    navBar = document.querySelector('.navBar');
+
+    if(navBar.classList.contains("active")){
+        navBar.classList.remove("active");
+        hamburguerMenu.src="img/menu-4-64.png";
+    }
+    else {
+        navBar.classList.add("active");
+        hamburguerMenu.src="img/x-mark-64.png";
+
+    }
+}
+
 function addDots(){
     const carouselDots = document.querySelector('.carouselDots');
 

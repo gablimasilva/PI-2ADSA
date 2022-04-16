@@ -13,9 +13,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
 
     <!-- scripts do Chart.js -->
     <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
@@ -25,8 +24,8 @@
 <body onload="validarSessao()">
     <div class="janela">
         <div class="header-left">
-            <img src="../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview.png" alt="logo" 
-            width="40%">
+            <img src="../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview.png" alt="logo"
+                 width="40%">
 
             <div class="hello">
                 <h3>Olá, <span id="b_usuario"></span>!</h3>
@@ -85,6 +84,41 @@
             <div class="title">
                 <h2>Dashboard / Usuários</h2>
             </div>
+            <div class="card medio">
+                <h2>Bem-vindo!</h2>
+                <div class="formulario">
+                    <form id="form_cadastro" method="post" onsubmit="return cadastrarUsuario()">
+                        Cargo do Usuário:
+                        <select name="cargo">
+                            <option selected hidden value="value">Selecione o cargo</option>
+                            <option value="1">Gerente</option>
+                            <option value="2">Analista</option>
+                            <option value="3">Colaborador</option>
+                        </select>
+
+                        Nome:
+                        <input name="nome" type="text" placeholder="meuemail@provedor.com">
+
+                        Email:
+                        <input name="email" type="text" placeholder="()****-****">
+
+                        Senha:
+                        <input name="senha" type="text" placeholder="*****-***">
+
+                        Confirmacao Senha:
+                        <input name="confirmacaoSenha" type="text" placeholder="">
+
+                        <button class="btn">Cadastrar</button>
+                    </form>
+                </div>
+                <div id="div_aguardar" class="loading-div">
+                    <img src="./assets/circle-loading.gif" id="loading-gif">
+                </div>
+
+                <div id="div_erros_login">
+
+                </div>
+            </div>
         </div>
     </div>
 
@@ -92,3 +126,69 @@
 </body>
 
 </html>
+
+<script>
+
+    function limparFormulario() {
+        document.getElementById("form_cadastro").reset();
+    }
+
+    function cadastrarUsuario() {
+        aguardar();
+
+        var formulario = new URLSearchParams(new FormData(document.getElementById("form_cadastro")));
+
+        var cargo = formulario.get("cargo");
+        var nome = formulario.get("nome");
+        var email = formulario.get("email");
+        var senha = formulario.get("senha");
+        var confirmacaoSenha = formulario.get("confirmacaoSenha");
+
+        // TODO: VERIFICAR AS VALIDAÇÕES QUE ELES ESTÃO APRENDENDO EM ALGORITMOS
+        if (cargo == "" || nome == "" || email == "" || senha == "" || confirmacaoSenha == "") {
+
+            window.alert("Preencha todos os campos para prosseguir!");
+            if (cargo == "") {
+                console.log('Tipo do computador está em branco')
+            } if (nome == "") {
+                console.log('IP está em branco')
+            } if (email == "") {
+                console.log('Sistema operacional está em branco')
+            } if (senha == "") {
+                console.log('Hostname está em branco')
+            } if (confirmacaoSenha == "") {
+                console.log('Confirmação de senha está em branco')
+            }
+            finalizarAguardar();
+            return false;
+        }
+
+        if (senha != confirmacaoSenha) {
+            window.alert("As senhas inseridas devem ser iguais para prosseguir!");
+            finalizarAguardar();
+            return false;
+        }
+
+        fetch(`/usuarios/cadastrarUsuario/${sessionStorage.ID_USUARIO}`, {
+            method: "POST",
+            body: formulario
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                window.alert("Cadastro realizado com sucesso!");
+                limparFormulario();
+                finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        return false;
+    }
+
+</script>

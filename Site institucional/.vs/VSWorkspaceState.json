@@ -1,10 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\src",
-    "\\src\\database",
-    "\\src\\models"
+    "\\src\\controllers",
+    "\\src\\models",
+    "\\src\\routes"
   ],
-  "SelectedNode": "\\src\\database\\config.js",
+  "SelectedNode": "\\src",
   "PreviewInSolutionExplorer": false
 }

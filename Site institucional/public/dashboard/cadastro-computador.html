@@ -13,20 +13,19 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+          rel="stylesheet">
 
     <!-- scripts do Chart.js -->
     <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
 
 </head>
 
-<body onload="validarSessao()">
+<body onload="validarSessao(), ListarLojas()">
     <div class="janela">
         <div class="header-left">
-            <img src="../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview.png" alt="logo" 
-            width="40%">
+            <img src="../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview.png" alt="logo"
+                 width="40%">
 
             <div class="hello">
                 <h3>Olá, <span id="b_usuario"></span>!</h3>
@@ -85,6 +84,51 @@
             <div class="title">
                 <h2>Dashboard / Computadores</h2>
             </div>
+            <div class="card medio">
+                <h2>Bem-vindo!</h2>
+                <div class="formulario">
+                    <form id="form_cadastro" method="post" onsubmit="return cadastrarMaquina()">
+                        Tipo de computador:
+
+                        <select name="tipoComputador">
+                            <option selected hidden value="value">Selecione o tipo</option>
+                            <option value="1">Totem</option>
+                            <option value="2">Computador</option>
+                            <option value="3">Caixa</option>
+                        </select>
+
+                        Loja:
+
+                        <select name="loja" id="loja">
+                            <option selected hidden value="value">Selecione a Loja</option>
+                        </select>
+
+                        IP do computador:
+                        <input name="ip" type="text" placeholder="meuemail@provedor.com">
+
+                        Sistema Operacional:
+                        <input name="so" type="text" placeholder="()****-****">
+
+                        Hostname do computador:
+                        <input name="hostname" type="text" placeholder="*****-***">
+
+                        Endereço MAC do computador:
+                        <input name="mac" type="text" placeholder="1234">
+
+                        Local do computador:
+                        <input name="local" type="text" placeholder="1234">
+
+                        <button class="btn">Cadastrar</button>
+                    </form>
+                </div>
+                <div id="div_aguardar" class="loading-div">
+                    <img src="./assets/circle-loading.gif" id="loading-gif">
+                </div>
+
+                <div id="div_erros_login">
+
+                </div>
+            </div>
         </div>
     </div>
 
@@ -92,3 +136,84 @@
 </body>
 
 </html>
+
+<script>
+
+    function limparFormulario() {
+        document.getElementById("form_cadastro").reset();
+    }
+
+    function ListarLojas() {
+        fetch(`/usuarios/listarLojas/${sessionStorage.ID_USUARIO}`)
+        .then(res => res.json())
+        .then(res => {
+            console.log(res);
+            res.forEach(lojas => {
+                var option = document.createElement("option");
+                option.innerHTML = lojas.RazaoSocial;
+                option.value = lojas.IdLoja;
+                loja.append(option);
+            })
+        })
+    }
+
+    function cadastrarMaquina() {
+        aguardar();
+
+        var formulario = new URLSearchParams(new FormData(document.getElementById("form_cadastro")));
+
+        var tipoComputador = formulario.get("tipoComputador");
+        var loja = formulario.get("loja");
+        var ip = formulario.get("ip");
+        var sistemaOperacional = formulario.get("so");
+        var hostname = formulario.get("hostname");
+        var mac = formulario.get("mac");
+        var local = formulario.get("local");
+
+        // TODO: VERIFICAR AS VALIDAÇÕES QUE ELES ESTÃO APRENDENDO EM ALGORITMOS
+        if (tipoComputador == "" || loja == "" || ip == "" || sistemaOperacional == "" || hostname == "" || mac == "" || local == "") {
+
+            window.alert("Preencha todos os campos para prosseguir!");
+            if (tipoComputador == "") {
+                console.log('Tipo do computador está em branco')
+            } if (loja == "") {
+                console.log('Loja está em branco')
+            }if (ip == "") {
+                console.log('IP está em branco')
+            } if (sistemaOperacional == "") {
+                console.log('Sistema operacional está em branco')
+            } if (hostname == "") {
+                console.log('Hostname está em branco')
+            } if (mac == "") {
+                console.log('Endereço MAC está em branco')
+            } if (local == "") {
+                console.log('Local está em branco')
+            }
+            finalizarAguardar();
+            return false;
+        }
+
+        fetch(`/usuarios/cadastrarMaquina/`, {
+            method: "POST",
+            body: formulario
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                window.alert("Cadastro realizado com sucesso!");
+                limparFormulario();
+                finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        return false;
+    }
+
+</script>
+

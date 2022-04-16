@@ -18,10 +18,11 @@ function entrar() {
             resposta.json().then(json => {                    
                 console.log(json);
                 console.log(JSON.stringify(json));
+                
 
-                sessionStorage.LOGIN_USUARIO = json.login;
-                sessionStorage.NOME_USUARIO = json.nome;
-                sessionStorage.ID_USUARIO = json.id;
+                sessionStorage.LOGIN_USUARIO = json.emailLoja;
+                sessionStorage.NOME_USUARIO = json.RazaoSocial;
+                sessionStorage.ID_USUARIO = json.idEmpresa;
 
                 setTimeout(function () {
                     window.location = "/index.html";

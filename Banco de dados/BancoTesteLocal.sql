@@ -48,6 +48,7 @@ foreign key (fkLoja) references Loja(idLoja),
 fkTipoComputador INT,
 foreign key (fkTipoComputador) references tipoComputador(idTipo),
 IpComputador VARCHAR(45),
+senhaComputador varchar(45),
 SistemaOperacional VARCHAR(45),
 Hostname VARCHAR(45),
 EnderecoMACComputador VARCHAR(45),
@@ -80,9 +81,41 @@ Insert into tipoComputador VALUES
 (null,"Computador"),
 (null,"Caixa");
 
-DROP TABLE Loja;
-DROP TABLE Empresa;
+CREATE TABLE componente(
+	idComponente int primary key auto_increment,
+    nomeComponente varchar(45)
+    
+);
+
+insert into componente values
+(null, 'CPU'),
+(null, 'RAM'),
+(null, 'HD'),
+(null, 'SSD');
+
+create table computadorComponente(
+	idComputadorComponente int primary key auto_increment,
+    fkComputador int,
+    fkComponente int,
+    totalComponente double,
+    unidadeMedida varchar(45),
+    foreign key (fkComputador) references computador(idComputador),
+    foreign key (fkComponente) references componente(idComponente)
+);
+
+create table registroComponente(
+	idRegistro int primary key auto_increment,
+    fkComputadorComponente int,
+    temperatura double,
+    valorConsumido double,
+    dataHora datetime,
+    statusComputador datetime
+);
+
 SELECT * FROM Empresa;
 SELECT * FROM Loja;
 SELECT * FROM Computador;
 SELECT * FROM Usuario;
+
+DROP TABLE Loja;
+DROP TABLE Empresa;

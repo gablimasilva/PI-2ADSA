@@ -50,22 +50,6 @@ public class Login extends javax.swing.JFrame {
         Connection config = new Connection();
 
         JdbcTemplate template = new JdbcTemplate(config.getDataSource());
-
-        template.execute("DROP TABLE IF EXISTS usuario");
-
-        String criacaoTabelaUsuario = "CREATE TABLE usuario ("
-                + "id INT PRIMARY KEY AUTO_INCREMENT,"
-                + "ip VARCHAR(255),"
-                + "senha VARCHAR(255)"
-                + ")";
-
-        template.execute(criacaoTabelaUsuario);
-
-        String inserirScript = "INSERT INTO usuario (ip, senha) VALUES (?, ?)";
-
-        template.update(inserirScript, "172.11.1", "12345");
-        template.update(inserirScript, "172.22.2", "54321");
-
     }
 
     /**
@@ -270,14 +254,14 @@ public class Login extends javax.swing.JFrame {
         } else if (passwdUsuario.getText().equals("")) {
             System.out.println("Insira sua senha!");
         } else {
-            List<Usuario> listaUsuario = login.query("select * from usuario where ip = ? and senha = ?;",
-                    new BeanPropertyRowMapper<>(Usuario.class), inputUsuario.getText(), passwdUsuario.getText());
-            if (listaUsuario.isEmpty()) {
+            List<Computador> listaComputador = login.query("select * from computador where ipComputador = ? and senhaComputador = ?;",
+                    new BeanPropertyRowMapper<>(Computador.class), inputUsuario.getText(), passwdUsuario.getText());
+            if (listaComputador.isEmpty()) {
                 System.out.println("IP e/ou senha inválidos!");
             }
-            for (Usuario usuario : listaUsuario) {
-                System.out.println(usuario.getIp());
-                System.out.println(usuario.getSenha());
+            for (Computador computador : listaComputador) {
+                System.out.println(computador.getIpComputador());
+                System.out.println(computador.getSenhaComputador());
 
                 System.out.println("Logado com Sucesso!");
                 logado = true;

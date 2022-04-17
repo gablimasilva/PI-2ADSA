@@ -263,7 +263,7 @@ public class Login extends javax.swing.JFrame {
                 System.out.println(computador.getIpComputador());
                 System.out.println(computador.getSenhaComputador());
                 dispose();
-                new Monitoramento().setVisible(true);
+                new Monitoramento(computador).setVisible(true);
 
                 System.out.println("Logado com Sucesso!");
                 logado = true;

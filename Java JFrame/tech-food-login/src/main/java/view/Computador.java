@@ -7,6 +7,7 @@ package view;
 public class Computador {
 
     private String ipComputador;
+    private Integer idComputador;
     private String senhaComputador;
 
     public Computador(String ip) {
@@ -33,4 +34,18 @@ public class Computador {
     public void setSenhaComputador(String senhaComputador) {
         this.senhaComputador = senhaComputador;
     }
+    public Integer getidComputador() {
+        return idComputador;
+    }
+
+    public void setIdComputador(Integer idComputador) {
+        this.idComputador = idComputador;
+    }
+
+    @Override
+    public String toString() {
+        return "Computador{" + "ipComputador=" + ipComputador + ", idComputador=" + idComputador + ", senhaComputador=" + senhaComputador + '}';
+    }
+    
+    
 }

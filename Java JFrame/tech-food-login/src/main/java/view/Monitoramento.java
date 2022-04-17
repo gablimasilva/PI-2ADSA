@@ -2,6 +2,9 @@ package view;
 
 import com.github.britooo.looca.api.core.Looca;
 import com.github.britooo.looca.api.util.Conversor;
+import java.util.List;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  *
@@ -12,7 +15,10 @@ public class Monitoramento extends javax.swing.JFrame {
     /**
      * Creates new form Monitoramento
      */
-    public Monitoramento() {
+    private Computador computador;
+
+    public Monitoramento(Computador computador) {
+        this.computador = computador;
         initComponents();
         sistemaOperacional();
         monitoramentoGeral();
@@ -111,55 +117,70 @@ public class Monitoramento extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Monitoramento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Monitoramento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Monitoramento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Monitoramento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        Looca looca = new Looca();
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Monitoramento().setVisible(true);
-            }
-
-        });
-
-    }
-
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(Monitoramento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(Monitoramento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(Monitoramento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(Monitoramento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//        Looca looca = new Looca();
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new Monitoramento().setVisible(true);
+//            }
+//
+//        });
+//
+//    }
     public void monitoramentoGeral() {
 
+        // Instâncias de captura dos dados
         Looca looca = new Looca();
         Conversor conversor = new Conversor();
 
+        // Instâncias para inserir no banco
+        Connection config = new Connection();
+        JdbcTemplate monitorar = new JdbcTemplate(config.getDataSource());
+
+        List listaComponente = monitorar.queryForList("select * from computadorComponente where fkComputador = ?", computador.getidComputador());
+               
+        System.out.println(listaComponente);
+        
         new Thread(new Runnable() {
             @Override
             public void run() {
 
                 try {
                     while (true) {
-                        dadosCpu.setText(looca.getProcessador().getFrequencia().toString());
-                        dadosDisco.setText(looca.getGrupoDeDiscos().getDiscos().toString());
-                        dadosRam.setText(Conversor.formatarBytes(looca.getMemoria().getEmUso()));
+
+                        System.out.println(computador.toString());
+                        String exibirDadosDisco = Conversor.formatarBytes(looca.getGrupoDeDiscos().getVolumes().get(0).getDisponivel());
+                        String exibirDadosCpu = looca.getProcessador().getUso().toString();
+                        String exibirDadosRam = "Em Uso:" + Conversor.formatarBytes(looca.getMemoria().getEmUso())
+                                + "   |  Total:" + (Conversor.formatarBytes(looca.getMemoria().getTotal()));
+
+                        dadosCpu.setText(exibirDadosCpu);
+                        dadosDisco.setText(exibirDadosDisco);
+                        dadosRam.setText(exibirDadosRam);
                         Thread.sleep(15000);
                     }
                 } catch (Exception e) {

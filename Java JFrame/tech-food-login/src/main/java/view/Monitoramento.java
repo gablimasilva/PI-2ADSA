@@ -1,6 +1,7 @@
 package view;
 
 import com.github.britooo.looca.api.core.Looca;
+import com.github.britooo.looca.api.util.Conversor;
 
 /**
  *
@@ -13,6 +14,8 @@ public class Monitoramento extends javax.swing.JFrame {
      */
     public Monitoramento() {
         initComponents();
+        sistemaOperacional();
+        monitoramentoGeral();
     }
 
     /**
@@ -29,6 +32,10 @@ public class Monitoramento extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        sistemaOperacional = new javax.swing.JLabel();
+        dadosCpu = new javax.swing.JLabel();
+        dadosDisco = new javax.swing.JLabel();
+        dadosRam = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,6 +51,14 @@ public class Monitoramento extends javax.swing.JFrame {
 
         jLabel5.setText("Ram");
 
+        sistemaOperacional.setText("| ___________________");
+
+        dadosCpu.setText("| __________________");
+
+        dadosDisco.setText("| ___________________");
+
+        dadosRam.setText("| ___________________");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -52,11 +67,19 @@ public class Monitoramento extends javax.swing.JFrame {
                 .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addContainerGap(181, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(dadosRam)
+                            .addComponent(dadosDisco)
+                            .addComponent(dadosCpu)
+                            .addComponent(sistemaOperacional, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -64,13 +87,21 @@ public class Monitoramento extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(sistemaOperacional))
                 .addGap(38, 38, 38)
-                .addComponent(jLabel3)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(dadosCpu))
                 .addGap(36, 36, 36)
-                .addComponent(jLabel4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(dadosDisco))
                 .addGap(38, 38, 38)
-                .addComponent(jLabel5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(dadosRam))
                 .addGap(48, 48, 48))
         );
 
@@ -105,10 +136,6 @@ public class Monitoramento extends javax.swing.JFrame {
         //</editor-fold>
         Looca looca = new Looca();
 
-        System.out.println(looca.getGrupoDeDiscos());
-        System.out.println(looca.getMemoria());
-        System.out.println(looca.getSistema());
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -117,21 +144,46 @@ public class Monitoramento extends javax.swing.JFrame {
 
         });
 
-        try {
-            while (true) {
-                Thread.sleep(15000);
+    }
+
+    public void monitoramentoGeral() {
+
+        Looca looca = new Looca();
+        Conversor conversor = new Conversor();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                try {
+                    while (true) {
+                        dadosCpu.setText(looca.getProcessador().getFrequencia().toString());
+                        dadosDisco.setText(looca.getGrupoDeDiscos().getDiscos().toString());
+                        dadosRam.setText(Conversor.formatarBytes(looca.getMemoria().getEmUso()));
+                        Thread.sleep(15000);
+                    }
+                } catch (Exception e) {
+                    System.out.println("Erro de leitura!");
+                    System.out.println(e);
+                }
             }
-        } catch (Exception e) {
-            System.out.println("Erro de leitura!");
-            System.out.println(e);
-        }
+        }).start();
+    }
+
+    public void sistemaOperacional() {
+        Looca looca = new Looca();
+        sistemaOperacional.setText(looca.getSistema().getSistemaOperacional());
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel dadosCpu;
+    private javax.swing.JLabel dadosDisco;
+    private javax.swing.JLabel dadosRam;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel sistemaOperacional;
     // End of variables declaration//GEN-END:variables
 }

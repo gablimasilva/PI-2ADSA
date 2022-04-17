@@ -44,7 +44,11 @@ public class Computador {
 
     @Override
     public String toString() {
-        return "Computador{" + "ipComputador=" + ipComputador + ", idComputador=" + idComputador + ", senhaComputador=" + senhaComputador + '}';
+        return String.format("Computador %n"
+                + "ID: %d %n"
+                + "IP: %s %n"
+                + "SENHA: %s %n", 
+                idComputador, ipComputador, senhaComputador);
     }
     
     

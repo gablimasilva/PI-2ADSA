@@ -262,6 +262,8 @@ public class Login extends javax.swing.JFrame {
             for (Computador computador : listaComputador) {
                 System.out.println(computador.getIpComputador());
                 System.out.println(computador.getSenhaComputador());
+                dispose();
+                new Monitoramento().setVisible(true);
 
                 System.out.println("Logado com Sucesso!");
                 logado = true;

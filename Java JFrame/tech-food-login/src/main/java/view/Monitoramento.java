@@ -116,6 +116,15 @@ public class Monitoramento extends javax.swing.JFrame {
             }
 
         });
+
+        try {
+            while (true) {
+                Thread.sleep(15000);
+            }
+        } catch (Exception e) {
+            System.out.println("Erro de leitura!");
+            System.out.println(e);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

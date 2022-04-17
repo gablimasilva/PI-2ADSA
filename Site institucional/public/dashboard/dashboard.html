@@ -25,8 +25,7 @@
 <body onload="validarSessao()">
     <div class="janela">
         <div class="header-left">
-            <img src="../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview.png" alt="logo" 
-            width="40%">
+            <img src="../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview.png" alt="logo" width="40%">
 
             <div class="hello">
                 <h3>Olá, <span id="b_usuario"></span>!</h3>
@@ -35,48 +34,56 @@
 
             <div class="btn-nav-yellow">
                 <a href="./dashboard.html">
-                    <i class="material-icons">home</i><h3>Home</h3>
+                    <i class="material-icons">home</i>
+                    <h3>Home</h3>
                 </a>
             </div>
 
             <div class="btn-nav">
                 <a href="./cadastro-loja.html">
-                    <i class="material-icons">add_business</i><h3>Loja</h3>
+                    <i class="material-icons">add_business</i>
+                    <h3>Loja</h3>
                 </a>
             </div>
 
             <div class="btn-nav">
                 <a href="./cadastro-usuario.html">
-                    <i class="material-icons">person_add_alt</i><h3>Usuários</h3>
+                    <i class="material-icons">person_add_alt</i>
+                    <h3>Usuários</h3>
                 </a>
             </div>
 
             <div class="btn-nav">
                 <a href="./cadastro-computador.html">
-                    <i class="material-icons">computer</i><h3>Computadores</h3>
+                    <i class="material-icons">computer</i>
+                    <h3>Computadores</h3>
                 </a>
             </div>
 
             <div class="btn-nav">
                 <a href="./tempo-real.html">
-                    <i class="material-icons">show_chart</i><h3>Tempo Real</h3>
+                    <i class="material-icons">show_chart</i>
+                    <h3>Tempo Real</h3>
                 </a>
             </div>
 
             <div class="btn-nav">
                 <a href="./relatorios.html">
-                    <i class="material-icons">summarize</i><h3>Relatórios</h3>
+                    <i class="material-icons">summarize</i>
+                    <h3>Relatórios</h3>
                 </a>
             </div>
 
             <div class="btn-nav">
                 <a href="./suporte.html">
-                    <i class="material-icons">headset_mic</i><h3>Suporte</h3>
+                    <i class="material-icons">headset_mic</i>
+                    <h3>Suporte</h3>
                 </a>
             </div>
             <br><br>
             <div class="btn-logout" onclick="limparSessao()">
-                <i class="material-icons">logout</i><h3>Sair</h3>
+                <i class="material-icons">logout</i>
+                <h3>Sair</h3>
             </div>
 
         </div>
@@ -92,25 +99,35 @@
                 </div>
                 <div class="item-regua">
                     <h4>Offline</h4>
-                    <h2>0</h2>
+                    <p id="id_offline">0</p>
                     <h6>Computadores</h6>
                 </div>
                 <div class="item-regua">
                     <h4>Incidentes</h4>
-                    <h2>0</h2>
-                    <h6>Finzalizar tarefas</h6>
+                    <p id="id_incidente_finalizar">0</p>
+                    <h6>Total</h6>
                 </div>
                 <div class="item-regua">
-                    <h4>Incidentes</h4>
-                    <h2>0</h2>
-                    <h6>Reiniciar computadores</h6>
+                    <h4>Legenda</h4>
+                    <div class="item-regua-legenda">
+                        <div>
+                            <div style="background-color: lime; width: 20px; height: 10px; border-radius: 5px;"></div>   
+                            <p>Ótimo</p>
+                        </div>
+                        <div>
+                            <div style="background-color: rgb(247, 247, 29); width: 20px; height: 10px; border-radius: 5px;"></div>
+                            <p>Atenção</p>
+                        </div>
+                        <div>
+                            <div style="background-color: red; width: 20px; height: 10px; border-radius: 5px;"></div><p>Crítico</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="btns-dash">
                 <h4>Status</h4>
-                <div class="btns-dash-status">
-                     <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
-                    <button class="btn-chart" onclick="obterDadosGrafico(1)">Máquina 1</button>
+                <div class="btns-dash-status" id="dash_status">
+                    <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
                 </div>
             </div>
             <div class="table">
@@ -142,9 +159,6 @@
             </div>
         </div>
     </div>
-
-
-
 </body>
 
 </html>

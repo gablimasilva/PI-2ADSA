@@ -19,14 +19,14 @@
 
     <!-- scripts do Chart.js -->
     <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 
 <body onload="validarSessao()">
     <div class="janela">
         <div class="header-left">
-            <img src="../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview.png" alt="logo" 
-            width="40%">
+            <img src="../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview.png" alt="logo" width="40%">
 
             <div class="hello">
                 <h3>Olá, <span id="b_usuario"></span>!</h3>
@@ -35,48 +35,56 @@
 
             <div class="btn-nav-yellow">
                 <a href="./dashboard.html">
-                    <i class="material-icons">home</i><h3>Home</h3>
+                    <i class="material-icons">home</i>
+                    <h3>Home</h3>
                 </a>
             </div>
 
             <div class="btn-nav">
                 <a href="./cadastro-loja.html">
-                    <i class="material-icons">add_business</i><h3>Loja</h3>
+                    <i class="material-icons">add_business</i>
+                    <h3>Loja</h3>
                 </a>
             </div>
 
             <div class="btn-nav">
                 <a href="./cadastro-usuario.html">
-                    <i class="material-icons">person_add_alt</i><h3>Usuários</h3>
+                    <i class="material-icons">person_add_alt</i>
+                    <h3>Usuários</h3>
                 </a>
             </div>
 
             <div class="btn-nav">
                 <a href="./cadastro-computador.html">
-                    <i class="material-icons">computer</i><h3>Computadores</h3>
+                    <i class="material-icons">computer</i>
+                    <h3>Computadores</h3>
                 </a>
             </div>
 
             <div class="btn-nav">
                 <a href="./tempo-real.html">
-                    <i class="material-icons">show_chart</i><h3>Tempo Real</h3>
+                    <i class="material-icons">show_chart</i>
+                    <h3>Tempo Real</h3>
                 </a>
             </div>
 
             <div class="btn-nav">
                 <a href="./relatorios.html">
-                    <i class="material-icons">summarize</i><h3>Relatórios</h3>
+                    <i class="material-icons">summarize</i>
+                    <h3>Relatórios</h3>
                 </a>
             </div>
 
             <div class="btn-nav">
                 <a href="./suporte.html">
-                    <i class="material-icons">headset_mic</i><h3>Suporte</h3>
+                    <i class="material-icons">headset_mic</i>
+                    <h3>Suporte</h3>
                 </a>
             </div>
             <br><br>
             <div class="btn-logout" onclick="limparSessao()">
-                <i class="material-icons">logout</i><h3>Sair</h3>
+                <i class="material-icons">logout</i>
+                <h3>Sair</h3>
             </div>
 
         </div>
@@ -88,29 +96,42 @@
             <div class="regua">
                 <div class="item-regua">
                     <h4>Disponibilidade</h4>
-                    <canvas id="canvas_grafico" style="width: 100px; height: 100px;"></canvas>
+                    <canvas id="canvas_grafico" style="width: 20px;"></canvas>
                 </div>
                 <div class="item-regua">
                     <h4>Offline</h4>
-                    <h2>0</h2>
+                    <p id="id_offline">0</p>
                     <h6>Computadores</h6>
                 </div>
                 <div class="item-regua">
                     <h4>Incidentes</h4>
-                    <h2>0</h2>
-                    <h6>Finzalizar tarefas</h6>
+                    <p id="id_incidente_finalizar">0</p>
+                    <h6>Total</h6>
                 </div>
                 <div class="item-regua">
-                    <h4>Incidentes</h4>
-                    <h2>0</h2>
-                    <h6>Reiniciar computadores</h6>
+                    <h4>Legenda</h4>
+                    <div class="item-regua-legenda">
+                        <div>
+                            <div style="background-color: lime; width: 20px; height: 10px; border-radius: 5px;"></div>
+                            <p>Ótimo</p>
+                        </div>
+                        <div>
+                            <div
+                                style="background-color: rgb(247, 247, 29); width: 20px; height: 10px; border-radius: 5px;">
+                            </div>
+                            <p>Atenção</p>
+                        </div>
+                        <div>
+                            <div style="background-color: red; width: 20px; height: 10px; border-radius: 5px;"></div>
+                            <p>Crítico</p>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="btns-dash">
                 <h4>Status</h4>
-                <div class="btns-dash-status">
-                     <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
-                    <button class="btn-chart" onclick="obterDadosGrafico(1)">Máquina 1</button>
+                <div class="btns-dash-status" id="dash_status">
+                    <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
                 </div>
             </div>
             <div class="table">
@@ -149,6 +170,167 @@
 </html>
 
 <script>
+
+    const ID_USUARIO = sessionStorage.getItem("ID_USUARIO");
+    let LOJAS = [];
+    let COMPUTADORES = [];
+
+    let limites = {
+        muito_cheio: 0.91,
+        cheio: 0.75,
+    };
+
+    inicializarDashboard();
+
+    async function inicializarDashboard() {
+        // Obtendo os dados necessários
+        await obterLojas();
+        for (loja of LOJAS) {
+            await obterComputadores(loja.id);
+        }
+        apresentarDashboard();
+    }
+
+    async function apresentarDashboard() {
+        // Apresentando dados na tela
+        apresentarComputadores();
+        obterNumeroIncidente();
+        gerarGrafico();
+        setTimeout(apresentarDashboard, 5000);
+    }
+
+    async function obterLojas() {
+        let response = await fetch(`http://localhost:8080/loja?fkUsuario=${ID_USUARIO}`)
+        if (response.ok) {
+            let json = await response.json()
+            LOJAS = json;
+            console.log(LOJAS);
+        }
+    }
+
+    async function obterComputadores(idLoja) {
+        let response = await fetch(`http://localhost:8080/computador?fkLoja=${idLoja}`)
+        if (response.ok) {
+            let json = await response.json();
+            COMPUTADORES = [...COMPUTADORES, ...json];
+            console.log(COMPUTADORES);
+        }
+    }
+
+    async function obterComponentesComputador(idComputador) {
+        let response = await fetch(`http://localhost:8080/componente?fkComputador=${idComputador}`)
+        if (response.ok) {
+            let json = await response.json();
+            return json;
+        }
+    }
+
+    async function obterUltimoRegistroComponente(idComponente) {
+        let response = await fetch(`http://localhost:8080/registroComponente?fkComponente=${idComponente}`)
+        if (response.ok) {
+            let json = await response.json();
+            return json[json.length - 1];
+        }
+    }
+
+    async function apresentarComputadores() {
+        let maquinas_botoes = '';
+        for (computador of COMPUTADORES) {
+
+            let componentes = await obterComponentesComputador(computador.id);
+
+            var classe_alerta = 'cor-alerta';
+            var contador = 0;
+            for (componente of componentes) {
+
+                let ultimoRegistro = await obterUltimoRegistroComponente(componente.id);
+
+                var calculoPercentualConsumido = ultimoRegistro.valorConsumido / componente.totalComponente;
+
+                if (calculoPercentualConsumido >= limites.muito_cheio) {
+                    classe_alerta = 'alerta-finalizar';
+                    console.log("caiu no 1")
+                    contador++;
+                }
+                else if (calculoPercentualConsumido >= limites.cheio) {
+                    classe_alerta = 'alerta-finalizar';
+                    console.log("caiu no 2")
+                }
+                else {
+                    classe_alerta = 'ideal';
+                    console.log("caiu no 3")
+                }
+            }
+
+            if (contador == 3) {
+                classe_alerta = 'alerta-reiniciar';
+                console.log("caiu no 4")
+            }
+            maquinas_botoes +=
+                `<button class="btn-chart ${classe_alerta}" onclick="obterDadosGrafico(${computador.id})">Máquina ${computador.id}</button>`
+        }
+        dash_status.innerHTML = maquinas_botoes;
+    }
+
+    async function obterRegistroComponente(idComponente) {
+        let response = await fetch(`http://localhost:8080/registroComponente?fkComponente=${idComponente}`)
+        if (response.ok) {
+            let json = await response.json();
+            return json;
+        }
+    }
+
+    async function obterNumeroIncidente() {
+        var contador = 0;
+        for (computador of COMPUTADORES) {
+
+            let componentes = await obterComponentesComputador(computador.id);
+
+            for (componente of componentes) {
+
+                let registros = await obterRegistroComponente(componente.id);
+
+                for (registro of registros) {
+                    var calculoPercentualConsumido = registro.valorConsumido / componente.totalComponente;
+
+                    if (calculoPercentualConsumido >= limites.muito_cheio) {
+                        contador++;
+                    }
+                    else if (calculoPercentualConsumido >= limites.cheio) {
+                        contador++;
+                    }
+                }
+            }
+        }
+
+        id_incidente_finalizar.innerHTML = contador;
+    }
+
+    function gerarGrafico() {
+
+        var ctx = document.getElementById('canvas_grafico').getContext('2d');
+
+        var ax_chartDoughnut = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: [20, 10],
+                    backgroundColor: [
+                        'rgb(64, 224, 208)',
+                        'rgb(22, 22, 24)'
+                    ],
+                    borderColor: [
+                        'rgb(64, 224, 208)',
+                        'rgb(22, 22, 24)'
+                    ],
+                    borderWidth: [0,0]
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+            }
+        });
+    }
 
     let proximaAtualizacao;
 

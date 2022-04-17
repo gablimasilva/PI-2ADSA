@@ -4,7 +4,7 @@ USE techfood;
 CREATE TABLE Empresa (
   idEmpresa INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
   TecnicoResponsavel VARCHAR(45),
-  RazaoSocial VARCHAR(45),
+  RazaoSocial VARCHAR(100),
   CNPJEmpresa CHAR(20),
   EmailEmpresa VARCHAR(45),
   TelefoneEmpresa VARCHAR(15),
@@ -13,7 +13,7 @@ CREATE TABLE Empresa (
   Estado VARCHAR(45),
   Cidade VARCHAR(45),
   Bairro VARCHAR(45),
-  Logradouro VARCHAR(45),
+  Logradouro VARCHAR(100),
   Numero VARCHAR(45),
   Complemento VARCHAR(45)
 );
@@ -22,14 +22,14 @@ CREATE TABLE Loja(
 IdLoja INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
 FkEmpresa INT,
 foreign key (FkEmpresa) references empresa(IdEmpresa),
-RazaoSocial VARCHAR(45),
+RazaoSocial VARCHAR(100),
 GerenteLoja VARCHAR(45),
 CNPJLoja VARCHAR(45),
 CEPLoja CHAR(10),
 Estado VARCHAR(45),
 Cidade VARCHAR(45),
 Bairro VARCHAR(45),
-Logradouro VARCHAR(45),
+Logradouro VARCHAR(100),
 NumeroRua VARCHAR(45),
 Complemento VARCHAR(45),
 Email VARCHAR(45),
@@ -72,8 +72,8 @@ fkEmpresa INT,
 foreign key (fkEmpresa) references Empresa(idEmpresa),
 fkCargo INT,
 foreign key (fkCargo) references cargo(idCargo),
-nomeUsuario VARCHAR(45),
-emailUsuario VARCHAR(45),
+nomeUsuario VARCHAR(100),
+emailUsuario VARCHAR(70),
 senhaUsuario VARCHAR(45)
 );
 
@@ -85,7 +85,6 @@ Insert into tipoComputador VALUES
 CREATE TABLE componente(
 	idComponente int primary key auto_increment,
     nomeComponente varchar(45)
-    
 );
 
 insert into componente values

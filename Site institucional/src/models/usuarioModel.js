@@ -45,10 +45,10 @@ function cadastrarLoja(FkEmpresa,nomeLoja, gerente, cnpjLoja, cepLoja, estado, c
     return database.executar(instrucao);
 }
 
-function cadastrarMaquina(tipoComputador,loja, ip, so, hostname, mac, local) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", tipoComputador, loja, ip, so, hostname, mac, local);
+function cadastrarMaquina(tipoComputador,loja, ip, so, hostname, mac, local, senha) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", tipoComputador, loja, ip, so, hostname, mac, local, senha);
     var instrucao = `
-        INSERT INTO Computador(FkTipoComputador,FkLoja,IpComputador,SistemaOperacional,Hostname,EnderecoMACComputador,LocalComputador) VALUES ('${tipoComputador}',${loja},'${ip}','${so}','${hostname}','${mac}','${local}');
+        INSERT INTO Computador(FkTipoComputador,FkLoja,IpComputador,SistemaOperacional,Hostname,EnderecoMACComputador,LocalComputador, SenhaComputador) VALUES ('${tipoComputador}',${loja},'${ip}','${so}','${hostname}','${mac}','${local}','${senha}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

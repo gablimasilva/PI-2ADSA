@@ -52,7 +52,8 @@ senhaComputador varchar(45),
 SistemaOperacional VARCHAR(45),
 Hostname VARCHAR(45),
 EnderecoMACComputador VARCHAR(45),
-LocalComputador VARCHAR(45)
+LocalComputador VARCHAR(45),
+SenhaComputador VARCHAR(45)
 );
 
 CREATE TABLE cargo(

@@ -118,6 +118,12 @@
                         Local do computador:
                         <input name="local" type="text" placeholder="1234">
 
+                        Senha:
+                        <input name="senha" type="text" placeholder="*****-***">
+
+                        Confirmacao Senha:
+                        <input name="confirmacaoSenha" type="text" placeholder="">
+
                         <button class="btn">Cadastrar</button>
                     </form>
                 </div>
@@ -169,9 +175,11 @@
         var hostname = formulario.get("hostname");
         var mac = formulario.get("mac");
         var local = formulario.get("local");
+        var senha = formulario.get("senha");
+        var confirmacaoSenha = formulario.get("confirmacaoSenha");
 
         // TODO: VERIFICAR AS VALIDAÇÕES QUE ELES ESTÃO APRENDENDO EM ALGORITMOS
-        if (tipoComputador == "" || loja == "" || ip == "" || sistemaOperacional == "" || hostname == "" || mac == "" || local == "") {
+        if (senha == "" || confirmacaoSenha == "" || tipoComputador == "" || loja == "" || ip == "" || sistemaOperacional == "" || hostname == "" || mac == "" || local == "") {
 
             window.alert("Preencha todos os campos para prosseguir!");
             if (tipoComputador == "") {
@@ -188,7 +196,17 @@
                 console.log('Endereço MAC está em branco')
             } if (local == "") {
                 console.log('Local está em branco')
+            } if (senha == "") {
+                console.log('Hostname está em branco')
+            } if (confirmacaoSenha == "") {
+                console.log('Confirmação de senha está em branco')
             }
+            finalizarAguardar();
+            return false;
+        }
+
+        if (senha != confirmacaoSenha) {
+            window.alert("As senhas inseridas devem ser iguais para prosseguir!");
             finalizarAguardar();
             return false;
         }

@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\public",
+    "\\public\\dashboard"
   ],
-  "SelectedNode": "\\src",
+  "SelectedNode": "\\public\\dashboard\\cadastro-computador.html",
   "PreviewInSolutionExplorer": false
 }

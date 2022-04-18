@@ -22,7 +22,7 @@
 
 </head>
 
-<body onload="validarSessao()">
+<body onload="validarSessao(), apresentarComputadores()">
     <div class="janela">
         <div class="header-left">
             <img src="../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview.png" alt="logo" width="40%">
@@ -139,7 +139,7 @@
                 </div>
             </div>
             <div class="btns-dash">
-                <h4>Status</h4>
+                <h4>Status</h4> <!-- Consertar a chamada das máquinas -->
                 <div class="btns-dash-status" id="dash_status">
                     <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
                 </div>
@@ -224,6 +224,7 @@
         }
     }
 
+    // Função que chama as máquinas -- Consertar
     async function apresentarComputadores() {
         let maquinas_botoes = '';
         for (computador of COMPUTADORES) {
@@ -234,6 +235,20 @@
         dash_status.innerHTML = maquinas_botoes;
         id_offline.innerHTML = contadorOffline;
     }
+
+    // function ListarLojas() {
+    //fetch(`/usuarios/listarLojas/${sessionStorage.ID_USUARIO}`)
+    //    .then(res => res.json())
+    //    .then(res => {
+    //        console.log(res);
+    //        res.forEach(lojas => {
+    //            var option = document.createElement("option");
+    //            option.innerHTML = lojas.RazaoSocial;
+    //            option.value = lojas.IdLoja;
+    //            loja.append(option);
+    //        })
+    //    })
+    //}
 
     async function gerarGrafico() {
 
@@ -260,23 +275,6 @@
             }
         });
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     let proximaAtualizacao;
 

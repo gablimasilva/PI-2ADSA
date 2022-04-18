@@ -226,6 +226,7 @@ function cadastrarMaquina(req, res) {
     var hostname = req.body.hostname;
     var mac = req.body.mac;
     var local = req.body.local;
+    var senha = req.body.senha;
 
 
     if (tipoComputador == undefined) {
@@ -242,9 +243,10 @@ function cadastrarMaquina(req, res) {
         res.status(400).send("Local está undefined!");
     } else if (loja == undefined) {
         res.status(400).send("Loja do computador está undefined!");
-    }
-    else {
-        usuarioModel.cadastrarMaquina(tipoComputador, loja, ip, so, hostname, mac, local)
+    } else if (senha == undefined) {
+        res.status(400).send("Senha do computador está undefined!");
+    } else {
+        usuarioModel.cadastrarMaquina(tipoComputador, loja, ip, so, hostname, mac, local, senha)
             .then(
                 function (resultado) {
                     res.json(resultado);

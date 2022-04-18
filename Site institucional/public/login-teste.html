@@ -52,10 +52,10 @@
                 <div class="formulario">
                     <form id="form_login" method="post" onsubmit="return entrar()">
                         E-mail:
-                        <input name="emailLoja" type="text" placeholder="Login">
+                        <input name="emailEmpresa" type="text" placeholder="Login">
                         <br>
                         Senha:
-                        <input name="senhaLoja" type="password" placeholder="******">
+                        <input name="senhaEmpresa" type="password" placeholder="******">
                         <br>
                         <button class="btn" type="submit">
                             Entrar
@@ -110,28 +110,27 @@
 
         var formulario = new URLSearchParams(new FormData(document.getElementById("form_login")));
 
-        var emailLoja = formulario.get("emailLoja");
-        var senhaLoja = formulario.get("senhaLoja");
+        var emailEmpresa = formulario.get("emailEmpresa");
+        var senhaEmpresa = formulario.get("senhaEmpresa");
 
-        console.log("FORM LOGIN: ", emailLoja);
-        console.log("FORM SENHA: ", senhaLoja);
+        console.log("FORM LOGIN: ", emailEmpresa);
+        console.log("FORM SENHA: ", senhaEmpresa);
 
         // TODO: VERIFICAR AS VALIDAÇÕES QUE ELES ESTÃO APRENDENDO EM ALGORITMOS 
-        if (emailLoja == "" || senhaLoja == "") {
+        if (emailEmpresa == "" || senhaEmpresa == "") {
             window.alert("Preencha todos os campos para prosseguir!");
             finalizarAguardar();
             return false;
         }
 
-        if (emailLoja.indexOf("@") == -1 || emailLoja.indexOf(".com") == -1) {
+        if (emailEmpresa.indexOf("@") == -1 || emailEmpresa.indexOf(".com") == -1) {
             window.alert("Ops, e-mail inválido! Verifique e tente novamente.");
             finalizarAguardar();
             return false;
         }
 
-        fetch("/usuarios/autenticar", {
-            method: "POST",
-            body: formulario
+        fetch(`http://localhost:8080/empresa?emailEmpresa=${emailEmpresa}&senhaEmpresa=${senhaEmpresa}`, {
+            method: "GET",
         }).then(function (resposta) {
             console.log("ESTOU NO THEN DO entrar()!")
 
@@ -139,17 +138,25 @@
                 console.log(resposta);
 
                 resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
 
-                    sessionStorage.EMAIL_USUARIO = json.EmailEmpresa;
-                    sessionStorage.NOME_USUARIO = json.RazaoSocial;
-                    sessionStorage.ID_USUARIO = json.idEmpresa;
+                    if (json.length > 0) {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
 
-                    setTimeout(function () {
-                        window.location = "./dashboard/dashboard.html";
-                    }, 1000); // apenas para exibir o loading
+                        debugger;
+                        sessionStorage.EMAIL_USUARIO = json[0].emailEmpresa;
+                        sessionStorage.NOME_USUARIO = json[0].razaoSocial;
+                        sessionStorage.ID_USUARIO = json[0].id;
 
+                        window.location = "./dashboard/dashboard-teste.html";
+                    } else {
+                        console.log("Houve um erro ao tentar realizar o login!");
+
+                        resposta.text().then(texto => {
+                            console.error(texto);
+                            finalizarAguardar(texto);
+                        });        
+                    }
                 });
 
             } else {

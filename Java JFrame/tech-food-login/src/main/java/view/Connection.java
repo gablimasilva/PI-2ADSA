@@ -14,10 +14,9 @@ public class Connection {
         dataSource = new BasicDataSource();
 
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/mydb");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/techfood");
         dataSource.setUsername("root");
         dataSource.setPassword("programador.2021");
-        
 
     }
 

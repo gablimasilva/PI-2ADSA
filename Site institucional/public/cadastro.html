@@ -55,34 +55,46 @@
                     <form id="form_cadastro" method="post" onsubmit="return cadastrar()">
                         Razão social:
                         <input name="nomeLoja" type="text" placeholder="Ada Lovelace">
-                        <br>
+                        
                         E-mail Loja:
                         <input name="emailLoja" type="text" placeholder="meuemail@provedor.com">
-                        <br>
+                        
                         Telefone Loja:
                         <input name="telefoneLoja" type="text" placeholder="()****-****">
-                        <br>
+                        
                         Cep:
                         <input name="cepLoja" type="text" placeholder="*****-***">
-                        <br>
+                        
+                        Estado:
+                        <input name="estado" type="text" placeholder="1234">
+                        
+                        Cidade:
+                        <input name="cidade" type="text" placeholder="1234">
+                        
+                        Bairro:
+                        <input name="bairro" type="text" placeholder="1234">
+                        
+                        Logradouro:
+                        <input name="logradouro" type="text" placeholder="1234">
+                        
                         Numero Rua:
                         <input name="numeroRua" type="text" placeholder="1234">
-                        <br>
+                        
                         Complemento:
                         <input name="complemento" type="text" placeholder="Bloco 42 ap 15">
-                        <br>
+                        
                         Cnpj:
                         <input name="cnpjMatriz" type="text" placeholder="">
-                        <br>
+                        
                         Tecnico responsável:
                         <input name="responsavel" type="text" placeholder="Maria Júlia">
-                        <br>
+                        
                         Senha Loja:
                         <input name="senhaLoja" type="text" placeholder="">
-                        <br>
+                        
                         Confirmacao Senha:
                         <input name="confirmacaoSenha" type="text" placeholder="">
-                        <br>
+                        
                         <button class="btn">Cadastrar</button>
                     </form>
                 </div>
@@ -125,6 +137,10 @@
         var emailLoja = formulario.get("emailLoja");
         var telefoneLoja = formulario.get("telefoneLoja");
         var cepLoja = formulario.get("cepLoja");
+        var estado = formulario.get("estado");
+        var cidade = formulario.get("cidade");
+        var bairro = formulario.get("bairro");
+        var logradouro = formulario.get("logradouro");
         var numeroRua = formulario.get("numeroRua");
         var complemento = formulario.get("complemento");
         var cnpjMatriz = formulario.get("cnpjMatriz");
@@ -133,37 +149,36 @@
         var responsavel = formulario.get("responsavel");
 
         // TODO: VERIFICAR AS VALIDAÇÕES QUE ELES ESTÃO APRENDENDO EM ALGORITMOS 
-        if (nomeLoja == "" || emailLoja == "" || telefoneLoja == "" || cepLoja == "" || complemento == "" || numeroRua == "" || cnpjMatriz == "" || responsavel == "" || senhaLoja == "" || confirmacaoSenha == "") {
+        if (nomeLoja == "" || emailLoja == "" || telefoneLoja == "" || cepLoja == "" || estado == "" || cidade == "" || bairro == "" || logradouro == "" || complemento == "" || numeroRua == "" || cnpjMatriz == "" || responsavel == "" || senhaLoja == "" || confirmacaoSenha == "") {
 
             window.alert("Preencha todos os campos para prosseguir!");
             if (nomeLoja == "") {
                 console.log('Nome da loja está em branco')
-            }
-            if (emailLoja == "") {
+            } if (emailLoja == "") {
                 console.log('Email da loja está em branco')
-            }
-            if (telefoneLoja == "") {
+            } if (telefoneLoja == "") {
                 console.log('Telefone da loja está em branco')
-            }
-            if (cepLoja == "") {
+            } if (cepLoja == "") {
                 console.log('Cep da loja está em branco')
-            }
-            if (complemento == "") {
+            } if (estado == "") {
+                console.log('Estado está em branco')
+            } if (cidade == "") {
+                console.log('Cidade está em branco')
+            } if (bairro == "") {
+                console.log('Bairro está em branco')
+            } if (logradouro == "") {
+                console.log('Logradouro está em branco')
+            } if (complemento == "") {
                 console.log('Complemento da loja está em branco')
-            }
-            if (numeroRua == "") {
+            } if (numeroRua == "") {
                 console.log('Numero da rua está em branco')
-            }
-            if (cnpjMatriz == "") {
+            } if (cnpjMatriz == "") {
                 console.log('Cnpj está em branco')
-            }
-            if (responsavel == "") {
+            } if (responsavel == "") {
                 console.log('Técnico responsável está em branco')
-            }
-            if (senhaLoja == "") {
+            } if (senhaLoja == "") {
                 console.log('Senha está em branco')
-            }
-            if (confirmacaoSenha == "") {
+            } if (confirmacaoSenha == "") {
                 console.log('Confirmação de senha está em branco')
             }
             finalizarAguardar();

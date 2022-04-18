@@ -19,8 +19,7 @@ html {
     background-color:var(--amarelo);
     position: fixed;
     width: 100%;
-    height: 100px;
-    z-index: 1;
+    z-index: 5;
 }
 .container {
     height: 100%;
@@ -34,14 +33,14 @@ html {
     align-items: center;
 }
 
-.navBar ul {
+.navBarLinks {
     display: flex;
     text-align: center;
     justify-content: space-evenly;
     align-items: center;
     list-style: none;
     width: 80%;
-    height: 100%;
+    
 }
 
 .navBar ul a {
@@ -61,6 +60,12 @@ html {
     background-color: var(--marrom);
     color: var(--amarelo) !important;
     border-radius: 8px;
+}
+
+.hamburguerMenu {
+    width: 50px;
+    height: 50px;
+    display: none;
 }
 
 /*.banner {
@@ -125,12 +130,12 @@ html {
     position: absolute;
     top: 50%;
     cursor: pointer;
-    z-index: 50;
+    z-index: 1;
 }
 
 .aRight { 
     transform: rotate(-45deg); 
-    right: 1%;
+    right: 2%;
 }
 .aLeft { 
     transform: rotate(135deg); 
@@ -250,6 +255,7 @@ html {
 .contato .container {
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 .contato .container .formContato{
@@ -328,9 +334,47 @@ html {
     width: 150px;
 }
 
+.active .navItem {
+    display:  block;
+}
+
 @media (max-width: 1132px) {
     #mvv {
         height: fit-content;
         align-items: center;
     }
+
+    .formContato, .localizacao {
+        width: 300px;
+    }
+
+}
+
+@media (max-width: 665px){
+    .btnsNav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+    .navBar .container{
+        flex-direction: column;
+    }
+
+    .navBarLinks {
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        
+    }
+
+    .navItem {
+        display: none;
+        padding: 15px;
+    }
+
+    .hamburguerMenu {
+        display: block;
+    }
+
 }

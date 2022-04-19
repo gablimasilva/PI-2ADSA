@@ -8,7 +8,8 @@
     <title>Tech Food | Tempo Real</title>
 
     <link rel="stylesheet" href="../css/style_Cadastro_login.css">
-    <link rel="stylesheet" href="dashboards.css">
+    <!-- <link rel="stylesheet" href="dashboards.css"> -->
+    <link rel="stylesheet" href="tempo-real.css">
     <script src="../assets/js/funcoes.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
@@ -25,8 +26,7 @@
 <body onload="validarSessao()">
     <div class="janela">
         <div class="header-left">
-            <img src="../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview.png" alt="logo" 
-            width="40%">
+            <img src="../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview.png" alt="logo" width="40%">
 
             <div class="hello">
                 <h3>Olá, <span id="b_usuario"></span>!</h3>
@@ -35,48 +35,56 @@
 
             <div class="btn-nav">
                 <a href="./dashboard.html">
-                    <i class="material-icons">home</i><h3>Home</h3>
+                    <i class="material-icons">home</i>
+                    <h3>Home</h3>
                 </a>
             </div>
 
             <div class="btn-nav">
                 <a href="./cadastro-loja.html">
-                    <i class="material-icons">add_business</i><h3>Loja</h3>
+                    <i class="material-icons">add_business</i>
+                    <h3>Loja</h3>
                 </a>
             </div>
 
             <div class="btn-nav">
                 <a href="./cadastro-usuario.html">
-                    <i class="material-icons">person_add_alt</i><h3>Usuários</h3>
+                    <i class="material-icons">person_add_alt</i>
+                    <h3>Usuários</h3>
                 </a>
             </div>
 
             <div class="btn-nav">
                 <a href="./cadastro-computador.html">
-                    <i class="material-icons">computer</i><h3>Computadores</h3>
+                    <i class="material-icons">computer</i>
+                    <h3>Computadores</h3>
                 </a>
             </div>
 
             <div class="btn-nav-yellow">
                 <a href="./tempo-real.html">
-                    <i class="material-icons">show_chart</i><h3>Tempo Real</h3>
+                    <i class="material-icons">show_chart</i>
+                    <h3>Tempo Real</h3>
                 </a>
             </div>
 
             <div class="btn-nav">
                 <a href="./relatorios.html">
-                    <i class="material-icons">summarize</i><h3>Relatórios</h3>
+                    <i class="material-icons">summarize</i>
+                    <h3>Relatórios</h3>
                 </a>
             </div>
 
             <div class="btn-nav">
                 <a href="./suporte.html">
-                    <i class="material-icons">headset_mic</i><h3>Suporte</h3>
+                    <i class="material-icons">headset_mic</i>
+                    <h3>Suporte</h3>
                 </a>
             </div>
             <br><br>
             <div class="btn-logout" onclick="limparSessao()">
-                <i class="material-icons">logout</i><h3>Sair</h3>
+                <i class="material-icons">logout</i>
+                <h3>Sair</h3>
             </div>
 
         </div>
@@ -85,6 +93,51 @@
             <div class="title">
                 <h2>Dashboard / Tempo Real</h2>
             </div>
+            <div class="regua">
+                <div class="item-regua-top">
+                    <h5>Computador</h5>
+                    <div>
+                        <select class="select-computadores" name="" id="">
+                            <option value="">Máquina 1</option>
+                            <option value="">Máquina 2</option>
+                            <option value="">Máquina 3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="item-regua-maior-top">
+                    <h5>Tempo de atividade</h5>
+                    <p id="id_computadores_offline">0:00:00:00</p>
+                </div>
+                <div class="item-regua-top">
+                    <h5>Temperatura média</h5>
+                    <div>
+                        <p id="id_incidente_finalizar">0</p>
+                        <h6>ºC</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="btns-dash">
+                <canvas></canvas>
+            </div>
+            <div class="regua">
+                <div class="item-regua-bottom">
+                    <h5>Incidentes</h5>
+                    <p id="id_incidente_finalizar">0</p>
+                    <h6>Total</h6>
+                </div>
+                <div class="item-regua-maior-bottom">
+                    <h5>Incidentes por categoria</h5>
+                    <div>
+                        <canvas id="canvas_grafico" style="width: 100px; height: 100px;"></canvas>
+                        <!-- <canvas id="canvas_grafico" style="height: 50px;"></canvas> -->
+                    </div>
+                </div>
+                <div class="item-regua-bottom">
+                    <h5>Tempo médio entre incidentes</h5>
+                    <p id="id_incidente_finalizar">0</p>
+                    <h6>minutos</h6>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -92,3 +145,95 @@
 </body>
 
 </html>
+
+<script>
+
+    const ID_USUARIO = sessionStorage.getItem("ID_USUARIO");
+    let LOJAS = [];
+    let COMPUTADORES = [];
+    let contadorOffline = 0;
+
+    let limites = {
+        muito_cheio: 0.91,
+        cheio: 0.75,
+    };
+
+    inicializarDashboard();
+
+    async function inicializarDashboard() {
+        // Obtendo os dados necessários
+        await obterLojas();
+        for (loja of LOJAS) {
+            await obterComputadores(loja.IdLoja);
+        }
+        apresentarDashboard();
+    }
+
+    async function apresentarDashboard() {
+        // Apresentando dados na tela
+        apresentarComputadores();
+        gerarGrafico();
+    }
+
+    async function obterLojas() {
+        let response = await fetch(`/usuarios/listarLojas/${ID_USUARIO}`);
+        if (response.ok) {
+            let json = await response.json()
+            LOJAS = json;
+            console.log(LOJAS);
+        }
+    }
+
+    async function obterComputadores(idLoja) {
+        let response = await fetch(`/usuarios/listarComputadores/${idLoja}`)
+        if (response.ok) {
+            let json = await response.json();
+            COMPUTADORES = [...COMPUTADORES, ...json];
+            console.log(COMPUTADORES);
+        }
+    }
+
+    async function apresentarComputadores() {
+        let maquinas_botoes = '';
+        for (computador of COMPUTADORES) {
+            maquinas_botoes +=
+                `<button class="btn-chart" onclick="obterDadosGrafico(${computador.idComputador})">${computador.Hostname}</button>`
+            contadorOffline++;
+        }
+        dash_status.innerHTML = maquinas_botoes;
+        id_computadores_offline.innerHTML = contadorOffline;
+        id_computadores_total.innerHTML = COMPUTADORES.length;
+    }
+
+    async function gerarGrafico() {
+
+        var ctx = document.getElementById('canvas_grafico').getContext('2d');
+
+        var ax_chartPie = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['2000 kcal/diário', '200'],
+                datasets: [{
+                    label: 'VDR%',
+                    data: [20, 10],
+                    backgroundColor: [
+                        'rgb(190, 47, 218)',
+                        'rgb(255, 153, 0)'
+                    ],
+                    borderColor: [
+                        'rgb(190, 47, 218)',
+                        'rgb(255, 153, 0)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }

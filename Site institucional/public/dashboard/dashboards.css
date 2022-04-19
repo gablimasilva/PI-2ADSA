@@ -180,6 +180,14 @@
     font-weight: bold;
 }
 
+.offline {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
 .cards {
     display: flex;
     flex-wrap: wrap;

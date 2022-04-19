@@ -207,7 +207,7 @@
             return false;
         }
 
-        fetch(`/usuarios/cadastrarLoja/${sessionStorage.ID_USUARIO}`, {
+        fetch(`/usuarios/cadastrarLoja/${sessionStorage.ID_EMPRESA}`, {
             method: "POST",
             body: formulario
         }).then(function (resposta) {

@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\public",
-    "\\public\\dashboard"
+    "\\public\\dashboard",
+    "\\src",
+    "\\src\\routes"
   ],
-  "SelectedNode": "\\public\\dashboard\\dashboard.html",
+  "SelectedNode": "\\public\\dashboard\\cadastro-usuario.html",
   "PreviewInSolutionExplorer": false
 }

@@ -23,7 +23,7 @@
 
 </head>
 
-<body onload="validarSessao()">
+<body onload="validarSessao(), ListarLojas()">
     <div class="janela">
         <div class="header-left">
             <img src="../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview.png" alt="logo" width="40%">
@@ -93,15 +93,24 @@
             <div class="title">
                 <h2>Dashboard / Tempo Real</h2>
             </div>
+            <div class="div_select">
+                <select class="select-loja" name="loja" id="id_loja" onchange="listarMaquinas()">
+                    <option selected hidden value="value">- Selecione a loja -</option>
+                </select>
+                <select class="select-loja" name="computador" id="id_computador" onchange="exibirMaquina()">
+                    <option selected hidden value="value">- Selecione o computador -</option>
+                </select>
+            </div>
             <div class="regua">
                 <div class="item-regua-top">
                     <h5>Computador</h5>
-                    <div>
-                        <select class="select-computadores" name="" id="">
-                            <option value="">Máquina 1</option>
-                            <option value="">Máquina 2</option>
-                            <option value="">Máquina 3</option>
-                        </select>
+                    <div style="height: 100%; float: left; position: relative;">
+                        <div id="id_contador_disponibilidade"
+                            style="color: white; width: 100%; height: 40px; position: absolute; top: 50%; left: 0; margin-top: -10px; line-height:19px; text-align: center; z-index: 999999999999999;">
+                            0 <span>%</span>
+                        </div>
+                        <!-- <canvas id="canvas_grafico" style="width: 100px; height: 100px;"></canvas> -->
+                        <canvas id="canvas_grafico" style="height: 50px;"></canvas>
                     </div>
                 </div>
                 <div class="item-regua-maior-top">
@@ -151,89 +160,73 @@
     const ID_USUARIO = sessionStorage.getItem("ID_USUARIO");
     let LOJAS = [];
     let COMPUTADORES = [];
-    let contadorOffline = 0;
+    let computadorAtual;
 
-    let limites = {
-        muito_cheio: 0.91,
-        cheio: 0.75,
-    };
+    function listarMaquinas() {
 
-    inicializarDashboard();
+        COMPUTADORES = [];
 
-    async function inicializarDashboard() {
-        // Obtendo os dados necessários
-        await obterLojas();
-        for (loja of LOJAS) {
-            await obterComputadores(loja.IdLoja);
-        }
-        apresentarDashboard();
+        var lojaSelecionada = document.getElementById("id_loja").value;
+
+        fetch(`/usuarios/listarComputadores/${lojaSelecionada}`)
+            .then(res => res.json())
+            .then(res => {
+                res.forEach(computador => {
+                    COMPUTADORES.push(computador);
+                    var option = document.createElement("option");
+                    option.innerHTML = computador.Hostname;
+                    option.value = computador.idComputador;
+                    document.getElementById("id_computador").append(option);
+                })
+            })
     }
 
-    async function apresentarDashboard() {
-        // Apresentando dados na tela
-        apresentarComputadores();
-        gerarGrafico();
-    }
-
-    async function obterLojas() {
-        let response = await fetch(`/usuarios/listarLojas/${ID_USUARIO}`);
-        if (response.ok) {
-            let json = await response.json()
-            LOJAS = json;
-            console.log(LOJAS);
-        }
-    }
-
-    async function obterComputadores(idLoja) {
-        let response = await fetch(`/usuarios/listarComputadores/${idLoja}`)
-        if (response.ok) {
-            let json = await response.json();
-            COMPUTADORES = [...COMPUTADORES, ...json];
-            console.log(COMPUTADORES);
-        }
-    }
-
-    async function apresentarComputadores() {
-        let maquinas_botoes = '';
+    function exibirMaquina() {
+        var maquinaSelecionada = document.getElementById("id_computador").value;
         for (computador of COMPUTADORES) {
-            maquinas_botoes +=
-                `<button class="btn-chart" onclick="obterDadosGrafico(${computador.idComputador})">${computador.Hostname}</button>`
-            contadorOffline++;
+            if (maquinaSelecionada == computador.idComputador) {
+                computadorAtual = computador;
+            }
         }
-        dash_status.innerHTML = maquinas_botoes;
-        id_computadores_offline.innerHTML = contadorOffline;
-        id_computadores_total.innerHTML = COMPUTADORES.length;
+        console.log(maquinaSelecionada);
+        console.log(computadorAtual);
     }
 
     async function gerarGrafico() {
 
         var ctx = document.getElementById('canvas_grafico').getContext('2d');
 
-        var ax_chartPie = new Chart(ctx, {
-            type: 'pie',
+        var ax_chartDoughnut = new Chart(ctx, {
+            type: 'doughnut',
             data: {
-                labels: ['2000 kcal/diário', '200'],
                 datasets: [{
-                    label: 'VDR%',
-                    data: [20, 10],
-                    backgroundColor: [
-                        'rgb(190, 47, 218)',
-                        'rgb(255, 153, 0)'
-                    ],
+                    data: [online, (tamanhoDaListaComputadores - online)],
                     borderColor: [
-                        'rgb(190, 47, 218)',
-                        'rgb(255, 153, 0)'
+                        'rgb(0, 255, 0)',
+                        'rgb(255, 0, 0)',
                     ],
-                    borderWidth: 1
+                    borderWidth: 10,
+                    weight: 0,
                 }]
             },
             options: {
                 maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
             }
         });
+        document.getElementById("canvas_grafico").style.display = "block";
     }
+
+    function ListarLojas() {
+        fetch(`/usuarios/listarLojas/${sessionStorage.ID_USUARIO}`)
+            .then(res => res.json())
+            .then(res => {
+                res.forEach(lojas => {
+                    var option = document.createElement("option");
+                    option.innerHTML = lojas.RazaoSocial;
+                    option.value = lojas.IdLoja;
+                    document.getElementById("id_loja").append(option);
+                })
+            })
+    }
+
+</script>

@@ -142,9 +142,10 @@
                     console.log(json);
                     console.log(JSON.stringify(json));
 
+                    sessionStorage.TECNICO_RESPONSAVEL = json.TecnicoResponsavel;
                     sessionStorage.EMAIL_USUARIO = json.EmailEmpresa;
                     sessionStorage.NOME_USUARIO = json.RazaoSocial;
-                    sessionStorage.ID_USUARIO = json.idEmpresa;
+                    sessionStorage.ID_EMPRESA = json.idEmpresa;
 
                     setTimeout(function () {
                         window.location = "./dashboard/dashboard.html";

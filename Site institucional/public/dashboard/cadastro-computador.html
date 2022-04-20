@@ -150,7 +150,7 @@
     }
 
     function ListarLojas() {
-        fetch(`/usuarios/listarLojas/${sessionStorage.ID_USUARIO}`)
+        fetch(`/usuarios/listarLojas/${sessionStorage.ID_EMPRESA}`)
         .then(res => res.json())
         .then(res => {
             console.log(res);

@@ -187,7 +187,7 @@
 
 <script>
 
-    const ID_USUARIO = sessionStorage.getItem("ID_USUARIO");
+    const ID_USUARIO = sessionStorage.getItem("ID_EMPRESA");
     let LOJAS = [];
     let COMPUTADORES = [];
     let contadorOffline = 0;
@@ -249,7 +249,7 @@
     }
 
     function ListarLojas() {
-        fetch(`/usuarios/listarLojas/${sessionStorage.ID_USUARIO}`)
+        fetch(`/usuarios/listarLojas/${sessionStorage.ID_EMPRESA}`)
             .then(res => res.json())
             .then(res => {
                 res.forEach(lojas => {

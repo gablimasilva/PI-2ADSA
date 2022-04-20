@@ -169,7 +169,7 @@
             return false;
         }
 
-        fetch(`/usuarios/cadastrarUsuario/${sessionStorage.ID_USUARIO}`, {
+        fetch(`/usuarios/cadastrarUsuario/${sessionStorage.ID_EMPRESA}`, {
             method: "POST",
             body: formulario
         }).then(function (resposta) {

@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AcquaTec | Página Inicial</title>
-
+    <title>Tech Food</title>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
     <script src="./assets/js/funcoes.js"></script>
 
     <link rel="icon" href="./assets/icon/favicon.ico">
@@ -19,28 +20,23 @@
 
 <body>
 
-    <!--Header-->
-
-    <div class="header">
+    <div class="navBar">
         <div class="container">
-            <h1>AcquaTec</h1>
-            <ul class="navbar">
-                <li>
-                    <a href="./index.html">
-                        Inicial
-                    </a>
-                </li>
-                <li>
-                    <a href="./simulador.html">Simulador</a>
-                </li>
-                <li>|</li>
-                <li class="agora">
-                    <a href="./login.html">Login</a>
-                </li>
-                <li>
-                    <a href="./cadastro.html">Cadastro</a>
-                </li>
+            <div class="btnsNav">
+                <a href="index.html" class="logo">
+                    <img src="img/logo_techFood_logo_marrom_fundo_amarelo.png" width="100" height="100">
+                </a>
+              
+                <img class="hamburguerMenu" src="img/menu-4-64.png" alt="">
+            
+            </div>
+            
+            <ul class="navBarLinks">
+                <li class="navItem"><a href="index.html">Home</a></li>
+                <li class="navItem"><a class="btnCadastro" href="cadastro.html">Cadastrar</a></li>
+                <li class="navItem"><a class="btnLogin" href="login.html">Login</a></li>
             </ul>
+            
         </div>
     </div>
 
@@ -52,10 +48,10 @@
                 <div class="formulario">
                     <form id="form_login" method="post" onsubmit="return entrar()">
                         E-mail:
-                        <input name="emailLoja" type="text" placeholder="Login">
+                        <input name="emailEmpresa" type="text" placeholder="Login">
                         <br>
                         Senha:
-                        <input name="senhaLoja" type="password" placeholder="******">
+                        <input name="senhaEmpresa" type="password" placeholder="******">
                         <br>
                         <button class="btn" type="submit">
                             Entrar
@@ -75,6 +71,7 @@
             </div>
         </div>
     </div>
+
 
     <!--footer inicio-->
     <div class="footer">

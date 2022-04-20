@@ -142,9 +142,10 @@
                     console.log(json);
                     console.log(JSON.stringify(json));
 
+                    sessionStorage.CNPJ = json.CNPJEmpresa;
                     sessionStorage.TECNICO_RESPONSAVEL = json.TecnicoResponsavel;
-                    sessionStorage.EMAIL_USUARIO = json.EmailEmpresa;
-                    sessionStorage.NOME_USUARIO = json.RazaoSocial;
+                    sessionStorage.EMAIL_EMPRESA = json.EmailEmpresa;
+                    sessionStorage.NOME_EMPRESA = json.RazaoSocial;
                     sessionStorage.ID_EMPRESA = json.idEmpresa;
 
                     setTimeout(function () {

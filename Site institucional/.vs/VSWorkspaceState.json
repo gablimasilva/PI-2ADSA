@@ -2,10 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\public",
+    "\\public\\assets",
+    "\\public\\assets\\js",
     "\\public\\dashboard",
-    "\\src",
-    "\\src\\routes"
+    "\\src"
   ],
-  "SelectedNode": "\\public\\dashboard\\tempo-real.html",
+  "SelectedNode": "\\public\\assets\\js\\login.js",
   "PreviewInSolutionExplorer": false
 }

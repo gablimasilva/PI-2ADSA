@@ -203,12 +203,19 @@
         document.getElementById("canvas_grafico").style.display = "none";
         var lojaSelecionada = document.getElementById("loja").value;
         var maquinas_botoes = '';
+        var onlineTeste = true;
         fetch(`/usuarios/listarComputadores/${lojaSelecionada}`)
             .then(res => res.json())
             .then(res => {
                 res.forEach(maquina => {
-                    maquinas_botoes +=
-                        `<button class="btn-chart">${maquina.Hostname}</button>`;
+                    if (onlineTeste) {
+                        maquinas_botoes +=
+                            `<button class="btn-chart" style="background-color: lime">${maquina.Hostname}</button>`;
+                        onlineTeste = false;
+                    } else {
+                        maquinas_botoes +=
+                            `<button class="btn-chart">${maquina.Hostname}</button>`;
+                    }
                     COMPUTADORES.push(maquina);
                 })
                 document.getElementById("dash_status").innerHTML = maquinas_botoes;

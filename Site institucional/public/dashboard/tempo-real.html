@@ -157,7 +157,7 @@
 
 <script>
 
-    const ID_USUARIO = sessionStorage.getItem("ID_USUARIO");
+    const ID_USUARIO = sessionStorage.getItem("ID_EMPRESA");
     let LOJAS = [];
     let COMPUTADORES = [];
     let computadorAtual;
@@ -165,6 +165,7 @@
     function listarMaquinas() {
 
         COMPUTADORES = [];
+        document.getElementById("id_computador").innerHTML = `<option selected hidden value="value">- Selecione o computador -</option>`;
 
         var lojaSelecionada = document.getElementById("id_loja").value;
 
@@ -217,7 +218,7 @@
     }
 
     function ListarLojas() {
-        fetch(`/usuarios/listarLojas/${sessionStorage.ID_USUARIO}`)
+        fetch(`/usuarios/listarLojas/${sessionStorage.ID_EMPRESA}`)
             .then(res => res.json())
             .then(res => {
                 res.forEach(lojas => {

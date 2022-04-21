@@ -12,7 +12,7 @@
     font-size: 18px;
 }
 body {
-    background-color: rgb(255, 255, 255);
+    background-color: #f1f1f1;
 }
 
 html {
@@ -76,6 +76,10 @@ button {
     cursor: pointer;
 }
 
+h2 {
+  margin-top: 40px;
+}
+
 /* FORMULARIO */
 
 input {
@@ -98,7 +102,16 @@ input {
 
 form {
     display: flex;
+    flex-direction: row;
+    padding: 30px;
+    margin: auto;
+}
+
+.caixa-login {
+    display: flex;
     flex-direction: column;
+    padding: 10px;
+    margin-top: 20px;
 }
 
 .loading-div {

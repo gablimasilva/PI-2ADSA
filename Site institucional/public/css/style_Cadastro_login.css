@@ -98,6 +98,7 @@ input {
     background-color: var(--marrom);
     width: 120px;
     align-self: center;
+    margin-top: 30px;
 }
 
 form {

@@ -130,7 +130,7 @@ html {
 .arrow {
     width: 15px;
     height: 15px;
-    border: 5px solid #000;
+    border: 5px solid #fff;
     border-left: 0;
     border-top: 0;
     position: absolute;
@@ -145,6 +145,7 @@ html {
 }
 .aLeft { 
     transform: rotate(135deg); 
+    left: 2%;
 }
 
 .imgLink img {

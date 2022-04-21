@@ -9,10 +9,12 @@ public class Computador {
     private String ipComputador;
     private Integer idComputador;
     private String senhaComputador;
+    private String hostName;
 
     public Computador(String ip) {
         this.ipComputador = ip;
         this.senhaComputador = "";
+        this.hostName = "";
 
     }
 
@@ -42,13 +44,24 @@ public class Computador {
         this.idComputador = idComputador;
     }
 
+    public String getHostName() {
+        return hostName;
+    }
+
+    public void setHostName(String hostName) {
+        this.hostName = hostName;
+    }
+    
+    
+
     @Override
     public String toString() {
         return String.format("Computador %n"
                 + "ID: %d %n"
+                + "Hostname: %s %n"
                 + "IP: %s %n"
                 + "SENHA: %s %n", 
-                idComputador, ipComputador, senhaComputador);
+                idComputador, hostName, ipComputador, senhaComputador);
     }
     
     

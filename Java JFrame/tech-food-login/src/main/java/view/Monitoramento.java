@@ -11,7 +11,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
  * @author bruno.dearaujo
  */
 public class Monitoramento extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form Monitoramento
      */
@@ -19,6 +19,8 @@ public class Monitoramento extends javax.swing.JFrame {
 
     public Monitoramento(Computador computador) {
         this.computador = computador;
+        // Deixando a tela no centro;
+        setLocationRelativeTo(null);
         initComponents();
         sistemaOperacional();
         monitoramentoGeral();
@@ -42,6 +44,8 @@ public class Monitoramento extends javax.swing.JFrame {
         dadosCpu = new javax.swing.JLabel();
         dadosDisco = new javax.swing.JLabel();
         dadosRam = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        hostName = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,6 +69,10 @@ public class Monitoramento extends javax.swing.JFrame {
 
         dadosRam.setText("| ___________________");
 
+        jLabel10.setText("Hostname");
+
+        hostName.setText("| ___________________");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -75,16 +83,18 @@ public class Monitoramento extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel10))
                         .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(dadosRam)
+                            .addComponent(sistemaOperacional, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(dadosDisco)
                             .addComponent(dadosCpu)
-                            .addComponent(sistemaOperacional, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(dadosRam)
+                            .addComponent(hostName))))
                 .addContainerGap(91, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -92,15 +102,15 @@ public class Monitoramento extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(sistemaOperacional))
-                .addGap(38, 38, 38)
+                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(dadosCpu))
-                .addGap(36, 36, 36)
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(dadosDisco))
@@ -108,7 +118,11 @@ public class Monitoramento extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(dadosRam))
-                .addGap(48, 48, 48))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(hostName))
+                .addContainerGap())
         );
 
         pack();
@@ -162,9 +176,9 @@ public class Monitoramento extends javax.swing.JFrame {
         JdbcTemplate monitorar = new JdbcTemplate(config.getDataSource());
 
         List listaComponente = monitorar.queryForList("select * from computadorComponente where fkComputador = ?", computador.getidComputador());
-               
+
         System.out.println(listaComponente);
-        
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -177,10 +191,12 @@ public class Monitoramento extends javax.swing.JFrame {
                         String exibirDadosCpu = looca.getProcessador().getUso().toString();
                         String exibirDadosRam = "Em Uso:" + Conversor.formatarBytes(looca.getMemoria().getEmUso())
                                 + "   |  Total:" + (Conversor.formatarBytes(looca.getMemoria().getTotal()));
+                        String exibirHostname = computador.getHostName().toString();
 
                         dadosCpu.setText(exibirDadosCpu);
                         dadosDisco.setText(exibirDadosDisco);
                         dadosRam.setText(exibirDadosRam);
+                        hostName.setText(exibirHostname);
                         Thread.sleep(15000);
                     }
                 } catch (Exception e) {
@@ -191,6 +207,11 @@ public class Monitoramento extends javax.swing.JFrame {
         }).start();
     }
 
+//    public void hostName() {
+//        Looca looca = new Looca();
+//        hostName.setText(looca.getProcessador().getIdentificador());
+//    }
+
     public void sistemaOperacional() {
         Looca looca = new Looca();
         sistemaOperacional.setText(looca.getSistema().getSistemaOperacional());
@@ -200,7 +221,9 @@ public class Monitoramento extends javax.swing.JFrame {
     private javax.swing.JLabel dadosCpu;
     private javax.swing.JLabel dadosDisco;
     private javax.swing.JLabel dadosRam;
+    private javax.swing.JLabel hostName;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

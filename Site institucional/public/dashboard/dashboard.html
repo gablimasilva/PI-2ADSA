@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Food | Home</title>
 
-    <link rel="stylesheet" href="../css/style_Cadastro_login.css">
+    <link rel="stylesheet" href="nav-bar.css">
     <link rel="stylesheet" href="dashboards.css">
     <script src="../assets/js/funcoes.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -131,17 +131,17 @@
                             <p>Offline</p>
                         </div>
                         <div>
-                            <div style="background-color: lime; width: 20px; height: 10px; border-radius: 5px;"></div>
+                            <div style="background-color: rgb(127, 184, 0); width: 20px; height: 10px; border-radius: 5px;"></div>
                             <p>Ótimo</p>
                         </div>
                         <div>
                             <div
-                                style="background-color: rgb(247, 247, 29); width: 20px; height: 10px; border-radius: 5px;">
+                                style="background-color: rgb(255, 180, 0); width: 20px; height: 10px; border-radius: 5px;">
                             </div>
                             <p>Atenção</p>
                         </div>
                         <div>
-                            <div style="background-color: red; width: 20px; height: 10px; border-radius: 5px;"></div>
+                            <div style="background-color: rgb(246, 81, 29); width: 20px; height: 10px; border-radius: 5px;"></div>
                             <p>Crítico</p>
                         </div>
                     </div>
@@ -190,6 +190,7 @@
     const ID_USUARIO = sessionStorage.getItem("ID_EMPRESA");
     let LOJAS = [];
     let COMPUTADORES = [];
+    let lojaSelecionada;
     let contadorOffline = 0;
     let online = 0;
     let tamanhoDaListaComputadores = 0;
@@ -201,21 +202,20 @@
         document.getElementById("id_contador_disponibilidade").innerHTML = "0%";
         document.getElementById("dash_status").innerHTML = '';
         document.getElementById("canvas_grafico").style.display = "none";
-        var lojaSelecionada = document.getElementById("loja").value;
+        lojaSelecionada = document.getElementById("loja").value;
         var maquinas_botoes = '';
         var onlineTeste = true;
         fetch(`/usuarios/listarComputadores/${lojaSelecionada}`)
             .then(res => res.json())
             .then(res => {
                 res.forEach(maquina => {
+                    let style = '';
                     if (onlineTeste) {
-                        maquinas_botoes +=
-                            `<button class="btn-chart" style="background-color: lime">${maquina.Hostname}</button>`;
+                        style = 'style="background-color: rgb(127, 184, 0)"';
                         onlineTeste = false;
-                    } else {
-                        maquinas_botoes +=
-                            `<button class="btn-chart">${maquina.Hostname}</button>`;
                     }
+                    maquinas_botoes +=
+                            `<button class="btn-chart" ${style} onclick="irParaTempoReal(${maquina.idComputador})">${maquina.Hostname}</button>`;
                     COMPUTADORES.push(maquina);
                 })
                 document.getElementById("dash_status").innerHTML = maquinas_botoes;
@@ -231,6 +231,10 @@
 
     }
 
+    function irParaTempoReal(idComputador) {
+        window.location = `/dashboard/tempo-real.html?idComputador=${idComputador}&idLoja=${lojaSelecionada}`;
+    }
+
     function gerarGrafico() {
 
         var ctx = document.getElementById('canvas_grafico').getContext('2d');
@@ -241,8 +245,8 @@
                 datasets: [{
                     data: [online, (tamanhoDaListaComputadores - online)],
                     borderColor: [
-                        'rgb(0, 255, 0)',
-                        'rgb(255, 0, 0)',
+                        'rgb(127, 184, 0)',
+                        'rgb(246, 81, 29)',
                     ],
                     borderWidth: 10,
                     weight: 0,

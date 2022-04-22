@@ -7,8 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Food | Tempo Real</title>
 
-    <link rel="stylesheet" href="../css/style_Cadastro_login.css">
-    <!-- <link rel="stylesheet" href="dashboards.css"> -->
+    <link rel="stylesheet" href="nav-bar.css">
     <link rel="stylesheet" href="tempo-real.css">
     <script src="../assets/js/funcoes.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -23,7 +22,7 @@
 
 </head>
 
-<body onload="validarSessao(), ListarLojas()">
+<body onload="validarSessao(), aoIniciar(), ListarLojas()">
     <div class="janela">
         <div class="header-left">
             <img src="../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview.png" alt="logo" width="40%">
@@ -94,7 +93,7 @@
                 <h2>Dashboard / Tempo Real</h2>
             </div>
             <div class="div_select">
-                <select class="select-loja" name="loja" id="id_loja" onchange="listarMaquinas()">
+                <select class="select-loja" name="loja" id="id_loja" onchange="selecionarLoja()">
                     <option selected hidden value="value">- Selecione a loja -</option>
                 </select>
                 <select class="select-loja" name="computador" id="id_computador" onchange="exibirMaquina()">
@@ -170,13 +169,29 @@
     let LOJAS = [];
     let COMPUTADORES = [];
     let computadorAtual;
+    let lojaSelecionada;
+
+
+    function aoIniciar() {
+        const params = new URL(location.href).searchParams;
+        computadorAtual = params.get("idComputador");
+        lojaSelecionada = params.get("idLoja");
+
+        if (computadorAtual != null) {
+            listarMaquinas();
+            exibirMaquina();
+        }
+    }
+
+    function selecionarLoja() {
+        lojaSelecionada = document.getElementById("id_loja").value;
+        listarMaquinas();
+    }
 
     function listarMaquinas() {
 
         COMPUTADORES = [];
         document.getElementById("id_computador").innerHTML = `<option selected hidden value="value">- Selecione o computador -</option>`;
-
-        var lojaSelecionada = document.getElementById("id_loja").value;
 
         fetch(`/usuarios/listarComputadores/${lojaSelecionada}`)
             .then(res => res.json())
@@ -187,7 +202,11 @@
                     option.innerHTML = computador.Hostname;
                     option.value = computador.idComputador;
                     document.getElementById("id_computador").append(option);
-                })
+                });
+
+                if (computadorAtual != null) {
+                    document.getElementById("id_computador").value = computadorAtual;
+                }
             })
     }
 
@@ -213,16 +232,17 @@
             type: 'doughnut',
             data: {
                 datasets: [{
-                    data: [100, 0],
+                    data: [0, 100],
                     borderColor: [
-                        'rgb(0, 255, 0)',
-                        'rgb(255, 0, 0)',
+                        'rgb(127, 184, 0)',
+                        'rgb(246, 81, 29)',
                     ],
                     borderWidth: 5,
                     weight: 0,
                 }]
             },
             options: {
+                responsive: true,
                 maintainAspectRatio: false,
             }
         });
@@ -240,22 +260,30 @@
                 datasets: [{
                     data: [2, 2, 2],
                     backgroundColor: [
-                        'rgb(209, 68, 139)',
-                        'rgb(164, 68, 209)',
-                        'rgb(48, 48, 247)',
+                        'rgb(13, 44, 84)',
+                        'rgb(216, 17, 89)',
+                        'rgb(0, 166, 237)',
+                        'rgb(255, 180, 0)',
+                        'rgb(246, 81, 29)',
+                        'rgb(127, 184, 0)',
                     ],
                     borderColor: [
-                        'rgb(209, 68, 139)',
-                        'rgb(164, 68, 209)',
-                        'rgb(48, 48, 247)',
+                        'rgb(13, 44, 84)',
+                        'rgb(216, 17, 89)',
+                        'rgb(0, 166, 237)',
+                        'rgb(255, 180, 0)',
+                        'rgb(246, 81, 29)',
+                        'rgb(127, 184, 0)',
                     ],
                     borderWidth: 1,
                 }]
             },
             options: {
+                responsive: true,
                 maintainAspectRatio: false,
                 legend: {
                     position: 'right',
+                    align: 'end',
                 }
             }
         });
@@ -273,29 +301,26 @@
                 datasets: [{
                     data: ['0', '20', '50', '15', '100'],
                     backgroundColor: [
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)',
-                        'rgb(255, 206, 86)',
-                        'rgb(75, 192, 192)',
-                        'rgb(153, 102, 255)'
+                        'rgb(13, 44, 84)',
                     ],
                     borderColor: [
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)',
-                        'rgb(255, 206, 86)',
-                        'rgb(75, 192, 192)',
-                        'rgb(153, 102, 255)'
+                        'rgb(13, 44, 84)',
                     ],
                     borderWidth: 1
                 }]
             },
             options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Chart.js Line Chart'
                     }
                 }
-            }
+            },
         });
     }
 
@@ -310,23 +335,16 @@
                 datasets: [{
                     data: ['0', '20', '50', '15', '100'],
                     backgroundColor: [
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)',
-                        'rgb(255, 206, 86)',
-                        'rgb(75, 192, 192)',
-                        'rgb(153, 102, 255)'
+                        'rgb(216, 17, 89)',
                     ],
                     borderColor: [
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)',
-                        'rgb(255, 206, 86)',
-                        'rgb(75, 192, 192)',
-                        'rgb(153, 102, 255)'
+                        'rgb(216, 17, 89)',
                     ],
                     borderWidth: 1
                 }]
             },
             options: {
+                responsive: true,
                 scales: {
                     y: {
                         beginAtZero: true
@@ -347,23 +365,16 @@
                 datasets: [{
                     data: ['0', '20', '50', '15', '100'],
                     backgroundColor: [
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)',
-                        'rgb(255, 206, 86)',
-                        'rgb(75, 192, 192)',
-                        'rgb(153, 102, 255)'
+                        'rgb(0, 166, 237)',
                     ],
                     borderColor: [
-                        'rgb(255, 99, 132)',
-                        'rgb(54, 162, 235)',
-                        'rgb(255, 206, 86)',
-                        'rgb(75, 192, 192)',
-                        'rgb(153, 102, 255)'
+                        'rgb(0, 166, 237)',
                     ],
                     borderWidth: 1
                 }]
             },
             options: {
+                responsive: true,
                 scales: {
                     y: {
                         beginAtZero: true
@@ -374,6 +385,7 @@
     }
 
     function ListarLojas() {
+        document.getElementById("id_loja").innerHTML = `<option selected hidden value="value">-\tSelecione a loja\t-</option>`;
         fetch(`/usuarios/listarLojas/${sessionStorage.ID_EMPRESA}`)
             .then(res => res.json())
             .then(res => {
@@ -382,7 +394,10 @@
                     option.innerHTML = lojas.RazaoSocial;
                     option.value = lojas.IdLoja;
                     document.getElementById("id_loja").append(option);
-                })
+                });
+                if (lojaSelecionada != null) {
+                    document.getElementById("id_loja").value = lojaSelecionada;
+                }
             })
     }
 

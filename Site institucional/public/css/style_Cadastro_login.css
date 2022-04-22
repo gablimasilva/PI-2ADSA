@@ -15,8 +15,21 @@ body {
     background-color: #f1f1f1;
 }
 
-html {
-    scroll-behavior: smooth;
+.navBarLinks {
+    display: flex;
+    text-align: center;
+    justify-content:right;
+    align-items: center;
+    list-style: none;
+    width: 80%;
+}   
+
+.navBar ul a {
+    font-weight: bolder;
+    text-decoration: none;
+    color: var(--marrom);
+    z-index: 100000;
+    margin-right: 60px;
 }
 
 .header .container {
@@ -24,13 +37,23 @@ html {
     justify-content: space-between;
 }
 
-
 /* FOOTER */
 
 .footer {
     background-color: var(--amarelo);
     color: var(--marrom);
     padding: 30px;
+    margin-top: 200px;
+    position: relative;
+}
+
+.footer-login .container {
+    background-color: var(--amarelo);
+    color: var(--marrom);
+    padding: 30px;  
+    display: flex;
+    justify-content: center;
+    width: auto;
 }
 
 .footer .container {
@@ -76,10 +99,6 @@ button {
     cursor: pointer;
 }
 
-h2 {
-  margin-top: 40px;
-}
-
 /* FORMULARIO */
 
 input {
@@ -98,22 +117,43 @@ input {
     background-color: var(--marrom);
     width: 120px;
     align-self: center;
-    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 form {
     display: flex;
     flex-direction: row;
     padding: 30px;
-    margin: auto;
+    margin-top: 250px;
+    margin-right: 20px;
+}
+
+form .caixa-1 .caixa-2{
+    align-items: baseline;
+    display: flex;
+    justify-content:space-around;
+}
+
+h4 {
+    display: flex;
+    align-items: baseline;
+}
+
+h2{
+    display: flex;
+    margin-left: 40px;
+    margin-bottom: 30px;
+}
+.caixa-1 {
+    margin-right: 120px;
 }
 
 .caixa-login {
     display: flex;
     flex-direction: column;
     padding: 10px;
-    margin-top: 20px;
     align-items: baseline;
+    margin-bottom: 180px;
 }
 
 .loading-div {
@@ -254,7 +294,7 @@ form {
     display: flex;
     text-align: left;
     flex-direction: row
-}
+}   
 
 .btn-logout i {
     margin-right: 15px;

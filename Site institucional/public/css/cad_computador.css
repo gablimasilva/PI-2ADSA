@@ -32,3 +32,8 @@ select{
     border: 2px solid var(--marrom);
     border-radius: 10px;
 }
+
+form {
+    display: flex;
+    flex-direction: column;
+}

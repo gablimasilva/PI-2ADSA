@@ -1,0 +1,34 @@
+
+* {
+    margin: 0;
+    padding: 0;
+}
+.fundo_cad {
+    margin: 1%;
+    width: 95%;
+    flex-wrap: wrap;
+    display: flex;
+    text-align: left;
+    height: auto;
+    background-color: rgb(22, 22, 24);
+    font-size: 20px;
+    flex-direction: column;
+}
+.cad_comp{
+    padding: 10px 10px 10px 12%;
+    height: auto;
+    margin: 0;
+    background-color: rgb(22, 22, 24);
+    color: white;
+}
+.fundo_cad select{
+    width: 40%;
+}
+.fundo_cad input{
+    width: 40%;    
+}
+select{
+    height: 30px;
+    border: 2px solid var(--marrom);
+    border-radius: 10px;
+}

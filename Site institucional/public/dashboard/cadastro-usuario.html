@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="../css/style_Cadastro_login.css">
     <link rel="stylesheet" href="dashboards.css">
+    <link rel="stylesheet" href="../css/cad_usuario.css">
     <script src="../assets/js/funcoes.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
@@ -81,33 +82,36 @@
         </div>
 
         <div class="dash">
-            <div class="title">
-                <h2>Dashboard / Usuários</h2>
-            </div>
-            <div class="card medio">
-                <h2>Bem-vindo!</h2>
+            <div class="fundo_usu">
+                <div class="title">
+                    <h2>Dashboard / Usuários</h2>
+                </div>    
+                <h2>Dados do usuario</h2>
                 <div class="formulario">
                     <form id="form_cadastro" method="post" onsubmit="return cadastrarUsuario()">
-                        Cargo do Usuário:
-                        <select name="cargo">
-                            <option selected hidden value="value">Selecione o cargo</option>
-                            <option value="1">Gerente</option>
-                            <option value="2">Analista</option>
-                            <option value="3">Colaborador</option>
-                        </select>
-
-                        Nome:
-                        <input name="nome" type="text" placeholder="meuemail@provedor.com">
-
-                        Email:
-                        <input name="email" type="text" placeholder="()****-****">
-
-                        Senha:
-                        <input name="senha" type="text" placeholder="*****-***">
-
-                        Confirmacao Senha:
-                        <input name="confirmacaoSenha" type="text" placeholder="">
-
+                        
+                        <div class="cad_comp">
+                            Nome:
+                            <input name="nome" type="text" placeholder="meuemail@provedor.com">
+                        </div>
+                        <div class="cad_comp">
+                            Cargo do Usuário:
+                            <select name="cargo">
+                                <option selected hidden value="value">Selecione o cargo</option>
+                                <option value="1">Gerente</option>
+                                <option value="2">Analista</option>
+                                <option value="3">Colaborador</option>
+                            </select>
+                        </div>
+                        <div class="cad_comp">
+                            Email:
+                            <input name="email" type="text" placeholder="()****-****">
+                        </div>
+                        <div class="cad_comp">
+                            Senha Inicial:
+                            <input name="senha" type="text" placeholder="*****-***">
+                        </div>
+                        
                         <button class="btn">Cadastrar</button>
                     </form>
                 </div>

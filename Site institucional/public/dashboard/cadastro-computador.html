@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="../css/style_Cadastro_login.css">
     <link rel="stylesheet" href="dashboards.css">
+    <link rel="stylesheet" href="../css/cad_computador.css">
     <script src="../assets/js/funcoes.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
@@ -81,49 +82,52 @@
         </div>
 
         <div class="dash">
-            <div class="title">
-                <h2>Dashboard / Computadores</h2>
-            </div>
-            <div class="card medio">
-                <h2>Bem-vindo!</h2>
+            <div class="fundo_cad">
+                <div class="title">
+                    <h3>Dashboard / Computadores</h3>
+                </div>
                 <div class="formulario">
                     <form id="form_cadastro" method="post" onsubmit="return cadastrarMaquina()">
-                        Tipo de computador:
+                        <div class="cad_comp">
+                            Loja:
 
-                        <select name="tipoComputador">
-                            <option selected hidden value="value">Selecione o tipo</option>
-                            <option value="1">Totem</option>
-                            <option value="2">Computador</option>
-                            <option value="3">Caixa</option>
-                        </select>
+                            <select name="loja" id="loja">
+                                <option selected hidden value="value">Selecione a Loja</option>
+                            </select>
+                        </div>
+                        
+                        <div class="cad_comp">
+                            IP do computador:
+                            <input name="ip" type="text" placeholder="meuemail@provedor.com">
+                        </div>
 
-                        Loja:
-
-                        <select name="loja" id="loja">
-                            <option selected hidden value="value">Selecione a Loja</option>
-                        </select>
-
-                        IP do computador:
-                        <input name="ip" type="text" placeholder="meuemail@provedor.com">
-
-                        Sistema Operacional:
-                        <input name="so" type="text" placeholder="()****-****">
-
-                        Hostname do computador:
-                        <input name="hostname" type="text" placeholder="*****-***">
-
-                        Endereço MAC do computador:
-                        <input name="mac" type="text" placeholder="1234">
-
-                        Local do computador:
-                        <input name="local" type="text" placeholder="1234">
-
-                        Senha:
-                        <input name="senha" type="text" placeholder="*****-***">
-
-                        Confirmacao Senha:
-                        <input name="confirmacaoSenha" type="text" placeholder="">
-
+                        <div class="cad_comp">
+                            Sistema Operacional:
+                            <input name="so" type="text" placeholder="()****-****">
+                        </div>
+                        <div class="cad_comp">
+                            
+                            Hostname do computador:
+                            <input name="hostname" type="text" placeholder="*****-***">
+                        </div>
+                        <div class="cad_comp">
+                            Endereço MAC do computador:
+                            <input name="mac" type="text" placeholder="1234">
+                        </div>
+                        <div class="cad_comp">   
+                            Local do computador:
+                            <input name="local" type="text" placeholder="1234">
+                        </div>
+                        <div class="cad_comp">
+                            Tipo de computador:
+                            <select name="tipoComputador">
+                                <option selected hidden value="value">Selecione o tipo</option>
+                                <option value="1">Totem</option>
+                                <option value="2">Computador</option>
+                                <option value="3">Caixa</option>
+                            </select>
+                        </div>
+                        
                         <button class="btn">Cadastrar</button>
                     </form>
                 </div>

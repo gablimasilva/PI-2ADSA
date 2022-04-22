@@ -1,0 +1,169 @@
+/* Declarando as variáveis */
+:root{
+    --amarelo: rgb(255,211,80);
+    --marrom: rgb(117,66,0);
+}
+
+/*  Padronizando as margens */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat';
+    font-size: 18px;
+}
+body {
+    background-color: #f1f1f1;
+}
+
+.navBarLinks {
+    display: flex;
+    text-align: center;
+    justify-content:right;
+    align-items: center;
+    list-style: none;
+    width: 80%;
+}   
+
+.navBar ul a {
+    font-weight: bolder;
+    text-decoration: none;
+    color: var(--marrom);
+    z-index: 100000;
+    margin-right: 60px;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* FOOTER */
+
+.footer {
+    background-color: var(--amarelo);
+    color: var(--marrom);
+    padding: 30px;
+    position: relative;
+    left: 0;
+    bottom: 0;
+}
+
+.footer .container {
+    display: flex;
+    justify-content: center;
+}
+
+h4 {
+    margin: 0;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    padding: 0;
+}
+
+/* LOGIN */
+
+.banner-login .container {
+    display: flex;
+    justify-content: center;
+}
+
+.banner-login {
+    color: var(--marrom);
+}
+
+.banner-login #div_erros_login {
+    margin-top: 15px;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* FORMULARIO */
+
+input {
+    height: 30px;
+    border: 2px solid var(--marrom);
+    border-radius: 10px;
+    font-size: 14px;
+    width: 300px;
+}
+
+.btn {
+    border: 0;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 18px;
+    padding: 10px 15px;
+    color: var(--amarelo);
+    background-color: var(--marrom);
+    width: 150px;
+    align-self: center;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.align-btn {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+}
+
+.formulario {
+    height: auto;
+    width: 55%;
+}
+
+h2 {
+    font-size: 25px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+}
+
+h3 {
+    font-size: 18px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    margin-top: 100px;
+    width: 100%;
+}
+
+form .dados-cad {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+form .dados-acesso {
+    display: flex;
+    flex-direction: wrap;
+    justify-content: space-between;
+}
+
+form h4 {
+    font-size: 14px;
+}
+
+.caixa-login {
+    display: flex;
+    flex-direction: column;
+}
+
+.loading-div {
+    width: 50px;
+    /* border: 3px solid pink; */
+    margin: auto;
+    display: none;
+}
+
+.loading-div img {
+    height: 50px;
+    width: 50px;
+}

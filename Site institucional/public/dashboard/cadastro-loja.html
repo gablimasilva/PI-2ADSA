@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Food | Cadastro</title>
 
-    <link rel="stylesheet" href="../css/cad_login.css">
+    <link rel="stylesheet" href="nav-bar.css">
     <link rel="stylesheet" href="dashboards.css">
     <link rel="stylesheet" href="../css/cad_loja.css">
     <script src="../assets/js/funcoes.js"></script>
@@ -90,74 +90,72 @@
         </div>
 
         <div class="dash">
+            <div class="title">
+                <h2>Dashboard / Loja</h2>
+            </div>
             <div class="fundo_cad">
-                <div class="title">
-                    <h2>Dashboard / Loja</h2>
-                </div>
-                <div class="title_2">
-                    <h2>Dados da loja</h2>
-                </div>
+                <h3>Dados da loja</h3>
                 <div class="formulario">
                     <form id="form_cadastro" method="post" onsubmit="return cadastrarLoja()">
-                        <div class="form_1">
-                            <div class="cad_comp">
-                                Razão social:
-                                <input name="nomeLoja" type="text" placeholder="Ada Lovelace">
-                            </div>
-
-                            <div class="cad_comp">
-                                Gerente Loja:
-                                <input name="gerenteLoja" type="text" placeholder="meuemail@provedor.com">
-                            </div>
-                            <div class="cad_comp">
-                                Cep:
-                                <input name="cepLoja" type="text" placeholder="*****-***">
-                            </div>
-                            <div class="cad_comp">
-                                Numero Rua:
-                                <input name="numeroRuaLoja" type="text" placeholder="1234">
-                            </div>
-                            <div class="cad_comp">
+                        <div class="align_form">
+                            <div class="form_1">
                                 <div class="cad_comp">
-                                    Bairro:
-                                    <input name="bairro" type="text" placeholder="1234">
+                                    <h4>Razão social:</h4>
+                                    <input name="nomeLoja" type="text" placeholder="Ada Lovelace">
                                 </div>
-                                Estado:
-                                <input name="estado" type="text" placeholder="1234">
+                                <div class="cad_comp">
+                                    <h4>Gerente Loja:</h4>
+                                    <input name="gerenteLoja" type="text" placeholder="meuemail@provedor.com">
+                                </div>
+                                <div class="cad_comp">
+                                    <h4>Gerente Loja:</h4>
+                                    <input name="cepLoja" type="text" placeholder="*****-***">
+                                </div>
+                                <div class="cad_comp">
+                                    <h4>Numero Rua:</h4>
+                                    <input name="numeroRuaLoja" type="text" placeholder="1234">
+                                </div>
+                                <div class="cad_comp">
+                                    <div class="cad_comp">
+                                        <h4>Bairro:</h4>
+                                        <input name="bairro" type="text" placeholder="1234">
+                                    </div>
+                                    <h4>Estado:</h4>
+                                    <input name="estado" type="text" placeholder="1234">
+                                </div>
+                            </div>
+                            <div class="form_2">
+                                <div class="cad_comp">
+                                    <h4>CNPJ:</h4>
+                                    <input name="cnpjLoja" type="text" placeholder="()****-****">
+                                </div>
+                                <div class="cad_comp">
+                                    <h4>Telefone:</h4>
+                                    <input name="telefoneLoja" type="text" placeholder="Maria Júlia">
+                                </div>
+                                <div class="cad_comp">
+                                    <h4>Logradouro:</h4>
+                                    <input name="logradouro" type="text" placeholder="1234">
+                                </div>
+                                <div class="cad_comp">
+                                    <h4>Complemento:</h4>
+                                    <input name="complementoLoja" type="text" placeholder="Bloco 42 ap 15">
+                                </div>
+                                <div class="cad_comp">
+                                    <h4>Cidade:</h4>
+                                    <input name="cidade" type="text" placeholder="1234">
+                                </div>
+                                <div class="cad_comp">
+                                    <h4>E-mail:</h4>
+                                    <input name="emailLoja" type="text" placeholder="">
+                                </div>
                             </div>
                         </div>
-                        <div class="form_2">
-                            <div class="cad_comp">
-                                CNPJ:
-                                <input name="cnpjLoja" type="text" placeholder="()****-****">
-                            </div>
-                            <div class="cad_comp">
-                                Telefone:
-                                <input name="telefoneLoja" type="text" placeholder="Maria Júlia">
-                            </div>
-                            <div class="cad_comp">
-                                Logradouro:
-                                <input name="logradouro" type="text" placeholder="1234">
-                            </div>
-                            <div class="cad_comp">
-                                Complemento:
-                                <input name="complementoLoja" type="text" placeholder="Bloco 42 ap 15">
-                            </div>
-                            <div class="cad_comp">
-                                Cidade:
-                                <input name="cidade" type="text" placeholder="1234">
-                            </div>
-                            <div class="cad_comp">
-                                E-mail:
-                                <input name="emailLoja" type="text" placeholder="">
-                            </div>
-                        </div>
-
-                        <div>
-                            <button class="btn">Cadastrar</button>
+                        <div class="align_btn">
+                            <button class="btn">Salvar</button>
                         </div>
                     </form>
-                    
+
                 </div>
                 <div id="div_aguardar" class="loading-div">
                     <img src="./assets/circle-loading.gif" id="loading-gif">

@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.xml.transform.Templates;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-
+    
 /**
  *
  * @author bruno.dearaujo
@@ -248,7 +248,7 @@ public class Login extends javax.swing.JFrame {
 
         String codigo = "", senha = "";
         Boolean logado = false;
-
+        
         if (inputUsuario.getText().equals("")) {
             System.out.println("Insira seu IP!");
         } else if (passwdUsuario.getText().equals("")) {

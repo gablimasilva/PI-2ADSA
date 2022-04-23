@@ -191,13 +191,13 @@ public class Monitoramento extends javax.swing.JFrame {
                         String exibirDadosCpu = looca.getProcessador().getUso().toString();
                         String exibirDadosRam = "Em Uso:" + Conversor.formatarBytes(looca.getMemoria().getEmUso())
                                 + "   |  Total:" + (Conversor.formatarBytes(looca.getMemoria().getTotal()));
-                        String exibirHostname = computador.getHostName().toString();
+                        String exibirHostname = computador.getHostnameComputador();
 
                         dadosCpu.setText(exibirDadosCpu);
                         dadosDisco.setText(exibirDadosDisco);
                         dadosRam.setText(exibirDadosRam);
                         hostName.setText(exibirHostname);
-                        Thread.sleep(15000);
+                        Thread.sleep(5000);
                     }
                 } catch (Exception e) {
                     System.out.println("Erro de leitura!");

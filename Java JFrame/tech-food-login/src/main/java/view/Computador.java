@@ -9,12 +9,12 @@ public class Computador {
     private String ipComputador;
     private Integer idComputador;
     private String senhaComputador;
-    private String hostName;
+    private String HostnameComputador;
 
     public Computador(String ip) {
         this.ipComputador = ip;
         this.senhaComputador = "";
-        this.hostName = "";
+        this.HostnameComputador = "";
 
     }
 
@@ -44,12 +44,12 @@ public class Computador {
         this.idComputador = idComputador;
     }
 
-    public String getHostName() {
-        return hostName;
+    public String getHostnameComputador() {
+        return HostnameComputador;
     }
 
-    public void setHostName(String hostName) {
-        this.hostName = hostName;
+    public void setHostnameComputador(String HostnameComputador) {
+        this.HostnameComputador = HostnameComputador;
     }
     
     
@@ -61,7 +61,7 @@ public class Computador {
                 + "Hostname: %s %n"
                 + "IP: %s %n"
                 + "SENHA: %s %n", 
-                idComputador, hostName, ipComputador, senhaComputador);
+                idComputador, HostnameComputador, ipComputador, senhaComputador);
     }
     
     

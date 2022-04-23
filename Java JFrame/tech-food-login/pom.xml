@@ -22,6 +22,11 @@
                     <descriptorRefs>
                         <descriptorRef>jar-with-dependencies</descriptorRef>
                     </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>view.Login</mainClass>
+                        </manifest>
+                    </archive>
                 </configuration>
                 <executions>
                     <execution>
@@ -35,7 +40,7 @@
             </plugin>
         </plugins>
     </build>
-        
+    
     <dependencies>
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>

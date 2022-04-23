@@ -13,10 +13,10 @@ public class Connection {
     public Connection() {
         dataSource = new BasicDataSource();
 
-        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/techfood");
-        dataSource.setUsername("root");
-        dataSource.setPassword("programador.2021");
+        dataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        dataSource.setUrl("jdbc:sqlserver://projeto-totem.database.windows.net:1433;database=projeto-totem;user=FoodTech@projeto-totem;password=2ads@projeto;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
+        // dataSource.setUsername("root");
+        // dataSource.setPassword("programador.2021");
 
     }
 

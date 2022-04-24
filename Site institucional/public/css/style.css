@@ -197,6 +197,20 @@ html {
     width: 40%;
 }
 
+.right {
+    flex-direction: row-reverse !important;
+}
+
+.right .imgLink {
+    width: 60%;
+    left: 0;
+}
+
+.right .texto {
+    text-align: left;
+    width: 35%
+}
+
 .s {
     background-color: #f1f1f1;
 }

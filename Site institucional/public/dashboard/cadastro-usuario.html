@@ -94,39 +94,65 @@
                 <div class="title">
                     <h2>Dashboard / Usuários</h2>
                 </div>
-                <h2>Dados do usuario</h2>
+                <h3>Dados do usuario</h3>
                 <div class="formulario">
                     <form id="form_cadastro" method="post" onsubmit="return cadastrarUsuario()">
-                        <div class="cad_comp">
-                            Nome:
-                            <input name="nome" type="text" placeholder="meuemail@provedor.com">
-                        </div>
-                        <div class="cad_comp">
-                            Cargo do Usuário:
-                            <select name="cargo">
-                                <option selected hidden value="value">Selecione o cargo</option>
-                                <option value="1">Gerente</option>
-                                <option value="2">Analista</option>
-                                <option value="3">Colaborador</option>
-                            </select>
-                        </div>
-                        <div class="cad_comp">
-                            Email:
-                            <input name="email" type="text" placeholder="()****-****">
-                        </div>
-                        <div class="cad_comp">
-                            Senha :
-                            <input name="senha" type="text" placeholder="*****-***">
-                        </div>
+                        <div class="align_form">
+                            <div class="form_1">
+                                <div class="cad_comp1">
+                                    Nome:
+                                    
+                                </div>
+                                <div class="cad_comp1">
+                                    Cargo do Usuário:
+                                    
+                                </div>
+                                <div class="cad_comp1">
+                                    Email:
+                                    
+                                </div>
+                                <div class="cad_comp1">
+                                    Senha :
+                                    
+                                </div>
 
-                        <div class="cad_comp">
-                            Confirmação de senha:
-                            <input name="confirmacaoSenha" type="text" placeholder="*****-***">
+                                <div class="cad_comp1">
+                                    Confirmação de senha:
+                                    
+                                </div>
+                            </div>
+                            <div class="form_2">
+                                <div class="cad_comp">
+                                    <!--INPUT NOME-->
+                                    <input name="nome" type="text" placeholder="Digite o nome do usuário">
+                                </div>
+                                <div class="cad_comp">
+                                    <!--SELECT CARGO-->
+                                    <select name="cargo">
+                                        <option selected hidden value="value">Selecione o cargo</option>
+                                        <option value="1">Gerente</option>
+                                        <option value="2">Analista</option>
+                                        <option value="3">Colaborador</option>
+                                    </select>
+                                </div>
+                                <div class="cad_comp">
+                                    <!--INPUT EMAIL-->
+                                    <input name="email" type="text" placeholder="meuemail@provedor.com">
+                                </div>
+                                <div class="cad_comp">
+                                    <!--INPUT SENHA-->
+                                    <input name="senha" type="password" placeholder="********">
+                                </div>
+                                <div class="cad_comp">
+                                    <!--INPUT CONFIR SENHA-->
+                                    <input name="confirmacaoSenha" type="password" placeholder="********">
+                                </div>
+                            </div>
                         </div>
-
-                        <div>
+                        <div class="align_btn">
                             <button class="btn">Cadastrar</button>
                         </div>
+                        
                     </form>
                 </div>
                 <div id="div_aguardar" class="loading-div">

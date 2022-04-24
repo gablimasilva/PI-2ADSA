@@ -21,21 +21,34 @@
     background-color: rgb(22, 22, 24);
     color: white;
 }
-.fundo_cad select{
-    width: 40%;
-}
-.fundo_cad input{
-    width: 40%;    
-}
-select{
+
+input {
     height: 30px;
     border: 2px solid var(--marrom);
     border-radius: 10px;
+    font-size: 14px;
+    width: 300px;
+    margin: 1%;
+}
+
+select{
+    height: 34px;
+    border: 2px solid var(--marrom);
+    border-radius: 10px;
+    font-size: 14px;
+    width: 308px;
 }
 
 form {
     display: flex;
     flex-direction: column;
+}
+
+form .align_form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 70%;
 }
 
 .loading-div {
@@ -58,6 +71,13 @@ form {
     padding: 10px 15px;
     color: var(--amarelo);
     background-color: var(--marrom);
-    width: 120px;
+    width: 150px;
     align-self: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.align_btn {
+    width: 72%;
+    display: flex;
+    justify-content: right;
 }

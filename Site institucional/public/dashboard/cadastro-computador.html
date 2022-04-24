@@ -84,57 +84,64 @@
         <div class="dash">
             <div class="fundo_cad">
                 <div class="title">
-                    <h3>Dashboard / Computadores</h3>
+                    <h2>Dashboard / Computadores</h3>
                 </div>
                 <div class="formulario">
                     <form id="form_cadastro" method="post" onsubmit="return cadastrarMaquina()">
-                        <div class="cad_comp">
-                            Loja:
-                            <select name="loja" id="loja">
-                                <option selected hidden value="value">Selecione a Loja</option>
-                            </select>
+                        <div class="align_form">
+                            <div class="form_1">
+                                <div class="cad_comp">
+                                    Loja:
+                                    <select name="loja" id="loja">
+                                        <option selected hidden value="value">Selecione a Loja</option>
+                                    </select>
+                                </div>
+                                <div class="cad_comp">
+                                    IP do computador:
+                                    <input name="ip" type="text" placeholder="192.168.001.001">
+                                </div>
+                                <div class="cad_comp">
+                                    Sistema Operacional:
+                                    <input name="so" type="text" placeholder="Digite o sistema operacional do computador">
+                                </div>
+                                <div class="cad_comp">
+                                    Hostname do computador:
+                                    <input name="hostname" type="text" placeholder="Digite o Hostname do computador">
+                                </div>
+                                <div class="cad_comp">
+                                    Endereço MAC do computador:
+                                    <input name="mac" type="text" placeholder="00:1B:C9:4B:E3:57">
+                                </div>
+                            </div>
+                            <div class="form_2">
+                                <!--INPUT LOCAL-->
+                                <div class="cad_comp">
+                                    Local do computador:
+                                    <input name="local" type="text" placeholder="Digite o local do computador">
+                                </div>
+                                <!--SELECT TIPOCOMPUTADOR-->
+                                <div class="cad_comp">
+                                    Tipo de computador:
+                                    <select name="tipoComputador">
+                                        <option selected hidden value="value">Selecione o tipo</option>
+                                        <option value="1">Totem</option>
+                                        <option value="2">Computador</option>
+                                        <option value="3">Caixa</option>
+                                    </select>
+                                </div>
+                                <!--INPUT SENHA-->
+                                <div class="cad_comp">
+                                    Senha :
+                                    <input name="senha" type="password" placeholder="********">
+                                </div>
+                                <!--INPUT CONFIRMAÇÃO SENHA-->
+                                <div class="cad_comp">
+                                    Confirmação de senha:
+                                    <input name="confirmacaoSenha" type="password" placeholder="********">
+                                </div>
+                            </div>
                         </div>
-                        <div class="cad_comp">
-                            IP do computador:
-                            <input name="ip" type="text" placeholder="meuemail@provedor.com">
-                        </div>
-                        <div class="cad_comp">
-                            Sistema Operacional:
-                            <input name="so" type="text" placeholder="()****-****">
-                        </div>
-                        <div class="cad_comp">
-                            Hostname do computador:
-                            <input name="hostname" type="text" placeholder="*****-***">
-                        </div>
-                        <div class="cad_comp">
-                            Endereço MAC do computador:
-                            <input name="mac" type="text" placeholder="1234">
-                        </div>
-                        <div class="cad_comp">
-                            Local do computador:
-                            <input name="local" type="text" placeholder="1234">
-                        </div>
-                        <div class="cad_comp">
-                            Tipo de computador:
-                            <select name="tipoComputador">
-                                <option selected hidden value="value">Selecione o tipo</option>
-                                <option value="1">Totem</option>
-                                <option value="2">Computador</option>
-                                <option value="3">Caixa</option>
-                            </select>
-                        </div>
-
-                        <div class="cad_comp">
-                            Senha :
-                            <input name="senha" type="text" placeholder="*****-***">
-                        </div>
-
-                        <div class="cad_comp">
-                            Confirmação de senha:
-                            <input name="confirmacaoSenha" type="text" placeholder="*****-***">
-                        </div>
-
-                        <div>
+                        <div class="align_btn">
                             <button class="btn">Cadastrar</button>
                         </div>
                     </form>
@@ -142,12 +149,12 @@
                 <div id="div_aguardar" class="loading-div">
                     <img src="./assets/circle-loading.gif" id="loading-gif">
                 </div>
-
+            
                 <div id="div_erros_login">
 
                 </div>
             </div>
-        </div>
+        </div></form>
     </div>
 
 

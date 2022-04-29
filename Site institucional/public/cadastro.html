@@ -105,11 +105,11 @@
                     <div class="dados-acesso">
                         <div>
                             <h4> Senha</h4>
-                            <input name="senhaLoja" type="text" placeholder="  Insira sua senha">
+                            <input name="senhaLoja" type="text" placeholder="********">
                         </div>
                         <div>
                             <h4>Confirmacão Senha</h4>
-                            <input name="confirmacaoSenha" type="text" placeholder="  Confirme sua senha">
+                            <input name="confirmacaoSenha" type="text" placeholder="********">
                         </div>
                     </div>
                     <div class="align-btn">
@@ -167,7 +167,7 @@
         var responsavel = formulario.get("responsavel");
 
         // TODO: VERIFICAR AS VALIDAÇÕES QUE ELES ESTÃO APRENDENDO EM ALGORITMOS 
-        if (nomeLoja == "" || emailLoja == "" || telefoneLoja == "" || cepLoja == "" || estado == "" || cidade == "" || bairro == "" || logradouro == "" || complemento == "" || numeroRua == "" || cnpjMatriz == "" || responsavel == "" || senhaLoja == "" || confirmacaoSenha == "") {
+        if (nomeLoja == "" || emailLoja == "" || telefoneLoja == "" || cepLoja == "" || estado == "" || cidade == "" || bairro == "" || logradouro == "" || numeroRua == "" || cnpjMatriz == "" || responsavel == "" || senhaLoja == "" || confirmacaoSenha == "") {
 
             window.alert("Preencha todos os campos para prosseguir!");
             if (nomeLoja == "") {
@@ -186,8 +186,6 @@
                 console.log('Bairro está em branco')
             } if (logradouro == "") {
                 console.log('Logradouro está em branco')
-            } if (complemento == "") {
-                console.log('Complemento da loja está em branco')
             } if (numeroRua == "") {
                 console.log('Numero da rua está em branco')
             } if (cnpjMatriz == "") {

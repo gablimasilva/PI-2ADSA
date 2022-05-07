@@ -252,6 +252,7 @@ public class Login extends javax.swing.JFrame {
         if (inputUsuario.getText().equals("")) {
             System.out.println("Insira seu IP!");
         } else if (passwdUsuario.getText().equals("")) {
+            
             System.out.println("Insira sua senha!");
         } else {
             List<Computador> listaComputador = login.query("select * from computador where ipComputador = ? and senhaComputador = ?;",

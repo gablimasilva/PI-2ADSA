@@ -20,6 +20,7 @@ public class Monitoramento extends javax.swing.JFrame {
     public Monitoramento(Computador computador) {
         this.computador = computador;
         // Deixando a tela no centro;
+        cadastrarComponentes();
         setLocationRelativeTo(null);
         initComponents();
         sistemaOperacional();
@@ -165,6 +166,35 @@ public class Monitoramento extends javax.swing.JFrame {
 //        });
 //
 //    }
+    
+    public void cadastrarComponentes(){
+        Looca looca = new Looca();
+        Connection config = new Connection();
+        JdbcTemplate template = new JdbcTemplate(config.getDataSource());
+        
+        List qtdComponentes = template.queryForList(
+                "SELECT * from computadorComponente WHERE fkComputador = ?", computador.getidComputador());
+        
+        if(qtdComponentes.isEmpty()){
+            
+            template.update(
+                    "INSERT INTO computadorComponente (fkComputador, fkComponente, TotalComponente, UnidadeDeMedida)"
+                            + "VALUES(?, 1, ?, 'GB')",
+                    computador.getidComputador(), looca.getMemoria().getTotal());
+            
+            template.update(
+                    "INSERT INTO computadorComponente (fkComputador, fkComponente, TotalComponente, UnidadeDeMedida)"
+                            + "VALUES(?, 2, ?, 'GB')",
+                    computador.getidComputador(), looca.getProcessador().getFrequencia());
+            
+            template.update(
+                    "INSERT INTO computadorComponente (fkComputador, fkComponente, TotalComponente, UnidadeDeMedida)"
+                            + "VALUES(?, 3, ?, 'GB')",
+                    computador.getidComputador(), looca.getGrupoDeDiscos().getDiscos().get(0).getTamanho());
+        }
+        
+    }
+    
     public void monitoramentoGeral() {
 
         // Instâncias de captura dos dados

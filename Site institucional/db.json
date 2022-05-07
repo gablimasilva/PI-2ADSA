@@ -1,0 +1,29 @@
+{
+    "computador": [
+        {"id": 1, "fkLoja": 1, "fkTipoComputador": 1, "IpComputador": "192.168.0.1", "sistemaOperacional": "WINDOWS OS", "hostnameComputador": "COMPUTER 01", "enderecoMACComputador": "00:00:00:00:00", "localComputador": "Caixa"},
+        {"id": 2, "fkLoja": 1, "fkTipoComputador": 1, "IpComputador": "192.168.0.1", "sistemaOperacional": "WINDOWS OS", "hostnameComputador": "COMPUTER 01", "enderecoMACComputador": "00:00:00:00:00", "localComputador": "Caixa"}
+    ],
+    "loja": [
+        {"id": 1, "fkEmpresa": 1, "razaoSocial": "Loja de Comida LTDA", "gerenteLoja": "Roderval Siqueira", "cnpjLoja": "27770270000138", "cepLoja": "06712-215", "estado": "SP", "cidade": "Cotia", "bairro": "Jardim Passárgada I", "logradouro": "Rua Armênia", "numeroRua": 470, "complemento": null, "telefone": "1128585955"}
+    ],
+    "empresa": [
+        {"id": 1, "tecnicoResponsavel": "Brian O'Connor", "razaoSocial": "Empresa do Brian SA", "cnpjEmpresa": "00288278000106", "emailEmpresa": "producao@brian.com.br", "telefoneEmpresa": "1825821570", "senhaEmpresa": "123456", "cep": "19814060", "estado": "SP", "cidade": "Assis", "bairro": "Centro", "logradouro": "Rua Castro Alves", "numero": "322", "complemento": null}
+    ],
+    "componente": [
+        {"id": 1, "fkComputador": 1, "nomeComponente": "Memória RAM", "totalComponente": 8.0, "unidadeDeMedida": "GB"},
+        {"id": 2, "fkComputador": 1, "nomeComponente": "CPU", "totalComponente": 1.6, "unidadeDeMedida": "GHz"},
+        {"id": 3, "fkComputador": 1, "nomeComponente": "Disco 0 (C:)", "totalComponente": 1000.0, "unidadeDeMedida": "GB"},
+        {"id": 4, "fkComputador": 2, "nomeComponente": "Memória RAM", "totalComponente": 8.0, "unidadeDeMedida": "GB"},
+        {"id": 5, "fkComputador": 2, "nomeComponente": "CPU", "totalComponente": 1.6, "unidadeDeMedida": "GHz"},
+        {"id": 6, "fkComputador": 2, "nomeComponente": "Disco 0 (C:)", "totalComponente": 1000.0, "unidadeDeMedida": "GB"}
+    ],
+    "registroComponente": [
+        {"id": 1, "fkComponente": 1, "temperatura": 24.3, "valorConsumido": 8.0, "dataHora": "2022-04-16 17:54:04", "statusComputador": "OK"},
+        {"id": 2, "fkComponente": 2, "temperatura": 24.3, "valorConsumido": 1, "dataHora": "2022-04-16 17:55:04", "statusComputador": "OK"},
+        {"id": 3, "fkComponente": 3, "temperatura": 24.3, "valorConsumido": 1000.0, "dataHora": "2022-04-16 17:56:04", "statusComputador": "OK"},
+        {"id": 4, "fkComponente": 4, "temperatura": 24.3, "valorConsumido": 1, "dataHora": "2022-04-16 17:57:04", "statusComputador": "OK"},
+        {"id": 5, "fkComponente": 5, "temperatura": 24.3, "valorConsumido": 1, "dataHora": "2022-04-16 17:58:04", "statusComputador": "OK"},
+        {"id": 6, "fkComponente": 6, "temperatura": 24.3, "valorConsumido": 1, "dataHora": "2022-04-16 17:59:04", "statusComputador": "OK"}
+    ]
+
+}

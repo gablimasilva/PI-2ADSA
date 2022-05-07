@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Food</title>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="./assets/js/funcoes.js"></script>
+
+    <link rel="icon" href="./assets/icon/favicon.ico">
+    <link rel="stylesheet" href="./css/style_Cadastro_login.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="navBar">
+        <div class="container">
+            <div class="btnsNav">
+                <a href="index.html" class="logo">
+                    <img src="img/logo_techFood_logo_marrom_fundo_amarelo.png" width="100" height="100">
+                </a>
+              
+                <img class="hamburguerMenu" src="img/menu-4-64.png" alt="">
+            
+            </div>
+            
+            <ul class="navBarLinks">
+                <li class="navItem"><a href="index.html">Home</a></li>
+                <li class="navItem"><a class="btnCadastro" href="cadastro-teste.html">Cadastrar</a></li>
+                <li class="navItem"><a class="btnLogin" href="login-teste.html">Login</a></li>
+            </ul>
+            
+        </div>
+    </div>
+
+
+    <div class="banner-login">
+        <div class="container">
+            <div class="card medio">
+                <h2>Olá de volta!</h2>
+                <div class="formulario">
+                    <form id="form_login" method="post" onsubmit="return entrar()">
+                        E-mail:
+                        <input name="emailEmpresa" type="text" placeholder="Login">
+                        <br>
+                        Senha:
+                        <input name="senhaEmpresa" type="password" placeholder="******">
+                        <br>
+                        <button class="btn" type="submit">
+                            Entrar
+                        </button>
+                    </form>
+
+
+                </div>
+
+                <div id="div_aguardar" class="loading-div">
+                    <img src="./assets/circle-loading.gif" id="loading-gif">
+                </div>
+
+                <div id="div_erros_login">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--footer inicio-->
+    <div class="footer">
+        <div class="container">
+            <h4>Feito com amor por um aluno BandTec &copy; 2021</h4>
+        </div>
+    </div>
+
+    <!-- modal?
+
+    <div id="div_modal" class="div-modal">
+        <div id="modal_backdrop" onclick="fecharModal()" class="modal-backdrop">
+        </div>
+        <div id="modal_container" class="modal-container">
+            <button onclick="fecharModal()">fechar modal</button>
+        </div>
+    </div> -->
+
+
+
+</body>
+
+</html>
+
+<script>
+
+    function limparFormulario() {
+        document.getElementById("form_login").reset();
+    }
+
+    function entrar() {
+        aguardar();
+
+        var formulario = new URLSearchParams(new FormData(document.getElementById("form_login")));
+
+        var emailEmpresa = formulario.get("emailEmpresa");
+        var senhaEmpresa = formulario.get("senhaEmpresa");
+
+        console.log("FORM LOGIN: ", emailEmpresa);
+        console.log("FORM SENHA: ", senhaEmpresa);
+
+        // TODO: VERIFICAR AS VALIDAÇÕES QUE ELES ESTÃO APRENDENDO EM ALGORITMOS 
+        if (emailEmpresa == "" || senhaEmpresa == "") {
+            window.alert("Preencha todos os campos para prosseguir!");
+            finalizarAguardar();
+            return false;
+        }
+
+        if (emailEmpresa.indexOf("@") == -1 || emailEmpresa.indexOf(".com") == -1) {
+            window.alert("Ops, e-mail inválido! Verifique e tente novamente.");
+            finalizarAguardar();
+            return false;
+        }
+
+        fetch(`http://localhost:8080/empresa?emailEmpresa=${emailEmpresa}&senhaEmpresa=${senhaEmpresa}`, {
+            method: "GET",
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+
+                    if (json.length > 0) {
+                        console.log(json);
+                        console.log(JSON.stringify(json));
+
+                        debugger;
+                        sessionStorage.EMAIL_USUARIO = json[0].emailEmpresa;
+                        sessionStorage.NOME_USUARIO = json[0].razaoSocial;
+                        sessionStorage.ID_USUARIO = json[0].id;
+
+                        window.location = "./dashboard/dashboard-teste.html";
+                    } else {
+                        console.log("Houve um erro ao tentar realizar o login!");
+
+                        resposta.text().then(texto => {
+                            console.error(texto);
+                            finalizarAguardar(texto);
+                        });        
+                    }
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+</script>

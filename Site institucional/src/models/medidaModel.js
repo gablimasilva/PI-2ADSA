@@ -26,7 +26,24 @@ function buscarMedidasEmTempoReal(idAquario) {
 }
 
 
+function buscarFkComponenteCPU(fkComponente) {
+    instrucaoSql = `select fkComputadorComponente from registroComponente join computadorComponente on idComputadorComponente = fkComputadorComponente and fkComputador = ${fkComponente} and fkComponente = 1 order by fkComponente desc limit 1;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarCPU(maquina) {
+    instrucaoSql = `select valorConsumido from registroComponente join computadorComponente on idComputadorComponente = fkComputadorComponente and fkComputadorComponente = ${maquina} order by idRegistro desc limit 5;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+
 module.exports = {
     buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
+    buscarMedidasEmTempoReal,
+    buscarCPU,
+    buscarFkComponenteCPU
 }

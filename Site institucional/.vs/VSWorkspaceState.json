@@ -2,11 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\public",
-    "\\public\\assets",
-    "\\public\\assets\\js",
     "\\public\\dashboard",
     "\\src"
   ],
-  "SelectedNode": "\\public\\dashboard\\cadastro-usuario.html",
+  "SelectedNode": "\\public\\dashboard\\dashboard.html",
   "PreviewInSolutionExplorer": false
 }

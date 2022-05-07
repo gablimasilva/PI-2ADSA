@@ -41,8 +41,47 @@ function buscarMedidasEmTempoReal(req, res) {
     });
 }
 
+
+function buscarFkComponenteCPU(req, res) {
+    var fkComponente = req.params.fkComponente;
+
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.buscarFkComponenteCPU(fkComponente).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
+function buscarCPU(req, res) {
+    var maquina = req.params.maquina;
+
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.buscarCPU(maquina).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = {
     buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
-    
+    buscarMedidasEmTempoReal,
+    buscarCPU,
+    buscarFkComponenteCPU
 }

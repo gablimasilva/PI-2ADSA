@@ -18,7 +18,7 @@
         rel="stylesheet">
 
     <!-- scripts do Chart.js -->
-    <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js"></script>
 
 </head>
 
@@ -170,6 +170,7 @@
     let COMPUTADORES = [];
     let computadorAtual;
     let lojaSelecionada;
+    let maquinaSelecionada
 
 
     function aoIniciar() {
@@ -211,7 +212,7 @@
     }
 
     function exibirMaquina() {
-        var maquinaSelecionada = document.getElementById("id_computador").value;
+        maquinaSelecionada = document.getElementById("id_computador").value;
         for (computador of COMPUTADORES) {
             if (maquinaSelecionada == computador.idComputador) {
                 computadorAtual = computador;
@@ -290,6 +291,22 @@
         document.getElementById("canvas_grafico_categoria").style.display = "block";
     }
 
+    //function buscar
+
+    async function buscarDadosCPU() {
+        var fkComponente = await fetch(`/medidas/buscarFkComponenteCPU/${maquinaSelecionada}`);
+        fkComponente = await fkComponente.json();
+        var cpu = await fetch(`/medidas/buscarCPU/${fkComponente[0].fkComputadorComponente}`);
+        cpu = await cpu.json();
+        return await cpu;
+    }
+
+    async function inserirDadosCPU(count) {
+        var cpu = await buscarDadosCPU()
+        console.log(cpu[count].valorConsumido)
+        return await cpu[count].valorConsumido;
+    }
+
     async function gerarGraficoCPU() {
 
         var ctx = document.getElementById('canvas_grafico_CPU').getContext('2d');
@@ -299,7 +316,8 @@
             data: {
                 labels: ['data-hora', 'data-hora', 'data-hora', 'data-hora', 'data-hora'],
                 datasets: [{
-                    data: ['0', '20', '50', '15', '100'],
+                    data: [`${await inserirDadosCPU(0)}`, `${await inserirDadosCPU(1)}`, `${await inserirDadosCPU(2)}`
+                        , `${await inserirDadosCPU(3)}`, `${await inserirDadosCPU(4)}`],
                     backgroundColor: [
                         'rgb(13, 44, 84)',
                     ],
@@ -311,6 +329,18 @@
             },
             options: {
                 responsive: true,
+                scales: {
+                    y: {
+                        ticks: {
+                            color: 'white'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: 'white'
+                        }
+                    }
+                },
                 plugins: {
                     legend: {
                         position: 'top',
@@ -347,10 +377,26 @@
                 responsive: true,
                 scales: {
                     y: {
-                        beginAtZero: true
+                        ticks: {
+                            color: 'white'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: 'white'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Chart.js Line Chart'
                     }
                 }
-            }
+            },
         });
     }
 
@@ -377,10 +423,26 @@
                 responsive: true,
                 scales: {
                     y: {
-                        beginAtZero: true
+                        ticks: {
+                            color: 'white'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: 'white'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Chart.js Line Chart'
                     }
                 }
-            }
+            },
         });
     }
 

@@ -60,6 +60,42 @@ function buscarFkComponenteCPU(req, res) {
     });
 }
 
+function buscarFkComponenteRAM(req, res) {
+    var fkComponente = req.params.fkComponente;
+
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.buscarFkComponenteRAM(fkComponente).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarFkComponenteDISCO(req, res) {
+    var fkComponente = req.params.fkComponente;
+
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.buscarFkComponenteDISCO(fkComponente).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 
 function buscarCPU(req, res) {
     var maquina = req.params.maquina;
@@ -79,9 +115,49 @@ function buscarCPU(req, res) {
     });
 }
 
+function buscarRAM(req, res) {
+    var maquina = req.params.maquina;
+
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.buscarRAM(maquina).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarDISCO(req, res) {
+    var maquina = req.params.maquina;
+
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.buscarDISCO(maquina).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
     buscarCPU,
-    buscarFkComponenteCPU
+    buscarFkComponenteCPU,
+    buscarRAM,
+    buscarFkComponenteRAM,
+    buscarDISCO,
+    buscarFkComponenteDISCO
 }

@@ -41,9 +41,42 @@ function buscarCPU(maquina) {
 }
 
 
+function buscarFkComponenteRAM(fkComponente) {
+    instrucaoSql = `select fkComputadorComponente from registroComponente join computadorComponente on idComputadorComponente = fkComputadorComponente and fkComputador = ${fkComponente} and fkComponente = 2 order by fkComponente desc limit 1;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarRAM(maquina) {
+    instrucaoSql = `select valorConsumido from registroComponente join computadorComponente on idComputadorComponente = fkComputadorComponente and fkComputadorComponente = ${maquina} order by idRegistro desc limit 5;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarFkComponenteDISCO(fkComponente) {
+    instrucaoSql = `select fkComputadorComponente from registroComponente join computadorComponente on idComputadorComponente = fkComputadorComponente and fkComputador = ${fkComponente} and fkComponente = 3 order by fkComponente desc limit 1;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarDISCO(maquina) {
+    instrucaoSql = `select valorConsumido from registroComponente join computadorComponente on idComputadorComponente = fkComputadorComponente and fkComputadorComponente = ${maquina} order by idRegistro desc limit 5;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+
 module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
     buscarCPU,
-    buscarFkComponenteCPU
+    buscarFkComponenteCPU,
+    buscarRAM,
+    buscarFkComponenteRAM,
+    buscarDISCO,
+    buscarFkComponenteDISCO
 }

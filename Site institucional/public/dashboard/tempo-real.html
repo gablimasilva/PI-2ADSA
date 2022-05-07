@@ -294,7 +294,12 @@
     //function buscar
 
     async function buscarDadosCPU() {
-        var fkComponente = await fetch(`/medidas/buscarFkComponenteCPU/${maquinaSelecionada}`);
+        if (maquinaSelecionada == "value") {
+            var fkComponente = await fetch(`/medidas/buscarFkComponenteCPU/${computadorAtual}`);
+        } else {
+            var fkComponente = await fetch(`/medidas/buscarFkComponenteCPU/${maquinaSelecionada}`);
+        }
+        
         fkComponente = await fkComponente.json();
         var cpu = await fetch(`/medidas/buscarCPU/${fkComponente[0].fkComputadorComponente}`);
         cpu = await cpu.json();
@@ -303,7 +308,6 @@
 
     async function inserirDadosCPU(count) {
         var cpu = await buscarDadosCPU()
-        console.log(cpu[count].valorConsumido)
         return await cpu[count].valorConsumido;
     }
 
@@ -316,8 +320,8 @@
             data: {
                 labels: ['data-hora', 'data-hora', 'data-hora', 'data-hora', 'data-hora'],
                 datasets: [{
-                    data: [`${await inserirDadosCPU(0)}`, `${await inserirDadosCPU(1)}`, `${await inserirDadosCPU(2)}`
-                        , `${await inserirDadosCPU(3)}`, `${await inserirDadosCPU(4)}`],
+                    data: [`${await inserirDadosCPU(4)}`, `${await inserirDadosCPU(3)}`, `${await inserirDadosCPU(2)}`
+                        , `${await inserirDadosCPU(1)}`, `${await inserirDadosCPU(0)}`],
                     backgroundColor: [
                         'rgb(13, 44, 84)',
                     ],
@@ -352,6 +356,24 @@
                 }
             },
         });
+    }
+
+    async function buscarDadosRAM() {
+        if (maquinaSelecionada == "value") {
+            var fkComponente = await fetch(`/medidas/buscarFkComponenteRAM/${computadorAtual}`);
+        } else {
+            var fkComponente = await fetch(`/medidas/buscarFkComponenteRAM/${maquinaSelecionada}`);
+        }
+
+        fkComponente = await fkComponente.json();
+        var ram = await fetch(`/medidas/buscarRAM/${fkComponente[0].fkComputadorComponente}`);
+        ram = await ram.json();
+        return await ram;
+    }
+
+    async function inserirDadosRAM(count) {
+        var ram = await buscarDadosRAM()
+        return await ram[count].valorConsumido;
     }
 
     async function gerarGraficoRAM() {
@@ -363,7 +385,8 @@
             data: {
                 labels: ['data-hora', 'data-hora', 'data-hora', 'data-hora', 'data-hora'],
                 datasets: [{
-                    data: ['0', '20', '50', '15', '100'],
+                    data: [`${await inserirDadosRAM(4)}`, `${await inserirDadosRAM(3)}`, `${await inserirDadosRAM(2)}`
+                        , `${await inserirDadosRAM(1)}`, `${await inserirDadosRAM(0)}`],
                     backgroundColor: [
                         'rgb(216, 17, 89)',
                     ],
@@ -400,6 +423,26 @@
         });
     }
 
+
+    async function buscarDadosDISCO() {
+        if (maquinaSelecionada == "value") {
+            var fkComponente = await fetch(`/medidas/buscarFkComponenteDISCO/${computadorAtual}`);
+        } else {
+            var fkComponente = await fetch(`/medidas/buscarFkComponenteDISCO/${maquinaSelecionada}`);
+        }
+
+        fkComponente = await fkComponente.json();
+        var disco = await fetch(`/medidas/buscarDISCO/${fkComponente[0].fkComputadorComponente}`);
+        disco = await disco.json();
+        return await disco;
+    }
+
+    async function inserirDadosDISCO(count) {
+        var disco = await buscarDadosDISCO()
+        return await disco[count].valorConsumido;
+    }
+
+
     async function gerarGraficoDiscos() {
 
         var ctx = document.getElementById('canvas_grafico_Discos').getContext('2d');
@@ -409,7 +452,8 @@
             data: {
                 labels: ['data-hora', 'data-hora', 'data-hora', 'data-hora', 'data-hora'],
                 datasets: [{
-                    data: ['0', '20', '50', '15', '100'],
+                    data: [`${await inserirDadosDISCO(4)}`, `${await inserirDadosDISCO(3)}`, `${await inserirDadosDISCO(2)}`
+                        , `${await inserirDadosDISCO(1)}`, `${await inserirDadosDISCO(0)}`],
                     backgroundColor: [
                         'rgb(0, 166, 237)',
                     ],

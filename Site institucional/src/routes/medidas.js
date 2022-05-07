@@ -18,4 +18,21 @@ router.get("/buscarCPU/:maquina", function (req, res) {
 router.get("/buscarFkComponenteCPU/:fkComponente", function (req, res) {
     medidaController.buscarFkComponenteCPU(req, res);
 })
+
+router.get("/buscarRAM/:maquina", function (req, res) {
+    medidaController.buscarRAM(req, res);
+})
+
+router.get("/buscarFkComponenteRAM/:fkComponente", function (req, res) {
+    medidaController.buscarFkComponenteRAM(req, res);
+})
+
+router.get("/buscarDISCO/:maquina", function (req, res) {
+    medidaController.buscarDISCO(req, res);
+})
+
+router.get("/buscarFkComponenteDISCO/:fkComponente", function (req, res) {
+    medidaController.buscarFkComponenteDISCO(req, res);
+})
+
 module.exports = router;

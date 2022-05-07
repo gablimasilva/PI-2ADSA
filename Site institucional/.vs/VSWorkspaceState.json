@@ -2,9 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\public",
-    "\\public\\dashboard",
-    "\\src"
+    "\\public\\assets\\js",
+    "\\src",
+    "\\src\\controllers",
+    "\\src\\models",
+    "\\src\\routes"
   ],
-  "SelectedNode": "\\public\\dashboard\\dashboard.html",
+  "SelectedNode": "\\src\\models\\medidaModel.js",
   "PreviewInSolutionExplorer": false
 }

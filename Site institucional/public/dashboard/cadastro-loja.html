@@ -109,7 +109,7 @@
                                 </div>
                                 <div class="cad_comp">
                                     <h4>CEP:</h4>
-                                    <input name="cepLoja" type="text" placeholder="_____-___">
+                                    <input name="cepLoja" onkeypress="return mask(event, this, '##.###-###')" maxlength="10" placeholder=" 00.000-000">
                                 </div>
                                 <div class="cad_comp">
                                     <h4>Numero :</h4>
@@ -121,13 +121,42 @@
                                         <input name="bairro" type="text" placeholder="Digite o bairro">
                                     </div>
                                     <h4>Estado:</h4>
-                                    <input name="estado" type="text" placeholder="Digite o estado">
+                                    <select name="estado">
+                                        <option value="--">--Digite o estado--</option>
+                                        <option value="AC">Acre</option>
+                                        <option value="AL">Alagoas</option>
+                                        <option value="AP">Amapá</option>
+                                        <option value="AM">Amazonas</option>
+                                        <option value="BA">Bahia</option>
+                                        <option value="CE">Ceará</option>
+                                        <option value="ES">Espírito Santo</option>
+                                        <option value="GO">Goiás</option>
+                                        <option value="MA">Maranhão</option>
+                                        <option value="MT">Mato Grosso</option>
+                                        <option value="MS">Mato Grosso do Sul </option>
+                                        <option value="MG">Minas Gerais</option>
+                                        <option value="PA">Pará</option>
+                                        <option value="PB">Paraíba</option>
+                                        <option value="PR">Paraná</option>
+                                        <option value="PE">Pernambuco</option>
+                                        <option value="PI">Piauí</option>
+                                        <option value="RJ">Rio de Janeiro</option>
+                                        <option value="RN">Rio Grande do Norte</option>
+                                        <option value="RS">Rio Grande do Sul </option>
+                                        <option value="RO">Rondônia</option>
+                                        <option value="RR">Roraima</option>
+                                        <option value="SC">Santa Catarina </option>
+                                        <option value="SP">São Paulo</option>
+                                        <option value="SE">Sergipe</option>
+                                        <option value="TO">Tocantins</option>
+                                        <option value="DF">Distrito Federal </option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form_2">
                                 <div class="cad_comp">
                                     <h4>CNPJ:</h4>
-                                    <input name="cnpjLoja" type="text" placeholder="__.___.___/____-__">
+                                    <input name="cnpjLoja" onkeypress="return mask(event, this, '##.###.###/####-##')" maxlength="18" placeholder=" 00.000.000/0000-00">
                                 </div>
                                 <div class="cad_comp">
                                     <h4>E-mail:</h4>
@@ -135,7 +164,7 @@
                                 </div>
                                 <div class="cad_comp">
                                     <h4>Telefone:</h4>
-                                    <input name="telefoneLoja" type="text" placeholder="(__)_____-____">
+                                    <input name="telefoneLoja" onkeypress="return mask(event, this, '(##)#####-####')" maxlength="14" placeholder=" (00)00000-0000">
                                 </div>
                                 <div class="cad_comp">
                                     <h4>Logradouro:</h4>
@@ -173,11 +202,39 @@
 
 </html>
 <script>
-
+    function mask(e, id, mask){
+        var tecla=(window.event)?event.keyCode:e.which;   
+        if((tecla>47 && tecla<58)){
+            mascara(id, mask);
+            return true;
+        } 
+        else{
+            if (tecla==8 || tecla==0){
+                mascara(id, mask);
+                return true;
+            } 
+            else  return false;
+        }
+    }
+    function mascara(id, mask){
+        var i = id.value.length;
+        var carac = mask.substring(i, i+1);
+        var prox_char = mask.substring(i+1, i+2);
+        if(i == 0 && carac != '#'){
+            insereCaracter(id, carac);
+            if(prox_char != '#')insereCaracter(id, prox_char);
+        }
+        else if(carac != '#'){
+            insereCaracter(id, carac);
+            if(prox_char != '#')insereCaracter(id, prox_char);
+        }
+        function insereCaracter(id, char){
+            id.value += char;
+        }
+    }
     function limparFormulario() {
         document.getElementById("form_cadastro").reset();
     }
-
     function cadastrarLoja() {
         aguardar();
 
@@ -195,7 +252,6 @@
         var complemento = formulario.get("complementoLoja");
         var emailLoja = formulario.get("emailLoja");
         var telefoneLoja = formulario.get("telefoneLoja");
-
 
         // TODO: VERIFICAR AS VALIDAÇÕES QUE ELES ESTÃO APRENDENDO EM ALGORITMOS
         if (nomeLoja == "" || emailLoja == "" || telefoneLoja == "" || cepLoja == "" || estado == "" || cidade == "" || bairro == "" || logradouro == "" || complemento == "" || numeroRua == "" || cnpjLoja == "" || gerente == "") {
@@ -229,7 +285,10 @@
             finalizarAguardar();
             return false;
         }
-
+        if(estado=="--"){
+            window.alert("Escolha um estado");
+        }
+        
         if (emailLoja.indexOf("@") == -1 || emailLoja.indexOf(".com") == -1) {
             window.alert("Ops, e-mail inválido! Verifique e tente novamente.");
             finalizarAguardar();

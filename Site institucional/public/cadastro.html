@@ -9,7 +9,6 @@
     <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
     <link rel="stylesheet" href="css/style.css">
     <script src="./assets/js/funcoes.js"></script>
-
     <link rel="icon" href="./assets/icon/favicon.ico">
     <link rel="stylesheet" href="./css/cad_empresa.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -54,11 +53,12 @@
                             </div>
                             <div>
                                 <h4>Técnico responsável</h4>
-                                <input name="responsavel" type="text" placeholder="  Insira o nome do técnico responsável">
+                                <input name="responsavel" type="text"
+                                    placeholder="  Insira o nome do técnico responsável">
                             </div>
                             <div>
                                 <h4>CEP</h4>
-                                <input name="cepLoja" type="text" placeholder="  xx.xxx-xxx">
+                                <input name="cepLoja" onkeypress="return mask(event, this, '##.###-###')" maxlength="10" placeholder=" 00.000-000">
                             </div>
                             <div>
                                 <h4> Número</h4>
@@ -76,19 +76,19 @@
                         <div class="caixa-2">
                             <div>
                                 <h4>CNPJ</h4>
-                                <input name="cnpjMatriz" type="text" placeholder="  xx.xxx.xxx/xxxx-xx">
+                                <input name="cnpjMatriz" placeholder="  xx.xxx.xxx/xxxx-xx" onkeypress="return mask(event, this, '##.###.###/####-##')" maxlength="18" placeholder=" 00.000.000/0000-00">
                             </div>
                             <div>
                                 <h4>Telefone</h4>
-                                <input name="telefoneLoja" type="text" placeholder="  (xx)xxxx-xxxx">
+                                <input name="telefoneLoja" onkeypress="return mask(event, this, '(##)#####-####')" maxlength="14" placeholder=" (DDD)00000-0000">
                             </div>
                             <div>
                                 <h4>Logradouro</h4>
-                                <input name="logradouro" type="text" placeholder="  Avenida Paulista">
+                                <input name="logradouro" type="text" placeholder="  Insira o logradouro">
                             </div>
                             <div>
                                 <h4> Complemento</h4>
-                                <input name="complemento" type="text" placeholder="  Bloco B - Unidade 407">
+                                <input name="complemento" type="text" placeholder="  Insira o complemento">
                             </div>
                             <div>
                                 <h4>Cidade</h4>
@@ -96,7 +96,7 @@
                             </div>
                             <div>
                                 <h4>E-mail</h4>
-                                <input name="emailLoja" type="text" placeholder="  email@example.com">
+                                <input name="emailLoja" type="email" placeholder="  email@example.com">
                             </div>
                         </div>
                     </div>
@@ -105,11 +105,11 @@
                     <div class="dados-acesso">
                         <div>
                             <h4> Senha</h4>
-                            <input name="senhaLoja" type="text" placeholder="********">
+                            <input name="senhaLoja" type="password" placeholder="********">
                         </div>
                         <div>
                             <h4>Confirmacão Senha</h4>
-                            <input name="confirmacaoSenha" type="text" placeholder="********">
+                            <input name="confirmacaoSenha" type="password" placeholder="********">
                         </div>
                     </div>
                     <div class="align-btn">
@@ -142,10 +142,36 @@
 
 <script>
 
-    function limparFormulario() {
-        document.getElementById("form_cadastro").reset();
+    function mask(e, id, mask){
+        var tecla=(window.event)?event.keyCode:e.which;   
+        if((tecla>47 && tecla<58)){
+            mascara(id, mask);
+            return true;
+        } 
+        else{
+            if (tecla==8 || tecla==0){
+                mascara(id, mask);
+                return true;
+            } 
+            else  return false;
+        }
     }
-
+    function mascara(id, mask){
+        var i = id.value.length;
+        var carac = mask.substring(i, i+1);
+        var prox_char = mask.substring(i+1, i+2);
+        if(i == 0 && carac != '#'){
+            insereCaracter(id, carac);
+            if(prox_char != '#')insereCaracter(id, prox_char);
+        }
+        else if(carac != '#'){
+            insereCaracter(id, carac);
+            if(prox_char != '#')insereCaracter(id, prox_char);
+        }
+        function insereCaracter(id, char){
+            id.value += char;
+        }
+    }
     function cadastrar() {
         aguardar();
 

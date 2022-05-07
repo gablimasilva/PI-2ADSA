@@ -98,7 +98,7 @@
                                 </div>
                                 <div class="cad_comp">
                                     IP do computador:
-                                    <input name="ip" type="text" placeholder=" Ex: 192.168.001.001">
+                                    <input name="ip" onkeypress="return mask(event, this, '###.###.###.###')" maxlength="15" placeholder=" 000.000.000.000">
                                 </div>
                                 <div class="cad_comp">
                                     Sistema Operacional:
@@ -110,7 +110,7 @@
                                 </div>
                                 <div class="cad_comp">
                                     Endereço MAC do computador:
-                                    <input name="mac" type="text" placeholder=" Ex: 00:1B:C9:4B:E3:57">
+                                    <input name="mac" type="text" maxlength="17" placeholder=" 00:00:00:00:00:00">
                                 </div>
                             </div>
                             <div class="form_2">
@@ -164,6 +164,36 @@
 
 <script>
 
+function mask(e, id, mask){
+        var tecla=(window.event)?event.keyCode:e.which;   
+        if((tecla>47 && tecla<58)){
+            mascara(id, mask);
+            return true;
+        } 
+        else{
+            if (tecla==8 || tecla==0){
+                mascara(id, mask);
+                return true;
+            } 
+            else  return false;
+        }
+    }
+    function mascara(id, mask){
+        var i = id.value.length;
+        var carac = mask.substring(i, i+1);
+        var prox_char = mask.substring(i+1, i+2);
+        if(i == 0 && carac != '#'){
+            insereCaracter(id, carac);
+            if(prox_char != '#')insereCaracter(id, prox_char);
+        }
+        else if(carac != '#'){
+            insereCaracter(id, carac);
+            if(prox_char != '#')insereCaracter(id, prox_char);
+        }
+        function insereCaracter(id, char){
+            id.value += char;
+        }
+    }
     function limparFormulario() {
         document.getElementById("form_cadastro").reset();
     }

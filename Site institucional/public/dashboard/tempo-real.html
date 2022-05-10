@@ -75,7 +75,7 @@
             </div>
 
             <div class="btn-nav">
-                <a href="./suporte.html">
+                <a href="https://app.pipefy.com/public/form/mNj-srWn">
                     <i class="material-icons">headset_mic</i>
                     <h3>Suporte</h3>
                 </a>
@@ -116,25 +116,10 @@
                     <p id="id_computadores_offline">0:00:00:00</p>
                 </div>
                 <div class="item-regua-top">
-                    <h5>Temperatura média</h5>
+                    <h5>Local</h5>
                     <div>
-                        <p id="id_incidente_finalizar">0</p>
-                        <h6>ºC</h6>
+                        <p id="id_local">0</p>
                     </div>
-                </div>
-            </div>
-            <div class="btns-dash">
-                <div>
-                    <h5>CPU</h5>
-                    <canvas id="canvas_grafico_CPU" style="width: 100%; height: 150px;"></canvas>
-                </div>
-                <div>
-                    <h5>Memória</h5>
-                    <canvas id="canvas_grafico_RAM" style="width: 100%; height: 150px;"></canvas>
-                </div>
-                <div>
-                    <h5>Disco</h5>
-                    <canvas id="canvas_grafico_Discos" style="width: 100%; height: 150px;"></canvas>
                 </div>
             </div>
             <div class="regua">
@@ -155,6 +140,20 @@
                     <h6>minutos</h6>
                 </div>
             </div>
+            <div class="btns-dash">
+                <div>
+                    <h5>CPU</h5>
+                    <canvas id="canvas_grafico_CPU" style="width: 100%; height: 150px;"></canvas>
+                </div>
+                <div>
+                    <h5>Memória</h5>
+                    <canvas id="canvas_grafico_RAM" style="width: 100%; height: 150px;"></canvas>
+                </div>
+                <div>
+                    <h5>Disco</h5>
+                    <canvas id="canvas_grafico_Discos" style="width: 100%; height: 150px;"></canvas>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -170,8 +169,8 @@
     let COMPUTADORES = [];
     let computadorAtual;
     let lojaSelecionada;
-    let maquinaSelecionada
-
+    let maquinaSelecionada;
+    
 
     function aoIniciar() {
         const params = new URL(location.href).searchParams;

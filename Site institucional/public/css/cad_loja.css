@@ -5,11 +5,11 @@
 }
 
 select{
-    height: 30px;
+    height: 35px;
     border: 2px solid var(--marrom);
     border-radius: 10px;
     font-size: 14px;
-    width: 300px;
+    width: 305px;
 }
 
 .loading-div {
@@ -77,7 +77,7 @@ form .align_form {
 }
 
 .fundo_cad h3 {
-    font-size: 18px;
+    font-size: 20px;
     color: white;
     padding-top: 30px;
     padding-bottom: 10px;

@@ -35,4 +35,12 @@ router.get("/buscarFkComponenteDISCO/:fkComponente", function (req, res) {
     medidaController.buscarFkComponenteDISCO(req, res);
 })
 
+router.get("/buscarincidentes/:maquina", function (req, res) {
+    medidaController.buscarIncidentes(req, res);
+})
+
+router.get("/buscarLocal/:maquina", function (req, res) {
+    medidaController.buscarLocal(req, res);
+})
+
 module.exports = router;

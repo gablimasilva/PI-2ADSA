@@ -69,6 +69,20 @@ function buscarDISCO(maquina) {
     return database.executar(instrucaoSql);
 }
 
+function buscarIncidentes(maquina) {
+    instrucaoSql = `select count(idIncidente) as contagem from registroComponente join incidentes on fkRegistro = idRegistro where fkComputadorComponente = ${maquina};`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarLocal(maquina) {
+    instrucaoSql = `select localComputador from Computador where idComputador = ${maquina};`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 
 module.exports = {
     buscarUltimasMedidas,
@@ -78,5 +92,7 @@ module.exports = {
     buscarRAM,
     buscarFkComponenteRAM,
     buscarDISCO,
-    buscarFkComponenteDISCO
+    buscarFkComponenteDISCO,
+    buscarIncidentes,
+    buscarLocal
 }

@@ -41,6 +41,42 @@ function buscarMedidasEmTempoReal(req, res) {
     });
 }
 
+function buscarLocal(req, res) {
+    var maquina = req.params.maquina;
+
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.buscarLocal(maquina).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
+function buscarIncidentes(req, res) {
+    var maquina = req.params.maquina;
+
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.buscarIncidentes(maquina).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
 
 function buscarFkComponenteCPU(req, res) {
     var fkComponente = req.params.fkComponente;
@@ -159,5 +195,7 @@ module.exports = {
     buscarRAM,
     buscarFkComponenteRAM,
     buscarDISCO,
-    buscarFkComponenteDISCO
+    buscarFkComponenteDISCO,
+    buscarIncidentes,
+    buscarLocal
 }

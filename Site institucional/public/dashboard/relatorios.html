@@ -8,10 +8,10 @@
     <title>Tech Food | Relatórios</title>
 
     <link rel="stylesheet" href="nav-bar.css">
-    <link rel="stylesheet" href="dashboards.css">
+    <link rel="stylesheet" href="relatorios.css">
     <script src="../assets/js/funcoes.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
+    <link rel="icon" href="../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview (1).png">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -22,11 +22,10 @@
 
 </head>
 
-<body onload="validarSessao()">
+<body onload="validarSessao(), aoIniciar(), ListarLojas()">
     <div class="janela">
         <div class="header-left">
-            <img src="../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview.png" alt="logo" 
-            width="40%">
+            <img src="../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview.png" alt="logo" width="40%">
 
             <div class="hello">
                 <h3>Olá, <span id="b_usuario"></span>!</h3>
@@ -35,60 +34,191 @@
 
             <div class="btn-nav">
                 <a href="./dashboard.html">
-                    <i class="material-icons">home</i><h3>Home</h3>
+                    <i class="material-icons">home</i>
+                    <h3>Home</h3>
                 </a>
             </div>
 
             <div class="btn-nav">
                 <a href="./cadastro-loja.html">
-                    <i class="material-icons">add_business</i><h3>Loja</h3>
+                    <i class="material-icons">add_business</i>
+                    <h3>Loja</h3>
                 </a>
             </div>
 
             <div class="btn-nav">
                 <a href="./cadastro-usuario.html">
-                    <i class="material-icons">person_add_alt</i><h3>Usuários</h3>
+                    <i class="material-icons">person_add_alt</i>
+                    <h3>Usuários</h3>
                 </a>
             </div>
 
             <div class="btn-nav">
                 <a href="./cadastro-computador.html">
-                    <i class="material-icons">computer</i><h3>Computadores</h3>
+                    <i class="material-icons">computer</i>
+                    <h3>Computadores</h3>
                 </a>
             </div>
 
             <div class="btn-nav">
                 <a href="./tempo-real.html">
-                    <i class="material-icons">show_chart</i><h3>Tempo Real</h3>
+                    <i class="material-icons">show_chart</i>
+                    <h3>Tempo Real</h3>
                 </a>
             </div>
 
             <div class="btn-nav-yellow">
                 <a href="./relatorios.html">
-                    <i class="material-icons">summarize</i><h3>Relatórios</h3>
+                    <i class="material-icons">summarize</i>
+                    <h3>Relatórios</h3>
                 </a>
             </div>
 
             <div class="btn-nav">
                 <a href="https://app.pipefy.com/public/form/mNj-srWn">
-                    <i class="material-icons">headset_mic</i><h3>Suporte</h3>
+                    <i class="material-icons">headset_mic</i>
+                    <h3>Suporte</h3>
                 </a>
             </div>
             <br><br>
             <div class="btn-logout" onclick="limparSessao()">
-                <i class="material-icons">logout</i><h3>Sair</h3>
+                <i class="material-icons">logout</i>
+                <h3>Sair</h3>
             </div>
 
         </div>
 
         <div class="dash">
             <div class="title">
-                <h2>Dashboard / Relatórios</h2>
+                <h2>Dashboard / Relatórios</h3>
+            </div>
+            <div class="align_selects">
+                <div class="cad_comp">
+                    <select name="loja" id="id_loja" onchange="selecionarLoja()">
+                        <option selected hidden value="value">- Selecione a loja -</option>
+                    </select>
+                </div>
+                <div class="cad_comp">
+                    <select name="computador" id="id_computador" onchange="exibirMaquina()">
+                        <option selected hidden value="value">- Selecione o computador -</option>
+                    </select>
+                </div>
+                <div class="cad_comp1">
+                    <div>
+                        <div>
+                            <p>Ínicio:</p>
+                            <input type="date" id="data-incial" name="data-incial">
+                        </div>        
+                        <div>
+                            <p>Fim:</p>
+                            <input type="date" id="data-final" name="data-final">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="fundo_cad">
+                <div class="table">
+                    <h4>Histórico de registros</h4>
+                    <div class="scroll">
+                        <table>
+                            <tr>
+                                <th class="tb-title">Hostname</th>
+                                <th class="tb-title">Data</th>
+                                <th class="tb-title">Hora</th>
+                                <th class="tb-title">CPU(%)</th>
+                                <th class="tb-title">Memória(GB)</th>
+                                <th class="tb-title">Disco(%)</th>
+                            </tr>
+                            <tr>
+                                <th>0</th>
+                                <th>0</th>
+                                <th>0</th>
+                                <th>0</th>
+                                <th>0</th>
+                                <th>0</th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-
-
 </body>
 
 </html>
+
+<script>
+
+    const ID_USUARIO = sessionStorage.getItem("ID_EMPRESA");
+    let LOJAS = [];
+    let COMPUTADORES = [];
+    let computadorAtual;
+    let lojaSelecionada;
+    let maquinaSelecionada;
+    
+
+    function aoIniciar() {
+        const params = new URL(location.href).searchParams;
+        computadorAtual = params.get("idComputador");
+        lojaSelecionada = params.get("idLoja");
+
+        if (computadorAtual != null) {
+            listarMaquinas();
+            exibirMaquina();
+        }
+    }
+
+    function selecionarLoja() {
+        lojaSelecionada = document.getElementById("id_loja").value;
+        listarMaquinas();
+    }
+
+    function listarMaquinas() {
+
+        COMPUTADORES = [];
+        document.getElementById("id_computador").innerHTML = `<option selected hidden value="value">\t- Selecione o computador -\t</option>`;
+
+        fetch(`/usuarios/listarComputadores/${lojaSelecionada}`)
+            .then(res => res.json())
+            .then(res => {
+                res.forEach(computador => {
+                    COMPUTADORES.push(computador);
+                    var option = document.createElement("option");
+                    option.innerHTML = computador.Hostname;
+                    option.value = computador.idComputador;
+                    document.getElementById("id_computador").append(option);
+                });
+
+                if (computadorAtual != null) {
+                    document.getElementById("id_computador").value = computadorAtual;
+                }
+            })
+    }
+
+    function exibirMaquina() {
+        maquinaSelecionada = document.getElementById("id_computador").value;
+        for (computador of COMPUTADORES) {
+            if (maquinaSelecionada == computador.idComputador) {
+                computadorAtual = computador;
+            }
+        }
+    }
+
+    function ListarLojas() {
+        document.getElementById("id_loja").innerHTML = `<option selected hidden value="value">\t- Selecione a loja -\t</option>`;
+        fetch(`/usuarios/listarLojas/${sessionStorage.ID_EMPRESA}`)
+            .then(res => res.json())
+            .then(res => {
+                res.forEach(lojas => {
+                    var option = document.createElement("option");
+                    option.innerHTML = lojas.RazaoSocial;
+                    option.value = lojas.IdLoja;
+                    document.getElementById("id_loja").append(option);
+                });
+                if (lojaSelecionada != null) {
+                    document.getElementById("id_loja").value = lojaSelecionada;
+                }
+            })
+    }
+
+</script>

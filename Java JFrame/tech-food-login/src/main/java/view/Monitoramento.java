@@ -1,6 +1,8 @@
 package view;
 
 import com.github.britooo.looca.api.core.Looca;
+import com.github.britooo.looca.api.group.discos.Disco;
+import com.github.britooo.looca.api.group.discos.Volume;
 import com.github.britooo.looca.api.util.Conversor;
 import java.util.List;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -176,10 +178,11 @@ public class Monitoramento extends javax.swing.JFrame {
                 "SELECT * from computadorComponente WHERE fkComputador = ?", computador.getidComputador());
         
         if(qtdComponentes.isEmpty()){
+ 
+            List<Disco> discos = looca.getGrupoDeDiscos().getDiscos();
             
             String ramConvertida = Conversor.formatarBytes(looca.getMemoria().getTotal()).replaceAll("[a-zA-Z]","").replace(",", ".");
             String cpuConvertido = Conversor.formatarBytes(looca.getProcessador().getFrequencia()).replaceAll("[a-zA-Z]","").replace(",", ".");
-            String discoConvertido = Conversor.formatarBytes(looca.getGrupoDeDiscos().getDiscos().get(0).getTamanho()).replaceAll("[a-zA-Z]","").replace(",", ".");
             
             template.update(
                     "INSERT INTO computadorComponente (fkComputador, fkComponente, TotalComponente, UnidadeDeMedida)"
@@ -191,10 +194,14 @@ public class Monitoramento extends javax.swing.JFrame {
                             + "VALUES(?, 2, ?, 'GB')",
                     computador.getidComputador(), cpuConvertido);
             
-            template.update(
+            for(Disco disco : discos){
+                String discoConvertido = Conversor.formatarBytes(disco.getTamanho()).replaceAll("[a-zA-Z]","").replace(",", ".");
+                template.update(
                     "INSERT INTO computadorComponente (fkComputador, fkComponente, TotalComponente, UnidadeDeMedida)"
                             + "VALUES(?, 3, ?, 'GB')",
                     computador.getidComputador(), discoConvertido);
+            }
+            
         }
         
     }
@@ -219,9 +226,9 @@ public class Monitoramento extends javax.swing.JFrame {
 
                 try {
                     while (true) {
+                        List <Volume> volumes = looca.getGrupoDeDiscos().getVolumes();
                         String ramConvertida = Conversor.formatarBytes(looca.getMemoria().getEmUso()).replaceAll("[a-zA-Z]","").replace(",", ".");
                         Double cpuUso= looca.getProcessador().getUso();
-                        String discoConvertido = Conversor.formatarBytes(looca.getGrupoDeDiscos().getVolumes().get(0).getDisponivel()).replaceAll("[a-zA-Z]","").replace(",", ".");
                         
                         System.out.println(computador.toString());
                         String exibirDadosDisco = Conversor.formatarBytes(looca.getGrupoDeDiscos().getVolumes().get(0).getDisponivel());
@@ -247,11 +254,16 @@ public class Monitoramento extends javax.swing.JFrame {
                                         + "(?, ?, getdate(), 'Ativo')",
                                 listaComponentes.get(1).getIdComputadorComponente(), cpuUso);
                         
-                        monitorar.update(
+                        for(int i = 0; i<volumes.size(); i++){
+                            String discoConvertido = Conversor.formatarBytes(looca.getGrupoDeDiscos().getVolumes().get(i).getDisponivel()).replaceAll("[a-zA-Z]","").replace(",", ".");
+                            monitorar.update(
                                 "INSERT INTO registroComponente (fkComputadorComponente, ValorConsumido, DataHora, statusComputador)"
                                         + "VALUES"
                                         + "(?, ?, getdate(), 'Ativo')",
-                                listaComponentes.get(2).getIdComputadorComponente(), discoConvertido);
+                                listaComponentes.get(2+i).getIdComputadorComponente(), discoConvertido);
+                        }
+                        
+                        
                         
                         Thread.sleep(5000);
                     }

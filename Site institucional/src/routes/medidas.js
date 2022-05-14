@@ -35,12 +35,21 @@ router.get("/buscarFkComponenteDISCO/:fkComponente", function (req, res) {
     medidaController.buscarFkComponenteDISCO(req, res);
 })
 
-router.get("/buscarincidentes/:maquina", function (req, res) {
+router.get("/buscarIncidentes/:maquina", function (req, res) {
     medidaController.buscarIncidentes(req, res);
 })
 
 router.get("/buscarLocal/:maquina", function (req, res) {
     medidaController.buscarLocal(req, res);
 })
+
+router.get("/buscarIntervaloDeIncidentes/:maquina", function (req, res) {
+    medidaController.buscarIntervaloDeIncidentes(req, res);
+})
+
+router.get("/buscarIntervaloDeIncidentesPorCategoria/:maquina/:categoria", function (req, res) {
+    medidaController.buscarIntervaloDeIncidentesPorCategoria(req, res);
+})
+
 
 module.exports = router;

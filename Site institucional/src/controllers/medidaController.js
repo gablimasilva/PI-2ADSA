@@ -41,6 +41,43 @@ function buscarMedidasEmTempoReal(req, res) {
     });
 }
 
+function buscarIntervaloDeIncidentesPorCategoria(req, res) {
+    var maquina = req.params.maquina;
+    var categoria = req.params.categoria;
+
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.buscarIntervaloDeIncidentesPorCategoria(maquina,categoria).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarIntervaloDeIncidentes(req, res) {
+    var maquina = req.params.maquina;
+
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.buscarIntervaloDeIncidentes(maquina).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function buscarLocal(req, res) {
     var maquina = req.params.maquina;
 
@@ -197,5 +234,7 @@ module.exports = {
     buscarDISCO,
     buscarFkComponenteDISCO,
     buscarIncidentes,
-    buscarLocal
+    buscarLocal,
+    buscarIntervaloDeIncidentes,
+    buscarIntervaloDeIncidentesPorCategoria
 }

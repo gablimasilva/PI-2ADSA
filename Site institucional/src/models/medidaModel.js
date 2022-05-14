@@ -70,7 +70,7 @@ function buscarDISCO(maquina) {
 }
 
 function buscarIncidentes(maquina) {
-    instrucaoSql = `select count(idIncidente) as contagem from registroComponente join incidentes on fkRegistro = idRegistro where fkComputadorComponente = ${maquina};`;
+    instrucaoSql = `select count(idIncidente) as "contagem" from incidentes join registroComponente on idRegistro = fkRegistro join computadorComponente on idComputadorComponente = fkComputadorComponente join componente on fkComponente = idComponente where fkComputador = ${maquina};`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -83,6 +83,19 @@ function buscarLocal(maquina) {
     return database.executar(instrucaoSql);
 }
 
+function buscarIntervaloDeIncidentes(maquina) {
+    instrucaoSql = `SELECT truncate(timestampdiff(MINUTE,min(incidentes.dataHora),max(incidentes.dataHora))/count(incidentes.dataHora),2) as "valor" from incidentes join registroComponente on idRegistro = fkRegistro join computadorComponente on idComputadorComponente = fkComputadorComponente join componente on fkComponente = idComponente where (idComponente = 1 or idComponente = 2 or idComponente = 3) and fkComputador = ${maquina};`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarIntervaloDeIncidentesPorCategoria(maquina,categoria) {
+    instrucaoSql = `select count(idIncidente) as "incidentes" from incidentes join registroComponente on idRegistro = fkRegistro join computadorComponente on idComputadorComponente = fkComputadorComponente join componente on fkComponente = idComponente where idComponente = ${categoria} and fkComputador = ${maquina};`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 
 module.exports = {
     buscarUltimasMedidas,
@@ -94,5 +107,7 @@ module.exports = {
     buscarDISCO,
     buscarFkComponenteDISCO,
     buscarIncidentes,
-    buscarLocal
+    buscarLocal,
+    buscarIntervaloDeIncidentes,
+    buscarIntervaloDeIncidentesPorCategoria
 }

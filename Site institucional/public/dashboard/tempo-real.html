@@ -136,7 +136,7 @@
                 </div>
                 <div class="item-regua-bottom">
                     <h5>Tempo médio entre incidentes</h5>
-                    <p id="id_incidente_finalizar">0</p>
+                    <p id="id_incidente_media">0</p>
                     <h6>minutos</h6>
                 </div>
             </div>
@@ -210,6 +210,38 @@
             })
     }
 
+    async function buscarIntervaloDeIncidentesPorCategoria(categoria) {
+        if (maquinaSelecionada == "value") {
+            var incidentesCategoria = await fetch(`/medidas/buscarIntervaloDeIncidentesPorCategoria/${computadorAtual}/${categoria}`);
+        } else {
+            var incidentesCategoria = await fetch(`/medidas/buscarIntervaloDeIncidentesPorCategoria/${maquinaSelecionada}/${categoria}`);
+        }
+        incidentesCategoria = await incidentesCategoria.json();
+        return await incidentesCategoria;
+    }
+
+    async function inserirIntervaloDeIncidentesPorCategoria(categoria) {
+        var incidentesCategoria = await buscarIntervaloDeIncidentesPorCategoria(categoria)
+        return incidentesCategoria[0].incidentes;
+    }
+
+
+    async function buscarIntervaloDeIncidentes() {
+        if (maquinaSelecionada == "value") {
+            var minutos = await fetch(`/medidas/buscarIntervaloDeIncidentes/${computadorAtual}`);
+        } else {
+            var minutos = await fetch(`/medidas/buscarIntervaloDeIncidentes/${maquinaSelecionada}`);
+        }
+        minutos = await minutos.json();
+        return await minutos;
+    }
+
+    async function inserirIntervaloDeIncidentes() {
+        var minutos = await buscarIntervaloDeIncidentes()
+        document.getElementById("id_incidente_media").innerHTML = minutos[0].valor;
+    }
+
+
     async function buscarLocal() {
         if (maquinaSelecionada == "value") {
             var local = await fetch(`/medidas/buscarLocal/${computadorAtual}`);
@@ -229,13 +261,11 @@
 
     async function buscarIncidentes() {
         if (maquinaSelecionada == "value") {
-            var fkComponente = await fetch(`/medidas/buscarFkComponenteCPU/${computadorAtual}`);
+            var contagem = await fetch(`/medidas/buscarIncidentes/${computadorAtual}`);
         } else {
-            var fkComponente = await fetch(`/medidas/buscarFkComponenteCPU/${maquinaSelecionada}`);
+            var contagem = await fetch(`/medidas/buscarIncidentes/${maquinaSelecionada}`);
         }
 
-        fkComponente = await fkComponente.json();
-        var contagem = await fetch(`/medidas/buscarIncidentes/${fkComponente[0].fkComputadorComponente}`);
         contagem = await contagem.json();
         return await contagem;
     }
@@ -253,25 +283,34 @@
             }
         }
 
-        inserirLocal();
-        inserirIncidentes();
-        gerarGraficoDisponibilidade();
         gerarGraficoCategoria();
         gerarGraficoCPU();
         gerarGraficoRAM();
         gerarGraficoDiscos();
+        inserirIntervaloDeIncidentes();
+        inserirLocal();
+        inserirIncidentes();
+        gerarGraficoDisponibilidade();
 
+
+        clearInterval(intervalo);
         await delay();
+        
 
         const chart1 = Chart.getChart("canvas_grafico_CPU");
         const chart2 = Chart.getChart("canvas_grafico_RAM");
         const chart3 = Chart.getChart("canvas_grafico_Discos");
+        const chart4 = Chart.getChart("canvas_grafico_categoria");
+        
+
 
         chart1.destroy();
         chart2.destroy();
         chart3.destroy();
+        chart4.destroy();
 
-        //delay();
+
+        
 
     }
 
@@ -309,7 +348,7 @@
             data: {
                 labels: ['CPU', 'Memória', 'Disco'],
                 datasets: [{
-                    data: [2, 2, 2],
+                    data: [await inserirIntervaloDeIncidentesPorCategoria(1), await inserirIntervaloDeIncidentesPorCategoria(2), await inserirIntervaloDeIncidentesPorCategoria(3)],
                     backgroundColor: [
                         'rgb(13, 44, 84)',
                         'rgb(216, 17, 89)',
@@ -557,29 +596,30 @@
             })
     }
 
+    var intervalo;
     async function delay() {
-        setInterval(async () => {
-            inserirDadosCPU(0).then(res => {
-                const chart1 = Chart.getChart("canvas_grafico_CPU");
-                chart1.data.datasets[0].data.shift();
-                chart1.data.datasets[0].data.push(parseFloat(res))
-                chart1.update();
-            })
+        intervalo = setInterval(async () => {
+                    inserirDadosCPU(0).then(res => {
+                        const chart1 = Chart.getChart("canvas_grafico_CPU");
+                        chart1.data.datasets[0].data.shift();
+                        chart1.data.datasets[0].data.push(parseFloat(res))
+                        chart1.update();
+                    })
 
-            inserirDadosRAM(0).then(res => {
-                const chart2 = Chart.getChart("canvas_grafico_RAM");
-                chart2.data.datasets[0].data.shift();
-                chart2.data.datasets[0].data.push(parseFloat(res))
-                chart2.update();
-            })
+                    inserirDadosRAM(0).then(res => {
+                        const chart2 = Chart.getChart("canvas_grafico_RAM");
+                        chart2.data.datasets[0].data.shift();
+                        chart2.data.datasets[0].data.push(parseFloat(res))
+                        chart2.update();
+                    })
 
-            inserirDadosDISCO(0).then(res => {
-                const chart3 = Chart.getChart("canvas_grafico_Discos")
-                chart3.data.datasets[0].data.shift();
-                chart3.data.datasets[0].data.push(parseFloat(res))
-                chart3.update();
-            })
-            inserirIncidentes();
+                    inserirDadosDISCO(0).then(res => {
+                        const chart3 = Chart.getChart("canvas_grafico_Discos")
+                        chart3.data.datasets[0].data.shift();
+                        chart3.data.datasets[0].data.push(parseFloat(res))
+                        chart3.update();
+                    })
+                    inserirIncidentes();
 
             /*const chart1 = Chart.getChart("canvas_grafico_CPU");
             const chart2 = Chart.getChart("canvas_grafico_RAM");
@@ -600,7 +640,7 @@
             chart3.data.datasets[0].data.push(parseFloat(await inserirDadosDISCO(0)));
             chart3.update();*/
 
-        }, 6000);
+        }, 5500);
     }
     
 

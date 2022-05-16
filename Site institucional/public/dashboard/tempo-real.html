@@ -170,7 +170,7 @@
     let computadorAtual;
     let lojaSelecionada;
     let maquinaSelecionada;
-    
+
 
     function aoIniciar() {
         const params = new URL(location.href).searchParams;
@@ -199,7 +199,7 @@
                 res.forEach(computador => {
                     COMPUTADORES.push(computador);
                     var option = document.createElement("option");
-                    option.innerHTML = computador.Hostname;
+                    option.innerHTML = computador.HostnameComputador;
                     option.value = computador.idComputador;
                     document.getElementById("id_computador").append(option);
                 });
@@ -295,13 +295,13 @@
 
         clearInterval(intervalo);
         await delay();
-        
+
 
         const chart1 = Chart.getChart("canvas_grafico_CPU");
         const chart2 = Chart.getChart("canvas_grafico_RAM");
         const chart3 = Chart.getChart("canvas_grafico_Discos");
         const chart4 = Chart.getChart("canvas_grafico_categoria");
-        
+
 
 
         chart1.destroy();
@@ -310,7 +310,7 @@
         chart4.destroy();
 
 
-        
+
 
     }
 
@@ -388,7 +388,7 @@
         } else {
             var fkComponente = await fetch(`/medidas/buscarFkComponenteCPU/${maquinaSelecionada}`);
         }
-        
+
         fkComponente = await fkComponente.json();
         var cpu = await fetch(`/medidas/buscarCPU/${fkComponente[0].fkComputadorComponente}`);
         cpu = await cpu.json();
@@ -587,7 +587,7 @@
                 res.forEach(lojas => {
                     var option = document.createElement("option");
                     option.innerHTML = lojas.RazaoSocial;
-                    option.value = lojas.IdLoja;
+                    option.value = lojas.idLoja;
                     document.getElementById("id_loja").append(option);
                 });
                 if (lojaSelecionada != null) {
@@ -599,27 +599,27 @@
     var intervalo;
     async function delay() {
         intervalo = setInterval(async () => {
-                    inserirDadosCPU(0).then(res => {
-                        const chart1 = Chart.getChart("canvas_grafico_CPU");
-                        chart1.data.datasets[0].data.shift();
-                        chart1.data.datasets[0].data.push(parseFloat(res))
-                        chart1.update();
-                    })
+            inserirDadosCPU(0).then(res => {
+                const chart1 = Chart.getChart("canvas_grafico_CPU");
+                chart1.data.datasets[0].data.shift();
+                chart1.data.datasets[0].data.push(parseFloat(res))
+                chart1.update();
+            })
 
-                    inserirDadosRAM(0).then(res => {
-                        const chart2 = Chart.getChart("canvas_grafico_RAM");
-                        chart2.data.datasets[0].data.shift();
-                        chart2.data.datasets[0].data.push(parseFloat(res))
-                        chart2.update();
-                    })
+            inserirDadosRAM(0).then(res => {
+                const chart2 = Chart.getChart("canvas_grafico_RAM");
+                chart2.data.datasets[0].data.shift();
+                chart2.data.datasets[0].data.push(parseFloat(res))
+                chart2.update();
+            })
 
-                    inserirDadosDISCO(0).then(res => {
-                        const chart3 = Chart.getChart("canvas_grafico_Discos")
-                        chart3.data.datasets[0].data.shift();
-                        chart3.data.datasets[0].data.push(parseFloat(res))
-                        chart3.update();
-                    })
-                    inserirIncidentes();
+            inserirDadosDISCO(0).then(res => {
+                const chart3 = Chart.getChart("canvas_grafico_Discos")
+                chart3.data.datasets[0].data.shift();
+                chart3.data.datasets[0].data.push(parseFloat(res))
+                chart3.update();
+            })
+            inserirIncidentes();
 
             /*const chart1 = Chart.getChart("canvas_grafico_CPU");
             const chart2 = Chart.getChart("canvas_grafico_RAM");
@@ -642,6 +642,6 @@
 
         }, 5500);
     }
-    
+
 
 </script>

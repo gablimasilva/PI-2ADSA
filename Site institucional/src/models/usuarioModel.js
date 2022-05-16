@@ -45,19 +45,19 @@ function cadastrar(nomeLoja, emailLoja, telefoneLoja, cepLoja, estado, cidade, b
     return database.executar(instrucao);
 }
 
-function cadastrarLoja(FkEmpresa,nomeLoja, gerente, cnpjLoja, cepLoja, estado, cidade, bairro, logradouro, numeroRua, complemento, emailLoja, telefoneLoja) {
+function cadastrarLoja(FkEmpresa, nomeLoja, gerente, cnpjLoja, cepLoja, estado, cidade, bairro, logradouro, numeroRua, complemento, emailLoja, telefoneLoja) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", nomeLoja, gerente, cnpjLoja, cepLoja, estado, cidade, bairro, logradouro, numeroRua, complemento, emailLoja, telefoneLoja);
     var instrucao = `
-        INSERT INTO Loja(FkEmpresa,RazaoSocial,GerenteLoja,CNPJLoja,CEPLoja,Estado,Cidade,Bairro,Logradouro,NumeroRua,Complemento,Email,Telefone) VALUES ('${FkEmpresa}','${nomeLoja}','${gerente}','${cnpjLoja}','${cepLoja}','${estado}','${cidade}','${bairro}','${logradouro}','${numeroRua}','${complemento}','${emailLoja}','${telefoneLoja}');
+        INSERT INTO Loja(FkEmpresa,RazaoSocial,GerenteLoja,CNPJLoja,CEPLoja,Estado,Cidade,Bairro,Logradouro,NumeroRua,Complemento,EmailLoja,Telefone) VALUES ('${FkEmpresa}','${nomeLoja}','${gerente}','${cnpjLoja}','${cepLoja}','${estado}','${cidade}','${bairro}','${logradouro}','${numeroRua}','${complemento}','${emailLoja}','${telefoneLoja}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
-function cadastrarMaquina(tipoComputador,loja, ip, so, hostname, mac, local, senha) {
+function cadastrarMaquina(tipoComputador, loja, ip, so, hostname, mac, local, senha) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", tipoComputador, loja, ip, so, hostname, mac, local, senha);
     var instrucao = `
-        INSERT INTO Computador(FkTipoComputador,FkLoja,IpComputador,SistemaOperacional,Hostname,EnderecoMACComputador,LocalComputador, SenhaComputador) VALUES ('${tipoComputador}',${loja},'${ip}','${so}','${hostname}','${mac}','${local}','${senha}');
+        INSERT INTO Computador(FkTipoComputador,FkLoja,IpComputador,SistemaOperacional,HostnameComputador,EnderecoMACComputador,LocalComputador, SenhaComputador) VALUES ('${tipoComputador}',${loja},'${ip}','${so}','${hostname}','${mac}','${local}','${senha}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

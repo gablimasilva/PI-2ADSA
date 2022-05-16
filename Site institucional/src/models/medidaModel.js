@@ -98,6 +98,13 @@ function buscarIntervaloDeIncidentesPorCategoria(maquina, categoria) {
     return database.executar(instrucaoSql);
 }
 
+function buscarIncidentesLoja(loja) {
+    instrucaoSql = `SELECT count(IdIncidentes) as 'contagem' from [dbo].[incidentes] join [dbo].[registroComponente] on idRegistroComponente = fkRegistroComponente join [dbo].[computadorComponente] on idComputadorComponente = fkComputadorComponente join [dbo].[componente] on fkComponente = idComponente join [dbo].[computador] on idComputador = fkComputador where fkLoja = ${loja};`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
@@ -110,5 +117,6 @@ module.exports = {
     buscarIncidentes,
     buscarLocal,
     buscarIntervaloDeIncidentes,
-    buscarIntervaloDeIncidentesPorCategoria
+    buscarIntervaloDeIncidentesPorCategoria,
+    buscarIncidentesLoja
 }

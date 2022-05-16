@@ -215,7 +215,7 @@
                         onlineTeste = false;
                     }
                     maquinas_botoes +=
-                            `<button class="btn-chart" ${style} onclick="irParaTempoReal(${maquina.idComputador})">${maquina.Hostname}</button>`;
+                            `<button class="btn-chart" ${style} onclick="irParaTempoReal(${maquina.idComputador})">${maquina.HostnameComputador}</button>`;
                     COMPUTADORES.push(maquina);
                 })
                 document.getElementById("dash_status").innerHTML = maquinas_botoes;
@@ -227,6 +227,7 @@
                 //online = 6;
                 document.getElementById("id_contador_disponibilidade").innerHTML = `${(online * 100 / tamanhoDaListaComputadores).toFixed(0)}%`;
                 gerarGrafico();
+                inserirIncidentesLoja();
             })
 
     }
@@ -259,14 +260,27 @@
         document.getElementById("canvas_grafico").style.display = "block";
     }
 
+    async function buscarIncidentesLoja() {
+        var incidentes = await fetch(`/medidas/buscarIncidentesLoja/${document.getElementById("loja").value}`);
+
+        incidentes = await incidentes.json();
+        return await incidentes;
+    }
+
+    async function inserirIncidentesLoja() {
+        var incidentes = await buscarIncidentesLoja();
+        document.getElementById("id_incidente_finalizar").innerHTML = await incidentes[0].contagem;
+    }
+
     function ListarLojas() {
         fetch(`/usuarios/listarLojas/${sessionStorage.ID_EMPRESA}`)
             .then(res => res.json())
             .then(res => {
                 res.forEach(lojas => {
                     var option = document.createElement("option");
+                    console.log(lojas.RazaoSocial)
                     option.innerHTML = lojas.RazaoSocial;
-                    option.value = lojas.IdLoja;
+                    option.value = lojas.idLoja;
                     document.getElementById("loja").append(option);
                 })
             })

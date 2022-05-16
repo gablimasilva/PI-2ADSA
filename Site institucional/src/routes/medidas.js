@@ -51,5 +51,10 @@ router.get("/buscarIntervaloDeIncidentesPorCategoria/:maquina/:categoria", funct
     medidaController.buscarIntervaloDeIncidentesPorCategoria(req, res);
 })
 
+router.get("/buscarIncidentesLoja/:loja", function (req, res) {
+    medidaController.buscarIncidentesLoja(req, res);
+})
+
+
 
 module.exports = router;

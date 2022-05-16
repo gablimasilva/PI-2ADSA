@@ -4,6 +4,8 @@ import com.github.britooo.looca.api.core.Looca;
 import com.github.britooo.looca.api.group.discos.Disco;
 import com.github.britooo.looca.api.group.discos.Volume;
 import com.github.britooo.looca.api.util.Conversor;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -13,7 +15,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
  * @author bruno.dearaujo
  */
 public class Monitoramento extends javax.swing.JFrame {
-    
+
     /**
      * Creates new form Monitoramento
      */
@@ -23,7 +25,7 @@ public class Monitoramento extends javax.swing.JFrame {
         this.computador = computador;
         // Deixando a tela no centro;
         cadastrarComponentes();
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(null); 
         initComponents();
         sistemaOperacional();
         monitoramentoGeral();
@@ -121,11 +123,11 @@ public class Monitoramento extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(dadosRam))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10)
                     .addComponent(hostName))
-                .addContainerGap())
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         pack();
@@ -168,44 +170,52 @@ public class Monitoramento extends javax.swing.JFrame {
 //        });
 //
 //    }
-    
-    public void cadastrarComponentes(){
+    public void cadastrarComponentes() {
+        Looca looca = new Looca();
+        Connection config = new Connection();
+        JdbcTemplate template = new JdbcTemplate(config.getDataSource());
+
+        List qtdComponentes = template.queryForList(
+                "SELECT * from computadorComponente WHERE fkComputador = ?", computador.getidComputador());
+
+        if (qtdComponentes.isEmpty()) {
+
+            List<Disco> discos = looca.getGrupoDeDiscos().getDiscos();
+
+            String ramConvertida = Conversor.formatarBytes(looca.getMemoria().getTotal()).replaceAll("[a-zA-Z]", "").replace(",", ".");
+            String cpuConvertido = Conversor.formatarBytes(looca.getProcessador().getFrequencia()).replaceAll("[a-zA-Z]", "").replace(",", ".");
+
+            template.update(
+                    "INSERT INTO computadorComponente (fkComputador, fkComponente, TotalComponente, UnidadeDeMedida)"
+                    + "VALUES(?, 1, ?, 'GB')",
+                    computador.getidComputador(), ramConvertida);
+
+            template.update(
+                    "INSERT INTO computadorComponente (fkComputador, fkComponente, TotalComponente, UnidadeDeMedida)"
+                    + "VALUES(?, 2, ?, 'GB')",
+                    computador.getidComputador(), cpuConvertido);
+
+            for (Disco disco : discos) {
+                String discoConvertido = Conversor.formatarBytes(disco.getTamanho()).replaceAll("[a-zA-Z]", "").replace(",", ".");
+                template.update(
+                        "INSERT INTO computadorComponente (fkComputador, fkComponente, TotalComponente, UnidadeDeMedida)"
+                        + "VALUES(?, 3, ?, 'GB')",
+                        computador.getidComputador(), discoConvertido);
+            }
+
+        }
+
+    }
+
+    public void enviarRelatorio() {
+        Slack slack = new Slack();
         Looca looca = new Looca();
         Connection config = new Connection();
         JdbcTemplate template = new JdbcTemplate(config.getDataSource());
         
-        List qtdComponentes = template.queryForList(
-                "SELECT * from computadorComponente WHERE fkComputador = ?", computador.getidComputador());
-        
-        if(qtdComponentes.isEmpty()){
- 
-            List<Disco> discos = looca.getGrupoDeDiscos().getDiscos();
-            
-            String ramConvertida = Conversor.formatarBytes(looca.getMemoria().getTotal()).replaceAll("[a-zA-Z]","").replace(",", ".");
-            String cpuConvertido = Conversor.formatarBytes(looca.getProcessador().getFrequencia()).replaceAll("[a-zA-Z]","").replace(",", ".");
-            
-            template.update(
-                    "INSERT INTO computadorComponente (fkComputador, fkComponente, TotalComponente, UnidadeDeMedida)"
-                            + "VALUES(?, 1, ?, 'GB')",
-                    computador.getidComputador(), ramConvertida);
-            
-            template.update(
-                    "INSERT INTO computadorComponente (fkComputador, fkComponente, TotalComponente, UnidadeDeMedida)"
-                            + "VALUES(?, 2, ?, 'GB')",
-                    computador.getidComputador(), cpuConvertido);
-            
-            for(Disco disco : discos){
-                String discoConvertido = Conversor.formatarBytes(disco.getTamanho()).replaceAll("[a-zA-Z]","").replace(",", ".");
-                template.update(
-                    "INSERT INTO computadorComponente (fkComputador, fkComponente, TotalComponente, UnidadeDeMedida)"
-                            + "VALUES(?, 3, ?, 'GB')",
-                    computador.getidComputador(), discoConvertido);
-            }
-            
-        }
-        
+      
     }
-    
+
     public void monitoramentoGeral() {
 
         // Instâncias de captura dos dados
@@ -214,9 +224,16 @@ public class Monitoramento extends javax.swing.JFrame {
         // Instâncias para inserir no banco
         Connection config = new Connection();
         JdbcTemplate monitorar = new JdbcTemplate(config.getDataSource());
-        
-        String queryListaComponentes = 
-                "SELECT idComputadorComponente, fkComputador, fkComponente, TotalComponente totalComponente, UnidadeDeMedida unidadeMedida FROM computadorComponente WHERE fkComputador = ?";
+
+        String queryListaComponentes
+                = "SELECT idComputadorComponente, "
+                + "fkComputador, "
+                + "fkComponente, "
+                + "TotalComponente totalComponente, "
+                + "UnidadeDeMedida unidadeMedida "
+                + "FROM "
+                + "computadorComponente WHERE fkComputador = ?";
+
         List<ComputadorComponente> listaComponentes = monitorar.query(queryListaComponentes, new BeanPropertyRowMapper<>(ComputadorComponente.class), computador.getidComputador());
         System.out.println(listaComponentes);
 
@@ -226,15 +243,19 @@ public class Monitoramento extends javax.swing.JFrame {
 
                 try {
                     while (true) {
-                        List <Volume> volumes = looca.getGrupoDeDiscos().getVolumes();
-                        String ramConvertida = Conversor.formatarBytes(looca.getMemoria().getEmUso()).replaceAll("[a-zA-Z]","").replace(",", ".");
-                        Double cpuUso= looca.getProcessador().getUso();
-                        
+                        List<Volume> volumes = looca.getGrupoDeDiscos().getVolumes();
+                        String ramConvertida = Conversor.formatarBytes(looca.getMemoria().getEmUso()).replaceAll("[a-zA-Z]", "").replace(",", ".");
+                        Double cpuUso = looca.getProcessador().getUso();
+                        BigDecimal cpuPorcentagem = new BigDecimal(looca.getProcessador().getUso()).setScale(2, RoundingMode.HALF_EVEN);
+
                         System.out.println(computador.toString());
-                        String exibirDadosDisco = Conversor.formatarBytes(looca.getGrupoDeDiscos().getVolumes().get(0).getDisponivel());
-                        String exibirDadosCpu = looca.getProcessador().getUso().toString();
-                        String exibirDadosRam = "Em Uso:" + Conversor.formatarBytes(looca.getMemoria().getEmUso())
-                                + "   |  Total:" + (Conversor.formatarBytes(looca.getMemoria().getTotal()));
+                        String exibirDadosDisco = "Em Uso: " + Conversor.formatarBytes(looca.getGrupoDeDiscos().getVolumes().get(0).getDisponivel())
+                                + "   |  Total: " + Conversor.formatarBytes(looca.getGrupoDeDiscos().getVolumes().get(0).getTotal());
+                       
+                        String exibirDadosCpu = "Em Uso: " + cpuPorcentagem + "%";
+                                
+                        String exibirDadosRam = "Em Uso: " + Conversor.formatarBytes(looca.getMemoria().getEmUso())
+                                + "   |  Total: " + (Conversor.formatarBytes(looca.getMemoria().getTotal()));
                         String exibirHostname = computador.getHostnameComputador();
 
                         dadosCpu.setText(exibirDadosCpu);
@@ -244,27 +265,25 @@ public class Monitoramento extends javax.swing.JFrame {
 
                         monitorar.update(
                                 "INSERT INTO registroComponente (fkComputadorComponente, ValorConsumido, DataHora, statusComputador)"
-                                        + "VALUES"
-                                        + "(?, ?, getdate(), 'Ativo')",
+                                + "VALUES"
+                                + "(?, ?, getdate(), 'Ativo')",
                                 listaComponentes.get(0).getIdComputadorComponente(), ramConvertida);
-                        
+
                         monitorar.update(
                                 "INSERT INTO registroComponente (fkComputadorComponente, ValorConsumido, DataHora, statusComputador)"
-                                        + "VALUES"
-                                        + "(?, ?, getdate(), 'Ativo')",
+                                + "VALUES"
+                                + "(?, ?, getdate(), 'Ativo')",
                                 listaComponentes.get(1).getIdComputadorComponente(), cpuUso);
-                        
-                        for(int i = 0; i<volumes.size(); i++){
-                            String discoConvertido = Conversor.formatarBytes(looca.getGrupoDeDiscos().getVolumes().get(i).getDisponivel()).replaceAll("[a-zA-Z]","").replace(",", ".");
+
+                        for (int i = 0; i < volumes.size(); i++) {
+                            String discoConvertido = Conversor.formatarBytes(looca.getGrupoDeDiscos().getVolumes().get(i).getDisponivel()).replaceAll("[a-zA-Z]", "").replace(",", ".");
                             monitorar.update(
-                                "INSERT INTO registroComponente (fkComputadorComponente, ValorConsumido, DataHora, statusComputador)"
-                                        + "VALUES"
-                                        + "(?, ?, getdate(), 'Ativo')",
-                                listaComponentes.get(2+i).getIdComputadorComponente(), discoConvertido);
+                                    "INSERT INTO registroComponente (fkComputadorComponente, ValorConsumido, DataHora, statusComputador)"
+                                    + "VALUES"
+                                    + "(?, ?, getdate(), 'Ativo')",
+                                    listaComponentes.get(2 + i).getIdComputadorComponente(), discoConvertido);
                         }
-                        
-                        
-                        
+
                         Thread.sleep(5000);
                     }
                 } catch (Exception e) {
@@ -279,7 +298,6 @@ public class Monitoramento extends javax.swing.JFrame {
 //        Looca looca = new Looca();
 //        hostName.setText(looca.getProcessador().getIdentificador());
 //    }
-
     public void sistemaOperacional() {
         Looca looca = new Looca();
         sistemaOperacional.setText(looca.getSistema().getSistemaOperacional());

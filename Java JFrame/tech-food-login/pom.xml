@@ -43,6 +43,11 @@
     
     <dependencies>
         <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20201115</version>
+        </dependency>
+        <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>mssql-jdbc</artifactId>
             <version>10.2.0.jre11</version>

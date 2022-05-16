@@ -2,14 +2,16 @@ package view;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.io.IOException;
 import java.util.List;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.xml.transform.Templates;
+import org.json.JSONObject;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-    
+
 /**
  *
  * @author bruno.dearaujo
@@ -248,11 +250,11 @@ public class Login extends javax.swing.JFrame {
 
         String codigo = "", senha = "";
         Boolean logado = false;
-        
+
         if (inputUsuario.getText().equals("")) {
             System.out.println("Insira seu IP!");
         } else if (passwdUsuario.getText().equals("")) {
-            
+
             System.out.println("Insira sua senha!");
         } else {
             List<Computador> listaComputador = login.query("select * from computador where ipComputador = ? and senhaComputador = ?;",

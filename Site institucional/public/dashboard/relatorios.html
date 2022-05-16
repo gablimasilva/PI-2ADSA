@@ -108,7 +108,7 @@
                         <div>
                             <p>Ínicio:</p>
                             <input type="date" id="data-incial" name="data-incial">
-                        </div>        
+                        </div>
                         <div>
                             <p>Fim:</p>
                             <input type="date" id="data-final" name="data-final">
@@ -122,7 +122,7 @@
                     <div class="scroll">
                         <table>
                             <tr>
-                                <th class="tb-title">Hostname</th>
+                                <th class="tb-title">HostnameComputador</th>
                                 <th class="tb-title">Data</th>
                                 <th class="tb-title">Hora</th>
                                 <th class="tb-title">CPU(%)</th>
@@ -155,7 +155,7 @@
     let computadorAtual;
     let lojaSelecionada;
     let maquinaSelecionada;
-    
+
 
     function aoIniciar() {
         const params = new URL(location.href).searchParams;
@@ -184,7 +184,7 @@
                 res.forEach(computador => {
                     COMPUTADORES.push(computador);
                     var option = document.createElement("option");
-                    option.innerHTML = computador.Hostname;
+                    option.innerHTML = computador.HostnameComputador;
                     option.value = computador.idComputador;
                     document.getElementById("id_computador").append(option);
                 });
@@ -212,7 +212,7 @@
                 res.forEach(lojas => {
                     var option = document.createElement("option");
                     option.innerHTML = lojas.RazaoSocial;
-                    option.value = lojas.IdLoja;
+                    option.value = lojas.idLoja;
                     document.getElementById("id_loja").append(option);
                 });
                 if (lojaSelecionada != null) {

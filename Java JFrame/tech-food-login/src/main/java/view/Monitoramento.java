@@ -243,14 +243,14 @@ public class Monitoramento extends javax.swing.JFrame {
 
                 try {
                     while (true) {
-                        List<Volume> volumes = looca.getGrupoDeDiscos().getVolumes();
+                        List<Disco> discos = looca.getGrupoDeDiscos().getDiscos();
                         String ramConvertida = Conversor.formatarBytes(looca.getMemoria().getEmUso()).replaceAll("[a-zA-Z]", "").replace(",", ".");
                         Double cpuUso = looca.getProcessador().getUso();
                         BigDecimal cpuPorcentagem = new BigDecimal(looca.getProcessador().getUso()).setScale(2, RoundingMode.HALF_EVEN);
 
                         System.out.println(computador.toString());
-                        String exibirDadosDisco = "Em Uso: " + Conversor.formatarBytes(looca.getGrupoDeDiscos().getVolumes().get(0).getDisponivel())
-                                + "   |  Total: " + Conversor.formatarBytes(looca.getGrupoDeDiscos().getVolumes().get(0).getTotal());
+                        String exibirDadosDisco = "Em Uso: " + Conversor.formatarBytes(looca.getGrupoDeDiscos().getDiscos().get(0).getBytesDeEscritas())
+                                + "   |  Total: " + Conversor.formatarBytes(looca.getGrupoDeDiscos().getDiscos().get(0).getTamanho());
                        
                         String exibirDadosCpu = "Em Uso: " + cpuPorcentagem + "%";
                                 
@@ -275,8 +275,8 @@ public class Monitoramento extends javax.swing.JFrame {
                                 + "(?, ?, getdate(), 'Ativo')",
                                 listaComponentes.get(1).getIdComputadorComponente(), cpuUso);
 
-                        for (int i = 0; i < volumes.size(); i++) {
-                            String discoConvertido = Conversor.formatarBytes(looca.getGrupoDeDiscos().getVolumes().get(i).getDisponivel()).replaceAll("[a-zA-Z]", "").replace(",", ".");
+                        for (int i = 0; i < discos.size(); i++) {
+                            String discoConvertido = Conversor.formatarBytes(discos.get(i).getBytesDeEscritas()).replaceAll("[a-zA-Z]", "").replace(",", ".");
                             monitorar.update(
                                     "INSERT INTO registroComponente (fkComputadorComponente, ValorConsumido, DataHora, statusComputador)"
                                     + "VALUES"

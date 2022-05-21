@@ -4,11 +4,12 @@ import java.awt.Color;
 import java.awt.Image;
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.xml.transform.Templates;
-import org.json.JSONObject;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -250,6 +251,13 @@ public class Login extends javax.swing.JFrame {
 
         String codigo = "", senha = "";
         Boolean logado = false;
+
+        // Slack
+        try {
+            SlackIntegration.enviarMensagem("Logado com Sucesso!");
+        } catch (IOException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         if (inputUsuario.getText().equals("")) {
             System.out.println("Insira seu IP!");

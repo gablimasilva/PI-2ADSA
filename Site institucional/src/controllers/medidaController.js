@@ -60,6 +60,43 @@ function buscarIntervaloDeIncidentesPorCategoria(req, res) {
     });
 }
 
+function buscarUltimaHora(req, res) {
+    var idComputador = req.params.idComputador;
+
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.buscarUltimaHora(idComputador).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarUltimo(req, res) {
+    var idComputador = req.params.idComputador;
+    var componente = req.params.Componente;
+
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.buscarUltimo(idComputador,componente).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 
 function buscarIncidentesLoja(req, res) {
     var loja = req.params.loja;
@@ -67,6 +104,44 @@ function buscarIncidentesLoja(req, res) {
     console.log(`Recuperando medidas em tempo real`);
 
     medidaModel.buscarIncidentesLoja(loja).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarIP(req, res) {
+    var maquina = req.params.maquina;
+
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.buscarIP(maquina).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
+
+function buscarStatusComputador(req, res) {
+    var maquina = req.params.maquina;
+
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.buscarStatusComputador(maquina).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -256,6 +331,9 @@ module.exports = {
     buscarLocal,
     buscarIntervaloDeIncidentes,
     buscarIntervaloDeIncidentesPorCategoria,
-    buscarIncidentesLoja
-
+    buscarIncidentesLoja,
+    buscarStatusComputador,
+    buscarUltimaHora,
+    buscarUltimo,
+    buscarIP
 }

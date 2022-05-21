@@ -191,45 +191,80 @@
     let LOJAS = [];
     let COMPUTADORES = [];
     let lojaSelecionada;
-    let contadorOffline = 0;
+    let offline = 0;
     let online = 0;
     let tamanhoDaListaComputadores = 0;
+    let maquinas_botoes = '';
 
-    function mostrarMaquinas() {
+    async function mostrarMaquinas() {
+        await listarMaquinasNaDash();
+    }
 
+    async function exibirMaquinasNaDash() {
+        document.getElementById("dash_status").innerHTML = maquinas_botoes;
+        document.getElementById("id_computadores_offline").innerHTML = `${offline}/${COMPUTADORES.length}`;
+        tamanhoDaListaComputadores = COMPUTADORES.length;
+        document.getElementById("id_contador_disponibilidade").innerHTML = `${(online * 100 / tamanhoDaListaComputadores).toFixed(0)}%`;
+        gerarGrafico();
+        inserirIncidentesLoja();
+    }
+
+    async function listarMaquinasNaDash() {
         COMPUTADORES = [];
         document.getElementById("id_computadores_offline").innerHTML = '0';
         document.getElementById("id_contador_disponibilidade").innerHTML = "0%";
         document.getElementById("dash_status").innerHTML = '';
         document.getElementById("canvas_grafico").style.display = "none";
         lojaSelecionada = document.getElementById("loja").value;
-        var maquinas_botoes = '';
-        var onlineTeste = true;
-        fetch(`/usuarios/listarComputadores/${lojaSelecionada}`)
-            .then(res => res.json())
-            .then(res => {
-                res.forEach(maquina => {
-                    let style = '';
-                    if (onlineTeste) {
-                        style = 'style="background-color: rgb(127, 184, 0)"';
-                        onlineTeste = false;
-                    }
-                    maquinas_botoes +=
-                            `<button class="btn-chart" ${style} onclick="irParaTempoReal(${maquina.idComputador})">${maquina.HostnameComputador}</button>`;
-                    COMPUTADORES.push(maquina);
-                })
-                document.getElementById("dash_status").innerHTML = maquinas_botoes;
-                contadorOffline = COMPUTADORES.length - 1;
-                document.getElementById("id_computadores_offline").innerHTML = `${contadorOffline}/${COMPUTADORES.length}`;
-                tamanhoDaListaComputadores = COMPUTADORES.length;
-                //tamanhoDaListaComputadores = 10;
-                online = COMPUTADORES.length - contadorOffline;
-                //online = 6;
-                document.getElementById("id_contador_disponibilidade").innerHTML = `${(online * 100 / tamanhoDaListaComputadores).toFixed(0)}%`;
-                gerarGrafico();
-                inserirIncidentesLoja();
-            })
+        var listaComputadores = await fetch(`/usuarios/listarComputadores/${lojaSelecionada}`);
+        listaComputadores = await listaComputadores.json();
+        maquinas_botoes = '';
+        //var style = 'style="background-color: rgb(127, 184, 0)"';
+        await listaComputadores.forEach(async (computadorLoja) => {
+            await COMPUTADORES.push(computadorLoja);
+            await buscarDisponibilidade(computadorLoja);
+            await exibirMaquinasNaDash();
+        })
+            
+    }
 
+    async function buscarDisponibilidade(computadorLoja) {
+        try {
+            let ultimaHora = await fetch(`/medidas/buscarUltimaHora/${computadorLoja.idComputador}`);
+            ultimaHora = await ultimaHora.json();
+            var style = '';
+            if (ultimaHora[0].atual > ultimaHora[0].hora) {
+                
+
+                /*var cpu = await fetch(`/medidas/buscarUltimoComponente/${computadorLoja.idComputador}/1`);
+                var ram = await fetch(`/medidas/buscarUltimoComponente/${computadorLoja.idComputador}/2`);
+                var disco = await fetch(`/medidas/buscarUltimoComponente/${computadorLoja.idComputador}/3`);
+                cpu = await cpu.json();
+                ram = await ram.json();
+                disco = await disco.json();
+                cpu = cpu[0].valor;
+                ram = ram[0].valor;
+                disco = disco[0].valor;
+
+                console.log(cpu)
+                console.log(ram)
+                console.log(disco)*/
+
+
+                maquinas_botoes +=
+                    `<button class="btn-chart" ${style} onclick="irParaTempoReal(${computadorLoja.idComputador})">${computadorLoja.HostnameComputador}</button>`;
+                offline++;
+            } else {
+                style = 'style="background-color: rgb(127, 184, 0)"';
+                maquinas_botoes +=
+                    `<button class="btn-chart" ${style} onclick="irParaTempoReal(${computadorLoja.idComputador})">${computadorLoja.HostnameComputador}</button>`;
+                online++;
+            }
+        } catch {
+            offline++;
+            maquinas_botoes +=
+                `<button class="btn-chart" ${style} onclick="irParaTempoReal(${computadorLoja.idComputador})">${computadorLoja.HostnameComputador}</button>`;
+        }
     }
 
     function irParaTempoReal(idComputador) {
@@ -278,7 +313,6 @@
             .then(res => {
                 res.forEach(lojas => {
                     var option = document.createElement("option");
-                    console.log(lojas.RazaoSocial)
                     option.innerHTML = lojas.RazaoSocial;
                     option.value = lojas.idLoja;
                     document.getElementById("loja").append(option);

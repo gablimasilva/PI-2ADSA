@@ -3,11 +3,8 @@
     "",
     "\\public",
     "\\public\\dashboard",
-    "\\src",
-    "\\src\\controllers",
-    "\\src\\models",
-    "\\src\\routes"
+    "\\src"
   ],
-  "SelectedNode": "\\src\\models\\medidaModel.js",
+  "SelectedNode": "\\public\\dashboard\\tempo-real.html",
   "PreviewInSolutionExplorer": false
 }

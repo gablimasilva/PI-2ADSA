@@ -55,6 +55,21 @@ router.get("/buscarIncidentesLoja/:loja", function (req, res) {
     medidaController.buscarIncidentesLoja(req, res);
 })
 
+router.get("/buscarStatusComputador/:maquina", function (req, res) {
+    medidaController.buscarStatusComputador(req, res);
+})
+
+router.get("/buscarUltimaHora/:idComputador", function (req, res) {
+    medidaController.buscarUltimaHora(req, res);
+})
+
+router.get("/buscarUltimoComponente/:idComputador/:Componente", function (req, res) {
+    medidaController.buscarUltimoComponente(req, res);
+})
+
+router.get("/buscarIP/:maquina", function (req, res) {
+    medidaController.buscarIP(req, res);
+})
 
 
 module.exports = router;

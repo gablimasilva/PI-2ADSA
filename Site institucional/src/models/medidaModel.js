@@ -105,6 +105,34 @@ function buscarIncidentesLoja(loja) {
     return database.executar(instrucaoSql);
 }
 
+function buscarStatusComputador(maquina) {
+    instrucaoSql = `select top 1 dataHora from registroComponente join computadorComponente on idComputadorComponente = fkComputadorComponente where fkComputador = ${maquina} order by idRegistroComponente desc;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarUltimaHora(idComputador) {
+    instrucaoSql = `select top 1 dataHora as 'hora', DATEADD(SECOND,-20,DATEADD(HOUR,-3,GETDATE())) as 'atual' from [dbo].[registroComponente] join [dbo].[computadorComponente] on fkComputadorComponente = idComputadorComponente where fkComputador = ${idComputador} order by idRegistroComponente desc;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarUltimo(idComputador, componente) {
+    instrucaoSql = `select top 1 ValorConsumido as 'valor' from [dbo].[registroComponente] join [dbo].[computadorComponente] on fkComputadorComponente = idComputadorComponente where fkComponente = ${componente} and fkComputador = ${idComputador} order by idRegistroComponente desc;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarIP(maquina) {
+    instrucaoSql = `select IpComputador from [dbo].[computador] where IdComputador = ${maquina};`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
@@ -118,5 +146,9 @@ module.exports = {
     buscarLocal,
     buscarIntervaloDeIncidentes,
     buscarIntervaloDeIncidentesPorCategoria,
-    buscarIncidentesLoja
+    buscarIncidentesLoja,
+    buscarStatusComputador,
+    buscarUltimaHora,
+    buscarUltimo,
+    buscarIP
 }

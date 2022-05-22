@@ -38,5 +38,9 @@ router.post("/cadastrarUsuario/:FkEmpresa", function (req, res) {
 router.post("/autenticar", function(req, res) {
     usuarioController.entrar(req, res);
 });
-  
+
+router.post("/autenticarUsuario", function(req, res) {
+    usuarioController.entrarUsuario(req, res);
+});
+
 module.exports = router;

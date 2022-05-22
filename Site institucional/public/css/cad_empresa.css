@@ -103,6 +103,14 @@ input {
     margin-bottom: 30px;
 }
 
+select{
+    height: 35px;
+    border: 2px solid var(--marrom);
+    border-radius: 10px;
+    font-size: 14px;
+    width: 305px;
+}
+
 .align-btn {
     width: 100%;
     display: flex;

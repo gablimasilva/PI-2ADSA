@@ -53,10 +53,10 @@
                             <h2>Login</h2>
                             <br>
                             <h4>E-mail:</h4>
-                            <input name="emailLoja" type="text" placeholder="Digite seu email">
+                            <input name="email" type="text" placeholder="Digite seu email">
                             <br><br>
                             <h4>Senha:</h4>
-                            <input name="senhaLoja" type="password" placeholder="******">
+                            <input name="senha" type="password" placeholder="******">
                             <br><br>
 
                             <button class="btn" type="submit">
@@ -114,20 +114,20 @@
 
         var formulario = new URLSearchParams(new FormData(document.getElementById("form_login")));
 
-        var emailLoja = formulario.get("emailLoja");
-        var senhaLoja = formulario.get("senhaLoja");
+        var email = formulario.get("email");
+        var senha = formulario.get("senha");
 
-        console.log("FORM LOGIN: ", emailLoja);
-        console.log("FORM SENHA: ", senhaLoja);
+        console.log("FORM LOGIN: ", email);
+        console.log("FORM SENHA: ", senha);
 
         // TODO: VERIFICAR AS VALIDAÇÕES QUE ELES ESTÃO APRENDENDO EM ALGORITMOS 
-        if (emailLoja == "" || senhaLoja == "") {
+        if (email == "" || senha == "") {
             window.alert("Preencha todos os campos para prosseguir!");
             finalizarAguardar();
             return false;
         }
 
-        if (emailLoja.indexOf("@") == -1 || emailLoja.indexOf(".com") == -1) {
+        if (email.indexOf("@") == -1 || email.indexOf(".com") == -1) {
             window.alert("Ops, e-mail inválido! Verifique e tente novamente.");
             finalizarAguardar();
             return false;
@@ -146,10 +146,11 @@
                     console.log(json);
                     console.log(JSON.stringify(json));
 
+                    sessionStorage.clear();
                     sessionStorage.CNPJ = json.CNPJEmpresa;
                     sessionStorage.TECNICO_RESPONSAVEL = json.TecnicoResponsavel;
-                    sessionStorage.EMAIL_EMPRESA = json.EmailEmpresa;
-                    sessionStorage.NOME_EMPRESA = json.RazaoSocial;
+                    sessionStorage.EMAIL_USUARIO = json.EmailEmpresa;
+                    sessionStorage.NOME_USUARIO = json.RazaoSocial;
                     sessionStorage.ID_EMPRESA = json.idEmpresa;
 
                     setTimeout(function () {
@@ -162,10 +163,40 @@
 
                 console.log("Houve um erro ao tentar realizar o login!");
 
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    finalizarAguardar(texto);
-                });
+                fetch("/usuarios/autenticarUsuario", {
+                    method: "POST",
+                    body: formulario
+                }).then(function (resposta) {
+                    console.log("ESTOU NO THEN DO entrar()!")
+
+                    if (resposta.ok) {
+                        console.log(resposta);
+
+                        resposta.json().then(json => {
+                            console.log(json);
+                            console.log(JSON.stringify(json));
+
+                            sessionStorage.clear();
+                            sessionStorage.CARGO = json.fkCargo;
+                            sessionStorage.NOME_USUARIO = json.nomeUsuario;
+                            sessionStorage.EMAIL_USUARIO = json.emailUsuario;
+                            sessionStorage.ID_EMPRESA = json.fkEmpresa;
+                            sessionStorage.ID_USUARIO = json.idUsuario;
+
+                            setTimeout(function () {
+                                window.location = "./dashboard/dashboard.html";
+                            }, 1000); // apenas para exibir o loading
+
+                        });
+                    } else {
+                        resposta.text().then(texto => {
+                            console.error(texto);
+                            finalizarAguardar(texto);
+                        });
+                    }
+                })
+
+
             }
 
         }).catch(function (erro) {

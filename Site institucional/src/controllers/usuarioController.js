@@ -61,8 +61,8 @@ function listarComputadores(req, res) {
 }
 
 function entrar(req, res) {
-    var emailLoja = req.body.emailLoja;
-    var senhaLoja = req.body.senhaLoja;
+    var emailLoja = req.body.email;
+    var senhaLoja = req.body.senha;
 
     if (emailLoja == undefined) {
         res.status(400).send("Email está undefined!");
@@ -70,6 +70,41 @@ function entrar(req, res) {
         res.status(400).send("Senha está undefined!");
     } else {
         usuarioModel.entrar(emailLoja, senhaLoja)
+            .then(
+                function (resultado) {
+                    console.log(`\nResultados encontrados: ${resultado.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+
+                    if (resultado.length == 1) {
+                        console.log(resultado);
+                        res.json(resultado[0]);
+                    } else if (resultado.length == 0) {
+                        res.status(403).send("Email e/ou senha inválido(s)");
+                    } else {
+                        res.status(403).send("Mais de um usuário com o mesmo login e senha!");
+                    }
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+
+}
+
+function entrarUsuario(req, res) {
+    var emailUsuario = req.body.email;
+    var senhaUsuario = req.body.senha;
+
+    if (emailUsuario == undefined) {
+        res.status(400).send("Email está undefined!");
+    } else if (senhaUsuario == undefined) {
+        res.status(400).send("Senha está undefined!");
+    } else {
+        usuarioModel.entrarUsuario(emailUsuario, senhaUsuario)
             .then(
                 function (resultado) {
                     console.log(`\nResultados encontrados: ${resultado.length}`);
@@ -300,6 +335,7 @@ function cadastrarUsuario(req, res) {
 
 module.exports = {
     entrar,
+    entrarUsuario,
     cadastrar,
     cadastrarLoja,
     cadastrarMaquina,

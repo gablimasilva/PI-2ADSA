@@ -2,11 +2,12 @@
 function validarSessao() {
     // aguardar();
 
-    var email = sessionStorage.EMAIL_EMPRESA;
-    var nome = sessionStorage.NOME_EMPRESA;
+    var email = sessionStorage.EMAIL_USUARIO;
+    var nome = sessionStorage.NOME_USUARIO;
 
     if (email != null && nome != null) {
         b_usuario.innerHTML = nome;
+        validarUsuario();
         // finalizarAguardar();
     } else {
         window.location = "../login.html";
@@ -48,3 +49,16 @@ function fecharModal() {
     divModal.style.display = "none";
 }
 
+
+//verificar usuario
+function validarUsuario() {
+    var CNPJ = sessionStorage.CNPJ;
+    
+    if (CNPJ == null) {
+
+        document.getElementById("id-menu-loja").style.display = "none";
+        document.getElementById("id-menu-usuario").style.display = "none";
+        document.getElementById("id-menu-computador").style.display = "none";
+    }
+
+}

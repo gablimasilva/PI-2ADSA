@@ -193,7 +193,11 @@ public class Monitoramento extends javax.swing.JFrame {
         Looca looca = new Looca();
         Connection config = new Connection();
         JdbcTemplate template = new JdbcTemplate(config.getDataSource());
+        JdbcTemplate templateLocal = new JdbcTemplate(config.getDataSourceLocal());
 
+        List qtdComponentesLocal = templateLocal.queryForList(
+                "SELECT * from computadorComponente WHERE fkComputador = ?", computador.getidComputador());
+        
         List qtdComponentes = template.queryForList(
                 "SELECT * from computadorComponente WHERE fkComputador = ?", computador.getidComputador());
 
@@ -204,6 +208,16 @@ public class Monitoramento extends javax.swing.JFrame {
             String ramConvertida = Conversor.formatarBytes(looca.getMemoria().getTotal()).replaceAll("[a-zA-Z]", "").replace(",", ".");
             String cpuConvertido = Conversor.formatarBytes(looca.getProcessador().getFrequencia()).replaceAll("[a-zA-Z]", "").replace(",", ".");
 
+            templateLocal.update(
+                    "INSERT INTO computadorComponente (fkComputador, fkComponente, TotalComponente, UnidadeDeMedida)"
+                    + "VALUES(?, 1, ?, 'GB')",
+                    computador.getidComputador(), ramConvertida);
+
+            templateLocal.update(
+                    "INSERT INTO computadorComponente (fkComputador, fkComponente, TotalComponente, UnidadeDeMedida)"
+                    + "VALUES(?, 2, ?, 'GB')",
+                    computador.getidComputador(), cpuConvertido);
+            
             template.update(
                     "INSERT INTO computadorComponente (fkComputador, fkComponente, TotalComponente, UnidadeDeMedida)"
                     + "VALUES(?, 1, ?, 'GB')",
@@ -216,6 +230,12 @@ public class Monitoramento extends javax.swing.JFrame {
 
             for (Disco disco : discos) {
                 String discoConvertido = Conversor.formatarBytes(disco.getTamanho()).replaceAll("[a-zA-Z]", "").replace(",", ".");
+                
+                templateLocal.update(
+                        "INSERT INTO computadorComponente (fkComputador, fkComponente, TotalComponente, UnidadeDeMedida)"
+                        + "VALUES(?, 3, ?, 'GB')",
+                        computador.getidComputador(), discoConvertido);
+                
                 template.update(
                         "INSERT INTO computadorComponente (fkComputador, fkComponente, TotalComponente, UnidadeDeMedida)"
                         + "VALUES(?, 3, ?, 'GB')",
@@ -242,6 +262,7 @@ public class Monitoramento extends javax.swing.JFrame {
         // Instâncias para inserir no banco
         Connection config = new Connection();
         JdbcTemplate monitorar = new JdbcTemplate(config.getDataSource());
+        JdbcTemplate monitorarLocal = new JdbcTemplate(config.getDataSourceLocal());
 
         String queryListaComponentes
                 = "SELECT idComputadorComponente, "
@@ -254,6 +275,9 @@ public class Monitoramento extends javax.swing.JFrame {
 
         List<ComputadorComponente> listaComponentes = monitorar.query(queryListaComponentes, new BeanPropertyRowMapper<>(ComputadorComponente.class), computador.getidComputador());
         System.out.println(listaComponentes);
+        
+        List<ComputadorComponente> listaComponentesLocal = monitorarLocal.query(queryListaComponentes, new BeanPropertyRowMapper<>(ComputadorComponente.class), computador.getidComputador());
+        System.out.println(listaComponentesLocal);
 
         new Thread(new Runnable() {
             @Override
@@ -286,6 +310,12 @@ public class Monitoramento extends javax.swing.JFrame {
                                 + "VALUES"
                                 + "(?, ?, getdate(), 'Ativo')",
                                 listaComponentes.get(0).getIdComputadorComponente(), ramConvertida);
+                        
+                        monitorarLocal.update(
+                                "INSERT INTO registroComponente (fkComputadorComponente, ValorConsumido, DataHora, statusComputador)"
+                                + "VALUES"
+                                + "(?, ?, getdate(), 'Ativo')",
+                                listaComponentesLocal.get(0).getIdComputadorComponente(), ramConvertida);
 
                         String ramConvertidaTotal = Conversor.formatarBytes(looca.getMemoria().getEmUso()).replaceAll("[a-zA-Z]", "").replace(",", ".");
                         Double percentualRamUso = Double.valueOf(ramConvertida) / Double.valueOf(ramConvertidaTotal) * 100;
@@ -311,6 +341,12 @@ public class Monitoramento extends javax.swing.JFrame {
                                 + "VALUES"
                                 + "(?, ?, getdate(), 'Ativo')",
                                 listaComponentes.get(1).getIdComputadorComponente(), cpuUso);
+                        
+                        monitorarLocal.update(
+                                "INSERT INTO registroComponente (fkComputadorComponente, ValorConsumido, DataHora, statusComputador)"
+                                + "VALUES"
+                                + "(?, ?, getdate(), 'Ativo')",
+                                listaComponentesLocal.get(1).getIdComputadorComponente(), cpuUso);
 
                         for (int i = 0; i < discos.size(); i++) {
                             String discoConvertido = Conversor.formatarBytes(discos.get(i).getBytesDeEscritas()).replaceAll("[a-zA-Z]", "").replace(",", ".");
@@ -319,6 +355,13 @@ public class Monitoramento extends javax.swing.JFrame {
                                     + "VALUES"
                                     + "(?, ?, getdate(), 'Ativo')",
                                     listaComponentes.get(2 + i).getIdComputadorComponente(), discoConvertido);
+                            
+                            monitorarLocal.update(
+                                    "INSERT INTO registroComponente (fkComputadorComponente, ValorConsumido, DataHora, statusComputador)"
+                                    + "VALUES"
+                                    + "(?, ?, getdate(), 'Ativo')",
+                                    listaComponentesLocal.get(2 + i).getIdComputadorComponente(), discoConvertido);
+                            
                             String discoConvertidoTotal = Conversor.formatarBytes(discos.get(i).getTamanho()).replaceAll("[a-zA-Z]", "").replace(",", ".");
                             Double percentualDiscoUso = Double.valueOf(discoConvertido) / Double.valueOf(discoConvertidoTotal) * 100;
 

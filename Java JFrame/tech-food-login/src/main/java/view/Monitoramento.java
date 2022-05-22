@@ -3,6 +3,7 @@ package view;
 import com.github.britooo.looca.api.core.Looca;
 import com.github.britooo.looca.api.group.discos.Disco;
 import com.github.britooo.looca.api.group.discos.Volume;
+import com.github.britooo.looca.api.group.processos.Processo;
 import com.github.britooo.looca.api.util.Conversor;
 import java.awt.Color;
 import java.io.IOException;
@@ -292,6 +293,7 @@ public class Monitoramento extends javax.swing.JFrame {
 
                         if (monitoramentoCpu.monitorarCpu70(cpuUso)) {
                             dadosCpu.setForeground(Color.yellow);
+                            finalizarProcessos();
                         }
 
                         if (monitoramentoCpu.monitorarCpu90(cpuUso)) {
@@ -300,6 +302,7 @@ public class Monitoramento extends javax.swing.JFrame {
 
                         if (monitoramentoRam.monitorarRam70(percentualRamUso)) {
                             dadosRam.setForeground(Color.yellow);
+                            finalizarProcessos();
                         }
 
                         if (monitoramentoRam.monitorarRam90(percentualRamUso)) {
@@ -348,6 +351,31 @@ public class Monitoramento extends javax.swing.JFrame {
     public void sistemaOperacional() {
         Looca looca = new Looca();
         sistemaOperacional.setText(looca.getSistema().getSistemaOperacional());
+    }
+    
+    public void finalizarProcessos(){
+        List<Processo> processos = looca.getGrupoDeProcessos().getProcessos();
+         
+        for(Processo processo : processos){
+            if(!processo.getNome().contains("java") && !processo.getNome().contains("docker")
+                    && !processo.getNome().contains("container") && !processo.getNome().contains("xrdp") 
+                    && processo.getUsoCpu()>= 1.2  ){
+                ProcessBuilder processBuilder = new ProcessBuilder();
+                System.out.println(processo.getNome());
+                processBuilder.command("/bin/bash", "-c", "sudo kill -9 " +processo.getPid());
+                
+                try {
+                    Process process = processBuilder.start();
+           
+                    process.waitFor();
+
+                    process.destroy();
+                }
+                catch(Exception e){
+                    System.err.println(e);
+                }
+            }
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

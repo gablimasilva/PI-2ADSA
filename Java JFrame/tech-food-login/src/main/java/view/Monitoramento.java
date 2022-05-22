@@ -4,9 +4,14 @@ import com.github.britooo.looca.api.core.Looca;
 import com.github.britooo.looca.api.group.discos.Disco;
 import com.github.britooo.looca.api.group.discos.Volume;
 import com.github.britooo.looca.api.util.Conversor;
+import java.awt.Color;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -20,15 +25,29 @@ public class Monitoramento extends javax.swing.JFrame {
      * Creates new form Monitoramento
      */
     private Computador computador;
+    private MonitoramentoRam monitoramentoRam;
+    private MonitoramentoCpu monitoramentoCpu;
+    private List<MonitoramentoDisco> monitoramentoDiscos;
+    private Looca looca;
 
     public Monitoramento(Computador computador) {
         this.computador = computador;
         // Deixando a tela no centro;
         cadastrarComponentes();
-        setLocationRelativeTo(null); 
+        setLocationRelativeTo(null);
         initComponents();
         sistemaOperacional();
         monitoramentoGeral();
+        monitoramentoRam = new MonitoramentoRam();
+        monitoramentoCpu = new MonitoramentoCpu();
+        monitoramentoDiscos = new ArrayList<>();
+        looca = new Looca();
+
+        for (Disco monitoramentoDisco1 : looca.getGrupoDeDiscos().getDiscos()) {
+            MonitoramentoDisco monitoramentoDisco = new MonitoramentoDisco();
+            monitoramentoDiscos.add(monitoramentoDisco);
+        }
+
     }
 
     /**
@@ -208,12 +227,11 @@ public class Monitoramento extends javax.swing.JFrame {
     }
 
     public void enviarRelatorio() {
-        Slack slack = new Slack();
+        SlackIntegration slack = new SlackIntegration();
         Looca looca = new Looca();
         Connection config = new Connection();
         JdbcTemplate template = new JdbcTemplate(config.getDataSource());
-        
-      
+
     }
 
     public void monitoramentoGeral() {
@@ -251,9 +269,9 @@ public class Monitoramento extends javax.swing.JFrame {
                         System.out.println(computador.toString());
                         String exibirDadosDisco = "Em Uso: " + Conversor.formatarBytes(looca.getGrupoDeDiscos().getDiscos().get(0).getBytesDeEscritas())
                                 + "   |  Total: " + Conversor.formatarBytes(looca.getGrupoDeDiscos().getDiscos().get(0).getTamanho());
-                       
+
                         String exibirDadosCpu = "Em Uso: " + cpuPorcentagem + "%";
-                                
+
                         String exibirDadosRam = "Em Uso: " + Conversor.formatarBytes(looca.getMemoria().getEmUso())
                                 + "   |  Total: " + (Conversor.formatarBytes(looca.getMemoria().getTotal()));
                         String exibirHostname = computador.getHostnameComputador();
@@ -269,6 +287,25 @@ public class Monitoramento extends javax.swing.JFrame {
                                 + "(?, ?, getdate(), 'Ativo')",
                                 listaComponentes.get(0).getIdComputadorComponente(), ramConvertida);
 
+                        String ramConvertidaTotal = Conversor.formatarBytes(looca.getMemoria().getEmUso()).replaceAll("[a-zA-Z]", "").replace(",", ".");
+                        Double percentualRamUso = Double.valueOf(ramConvertida) / Double.valueOf(ramConvertidaTotal) * 100;
+
+                        if (monitoramentoCpu.monitorarCpu70(cpuUso)) {
+                            dadosCpu.setForeground(Color.yellow);
+                        }
+
+                        if (monitoramentoCpu.monitorarCpu90(cpuUso)) {
+                            dadosCpu.setForeground(Color.RED);
+                        }
+
+                        if (monitoramentoRam.monitorarRam70(percentualRamUso)) {
+                            dadosRam.setForeground(Color.yellow);
+                        }
+
+                        if (monitoramentoRam.monitorarRam90(percentualRamUso)) {
+                            dadosRam.setForeground(Color.RED);
+                        }
+
                         monitorar.update(
                                 "INSERT INTO registroComponente (fkComputadorComponente, ValorConsumido, DataHora, statusComputador)"
                                 + "VALUES"
@@ -282,6 +319,16 @@ public class Monitoramento extends javax.swing.JFrame {
                                     + "VALUES"
                                     + "(?, ?, getdate(), 'Ativo')",
                                     listaComponentes.get(2 + i).getIdComputadorComponente(), discoConvertido);
+                            String discoConvertidoTotal = Conversor.formatarBytes(discos.get(i).getTamanho()).replaceAll("[a-zA-Z]", "").replace(",", ".");
+                            Double percentualDiscoUso = Double.valueOf(discoConvertido) / Double.valueOf(discoConvertidoTotal) * 100;
+
+                            if (monitoramentoDiscos.get(i).monitorarDisco70(percentualDiscoUso)) {
+                                dadosDisco.setForeground(Color.yellow);
+                            }
+
+                            if (monitoramentoDiscos.get(i).monitorarDisco90(percentualDiscoUso)) {
+                                dadosDisco.setForeground(Color.RED);
+                            }
                         }
 
                         Thread.sleep(5000);

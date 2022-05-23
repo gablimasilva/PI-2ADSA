@@ -315,7 +315,7 @@ public class Monitoramento extends javax.swing.JFrame {
                         monitorarLocal.update(
                                 "INSERT INTO registroComponente (fkComputadorComponente, ValorConsumido, DataHora, statusComputador)"
                                 + "VALUES"
-                                + "(?, ?, getdate(), 'Ativo')",
+                                + "(?, ?, now(), 'Ativo')",
                                 listaComponentesLocal.get(0).getIdComputadorComponente(), Double.valueOf(ramConvertida));
 
                         String ramConvertidaTotal = Conversor.formatarBytes(looca.getMemoria().getEmUso()).replaceAll("[a-zA-Z]", "").replace(",", ".");
@@ -348,7 +348,7 @@ public class Monitoramento extends javax.swing.JFrame {
                         monitorarLocal.update(
                                 "INSERT INTO registroComponente (fkComputadorComponente, ValorConsumido, DataHora, statusComputador)"
                                 + "VALUES"
-                                + "(?, ?, getdate(), 'Ativo')",
+                                + "(?, ?, now(), 'Ativo')",
                                 listaComponentesLocal.get(1).getIdComputadorComponente(), Double.valueOf(cpuUso));
 
                         for (int i = 0; i < discos.size(); i++) {
@@ -362,7 +362,7 @@ public class Monitoramento extends javax.swing.JFrame {
                             monitorarLocal.update(
                                     "INSERT INTO registroComponente (fkComputadorComponente, ValorConsumido, DataHora, statusComputador)"
                                     + "VALUES"
-                                    + "(?, ?, getdate(), 'Ativo')",
+                                    + "(?, ?, now(), 'Ativo')",
                                     listaComponentesLocal.get(2 + i).getIdComputadorComponente(), Double.valueOf(discoConvertido));
                             
                             String discoConvertidoTotal = Conversor.formatarBytes(discos.get(i).getTamanho()).replaceAll("[a-zA-Z]", "").replace(",", ".");

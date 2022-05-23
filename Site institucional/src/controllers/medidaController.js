@@ -78,13 +78,13 @@ function buscarUltimaHora(req, res) {
     });
 }
 
-function buscarUltimo(req, res) {
+function buscarUltimoComponente(req, res) {
     var idComputador = req.params.idComputador;
     var componente = req.params.Componente;
 
     console.log(`Recuperando medidas em tempo real`);
 
-    medidaModel.buscarUltimo(idComputador,componente).then(function (resultado) {
+    medidaModel.buscarUltimoComponente(idComputador,componente).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -334,6 +334,6 @@ module.exports = {
     buscarIncidentesLoja,
     buscarStatusComputador,
     buscarUltimaHora,
-    buscarUltimo,
+    buscarUltimoComponente,
     buscarIP
 }

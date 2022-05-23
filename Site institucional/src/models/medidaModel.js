@@ -119,7 +119,7 @@ function buscarUltimaHora(idComputador) {
     return database.executar(instrucaoSql);
 }
 
-function buscarUltimo(idComputador, componente) {
+function buscarUltimoComponente(idComputador, componente) {
     instrucaoSql = `select top 1 ValorConsumido as 'valor' from [dbo].[registroComponente] join [dbo].[computadorComponente] on fkComputadorComponente = idComputadorComponente where fkComponente = ${componente} and fkComputador = ${idComputador} order by idRegistroComponente desc;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -149,6 +149,6 @@ module.exports = {
     buscarIncidentesLoja,
     buscarStatusComputador,
     buscarUltimaHora,
-    buscarUltimo,
+    buscarUltimoComponente,
     buscarIP
 }

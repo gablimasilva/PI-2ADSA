@@ -212,12 +212,12 @@ public class Monitoramento extends javax.swing.JFrame {
             templateLocal.update(
                     "INSERT INTO computadorComponente (fkComputador, fkComponente, TotalComponente, UnidadeDeMedida)"
                     + "VALUES(?, 1, ?, 'GB')",
-                    computador.getidComputador(), ramConvertida);
+                    computador.getidComputador(), Double.valueOf(ramConvertida));
 
             templateLocal.update(
                     "INSERT INTO computadorComponente (fkComputador, fkComponente, TotalComponente, UnidadeDeMedida)"
                     + "VALUES(?, 2, ?, 'GB')",
-                    computador.getidComputador(), cpuConvertido);
+                    computador.getidComputador(), Double.valueOf(cpuConvertido));
             
             template.update(
                     "INSERT INTO computadorComponente (fkComputador, fkComponente, TotalComponente, UnidadeDeMedida)"
@@ -235,7 +235,7 @@ public class Monitoramento extends javax.swing.JFrame {
                 templateLocal.update(
                         "INSERT INTO computadorComponente (fkComputador, fkComponente, TotalComponente, UnidadeDeMedida)"
                         + "VALUES(?, 3, ?, 'GB')",
-                        computador.getidComputador(), discoConvertido);
+                        computador.getidComputador(), Double.valueOf(discoConvertido));
                 
                 template.update(
                         "INSERT INTO computadorComponente (fkComputador, fkComponente, TotalComponente, UnidadeDeMedida)"
@@ -316,7 +316,7 @@ public class Monitoramento extends javax.swing.JFrame {
                                 "INSERT INTO registroComponente (fkComputadorComponente, ValorConsumido, DataHora, statusComputador)"
                                 + "VALUES"
                                 + "(?, ?, getdate(), 'Ativo')",
-                                listaComponentesLocal.get(0).getIdComputadorComponente(), ramConvertida);
+                                listaComponentesLocal.get(0).getIdComputadorComponente(), Double.valueOf(ramConvertida));
 
                         String ramConvertidaTotal = Conversor.formatarBytes(looca.getMemoria().getEmUso()).replaceAll("[a-zA-Z]", "").replace(",", ".");
                         Double percentualRamUso = Double.valueOf(ramConvertida) / Double.valueOf(ramConvertidaTotal) * 100;
@@ -349,7 +349,7 @@ public class Monitoramento extends javax.swing.JFrame {
                                 "INSERT INTO registroComponente (fkComputadorComponente, ValorConsumido, DataHora, statusComputador)"
                                 + "VALUES"
                                 + "(?, ?, getdate(), 'Ativo')",
-                                listaComponentesLocal.get(1).getIdComputadorComponente(), cpuUso);
+                                listaComponentesLocal.get(1).getIdComputadorComponente(), Double.valueOf(cpuUso));
 
                         for (int i = 0; i < discos.size(); i++) {
                             String discoConvertido = Conversor.formatarBytes(discos.get(i).getBytesDeEscritas()).replaceAll("[a-zA-Z]", "").replace(",", ".");
@@ -363,7 +363,7 @@ public class Monitoramento extends javax.swing.JFrame {
                                     "INSERT INTO registroComponente (fkComputadorComponente, ValorConsumido, DataHora, statusComputador)"
                                     + "VALUES"
                                     + "(?, ?, getdate(), 'Ativo')",
-                                    listaComponentesLocal.get(2 + i).getIdComputadorComponente(), discoConvertido);
+                                    listaComponentesLocal.get(2 + i).getIdComputadorComponente(), Double.valueOf(discoConvertido));
                             
                             String discoConvertidoTotal = Conversor.formatarBytes(discos.get(i).getTamanho()).replaceAll("[a-zA-Z]", "").replace(",", ".");
                             Double percentualDiscoUso = Double.valueOf(discoConvertido) / Double.valueOf(discoConvertidoTotal) * 100;

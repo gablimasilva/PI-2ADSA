@@ -1,0 +1,9 @@
+com\projeto\techfood\server\app\App.class
+com\projeto\techfood\server\controller\RegistroComponenteController.class
+com\projeto\techfood\server\model\RegistroComponenteModel.class
+com\projeto\techfood\server\molde\ComputadorComponente.class
+com\projeto\techfood\server\model\Model.class
+com\projeto\techfood\server\controller\ComputadorComponenteController.class
+com\projeto\techfood\server\model\ComputadorComponenteModel.class
+com\projeto\techfood\server\app\App$1.class
+com\projeto\techfood\server\database\Connection.class

@@ -197,6 +197,8 @@
     let maquinas_botoes = '';
 
     async function mostrarMaquinas() {
+        offline = 0;
+        online = 0;
         await listarMaquinasNaDash();
     }
 
@@ -233,10 +235,16 @@
             let ultimaHora = await fetch(`/medidas/buscarUltimaHora/${computadorLoja.idComputador}`);
             ultimaHora = await ultimaHora.json();
             var style = '';
-            if (ultimaHora[0].atual > ultimaHora[0].hora) {
-                
 
-                /*var cpu = await fetch(`/medidas/buscarUltimoComponente/${computadorLoja.idComputador}/1`);
+            console.log(ultimaHora[0].atual)
+            console.log(ultimaHora[0].hora)
+            if (ultimaHora[0].atual > ultimaHora[0].hora) {
+                maquinas_botoes +=
+                    `<button class="btn-chart" ${style} onclick="irParaTempoReal(${computadorLoja.idComputador})">${computadorLoja.HostnameComputador}</button>`;
+                offline++;
+            } else {
+
+                var cpu = await fetch(`/medidas/buscarUltimoComponente/${computadorLoja.idComputador}/1`);
                 var ram = await fetch(`/medidas/buscarUltimoComponente/${computadorLoja.idComputador}/2`);
                 var disco = await fetch(`/medidas/buscarUltimoComponente/${computadorLoja.idComputador}/3`);
                 cpu = await cpu.json();
@@ -246,18 +254,32 @@
                 ram = ram[0].valor;
                 disco = disco[0].valor;
 
-                console.log(cpu)
-                console.log(ram)
-                console.log(disco)*/
+                var estadoMaquina = 0;
 
+                if (cpu >= 90) {
+                    estadoMaquina++;
+                }
+                if (ram >= 90) {
+                    estadoMaquina++;
+                }
+                if (disco >= 90) {
+                    estadoMaquina++;
+                }
 
-                maquinas_botoes +=
-                    `<button class="btn-chart" ${style} onclick="irParaTempoReal(${computadorLoja.idComputador})">${computadorLoja.HostnameComputador}</button>`;
-                offline++;
-            } else {
-                style = 'style="background-color: rgb(127, 184, 0)"';
-                maquinas_botoes +=
-                    `<button class="btn-chart" ${style} onclick="irParaTempoReal(${computadorLoja.idComputador})">${computadorLoja.HostnameComputador}</button>`;
+                if (estadoMaquina == 0) {
+                    style = 'style="background-color: rgb(127, 184, 0)"';
+                    maquinas_botoes +=
+                        `<button class="btn-chart" ${style} onclick="irParaTempoReal(${computadorLoja.idComputador})">${computadorLoja.HostnameComputador}</button>`;
+                } else if (estadoMaquina == 1) {
+                    style = 'style="background-color: rgb(255, 180, 0)"';
+                    maquinas_botoes +=
+                        `<button class="btn-chart" ${style} onclick="irParaTempoReal(${computadorLoja.idComputador})">${computadorLoja.HostnameComputador}</button>`;
+                } else {
+                    style = 'style="background-color: rgb(246, 81, 29)"';
+                    maquinas_botoes +=
+                        `<button class="btn-chart" ${style} onclick="irParaTempoReal(${computadorLoja.idComputador})">${computadorLoja.HostnameComputador}</button>`;
+                }
+
                 online++;
             }
         } catch {

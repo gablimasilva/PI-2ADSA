@@ -71,5 +71,16 @@ router.get("/buscarIP/:maquina", function (req, res) {
     medidaController.buscarIP(req, res);
 })
 
+router.get("/buscarHoraDISCO/:maquina", function (req, res) {
+    medidaController.buscarHoraDISCO(req, res);
+})
+
+router.get("/buscarHoraRAM/:maquina", function (req, res) {
+    medidaController.buscarHoraRAM(req, res);
+})
+
+router.get("/buscarHoraCPU/:maquina", function (req, res) {
+    medidaController.buscarHoraCPU(req, res);
+})
 
 module.exports = router;

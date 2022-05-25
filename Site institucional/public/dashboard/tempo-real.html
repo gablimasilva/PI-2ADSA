@@ -415,6 +415,23 @@
         return await cpu[count].valorConsumido;
     }
 
+    async function buscarHoraCPU() {
+        if (maquinaSelecionada == "value") {
+            var cpu = await fetch(`/medidas/buscarHoraCPU/${computadorAtual}`);
+        } else {
+            var cpu = await fetch(`/medidas/buscarHoraCPU/${maquinaSelecionada}`);
+        }
+        
+        cpu = await cpu.json();
+        return await cpu;
+    }
+
+    async function inserirHoraCPU(count) {
+        var cpu = await buscarHoraCPU()
+        var hora = `${cpu[count].minuto}` +":" + `${cpu[count].segundo}`
+        return await hora;
+    }
+
     async function gerarGraficoCPU() {
 
         var ctx = document.getElementById('canvas_grafico_CPU').getContext('2d');
@@ -422,7 +439,7 @@
         var ax_chartLine = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['data-hora', 'data-hora', 'data-hora', 'data-hora', 'data-hora'],
+                labels: [`${await inserirHoraCPU(4)}`, `${await inserirHoraCPU(3)}`, `${await inserirHoraCPU(2)}`, `${await inserirHoraCPU(1)}`, `${await inserirHoraCPU(0)}`],
                 datasets: [{
                     data: [`${await inserirDadosCPU(4)}`, `${await inserirDadosCPU(3)}`, `${await inserirDadosCPU(2)}`
                         , `${await inserirDadosCPU(1)}`, `${await inserirDadosCPU(0)}`],
@@ -455,7 +472,6 @@
                     },
                     title: {
                         display: true,
-                        text: 'Chart.js Line Chart'
                     }
                 }
             },
@@ -480,6 +496,23 @@
         return await ram[count].valorConsumido;
     }
 
+    async function buscarHoraRAM() {
+        if (maquinaSelecionada == "value") {
+            var ram = await fetch(`/medidas/buscarHoraRAM/${computadorAtual}`);
+        } else {
+            var ram = await fetch(`/medidas/buscarHoraRAM/${maquinaSelecionada}`);
+        }
+        
+        ram = await ram.json();
+        return await ram;
+    }
+
+    async function inserirHoraRAM(count) {
+        var ram = await buscarHoraRAM()
+        var hora = `${ram[count].minuto}` +":" + `${ram[count].segundo}`
+        return await hora;
+    }
+
     async function gerarGraficoRAM() {
 
         var ctx = document.getElementById('canvas_grafico_RAM').getContext('2d');
@@ -487,7 +520,7 @@
         var ax_chartLine = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['data-hora', 'data-hora', 'data-hora', 'data-hora', 'data-hora'],
+                labels: [`${await inserirHoraRAM(4)}`, `${await inserirHoraRAM(3)}`, `${await inserirHoraRAM(2)}`, `${await inserirHoraRAM(1)}`, `${await inserirHoraRAM(0)}`],
                 datasets: [{
                     data: [`${await inserirDadosRAM(4)}`, `${await inserirDadosRAM(3)}`, `${await inserirDadosRAM(2)}`
                         , `${await inserirDadosRAM(1)}`, `${await inserirDadosRAM(0)}`],
@@ -520,7 +553,7 @@
                     },
                     title: {
                         display: true,
-                        text: 'Chart.js Line Chart'
+                        
                     }
                 }
             },
@@ -546,6 +579,23 @@
         return await disco[count].valorConsumido;
     }
 
+    async function buscarHoraDisco() {
+        if (maquinaSelecionada == "value") {
+            var disco = await fetch(`/medidas/buscarHoraDISCO/${computadorAtual}`);
+        } else {
+            var disco = await fetch(`/medidas/buscarHoraDISCO/${maquinaSelecionada}`);
+        }
+
+        disco = await disco.json();
+        return await disco;
+    }
+
+    async function inserirHoraDisco(count) {
+        var disco = await buscarHoraDisco()
+        var hora = `${disco[count].minuto}` +":" + `${disco[count].segundo}`
+        return await hora;
+    }
+
 
     async function gerarGraficoDiscos() {
 
@@ -554,7 +604,8 @@
         var ax_chartLine = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['data-hora', 'data-hora', 'data-hora', 'data-hora', 'data-hora'],
+                labels: [`${await inserirHoraDisco(4)}`, `${await inserirHoraDisco(3)}`, 
+                `${await inserirHoraDisco(2)}`, `${await inserirHoraDisco(1)}`, `${await inserirHoraDisco(0)}`],
                 datasets: [{
                     data: [`${await inserirDadosDISCO(4)}`, `${await inserirDadosDISCO(3)}`, `${await inserirDadosDISCO(2)}`
                         , `${await inserirDadosDISCO(1)}`, `${await inserirDadosDISCO(0)}`],
@@ -587,7 +638,6 @@
                     },
                     title: {
                         display: true,
-                        text: 'Chart.js Line Chart'
                     }
                 }
             },
@@ -634,6 +684,12 @@
                 chart3.data.datasets[0].data.push(parseFloat(res))
                 chart3.update();
             })
+            /*inserirHoraDISCO(0).then(res => {
+                const chart3 = Chart.getChart("canvas_grafico_Discos")
+                chart3.data.labels[0].shift();
+                chart3.data.labels[0].push(parseFloat(res))
+                chart3.update();
+            })*/
             inserirIntervaloDeIncidentesPorCategoria(1).then(res => {
                 const chart4 = Chart.getChart("canvas_grafico_categoria")
                 chart4.data.datasets[0].data[0] = res;

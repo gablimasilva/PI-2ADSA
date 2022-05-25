@@ -133,6 +133,45 @@ function buscarIP(maquina) {
     return database.executar(instrucaoSql);
 }
 
+function buscarHoraDISCO(maquina) {
+    instrucaoSql = `select top 5 DATEPART(minute, DataHora) as 'minuto',
+	DATEPART(second, DataHora) as 'segundo' from [dbo].[registroComponente]
+		join [dbo].[computadorComponente]
+			on fkComputadorComponente = idComputadorComponente
+				where fkComputador = ${maquina}
+					and fkComponente = 3
+						order by idRegistroComponente desc;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarHoraRAM(maquina) {
+    instrucaoSql = `select top 5 DATEPART(minute, DataHora) as 'minuto',
+	DATEPART(second, DataHora) as 'segundo' from [dbo].[registroComponente]
+		join [dbo].[computadorComponente]
+			on fkComputadorComponente = idComputadorComponente
+				where fkComputador = ${maquina}
+					and fkComponente = 2
+						order by idRegistroComponente desc;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarHoraCPU(maquina) {
+    instrucaoSql = `select top 5 DATEPART(minute, DataHora) as 'minuto',
+	DATEPART(second, DataHora) as 'segundo' from [dbo].[registroComponente]
+		join [dbo].[computadorComponente]
+			on fkComputadorComponente = idComputadorComponente
+				where fkComputador = ${maquina}
+					and fkComponente = 1
+						order by idRegistroComponente desc;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
@@ -150,5 +189,8 @@ module.exports = {
     buscarStatusComputador,
     buscarUltimaHora,
     buscarUltimoComponente,
-    buscarIP
+    buscarIP,
+    buscarHoraDISCO,
+    buscarHoraRAM,
+    buscarHoraCPU
 }

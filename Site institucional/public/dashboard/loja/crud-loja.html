@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Food | Cadastro</title>
+
+    <link rel="stylesheet" href="../nav-bar.css">
+    <link rel="stylesheet" href="../dashboards.css">
+    <link rel="stylesheet" href="./crud_loja.css">
+    <script src="../assets/js/funcoes.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+ <link rel="icon" href="../../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview (1).png">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- scripts do Chart.js -->
+    <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
+
+</head>
+
+<body onload="validarSessao()">
+    <div class="janela">
+        <div class="header-left">
+            <img src="../../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview.png" alt="logo" width="40%">
+
+            <div class="hello">
+                <h3>Olá, <span id="b_usuario"></span>!</h3>
+            </div>
+            <br>
+
+            <div class="btn-nav">
+                <a href="../dashboard.html">
+                    <i class="material-icons">home</i>
+                    <h3>Home</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav-yellow">
+                <a href="./loja/crud-loja.html">
+                    <i class="material-icons">add_business</i>
+                    <h3>Loja</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav">
+                <a href="../usuario/crud-usuario.html">
+                    <i class="material-icons">person_add_alt</i>
+                    <h3>Usuários</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav">
+                <a href="../cadastro-computador.html">
+                    <i class="material-icons">computer</i>
+                    <h3>Computadores</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav">
+                <a href="../tempo-real.html">
+                    <i class="material-icons">show_chart</i>
+                    <h3>Tempo Real</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav">
+                <a href="../relatorios.html">
+                    <i class="material-icons">summarize</i>
+                    <h3>Relatórios</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav">
+                <a href="https://app.pipefy.com/public/form/mNj-srWn" target="_blank">
+                    <i class="material-icons">headset_mic</i>
+                    <h3>Suporte</h3>
+                </a>
+            </div>
+            <br><br>
+            <div class="btn-logout" onclick="limparSessao()">
+                <i class="material-icons">logout</i>
+                <h3>Sair</h3>
+            </div>
+
+        </div>
+
+        <div class="dash">
+            <div class="title">
+                <h2>Dashboard / Loja</h2>
+            </div>
+            <div class="fundo_usu">
+                <h3>Lista de lojas</h3>
+                <div class="formulario">
+                    <div class="novo_loja">
+                        <a style="text-decoration: none;" href="./cadastro-loja.html">
+                            <button class="btnCriar">
+                                <i class="material-icons">add</i>
+                                Adicionar
+                            </button>
+                        </a>
+                    </div>
+                    <div class="title_loja">
+                        <h4>Razão social</h4>
+                        <h4>CNPJ</h4>
+                    </div>
+                    <div class="scroll">
+                        <div class="dados_btn_loja">
+                            <div class="dados_loja">
+                                <span id="razao_social">Razão social</span>
+                                <span id="cnpj">CNPJ</span>
+                            </div>
+                            <div class="btn_loja">
+                                <a style="text-decoration: none;" href="./visualizar-loja.html">
+                                    <button class="btnVisualizar">
+                                        <i class="material-icons">visibility</i>
+                                        Visualizar
+                                    </button>
+                                </a>
+                                <a style="text-decoration: none;" href="./editar-loja.html">
+                                    <button class="btnEditar">
+                                    <i class="material-icons">edit</i>
+                                    Editar
+                                </button>
+                                </a>
+                                
+                                <button class="btnExcluir">
+                                    <i class="material-icons">delete</i>
+                                    Excluir
+                                </button>
+                            </div>
+                        </div>
+
+                            <!--Fazer a função de listar as lojas incrementar,
+                                se tiver muitas lojas, ele ativa o scroll-->
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+
+
+</script>

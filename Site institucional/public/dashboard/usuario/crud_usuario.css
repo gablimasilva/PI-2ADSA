@@ -1,0 +1,183 @@
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+select{
+    height: 35px;
+    border: 2px solid var(--marrom);
+    border-radius: 10px;
+    font-size: 14px;
+    width: 305px;
+}
+
+.loading-div {
+    width: 50px;
+    /* border: 3px solid pink; */
+    margin: auto;
+    display: none;
+}
+
+.loading-div img {
+    height: 50px;
+    width: 50px;
+}
+
+.btnCriar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    text-align: center;
+    border: 0;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 8px;
+    color: black;
+    background-color: rgb(0, 166, 237);
+    width: 120px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.btnVisualizar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    text-align: center;
+    border: 0;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 8px;
+    color: black;
+    background-color: rgb(127, 184, 0);
+    width: 120px;
+    cursor: pointer;
+}
+
+.btnEditar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    text-align: center;
+    border: 0;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 8px;
+    color: black;
+    background-color: rgb(255, 180, 0);
+    width: 120px;
+    cursor: pointer;
+}
+
+.btnExcluir {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    text-align: center;
+    border: 0;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 8px;
+    color: black;
+    background-color: rgb(246, 81, 29);
+    width: 120px;
+    cursor: pointer;
+}
+
+.novo_usuario {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    width: 95%;
+}
+
+.title_usuario {
+    display: flex;
+    flex-direction: row;
+    font-size: 18px;
+    color: white;
+    width: 90%;
+    margin: auto;
+    margin-bottom: 10px;
+    border-bottom: 2px solid gray;
+}
+
+.dados_btn_usuario {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    width: 90%;
+    height: 50px;
+    margin: auto;
+    margin-bottom: 10px;
+    border-bottom: 2px solid gray;
+    padding-bottom: 10px;
+}
+
+.scroll {
+    display: block;
+    height: 300px;
+    width: 100%;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+}
+
+.dados_usuario {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 60%;
+    margin: auto;
+}
+
+.dados_usuario span {
+    width: 50%;
+}
+
+.btn_usuario {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 40%;
+    margin: auto;
+}
+
+.formulario {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.fundo_usu h3 {
+    font-size: 20px;
+    color: white;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    width: 90%;
+    margin: auto;
+}
+
+.formulario h4 {
+    margin: 0;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-right: 230px;
+    padding: 0;
+}
+
+.fundo_usu {
+    width: 95%;
+    margin-left: 30px;
+    margin-right: 30px;
+    height: 550px;
+    background-color: rgb(22, 22, 24);
+
+}
+

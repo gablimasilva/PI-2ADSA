@@ -36,6 +36,7 @@ select{
     align-self: center;
     margin-top: 20px;
     margin-bottom: 20px;
+    margin-left: 20px;
     cursor: pointer;
 }
 
@@ -63,7 +64,7 @@ form .align_form {
 }
 
 .align_btn {
-    width: 70%;
+    width: 85%;
     display: flex;
     justify-content: right;
 }
@@ -72,12 +73,12 @@ form .align_form {
     color: white;
 }
 
-.cad_comp {
+.cad_comp1 {
     display: flex;
     flex-direction: column;
 }
 
-.fundo_cad h3 {
+.fundo_usu h3 {
     font-size: 20px;
     color: white;
     padding-top: 30px;
@@ -93,9 +94,12 @@ form .align_form {
     padding: 0;
 }
 
-.fundo_cad {
+.fundo_usu {
     width: 95%;
     margin-left: 30px;
+    margin-right: 30px;
+    height: 550px;
     background-color: rgb(22, 22, 24);
 
 }
+

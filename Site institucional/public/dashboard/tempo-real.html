@@ -363,7 +363,7 @@
             data: {
                 labels: ['CPU', 'Memória', 'Disco'],
                 datasets: [{
-                    data: [await inserirIntervaloDeIncidentesPorCategoria(1), await inserirIntervaloDeIncidentesPorCategoria(2), await inserirIntervaloDeIncidentesPorCategoria(3)],
+                    data: [await inserirIntervaloDeIncidentesPorCategoria(2), await inserirIntervaloDeIncidentesPorCategoria(1), await inserirIntervaloDeIncidentesPorCategoria(3)],
                     backgroundColor: [
                         'rgb(13, 44, 84)',
                         'rgb(216, 17, 89)',
@@ -690,12 +690,12 @@
                 chart3.data.labels[0].push(parseFloat(res))
                 chart3.update();
             })*/
-            inserirIntervaloDeIncidentesPorCategoria(1).then(res => {
+            inserirIntervaloDeIncidentesPorCategoria(2).then(res => {
                 const chart4 = Chart.getChart("canvas_grafico_categoria")
                 chart4.data.datasets[0].data[0] = res;
                 chart4.update();
             })
-            inserirIntervaloDeIncidentesPorCategoria(2).then(res => {
+            inserirIntervaloDeIncidentesPorCategoria(1).then(res => {
                 const chart4 = Chart.getChart("canvas_grafico_categoria")
                 chart4.data.datasets[0].data[1] = res;
                 chart4.update();

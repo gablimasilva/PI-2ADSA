@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../nav-bar.css">
     <link rel="stylesheet" href="../dashboards.css">
     <link rel="stylesheet" href="crud_usuario.css">
-    <script src="../assets/js/funcoes.js"></script>
+    <script src="../../assets/js/funcoes.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="icon" href="../../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview (1).png">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -23,7 +23,7 @@
 
 </head>
 
-<body onload="validarSessao()">
+<body onload="validarSessao(), listarUsuarios()">
     <div class="janela">
         <div class="header-left">
             <img src="../../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview.png" alt="logo" width="40%">
@@ -108,35 +108,7 @@
                         <h4>Nome</h4>
                         <h4>Cargo</h4>
                     </div>
-                    <div class="scroll">
-                        <div class="dados_btn_usuario">
-                            <div class="dados_usuario">
-                                <span>Nome</span>
-                                <span>Cargo</span>
-                            </div>
-                            <div class="btn_usuario">
-                                <a style="text-decoration: none;" href="./visualizar-usuario.html">
-                                    <button class="btnVisualizar">
-                                        <i class="material-icons">visibility</i>
-                                        Visualizar
-                                    </button>
-                                </a>
-                                <a style="text-decoration: none;" href="./editar-usuario.html">
-                                    <button class="btnEditar">
-                                    <i class="material-icons">edit</i>
-                                    Editar
-                                </button>
-                                </a>
-                                
-                                <button class="btnExcluir">
-                                    <i class="material-icons">delete</i>
-                                    Excluir
-                                </button>
-                            </div>
-                        </div>
-
-                            <!--Fazer a função de listar os usuários incrementar,
-                                se tiver muitos usuários, ele ativa o scroll-->
+                    <div class="scroll" id="idScroll">
                             
                         </div>
                     </div>
@@ -150,6 +122,50 @@
 
 <script>
 
+    async function listarUsuarios(){
+        var usuarios = await fetch(`/usuarios/listarUsuarios/${sessionStorage.ID_EMPRESA}`);
+        usuarios = await usuarios.json();
+        await console.log(usuarios);
+        var cargo = '';
+        usuarios.forEach(async (usuario) => {
+            if(usuario.fkCargo == 1){
+                cargo = 'Gerente';
+            } else if(usuario.fkCargo == 2){
+                cargo = 'Analista';
+            } else if(usuario.fkCargo == 3){
+                cargo = 'Colaborador';
+            }
+            document.getElementById("idScroll").innerHTML += 
+            `<div class="dados_btn_usuario">
+                <div class="dados_usuario">
+                    <span>${usuario.nomeUsuario}</span>
+                    <span>${cargo}</span>
+                </div>
+                <div class="btn_usuario">
+                    <a style="text-decoration: none;" href="./visualizar-usuario.html">
+                        <button class="btnVisualizar">
+                            <i class="material-icons">visibility</i>
+                            Visualizar
+                        </button>
+                    </a>
+                    <a style="text-decoration: none;" href="./editar-usuario.html">
+                        <button class="btnEditar">
+                        <i class="material-icons">edit</i>
+                        Editar
+                    </button>
+                    </a>
+                    
+                    <button class="btnExcluir">
+                        <i class="material-icons">delete</i>
+                        Excluir
+                    </button>
+                </div>
+            </div>`
+        });
+
+
+    }
     
 
 </script>
+

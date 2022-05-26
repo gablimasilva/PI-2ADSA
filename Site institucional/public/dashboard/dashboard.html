@@ -154,27 +154,12 @@
             </div>
             <div class="table">
                 <h4>Alertas</h4>
-                <div class="scroll">
-                    <table>
+                <div class="scroll" id="scroll">
+                    <table id="table">
                         <tr>
                             <th class="tb-title">Horário</th>
                             <th class="tb-title">Computador</th>
                             <th class="tb-title" style="width: 50%;">Incidente</th>
-                        </tr>
-                        <tr>
-                            <th>0</th>
-                            <th>0</th>
-                            <th style="width: 50%;">0</th>
-                        </tr>
-                        <tr>
-                            <th>0</th>
-                            <th>0</th>
-                            <th style="width: 50%;">0</th>
-                        </tr>
-                        <tr>
-                            <th>0</th>
-                            <th>0</th>
-                            <th style="width: 50%;">0</th>
                         </tr>
                     </table>
                 </div>
@@ -200,6 +185,7 @@
         offline = 0;
         online = 0;
         await listarMaquinasNaDash();
+        await listarAlertas();
     }
 
     async function exibirMaquinasNaDash() {
@@ -235,9 +221,6 @@
             let ultimaHora = await fetch(`/medidas/buscarUltimaHora/${computadorLoja.idComputador}`);
             ultimaHora = await ultimaHora.json();
             var style = '';
-
-            console.log(ultimaHora[0].atual)
-            console.log(ultimaHora[0].hora)
             if (ultimaHora[0].atual > ultimaHora[0].hora) {
                 maquinas_botoes +=
                     `<button class="btn-chart" ${style} onclick="irParaTempoReal(${computadorLoja.idComputador})">${computadorLoja.HostnameComputador}</button>`;
@@ -340,5 +323,20 @@
                     document.getElementById("loja").append(option);
                 })
             })
+    }
+
+    async function listarAlertas(){
+        var alertas = await fetch(`/medidas/listarAlertas/${document.getElementById("loja").value}`);
+        alertas = await alertas.json();
+        alertas.forEach(async (alerta) =>{
+            document.getElementById("table").innerHTML +=
+            `<tr>
+                <th>${alerta.dataHora}</th>
+                <th>${alerta.idComputador}</th>
+                <th style="width: 50%;">${alerta.descricao}</th>
+            </tr>`
+        })
+
+
     }
 </script>

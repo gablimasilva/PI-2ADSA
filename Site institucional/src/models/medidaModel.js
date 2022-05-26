@@ -172,6 +172,13 @@ function buscarHoraCPU(maquina) {
     return database.executar(instrucaoSql);
 }
 
+function listarAlertas(loja) {
+    instrucaoSql = `select incidentes.descricao, incidentes.dataHora, computador.idComputador from incidentes join registroComponente on idRegistroComponente = fkRegistroComponente join computadorComponente on idComputadorComponente = fkComputadorComponente join computador on idComputador = fkComputador where fkLoja = ${loja}`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
@@ -192,5 +199,6 @@ module.exports = {
     buscarIP,
     buscarHoraDISCO,
     buscarHoraRAM,
-    buscarHoraCPU
+    buscarHoraCPU,
+    listarAlertas
 }

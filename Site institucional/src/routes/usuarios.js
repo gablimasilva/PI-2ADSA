@@ -15,6 +15,10 @@ router.get("/listarLojas/:fkEmpresa", function (req, res) {
     usuarioController.listarLojas(req, res);
 });
 
+router.get("/listarUsuarios/:fkEmpresa", function (req, res) {
+    usuarioController.listarUsuarios(req, res);
+});
+
 router.get("/listarComputadores/:fkLoja", function (req, res) {
     usuarioController.listarComputadores(req, res);
 });

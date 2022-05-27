@@ -83,4 +83,8 @@ router.get("/buscarHoraCPU/:maquina", function (req, res) {
     medidaController.buscarHoraCPU(req, res);
 })
 
+router.get("/listarAlertas/:loja", function (req, res) {
+    medidaController.listarAlertas(req, res);
+})
+
 module.exports = router;

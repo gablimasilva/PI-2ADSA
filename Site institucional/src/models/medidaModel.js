@@ -27,14 +27,14 @@ function buscarMedidasEmTempoReal(idAquario) {
 
 
 function buscarFkComponenteCPU(fkComponente) {
-    instrucaoSql = `select top 5 fkComputadorComponente from registroComponente join computadorComponente on idComputadorComponente = fkComputadorComponente and fkComputador = ${fkComponente} and fkComponente = 1 order by fkComponente desc;`;
+    instrucaoSql = `select top 5 fkComputadorComponente from registroComponente join computadorComponente on idComputadorComponente = fkComputadorComponente where fkComputador = ${fkComponente} and fkComponente = 2 order by fkComponente desc;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
 function buscarCPU(maquina) {
-    instrucaoSql = `select top 5 valorConsumido from registroComponente join computadorComponente on idComputadorComponente = fkComputadorComponente and fkComputadorComponente = ${maquina} order by idRegistroComponente desc ;`;
+    instrucaoSql = `select top 5 valorConsumido from registroComponente join computadorComponente on idComputadorComponente = fkComputadorComponente where fkComputadorComponente = ${maquina} order by idRegistroComponente desc ;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -42,28 +42,28 @@ function buscarCPU(maquina) {
 
 
 function buscarFkComponenteRAM(fkComponente) {
-    instrucaoSql = `select top 5 fkComputadorComponente from registroComponente join computadorComponente on idComputadorComponente = fkComputadorComponente and fkComputador = ${fkComponente} and fkComponente = 2 order by fkComponente desc;`;
+    instrucaoSql = `select top 5 fkComputadorComponente from registroComponente join computadorComponente on idComputadorComponente = fkComputadorComponente where fkComputador = ${fkComponente} and fkComponente = 1 order by fkComponente desc;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
 function buscarRAM(maquina) {
-    instrucaoSql = `select top 5 valorConsumido from registroComponente join computadorComponente on idComputadorComponente = fkComputadorComponente and fkComputadorComponente = ${maquina} order by idRegistroComponente desc;`;
+    instrucaoSql = `select top 5 valorConsumido from registroComponente join computadorComponente on idComputadorComponente = fkComputadorComponente where fkComputadorComponente = ${maquina} order by idRegistroComponente desc;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
 function buscarFkComponenteDISCO(fkComponente) {
-    instrucaoSql = `select top 5 fkComputadorComponente from registroComponente join computadorComponente on idComputadorComponente = fkComputadorComponente and fkComputador = ${fkComponente} and fkComponente = 3 order by fkComponente desc;`;
+    instrucaoSql = `select top 5 fkComputadorComponente from registroComponente join computadorComponente on idComputadorComponente = fkComputadorComponente where fkComputador = ${fkComponente} and fkComponente = 3 order by fkComponente desc;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
 function buscarDISCO(maquina) {
-    instrucaoSql = `select top 5 valorConsumido from registroComponente join computadorComponente on idComputadorComponente = fkComputadorComponente and fkComputadorComponente = ${maquina} order by idRegistroComponente desc;`;
+    instrucaoSql = `select top 5 valorConsumido from registroComponente join computadorComponente on idComputadorComponente = fkComputadorComponente where fkComputadorComponente = ${maquina} order by idRegistroComponente desc;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -152,7 +152,7 @@ function buscarHoraRAM(maquina) {
 		join [dbo].[computadorComponente]
 			on fkComputadorComponente = idComputadorComponente
 				where fkComputador = ${maquina}
-					and fkComponente = 2
+					and fkComponente = 1
 						order by idRegistroComponente desc;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
@@ -165,8 +165,15 @@ function buscarHoraCPU(maquina) {
 		join [dbo].[computadorComponente]
 			on fkComputadorComponente = idComputadorComponente
 				where fkComputador = ${maquina}
-					and fkComponente = 1
+					and fkComponente = 2
 						order by idRegistroComponente desc;`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function listarAlertas(loja) {
+    instrucaoSql = `select incidentes.descricao, incidentes.dataHora, computador.idComputador from incidentes join registroComponente on idRegistroComponente = fkRegistroComponente join computadorComponente on idComputadorComponente = fkComputadorComponente join computador on idComputador = fkComputador where fkLoja = ${loja}`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -192,5 +199,6 @@ module.exports = {
     buscarIP,
     buscarHoraDISCO,
     buscarHoraRAM,
-    buscarHoraCPU
+    buscarHoraCPU,
+    listarAlertas
 }

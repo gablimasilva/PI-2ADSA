@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Food | Cadastro</title>
 
-    <link rel="stylesheet" href="../side-bar.css">
-    <link rel="stylesheet" href="../dashboards.css">
-    <link rel="stylesheet" href="cad_usuario.css">
+    <link rel="stylesheet" href="../home/side-bar.css">
+    <link rel="stylesheet" href="../home/dashboards.css">
+    <link rel="stylesheet" href="./cad_usuario.css">
     <script src="../../assets/js/funcoes.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="icon" href="../../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview (1).png">
@@ -34,7 +34,7 @@
             <br>
 
             <div class="btn-nav">
-                <a href="../dashboard.html">
+                <a href="../home/dashboard.html">
                     <i class="material-icons">home</i>
                     <h3>Home</h3>
                 </a>
@@ -62,7 +62,7 @@
             </div>
 
             <div class="btn-nav">
-                <a href="../tempo-real.html">
+                <a href="../tempo-real/tempo-real.html">
                     <i class="material-icons">show_chart</i>
                     <h3>Tempo Real</h3>
                 </a>
@@ -96,7 +96,7 @@
             <div class="fundo_usu">
                 <h3>Editar usuário</h3>
                 <div class="formulario">
-                    <form id="form_cadastro" method="post">
+                    <form id="form_cadastro" method="post" onsubmit="return cadastrarUsuario()">
                         <div class="align_form">
                             <div class="form_1">
                                 <div class="cad_comp1">
@@ -131,7 +131,7 @@
                 </div>
                 <div class="align_btn">
                     <div >
-                        <button onclick="cancelar() " class="btn">Cancelar</button>
+                        <button onclick="return cancelar() " class="btn">Cancelar</button>
                     </div>
                     <div >
                         <button class="btn">Alterar</button>
@@ -152,14 +152,102 @@
 
 <script>
 
-    function cancelar() {
+function cancelar() {
         limparFormulario();
         window.location = "./crud-usuario.html";
-    
+        return false;
     }
 
+    function mask(e, id, mask) {
+        var tecla = (window.event) ? event.keyCode : e.which;
+        if ((tecla > 47 && tecla < 58)) {
+            mascara(id, mask);
+            return true;
+        }
+        else {
+            if (tecla == 8 || tecla == 0) {
+                mascara(id, mask);
+                return true;
+            }
+            else return false;
+        }
+    }
+    function mascara(id, mask) {
+        var i = id.value.length;
+        var carac = mask.substring(i, i + 1);
+        var prox_char = mask.substring(i + 1, i + 2);
+        if (i == 0 && carac != '#') {
+            insereCaracter(id, carac);
+            if (prox_char != '#') insereCaracter(id, prox_char);
+        }
+        else if (carac != '#') {
+            insereCaracter(id, carac);
+            if (prox_char != '#') insereCaracter(id, prox_char);
+        }
+        function insereCaracter(id, char) {
+            id.value += char;
+        }
+    }
     function limparFormulario() {
         document.getElementById("form_cadastro").reset();
+    }
+
+    function cadastrarUsuario() {
+        aguardar();
+
+        var formulario = new URLSearchParams(new FormData(document.getElementById("form_cadastro")));
+
+        var cargo = formulario.get("cargo");
+        var nome = formulario.get("nome");
+        var email = formulario.get("email");
+        var senha = formulario.get("senha");
+        var confirmacaoSenha = formulario.get("confirmacaoSenha");
+
+        // TODO: VERIFICAR AS VALIDAÇÕES QUE ELES ESTÃO APRENDENDO EM ALGORITMOS
+        if (cargo == "" || nome == "" || email == "" || senha == "" || confirmacaoSenha == "") {
+
+            window.alert("Preencha todos os campos para prosseguir!");
+            if (cargo == "") {
+                console.log('Campo cargo está em branco')
+            } if (nome == "") {
+                console.log('Campo nome está em branco')
+            } if (email == "") {
+                console.log('Campo email está em branco')
+            } if (senha == "") {
+                console.log('Campo senha está em branco')
+            } if (confirmacaoSenha == "") {
+                console.log('Campo Confirmação de senha está em branco')
+            }
+            finalizarAguardar();
+            return false;
+        }
+
+        if (senha != confirmacaoSenha) {
+            window.alert("As senhas inseridas devem ser iguais para prosseguir!");
+            finalizarAguardar();
+            return false;
+        }
+
+        fetch(`/usuarios/cadastrarUsuario/${sessionStorage.ID_EMPRESA}`, {
+            method: "POST",
+            body: formulario
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                window.alert("Cadastro realizado com sucesso!");
+                limparFormulario();
+                finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        return false;
     }
 
 </script>

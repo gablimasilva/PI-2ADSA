@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Food | Home</title>
 
-    <link rel="stylesheet" href="side-bar.css">
-    <link rel="stylesheet" href="dashboards.css">
-    <script src="../assets/js/funcoes.js"></script>
+    <link rel="stylesheet" href="./side-bar.css">
+    <link rel="stylesheet" href="./dashboards.css">
+    <script src="../../assets/js/funcoes.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="icon" href="../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview (1).png">
+    <link rel="icon" href="../../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview (1).png">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -25,7 +25,7 @@
 <body onload="validarSessao(), ListarLojas()">
     <div class="janela">
         <div class="header-left">
-            <img src="../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview.png" alt="logo" width="40%">
+            <img src="../../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview.png" alt="logo" width="40%">
 
             <div class="hello">
                 <h3>Olá, <span id="b_usuario"></span>!</h3>
@@ -40,35 +40,35 @@
             </div>
 
             <div class="btn-nav" id="id-menu-loja">
-                <a href="./loja/crud-loja.html">
+                <a href="../loja/crud-loja.html">
                     <i class="material-icons">add_business</i>
                     <h3>Loja</h3>
                 </a>
             </div>
 
             <div class="btn-nav" id="id-menu-usuario">
-                <a href="./usuario/crud-usuario.html">
+                <a href="../usuario/crud-usuario.html">
                     <i class="material-icons">person_add_alt</i>
                     <h3>Usuários</h3>
                 </a>
             </div>
 
             <div class="btn-nav" id="id-menu-computador">
-                <a href="./computador/crud-computador.html">
+                <a href="../computador/crud-computador.html">
                     <i class="material-icons">computer</i>
                     <h3>Computadores</h3>
                 </a>
             </div>
 
             <div class="btn-nav">
-                <a href="./tempo-real.html">
+                <a href="../tempo-real/tempo-real.html">
                     <i class="material-icons">show_chart</i>
                     <h3>Tempo Real</h3>
                 </a>
             </div>
 
             <div class="btn-nav">
-                <a href="./relatorio/relatorios.html">
+                <a href="../relatorio/relatorios.html">
                     <i class="material-icons">summarize</i>
                     <h3>Relatórios</h3>
                 </a>
@@ -273,7 +273,7 @@
     }
 
     function irParaTempoReal(idComputador) {
-        window.location = `/dashboard/tempo-real.html?idComputador=${idComputador}&idLoja=${lojaSelecionada}`;
+        window.location = `/dashboard/tempo-real/tempo-real.html?idComputador=${idComputador}&idLoja=${lojaSelecionada}`;
     }
 
     function gerarGrafico() {

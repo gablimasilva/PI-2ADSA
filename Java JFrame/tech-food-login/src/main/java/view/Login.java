@@ -18,7 +18,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
  * @author bruno.dearaujo
  */
 public class Login extends javax.swing.JFrame {
-
+    gravarArq gravar = new gravarArq();
     public static void main(String[] args) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -255,20 +255,25 @@ public class Login extends javax.swing.JFrame {
         // Slack
         try {
             SlackIntegration.enviarMensagem("Logado com Sucesso!");
+            gravar.criarLog("Slack logado com sucesso");
         } catch (IOException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            gravar.criarLog("Error"+ex);
         }
 
         if (inputUsuario.getText().equals("")) {
             System.out.println("Insira seu IP!");
+            gravar.criarLog("IP não inserido");
         } else if (passwdUsuario.getText().equals("")) {
 
             System.out.println("Insira sua senha!");
+            gravar.criarLog("senha não inserido");
         } else {
             List<Computador> listaComputador = login.query("select * from computador where ipComputador = ? and senhaComputador = ?;",
                     new BeanPropertyRowMapper<>(Computador.class), inputUsuario.getText(), passwdUsuario.getText());
             if (listaComputador.isEmpty()) {
                 System.out.println("IP e/ou senha inválidos!");
+                gravar.criarLog("IP e/ou senha inválidos ");
             }
             for (Computador computador : listaComputador) {
                 System.out.println(computador.getIpComputador());
@@ -277,6 +282,7 @@ public class Login extends javax.swing.JFrame {
                 new Monitoramento(computador).setVisible(true);
 
                 System.out.println("Logado com Sucesso!");
+                gravar.criarLog("Logado com sucesso ");
                 logado = true;
             }
         }

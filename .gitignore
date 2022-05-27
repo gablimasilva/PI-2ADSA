@@ -177,3 +177,4 @@ dist
 .svelte-kit
 
 # End of https://www.toptal.com/developers/gitignore/api/node,java,netbeans
+/Java JFrame/tech-food-login/target/

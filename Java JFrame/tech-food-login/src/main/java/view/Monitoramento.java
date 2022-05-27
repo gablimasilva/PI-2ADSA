@@ -18,12 +18,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
  * @author bruno.dearaujo
  */
 public class Monitoramento extends javax.swing.JFrame {
-
+    gravarArq gravar = new gravarArq();
     /**
      * Creates new form Monitoramento
      */
     private Computador computador;
-    private MonitoramentoRam monitoramentoRam;
+    private MonitoramentoRam monitoramentoRam; 
     private MonitoramentoCpu monitoramentoCpu;
     private List<MonitoramentoDisco> monitoramentoDiscos;
     private Looca looca;
@@ -210,22 +210,40 @@ public class Monitoramento extends javax.swing.JFrame {
                     "INSERT INTO computadorComponente (fkComputador, fkComponente, TotalComponente, UnidadeDeMedida)"
                     + "VALUES(?, 1, ?, 'GB')",
                     computador.getidComputador(), Double.valueOf(ramConvertida));
-
+            
+            String mensagemID = String.format("Banco de Dados Local: Dados coletados do id: %d ", computador.getidComputador());
+            gravar.criarLog(mensagemID);
+            String mensagemRam = String.format("Banco de Dados Local: Dados coletados da RAM: %s ", ramConvertida);
+            gravar.criarLog(mensagemRam);
+            
             templateLocal.update(
                     "INSERT INTO computadorComponente (fkComputador, fkComponente, TotalComponente, UnidadeDeMedida)"
                     + "VALUES(?, 2, ?, 'GB')",
                     computador.getidComputador(), Double.valueOf(cpuConvertido));
             
+            gravar.criarLog(mensagemID);
+            String mensagemCPU = String.format("Banco de Dados Local: Dados coletados da CPU: %s ", cpuConvertido);
+            gravar.criarLog(mensagemCPU);
+            
             template.update(
                     "INSERT INTO computadorComponente (fkComputador, fkComponente, TotalComponente, UnidadeDeMedida)"
                     + "VALUES(?, 1, ?, 'GB')",
                     computador.getidComputador(), ramConvertida);
+            
+            String mensagemIdAzure = String.format("Banco de Dados da Azure: Dados coletados do id: %d ", computador.getidComputador());
+            gravar.criarLog(mensagemIdAzure);
+            String mensagemRamAzure = String.format("Banco de Dados da Azure: Dados coletados da RAM: %s ", ramConvertida);
+            gravar.criarLog(mensagemRamAzure);
 
             template.update(
                     "INSERT INTO computadorComponente (fkComputador, fkComponente, TotalComponente, UnidadeDeMedida)"
                     + "VALUES(?, 2, ?, 'GB')",
                     computador.getidComputador(), cpuConvertido);
-
+            
+            gravar.criarLog(mensagemIdAzure);
+            String mensagemCpuAzure = String.format("Banco de Dados da Azure: Dados coletados da CPU: %s ", cpuConvertido);
+            gravar.criarLog(mensagemCpuAzure);
+            
             for (Disco disco : discos) {
                 String discoConvertido = Conversor.formatarBytes(disco.getTamanho()).replaceAll("[a-zA-Z]", "").replace(",", ".");
                 
@@ -234,10 +252,19 @@ public class Monitoramento extends javax.swing.JFrame {
                         + "VALUES(?, 3, ?, 'GB')",
                         computador.getidComputador(), Double.valueOf(discoConvertido));
                 
+                gravar.criarLog(mensagemID);
+                String mensagemDisco = String.format("Banco de Dados Local: Dados coletados no Disco: %s ", discoConvertido);
+                gravar.criarLog(mensagemDisco);
+                
                 template.update(
                         "INSERT INTO computadorComponente (fkComputador, fkComponente, TotalComponente, UnidadeDeMedida)"
                         + "VALUES(?, 3, ?, 'GB')",
                         computador.getidComputador(), discoConvertido);
+                
+                gravar.criarLog(mensagemIdAzure);
+                String mensagemDiscoAzure = String.format("Banco de Dados da Azure: Dados coletados da RAM: %s ", discoConvertido);
+                gravar.criarLog(mensagemDiscoAzure);
+                
             }
 
         }
@@ -274,8 +301,20 @@ public class Monitoramento extends javax.swing.JFrame {
         List<ComputadorComponente> listaComponentes = monitorar.query(queryListaComponentes, new BeanPropertyRowMapper<>(ComputadorComponente.class), computador.getidComputador());
         System.out.println(listaComponentes);
         
+        String mensagemComponentesAzure = "";
+        for (ComputadorComponente listaComponente : listaComponentes) {
+            mensagemComponentesAzure = listaComponente + ",";
+        }
+        gravar.criarLog(mensagemComponentesAzure);
+        
         List<ComputadorComponente> listaComponentesLocal = monitorarLocal.query(queryListaComponentes, new BeanPropertyRowMapper<>(ComputadorComponente.class), computador.getidComputador());
         System.out.println(listaComponentesLocal);
+        
+         String mensagemComponentesLocal = "";
+        for (ComputadorComponente computadorComponente : listaComponentesLocal) {
+            mensagemComponentesLocal = computadorComponente + ",";
+        }
+        gravar.criarLog(mensagemComponentesLocal);
 
         new Thread(new Runnable() {
             @Override
@@ -303,37 +342,62 @@ public class Monitoramento extends javax.swing.JFrame {
                         dadosDisco.setText(exibirDadosDisco);
                         dadosRam.setText(exibirDadosRam);
                         hostName.setText(exibirHostname);
-
+                        
+                        gravar.criarLog(exibirHostname);
+                        gravar.criarLog(exibirDadosCpu);
+                        gravar.criarLog(exibirDadosDisco);
+                        gravar.criarLog(exibirDadosRam);
+                        
                         monitorar.update(
                                 "INSERT INTO registroComponente (fkComputadorComponente, ValorConsumido, DataHora, statusComputador)"
                                 + "VALUES"
                                 + "(?, ?, getdate(), 'Ativo')",
                                 listaComponentes.get(0).getIdComputadorComponente(), ramConvertida);
                         
+                        String componenteAzure = String.format("Banco de Dados da Azure: ID Componente:", listaComponentes.get(0).getIdComputadorComponente());
+                        gravar.criarLog(componenteAzure);
+                        String mensagemRamAzure = String.format("Banco de Dados da Azure: Dados coletados da RAM:", ramConvertida);
+                        gravar.criarLog(mensagemRamAzure);
+                        
                         monitorarLocal.update(
                                 "INSERT INTO registroComponente (fkComputadorComponente, ValorConsumido, DataHora, statusComputador)"
                                 + "VALUES"
                                 + "(?, ?, now(), 'Ativo')",
                                 listaComponentesLocal.get(0).getIdComputadorComponente(), Double.valueOf(ramConvertida));
-
+                        
+                        String componenteLocal = String.format("Banco de Dados da Azure: ID Componente:", listaComponentes.get(0).getIdComputadorComponente());
+                        gravar.criarLog(componenteLocal);
+                        String mensagemRamLocal = String.format("Banco de Dados da Azure: Dados coletados da RAM:", ramConvertida);
+                        gravar.criarLog(mensagemRamLocal);
+                        
                         Double percentualRamUso = memoria.getEmUso() / Double.valueOf(memoria.getTotal()) * 100;
 
                         if (monitoramentoCpu.monitorarCpu70(cpuUso)) {
                             dadosCpu.setForeground(Color.yellow);
                             finalizarProcessos();
+                            String mensagemSlack70 = String.format("Componente CPU passou de 70%");
+                            gravar.criarLog(mensagemSlack70);
+                            String mensagemSlackProcessos = String.format("Finalizando Processos");
+                            gravar.criarLog(mensagemSlackProcessos);
                         }
 
                         if (monitoramentoCpu.monitorarCpu90(cpuUso)) {
                             dadosCpu.setForeground(Color.RED);
+                            String mensagemSlack90 = String.format("Componente CPU passou de 90%");
+                            gravar.criarLog(mensagemSlack90);
                         }
 
                         if (monitoramentoRam.monitorarRam70(percentualRamUso)) {
                             dadosRam.setForeground(Color.yellow);
                             finalizarProcessos();
+                            String mensagemSlackProcessos = String.format("Finalizando Processos");
+                            gravar.criarLog(mensagemSlackProcessos);
                         }
 
                         if (monitoramentoRam.monitorarRam90(percentualRamUso)) {
                             dadosRam.setForeground(Color.RED);
+                            String mensagemSlack90 = String.format("Componente CPU passou de 90%");
+                            gravar.criarLog(mensagemSlack90);
                         }
 
                         monitorar.update(
@@ -342,11 +406,21 @@ public class Monitoramento extends javax.swing.JFrame {
                                 + "(?, ?, getdate(), 'Ativo')",
                                 listaComponentes.get(1).getIdComputadorComponente(), cpuUso);
                         
+                        String componente1Azure = String.format("Banco de Dados Azure: ID Componente:", listaComponentes.get(0).getIdComputadorComponente());
+                        gravar.criarLog(componente1Azure);
+                        String mensagemCpuAzure = String.format("Banco de Dados Azure: Dados coletados da RAM:", cpuUso);
+                        gravar.criarLog(mensagemCpuAzure);
+                        
                         monitorarLocal.update(
                                 "INSERT INTO registroComponente (fkComputadorComponente, ValorConsumido, DataHora, statusComputador)"
                                 + "VALUES"
                                 + "(?, ?, now(), 'Ativo')",
                                 listaComponentesLocal.get(1).getIdComputadorComponente(), Double.valueOf(cpuUso));
+                        
+                        String componente1Local = String.format("Banco de Dados Local: ID Componente:", listaComponentes.get(1).getIdComputadorComponente());
+                        gravar.criarLog(componente1Local);
+                        String mensagemCPULocal = String.format("Banco de Dados Local: Dados coletados da CPU:", cpuUso);
+                        gravar.criarLog(mensagemCPULocal);
 
                         for (int i = 0; i < discos.size(); i++) {
                             String discoConvertido = Conversor.formatarBytes(discos.get(i).getBytesDeEscritas()).replaceAll("[a-zA-Z]", "").replace(",", ".");
@@ -356,20 +430,34 @@ public class Monitoramento extends javax.swing.JFrame {
                                     + "(?, ?, getdate(), 'Ativo')",
                                     listaComponentes.get(2 + i).getIdComputadorComponente(), discoConvertido);
                             
+                            String componente3Azure = String.format("Banco de Dados Azure: ID Componente:", listaComponentes.get(2+i).getIdComputadorComponente());
+                            gravar.criarLog(componente3Azure);
+                            String mensagemDiscoAzure = String.format("Banco de Dados Azure: Dados coletados do Disco:", discoConvertido);
+                            gravar.criarLog(mensagemDiscoAzure);
+                            
                             monitorarLocal.update(
                                     "INSERT INTO registroComponente (fkComputadorComponente, ValorConsumido, DataHora, statusComputador)"
                                     + "VALUES"
                                     + "(?, ?, now(), 'Ativo')",
                                     listaComponentesLocal.get(2 + i).getIdComputadorComponente(), Double.valueOf(discoConvertido));
-                           
+                            
+                            String componente3Local = String.format("Banco de Dados Local: ID Componente:", listaComponentes.get(2+i).getIdComputadorComponente());
+                            gravar.criarLog(componente3Local);
+                            String mensagemDiscoLocal = String.format("Banco de Dados Local: Dados coletados do Disco:", discoConvertido);
+                            gravar.criarLog(mensagemDiscoLocal);
+                            
                             Double percentualDiscoUso = discos.get(i).getBytesDeEscritas() / Double.valueOf(discos.get(i).getTamanho()) * 100;
                             
                             if (monitoramentoDiscos.get(i).monitorarDisco70(percentualDiscoUso)) {
                                 dadosDisco.setForeground(Color.yellow);
+                                String slack70Disco = String.format("Disco Maior que 70%");
+                                gravar.criarLog(slack70Disco);
                             }
 
                             if (monitoramentoDiscos.get(i).monitorarDisco90(percentualDiscoUso)) {
                                 dadosDisco.setForeground(Color.RED);
+                                String slack90Disco = String.format("Disco Maior que 90%");
+                                gravar.criarLog(slack90Disco);
                             }
                         }
 
@@ -378,6 +466,7 @@ public class Monitoramento extends javax.swing.JFrame {
                 } catch (Exception e) {
                     System.out.println("Erro de leitura!");
                     System.out.println(e);
+                    gravar.criarLog("Erro de leitura");
                 }
             }
         }).start();
@@ -390,6 +479,7 @@ public class Monitoramento extends javax.swing.JFrame {
     public void sistemaOperacional() {
         Looca looca = new Looca();
         sistemaOperacional.setText(looca.getSistema().getSistemaOperacional());
+        gravar.criarLog("Sistema Operacional:" +looca.getSistema().getSistemaOperacional());
     }
     
     public void finalizarProcessos(){
@@ -409,9 +499,13 @@ public class Monitoramento extends javax.swing.JFrame {
                     process.waitFor();
 
                     process.destroy();
+                    gravar.criarLog("Processo finalizado com sucesso");
+                    gravar.criarLog("PID:"+processo.getPid());
+                    gravar.criarLog("Nome do Processo:" + processo.getNome());
                 }
                 catch(Exception e){
                     System.err.println(e);
+                    gravar.criarLog("Erro ao finalizar processo, Error: " + e);
                 }
             }
         }

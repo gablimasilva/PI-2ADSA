@@ -173,7 +173,7 @@ function buscarHoraCPU(maquina) {
 }
 
 function listarAlertas(loja) {
-    instrucaoSql = `select incidentes.descricao, incidentes.dataHora, computador.idComputador from incidentes join registroComponente on idRegistroComponente = fkRegistroComponente join computadorComponente on idComputadorComponente = fkComputadorComponente join computador on idComputador = fkComputador where fkLoja = ${loja}`;
+    instrucaoSql = `select incidentes.descricao, incidentes.dataHora, computador.idComputador from incidentes join registroComponente on idRegistroComponente = fkRegistroComponente join computadorComponente on idComputadorComponente = fkComputadorComponente join computador on idComputador = fkComputador where fkLoja = ${loja} order by incidentes.idIncidentes desc;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

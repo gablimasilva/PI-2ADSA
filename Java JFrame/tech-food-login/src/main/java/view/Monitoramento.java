@@ -2,17 +2,14 @@ package view;
 
 import com.github.britooo.looca.api.core.Looca;
 import com.github.britooo.looca.api.group.discos.Disco;
-import com.github.britooo.looca.api.group.discos.Volume;
+import com.github.britooo.looca.api.group.memoria.Memoria;
 import com.github.britooo.looca.api.group.processos.Processo;
 import com.github.britooo.looca.api.util.Conversor;
 import java.awt.Color;
-import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -286,8 +283,9 @@ public class Monitoramento extends javax.swing.JFrame {
 
                 try {
                     while (true) {
+                        Memoria memoria = looca.getMemoria();
                         List<Disco> discos = looca.getGrupoDeDiscos().getDiscos();
-                        String ramConvertida = Conversor.formatarBytes(looca.getMemoria().getEmUso()).replaceAll("[a-zA-Z]", "").replace(",", ".");
+                        String ramConvertida = Conversor.formatarBytes(memoria.getEmUso()).replaceAll("[a-zA-Z]", "").replace(",", ".");
                         Double cpuUso = looca.getProcessador().getUso();
                         BigDecimal cpuPorcentagem = new BigDecimal(looca.getProcessador().getUso()).setScale(2, RoundingMode.HALF_EVEN);
 
@@ -318,8 +316,7 @@ public class Monitoramento extends javax.swing.JFrame {
                                 + "(?, ?, now(), 'Ativo')",
                                 listaComponentesLocal.get(0).getIdComputadorComponente(), Double.valueOf(ramConvertida));
 
-                        String ramConvertidaTotal = Conversor.formatarBytes(looca.getMemoria().getEmUso()).replaceAll("[a-zA-Z]", "").replace(",", ".");
-                        Double percentualRamUso = Double.valueOf(ramConvertida) / Double.valueOf(ramConvertidaTotal) * 100;
+                        Double percentualRamUso = memoria.getEmUso() / Double.valueOf(memoria.getTotal()) * 100;
 
                         if (monitoramentoCpu.monitorarCpu70(cpuUso)) {
                             dadosCpu.setForeground(Color.yellow);
@@ -364,10 +361,9 @@ public class Monitoramento extends javax.swing.JFrame {
                                     + "VALUES"
                                     + "(?, ?, now(), 'Ativo')",
                                     listaComponentesLocal.get(2 + i).getIdComputadorComponente(), Double.valueOf(discoConvertido));
+                           
+                            Double percentualDiscoUso = discos.get(i).getBytesDeEscritas() / Double.valueOf(discos.get(i).getTamanho()) * 100;
                             
-                            String discoConvertidoTotal = Conversor.formatarBytes(discos.get(i).getTamanho()).replaceAll("[a-zA-Z]", "").replace(",", ".");
-                            Double percentualDiscoUso = Double.valueOf(discoConvertido) / Double.valueOf(discoConvertidoTotal) * 100;
-
                             if (monitoramentoDiscos.get(i).monitorarDisco70(percentualDiscoUso)) {
                                 dadosDisco.setForeground(Color.yellow);
                             }

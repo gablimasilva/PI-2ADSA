@@ -23,7 +23,7 @@
 
 </head>
 
-<body onload="validarSessao()">
+<body onload="validarSessao(), listarComputadores()">
     <div class="janela">
         <div class="header-left">
             <img src="../../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview.png" alt="logo" width="40%">
@@ -109,34 +109,7 @@
                         <h4>Hostname</h4>
                         <h4 style="margin-left: -50px;">IP</h4>
                     </div>
-                    <div class="scroll">
-                        <div class="dados_btn_computador">
-                            <div class="dados_computador">
-                                <span id="id_loja">Loja</span>
-                                <span id="id_hostname">Hostname</span>
-                                <span id="id_ip">IP</span>
-                            </div>
-                            <div class="btn_computador">
-                                <a style="text-decoration: none;" href="./visualizar-computador.html">
-                                    <button class="btnVisualizar">
-                                        <i class="material-icons">visibility</i>
-                                        Visualizar
-                                    </button>
-                                </a>
-                                <a style="text-decoration: none;" href="./editar-computador.html">
-                                    <button class="btnEditar">
-                                    <i class="material-icons">edit</i>
-                                    Editar
-                                </button>
-                                </a>
-                                
-                                <button class="btnExcluir">
-                                    <i class="material-icons">delete</i>
-                                    Excluir
-                                </button>
-                            </div>
-                        </div>
-
+                    <div class="scroll" id="scroll">
                             <!--Fazer a função de listar os computadores incrementar,
                                 se tiver muitos computadores, ele ativa o scroll-->
                             
@@ -151,6 +124,41 @@
 </html>
 
 <script>
+
+    async function listarComputadores(){
+        var computadores = await fetch(`/usuarios/listarTodosComputadores`);
+        computadores = await computadores.json();
+        computadores.forEach(async (computador) => {
+            document.getElementById("scroll").innerHTML += 
+            `<div class="dados_btn_computador">
+                <div class="dados_computador">
+                    <span id="id_loja${computador.idComputador}">${computador.RazaoSocial}</span>
+                    <span id="id_hostname${computador.idComputador}">${computador.HostnameComputador}</span>
+                    <span id="id_ip${computador.idComputador}">${computador.IpComputador}</span>
+                </div>
+                <div class="btn_computador">
+                    <a style="text-decoration: none;" href="./visualizar-computador.html">
+                        <button class="btnVisualizar">
+                            <i class="material-icons">visibility</i>
+                            Visualizar
+                        </button>
+                    </a>
+                    <a style="text-decoration: none;" href="./editar-computador.html">
+                        <button class="btnEditar">
+                        <i class="material-icons">edit</i>
+                        Editar
+                    </button>
+                    </a>
+                    
+                    <button class="btnExcluir">
+                        <i class="material-icons">delete</i>
+                        Excluir
+                    </button>
+                </div>
+            </div>`
+            
+        });
+    }
 
 
 </script>

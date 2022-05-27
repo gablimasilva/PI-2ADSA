@@ -23,6 +23,10 @@ router.get("/listarComputadores/:fkLoja", function (req, res) {
     usuarioController.listarComputadores(req, res);
 });
 
+router.get("/listarTodosComputadores/", function (req, res) {
+    usuarioController.listarTodosComputadores(req, res);
+});
+
 router.post("/cadastrar", function(req, res) {
     usuarioController.cadastrar(req, res);
 })

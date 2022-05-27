@@ -27,6 +27,17 @@ function listarUsuarios(fkEmpresa) {
     return database.executar(instrucao);
 }
 
+function listarTodosComputadores(fkEmpresa) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    var instrucao = `
+    select RazaoSocial,idComputador,HostnameComputador,IpComputador from [dbo].[computador]
+	join [dbo].[loja]
+		on fkLoja = idLoja;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 function listarComputadores(fkLoja) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     var instrucao = `
@@ -101,5 +112,6 @@ module.exports = {
     listar,
     listarLojas,
     listarComputadores,
-    listarUsuarios
+    listarUsuarios,
+    listarTodosComputadores
 };

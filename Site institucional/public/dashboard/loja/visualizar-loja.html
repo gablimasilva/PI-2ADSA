@@ -23,7 +23,7 @@
 
 </head>
 
-<body onload="validarSessao()">
+<body onload="validarSessao(), aoIniciar()">
     <div class="janela">
         <div class="header-left">
             <img src="../../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview.png" alt="logo" width="40%">
@@ -207,6 +207,18 @@
 
 </html>
 <script>
+    let loja;
+    function aoIniciar() {
+        const urlParams = new URLSearchParams(window.location.search);
+        loja = urlParams.get("idLoja");
+
+        preencherFormulario(loja)
+    }
+
+    async function preencherFormulario(idLoja){
+        var loja = await fetch(`/usuarios/buscarLoja/${idLoja}`);
+        loja = await loja.json();
+    }
 
     function cancelar() {
         limparFormulario();

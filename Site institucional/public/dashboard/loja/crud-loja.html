@@ -23,7 +23,7 @@
 
 </head>
 
-<body onload="validarSessao()">
+<body onload="validarSessao(), listarLojas()">
     <div class="janela">
         <div class="header-left">
             <img src="../../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview.png" alt="logo" width="40%">
@@ -108,33 +108,7 @@
                         <h4>Razão social</h4>
                         <h4>CNPJ</h4>
                     </div>
-                    <div class="scroll">
-                        <div class="dados_btn_loja">
-                            <div class="dados_loja">
-                                <span id="razao_social">Razão social</span>
-                                <span id="cnpj">CNPJ</span>
-                            </div>
-                            <div class="btn_loja">
-                                <a style="text-decoration: none;" href="./visualizar-loja.html">
-                                    <button class="btnVisualizar">
-                                        <i class="material-icons">visibility</i>
-                                        Visualizar
-                                    </button>
-                                </a>
-                                <a style="text-decoration: none;" href="./editar-loja.html">
-                                    <button class="btnEditar">
-                                    <i class="material-icons">edit</i>
-                                    Editar
-                                </button>
-                                </a>
-                                
-                                <button class="btnExcluir">
-                                    <i class="material-icons">delete</i>
-                                    Excluir
-                                </button>
-                            </div>
-                        </div>
-
+                    <div class="scroll" id="scroll">
                             <!--Fazer a função de listar as lojas incrementar,
                                 se tiver muitas lojas, ele ativa o scroll-->
                             
@@ -149,6 +123,44 @@
 </html>
 
 <script>
+
+    async function listarLojas(){
+        var lojas = await fetch(`/usuarios/listarLojas/${sessionStorage.ID_EMPRESA}`);
+        lojas = await lojas.json();
+        lojas.forEach(async (loja) => {
+            document.getElementById("scroll").innerHTML += 
+            `<div class="dados_btn_loja">
+                <div class="dados_loja">
+                    <span id="razao_social${loja.idLoja}">${loja.RazaoSocial}</span>
+                    <span id="cnpj${loja.idLoja}">${loja.CNPJLoja}</span>
+                </div>
+                <div class="btn_loja">
+                    <a style="text-decoration: none;" onclick="irParaVisualizacao(${loja.idLoja})">
+                        <button class="btnVisualizar">
+                            <i class="material-icons">visibility</i>
+                            Visualizar
+                        </button>
+                    </a>
+                    <a style="text-decoration: none;" href="./editar-loja.html">
+                        <button class="btnEditar">
+                        <i class="material-icons">edit</i>
+                        Editar
+                    </button>
+                    </a>
+                    
+                    <button class="btnExcluir">
+                        <i class="material-icons">delete</i>
+                        Excluir
+                    </button>
+                </div>
+            </div>`
+            
+        })
+    }
+
+    function irParaVisualizacao(idLoja){
+        window.location = `./visualizar-loja.html?idLoja=${idLoja}`
+    }
 
 
 </script>

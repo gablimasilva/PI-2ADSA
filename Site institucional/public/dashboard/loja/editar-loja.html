@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Food | Cadastro</title>
 
-    <link rel="stylesheet" href="../nav-bar.css">
+    <link rel="stylesheet" href="../side-bar.css">
     <link rel="stylesheet" href="../dashboards.css">
     <link rel="stylesheet" href="./cad_loja.css">
-    <script src="../assets/js/funcoes.js"></script>
+    <script src="../../assets/js/funcoes.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
- <link rel="icon" href="../../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview (1).png">
+    <link rel="icon" href="../../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview (1).png">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -55,7 +55,7 @@
             </div>
 
             <div class="btn-nav">
-                <a href="../cadastro-computador.html">
+                <a href="../computador/crud-computador.html">
                     <i class="material-icons">computer</i>
                     <h3>Computadores</h3>
                 </a>
@@ -69,7 +69,7 @@
             </div>
 
             <div class="btn-nav">
-                <a href="../relatorios.html">
+                <a href="../relatorio/relatorios.html">
                     <i class="material-icons">summarize</i>
                     <h3>Relatórios</h3>
                 </a>
@@ -105,11 +105,13 @@
                                 </div>
                                 <div class="cad_comp">
                                     <h4>Gerente:</h4>
-                                    <input name="gerenteLoja" type="text" placeholder="Digite o nome do gerente da Loja">
+                                    <input name="gerenteLoja" type="text"
+                                        placeholder="Digite o nome do gerente da Loja">
                                 </div>
                                 <div class="cad_comp">
                                     <h4>CEP:</h4>
-                                    <input name="cepLoja" onkeypress="return mask(event, this, '##.###-###')" maxlength="10" placeholder=" 00.000-000">
+                                    <input name="cepLoja" onkeypress="return mask(event, this, '##.###-###')"
+                                        maxlength="10" placeholder=" 00.000-000">
                                 </div>
                                 <div class="cad_comp">
                                     <h4>Número :</h4>
@@ -156,7 +158,8 @@
                             <div class="form_2">
                                 <div class="cad_comp">
                                     <h4>CNPJ:</h4>
-                                    <input name="cnpjLoja" onkeypress="return mask(event, this, '##.###.###/####-##')" maxlength="18" placeholder=" 00.000.000/0000-00">
+                                    <input name="cnpjLoja" onkeypress="return mask(event, this, '##.###.###/####-##')"
+                                        maxlength="18" placeholder=" 00.000.000/0000-00">
                                 </div>
                                 <div class="cad_comp">
                                     <h4>E-mail:</h4>
@@ -164,7 +167,8 @@
                                 </div>
                                 <div class="cad_comp">
                                     <h4>Telefone:</h4>
-                                    <input name="telefoneLoja" onkeypress="return mask(event, this, '(##)#####-####')" maxlength="14" placeholder=" (00)00000-0000">
+                                    <input name="telefoneLoja" onkeypress="return mask(event, this, '(##)#####-####')"
+                                        maxlength="14" placeholder=" (00)00000-0000">
                                 </div>
                                 <div class="cad_comp">
                                     <h4>Logradouro:</h4>
@@ -181,10 +185,10 @@
                             </div>
                         </div>
                         <div class="align_btn">
-                            <div>
-                                <button class="btn">Cancelar</button>
+                            <div >
+                                <button onclick="return cancelar() " class="btn">Cancelar</button>
                             </div>
-                            <div>
+                            <div >
                                 <button class="btn">Alterar</button>
                             </div>
                         </div>
@@ -192,7 +196,7 @@
 
                 </div>
                 <div id="div_aguardar" class="loading-div">
-    
+
                 </div>
 
                 <div id="div_erros_login">
@@ -207,33 +211,39 @@
 
 </html>
 <script>
-    function mask(e, id, mask){
-        var tecla=(window.event)?event.keyCode:e.which;   
-        if((tecla>47 && tecla<58)){
+    function cancelar() {
+        limparFormulario();
+        window.location = "./crud-loja.html";
+        return false;
+    }
+
+    function mask(e, id, mask) {
+        var tecla = (window.event) ? event.keyCode : e.which;
+        if ((tecla > 47 && tecla < 58)) {
             mascara(id, mask);
             return true;
-        } 
-        else{
-            if (tecla==8 || tecla==0){
+        }
+        else {
+            if (tecla == 8 || tecla == 0) {
                 mascara(id, mask);
                 return true;
-            } 
-            else  return false;
+            }
+            else return false;
         }
     }
-    function mascara(id, mask){
+    function mascara(id, mask) {
         var i = id.value.length;
-        var carac = mask.substring(i, i+1);
-        var prox_char = mask.substring(i+1, i+2);
-        if(i == 0 && carac != '#'){
+        var carac = mask.substring(i, i + 1);
+        var prox_char = mask.substring(i + 1, i + 2);
+        if (i == 0 && carac != '#') {
             insereCaracter(id, carac);
-            if(prox_char != '#')insereCaracter(id, prox_char);
+            if (prox_char != '#') insereCaracter(id, prox_char);
         }
-        else if(carac != '#'){
+        else if (carac != '#') {
             insereCaracter(id, carac);
-            if(prox_char != '#')insereCaracter(id, prox_char);
+            if (prox_char != '#') insereCaracter(id, prox_char);
         }
-        function insereCaracter(id, char){
+        function insereCaracter(id, char) {
             id.value += char;
         }
     }
@@ -290,10 +300,10 @@
             finalizarAguardar();
             return false;
         }
-        if(estado=="--"){
+        if (estado == "--") {
             window.alert("Escolha um estado");
         }
-        
+
         if (emailLoja.indexOf("@") == -1 || emailLoja.indexOf(".com") == -1) {
             window.alert("Ops, e-mail inválido! Verifique e tente novamente.");
             finalizarAguardar();

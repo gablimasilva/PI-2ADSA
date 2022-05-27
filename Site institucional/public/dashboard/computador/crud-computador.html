@@ -9,10 +9,10 @@
 
     <link rel="stylesheet" href="../side-bar.css">
     <link rel="stylesheet" href="../dashboards.css">
-    <link rel="stylesheet" href="crud_usuario.css">
+    <link rel="stylesheet" href="./crud_computador.css">
     <script src="../../assets/js/funcoes.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="icon" href="../../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview (1).png">
+ <link rel="icon" href="../../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview (1).png">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
@@ -47,14 +47,14 @@
                 </a>
             </div>
 
-            <div class="btn-nav-yellow">
-                <a href="./crud-usuario.html">
+            <div class="btn-nav">
+                <a href="../usuario/crud-usuario.html">
                     <i class="material-icons">person_add_alt</i>
                     <h3>Usuários</h3>
                 </a>
             </div>
 
-            <div class="btn-nav">
+            <div class="btn-nav-yellow">
                 <a href="../computador/crud-computador.html">
                     <i class="material-icons">computer</i>
                     <h3>Computadores</h3>
@@ -91,37 +91,39 @@
 
         <div class="dash">
             <div class="title">
-                <h2>Dashboard / Usuários</h2>
+                <h2>Dashboard / Computadores</h2>
             </div>
             <div class="fundo_usu">
-                <h3>Lista de usuários</h3>
+                <h3>Lista de computadores</h3>
                 <div class="formulario">
-                    <div class="novo_usuario">
-                        <a style="text-decoration: none;" href="./cadastro-usuario.html">
+                    <div class="novo_computador">
+                        <a style="text-decoration: none;" href="./cadastro-computador.html">
                             <button class="btnCriar">
                                 <i class="material-icons">add</i>
                                 Adicionar
                             </button>
                         </a>
                     </div>
-                    <div class="title_usuario">
-                        <h4>Nome</h4>
-                        <h4>Cargo</h4>
+                    <div class="title_computador">
+                        <h4>Loja</h4>
+                        <h4>Hostname</h4>
+                        <h4 style="margin-left: -50px;">IP</h4>
                     </div>
                     <div class="scroll">
-                        <div class="dados_btn_usuario">
-                            <div class="dados_usuario">
-                                <span>Nome</span>
-                                <span>Cargo</span>
+                        <div class="dados_btn_computador">
+                            <div class="dados_computador">
+                                <span id="id_loja">Loja</span>
+                                <span id="id_hostname">Hostname</span>
+                                <span id="id_ip">IP</span>
                             </div>
-                            <div class="btn_usuario">
-                                <a style="text-decoration: none;" href="./visualizar-usuario.html">
+                            <div class="btn_computador">
+                                <a style="text-decoration: none;" href="./visualizar-computador.html">
                                     <button class="btnVisualizar">
                                         <i class="material-icons">visibility</i>
                                         Visualizar
                                     </button>
                                 </a>
-                                <a style="text-decoration: none;" href="./editar-usuario.html">
+                                <a style="text-decoration: none;" href="./editar-computador.html">
                                     <button class="btnEditar">
                                     <i class="material-icons">edit</i>
                                     Editar
@@ -135,8 +137,8 @@
                             </div>
                         </div>
 
-                            <!--Fazer a função de listar os usuários incrementar,
-                                se tiver muitos usuários, ele ativa o scroll-->
+                            <!--Fazer a função de listar os computadores incrementar,
+                                se tiver muitos computadores, ele ativa o scroll-->
                             
                         </div>
                     </div>
@@ -150,6 +152,5 @@
 
 <script>
 
-    
 
 </script>

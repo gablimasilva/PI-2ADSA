@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Food | Cadastro</title>
 
-    <link rel="stylesheet" href="../nav-bar.css">
+    <link rel="stylesheet" href="../side-bar.css">
     <link rel="stylesheet" href="../dashboards.css">
     <link rel="stylesheet" href="cad_usuario.css">
     <script src="../../assets/js/funcoes.js"></script>
@@ -55,7 +55,7 @@
             </div>
 
             <div class="btn-nav">
-                <a href="../cadastro-computador.html">
+                <a href="../computador/crud-computador.html">
                     <i class="material-icons">computer</i>
                     <h3>Computadores</h3>
                 </a>
@@ -69,7 +69,7 @@
             </div>
 
             <div class="btn-nav">
-                <a href="../relatorios.html">
+                <a href="../relatorio/relatorios.html">
                     <i class="material-icons">summarize</i>
                     <h3>Relatórios</h3>
                 </a>
@@ -130,10 +130,10 @@
                         </div>
                 </div>
                 <div class="align_btn">
-                    <div>
-                        <button class="btn">Cancelar</button>
+                    <div >
+                        <button onclick="cancelar() " class="btn">Cancelar</button>
                     </div>
-                    <div>
+                    <div >
                         <button class="btn">Alterar</button>
                     </div>
                 </div>
@@ -152,5 +152,14 @@
 
 <script>
 
+    function cancelar() {
+        limparFormulario();
+        window.location = "./crud-usuario.html";
+    
+    }
+
+    function limparFormulario() {
+        document.getElementById("form_cadastro").reset();
+    }
 
 </script>

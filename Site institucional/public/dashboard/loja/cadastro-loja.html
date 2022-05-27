@@ -7,10 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Food | Cadastro</title>
 
-    <link rel="stylesheet" href="../nav-bar.css">
+    <link rel="stylesheet" href="../side-bar.css">
     <link rel="stylesheet" href="../dashboards.css">
     <link rel="stylesheet" href="./cad_loja.css">
-    <script src="../assets/js/funcoes.js"></script>
+    <script src="../../assets/js/funcoes.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
  <link rel="icon" href="../../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview (1).png">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -55,7 +55,7 @@
             </div>
 
             <div class="btn-nav">
-                <a href="../cadastro-computador.html">
+                <a href="../computador/crud-computador.html">
                     <i class="material-icons">computer</i>
                     <h3>Computadores</h3>
                 </a>
@@ -69,7 +69,7 @@
             </div>
 
             <div class="btn-nav">
-                <a href="../relatorios.html">
+                <a href="../relatorio/relatorios.html">
                     <i class="material-icons">summarize</i>
                     <h3>Relatórios</h3>
                 </a>
@@ -181,8 +181,12 @@
                             </div>
                         </div>
                         <div class="align_btn">
-                            <button class="btn">Cadastrar</button>
-                        </div>
+                            <div>
+                                <button onclick="return cancelar()" class="btn">Cancelar</button>
+                            </div>
+                            <div>
+                                <button class="btn">Cadastrar</button>
+                            </div>
                     </form>
 
                 </div>
@@ -202,6 +206,13 @@
 
 </html>
 <script>
+
+    function cancelar() {
+        limparFormulario();
+        window.location = "./crud-loja.html";
+        return false;
+    }
+
     function mask(e, id, mask){
         var tecla=(window.event)?event.keyCode:e.which;   
         if((tecla>47 && tecla<58)){

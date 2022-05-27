@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Food | Cadastro</title>
 
-    <link rel="stylesheet" href="../nav-bar.css">
+    <link rel="stylesheet" href="../side-bar.css">
     <link rel="stylesheet" href="../dashboards.css">
     <link rel="stylesheet" href="cad_usuario.css">
     <script src="../../assets/js/funcoes.js"></script>
@@ -55,7 +55,7 @@
             </div>
 
             <div class="btn-nav">
-                <a href="../cadastro-computador.html">
+                <a href="../computador/crud-computador.html">
                     <i class="material-icons">computer</i>
                     <h3>Computadores</h3>
                 </a>
@@ -69,7 +69,7 @@
             </div>
 
             <div class="btn-nav">
-                <a href="../relatorios.html">
+                <a href="../relatorio/relatorios.html">
                     <i class="material-icons">summarize</i>
                     <h3>Relatórios</h3>
                 </a>
@@ -99,11 +99,11 @@
                     <form id="form_cadastro" method="post">
                         <div class="cad_comp1">
                             <h4>Nome:</h4>
-                            <input name="nome" type="text" placeholder="Digite o nome do usuário">
+                            <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled name="nome" type="text" placeholder="Digite o nome do usuário">
                         </div>
                         <div class="cad_comp1">
                             <h4>Cargo:</h4>
-                            <select name="cargo">
+                            <select style="background: #dddddd; color: rgb(73, 70, 70)" disabled name="cargo">
                                 <option selected hidden value="value">Selecione o cargo</option>
                                 <option value="1">Gerente</option>
                                 <option value="2">Analista</option>
@@ -112,10 +112,15 @@
                         </div>
                         <div class="cad_comp1">
                             <h4>E-mail:</h4>
-                            <input name="email" type="email" placeholder="meuemail@provedor.com">
+                            <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled name="email" type="email" placeholder="meuemail@provedor.com">
                         </div>
-                        <div style="display: none;" class="align_btn">
-                            <button class="btn">Alterar</button>
+                        <div class="align_btn">
+                            <div>
+                                <button onclick="return cancelar()" class="btn">Voltar</button>
+                            </div>
+                            <div style="display: none;">
+                                <button class="btn">Cadastrar</button>
+                            </div>
                         </div>
 
                     </form>
@@ -131,5 +136,10 @@
 
 <script>
     
+    function cancelar() {
+        limparFormulario();
+        window.location = "./crud-usuario.html";
+        return false;
+    }
 
 </script>

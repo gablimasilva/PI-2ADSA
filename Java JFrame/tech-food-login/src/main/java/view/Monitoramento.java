@@ -29,6 +29,7 @@ public class Monitoramento extends javax.swing.JFrame {
     private Looca looca;
 
     public Monitoramento(Computador computador) {
+        checkReiniciar.setToolTipText("Reinciar a máquina caso o consume de CPU ou RAM chegue a 90%");
         this.computador = computador;
         // Deixando a tela no centro;
         cadastrarComponentes();
@@ -68,6 +69,7 @@ public class Monitoramento extends javax.swing.JFrame {
         dadosRam = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         hostName = new javax.swing.JLabel();
+        checkReiniciar = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,14 +97,20 @@ public class Monitoramento extends javax.swing.JFrame {
 
         hostName.setText("| ___________________");
 
+        checkReiniciar.setText("Reinciar maquina");
+        checkReiniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkReiniciarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -116,14 +124,21 @@ public class Monitoramento extends javax.swing.JFrame {
                             .addComponent(dadosDisco)
                             .addComponent(dadosCpu)
                             .addComponent(dadosRam)
-                            .addComponent(hostName))))
-                .addContainerGap(91, Short.MAX_VALUE))
+                            .addComponent(hostName))
+                        .addContainerGap(91, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(checkReiniciar)
+                        .addGap(63, 63, 63))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(checkReiniciar))
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -149,6 +164,10 @@ public class Monitoramento extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void checkReiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkReiniciarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_checkReiniciarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -385,6 +404,7 @@ public class Monitoramento extends javax.swing.JFrame {
                             dadosCpu.setForeground(Color.RED);
                             String mensagemSlack90 = String.format("Componente CPU passou de 90%");
                             gravar.criarLog(mensagemSlack90);
+                            reiniciarMaquina();
                         }
 
                         if (monitoramentoRam.monitorarRam70(percentualRamUso)) {
@@ -398,6 +418,7 @@ public class Monitoramento extends javax.swing.JFrame {
                             dadosRam.setForeground(Color.RED);
                             String mensagemSlack90 = String.format("Componente CPU passou de 90%");
                             gravar.criarLog(mensagemSlack90);
+                            reiniciarMaquina();
                         }
 
                         monitorar.update(
@@ -486,9 +507,7 @@ public class Monitoramento extends javax.swing.JFrame {
         List<Processo> processos = looca.getGrupoDeProcessos().getProcessos();
          
         for(Processo processo : processos){
-            if(!processo.getNome().contains("java") && !processo.getNome().contains("docker")
-                    && !processo.getNome().contains("container") && !processo.getNome().contains("xrdp") 
-                    && processo.getUsoCpu()>= 1.2  ){
+            if(processo.getNome().contains("firefox")){
                 ProcessBuilder processBuilder = new ProcessBuilder();
                 System.out.println(processo.getNome());
                 processBuilder.command("/bin/bash", "-c", "sudo kill -9 " +processo.getPid());
@@ -510,8 +529,29 @@ public class Monitoramento extends javax.swing.JFrame {
             }
         }
     }
+    
+    public void reiniciarMaquina(){
+        if(checkReiniciar.isSelected()){
+            ProcessBuilder processBuilder = new ProcessBuilder();
+            
+            processBuilder.command("/bin/bash", "-c", "sudo reboot");
+                
+                try {
+                    Process process = processBuilder.start();
+           
+                    process.waitFor();
+
+                    process.destroy();
+                    
+                }
+                catch(Exception e){
+                    System.err.println(e);
+                }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox checkReiniciar;
     private javax.swing.JLabel dadosCpu;
     private javax.swing.JLabel dadosDisco;
     private javax.swing.JLabel dadosRam;

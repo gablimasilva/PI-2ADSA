@@ -1,0 +1,55 @@
+2022/05/28 10:06:34 -- Slack logado com sucesso
+2022/05/28 10:06:50 -- Sistema Operacional:Windows
+2022/05/28 10:06:50 -- ComputadorComponente{idComputadorComponente=32, fkComputador=1, fkComponente=1, totalComponente=15.9, unidadeMedida=GB},
+2022/05/28 10:06:50 -- 
+2022/05/28 10:06:34 -- Logado com sucesso 
+2022/05/28 10:06:50 -- MTZNOTFS031070
+2022/05/28 10:06:50 -- Em Uso: 7.96%
+2022/05/28 10:06:50 -- Em Uso: 392,5 GiB   |  Total: 465,8 GiB
+2022/05/28 10:06:50 -- Em Uso: 10,8 GiB   |  Total: 15,9 GiB
+2022/05/28 10:06:50 -- Banco de Dados da Azure: ID Componente:
+2022/05/28 10:06:50 -- Banco de Dados da Azure: Dados coletados da RAM:
+2022/05/28 10:06:50 -- Banco de Dados da Azure: ID Componente:
+2022/05/28 10:06:50 -- Banco de Dados da Azure: Dados coletados da RAM:
+2022/05/28 10:06:50 -- Banco de Dados Azure: ID Componente:
+2022/05/28 10:06:50 -- Banco de Dados Azure: Dados coletados da RAM:
+2022/05/28 10:06:50 -- Banco de Dados Local: ID Componente:
+2022/05/28 10:06:50 -- Banco de Dados Local: Dados coletados da CPU:
+2022/05/28 10:06:50 -- Banco de Dados Azure: ID Componente:
+2022/05/28 10:06:50 -- Banco de Dados Azure: Dados coletados do Disco:
+2022/05/28 10:06:50 -- Banco de Dados Local: ID Componente:
+2022/05/28 10:06:50 -- Banco de Dados Local: Dados coletados do Disco:
+2022/05/28 10:06:50 -- MTZNOTFS031070
+2022/05/28 10:06:50 -- Em Uso: 4.77%
+2022/05/28 10:06:50 -- Em Uso: 392,5 GiB   |  Total: 465,8 GiB
+2022/05/28 10:06:50 -- Em Uso: 10,8 GiB   |  Total: 15,9 GiB
+2022/05/28 10:06:50 -- Banco de Dados da Azure: ID Componente:
+2022/05/28 10:06:50 -- Banco de Dados da Azure: Dados coletados da RAM:
+2022/05/28 10:06:50 -- Banco de Dados da Azure: ID Componente:
+2022/05/28 10:06:50 -- Banco de Dados da Azure: Dados coletados da RAM:
+2022/05/28 10:06:50 -- Banco de Dados Azure: ID Componente:
+2022/05/28 10:06:50 -- Banco de Dados Azure: Dados coletados da RAM:
+2022/05/28 10:06:50 -- Banco de Dados Local: ID Componente:
+2022/05/28 10:06:50 -- Banco de Dados Local: Dados coletados da CPU:
+2022/05/28 10:06:50 -- Banco de Dados Azure: ID Componente:
+2022/05/28 10:06:50 -- Banco de Dados Azure: Dados coletados do Disco:
+2022/05/28 10:06:50 -- Banco de Dados Local: ID Componente:
+2022/05/28 10:06:50 -- Banco de Dados Local: Dados coletados do Disco:
+2022/05/28 10:06:50 -- MTZNOTFS031070
+2022/05/28 10:06:50 -- Em Uso: 5.33%
+2022/05/28 10:06:50 -- Em Uso: 392,5 GiB   |  Total: 465,8 GiB
+2022/05/28 10:06:50 -- Em Uso: 10,8 GiB   |  Total: 15,9 GiB
+2022/05/28 10:06:50 -- Banco de Dados da Azure: ID Componente:
+2022/05/28 10:06:50 -- Banco de Dados da Azure: Dados coletados da RAM:
+2022/05/28 10:06:50 -- Banco de Dados da Azure: ID Componente:
+2022/05/28 10:06:50 -- Banco de Dados da Azure: Dados coletados da RAM:
+2022/05/28 10:06:50 -- Banco de Dados Azure: ID Componente:
+2022/05/28 10:06:50 -- Banco de Dados Azure: Dados coletados da RAM:
+2022/05/28 10:06:50 -- Banco de Dados Local: ID Componente:
+2022/05/28 10:06:50 -- Banco de Dados Local: Dados coletados da CPU:
+2022/05/28 10:06:50 -- Banco de Dados Azure: ID Componente:
+2022/05/28 10:06:50 -- Banco de Dados Azure: Dados coletados do Disco:
+2022/05/28 10:06:50 -- Banco de Dados Local: ID Componente:
+2022/05/28 10:06:50 -- Banco de Dados Local: Dados coletados do Disco:
+2022/05/28 10:06:55 -- Mensagem enviada para o Slack, Mensagem:Disco alcançou 70%
+2022/05/28 10:06:50 -- Erro de leitura

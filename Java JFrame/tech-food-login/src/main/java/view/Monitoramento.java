@@ -374,9 +374,9 @@ public class Monitoramento extends javax.swing.JFrame {
                                 + "(?, ?, getdate(), 'Ativo')",
                                 listaComponentes.get(0).getIdComputadorComponente(), ramConvertida);
                         
-                        String componenteAzure = String.format("Banco de Dados da Azure: ID Componente:", listaComponentes.get(0).getIdComputadorComponente());
+                        String componenteAzure = String.format("Banco de Dados da Azure: ID Componente: %d", listaComponentes.get(0).getIdComputadorComponente());
                         gravar.criarLog(componenteAzure);
-                        String mensagemRamAzure = String.format("Banco de Dados da Azure: Dados coletados da RAM:", ramConvertida);
+                        String mensagemRamAzure = String.format("Banco de Dados da Azure: Dados coletados da RAM: %s", ramConvertida);
                         gravar.criarLog(mensagemRamAzure);
                         
                         monitorarLocal.update(
@@ -385,9 +385,9 @@ public class Monitoramento extends javax.swing.JFrame {
                                 + "(?, ?, now(), 'Ativo')",
                                 listaComponentesLocal.get(0).getIdComputadorComponente(), Double.valueOf(ramConvertida));
                         
-                        String componenteLocal = String.format("Banco de Dados da Azure: ID Componente:", listaComponentes.get(0).getIdComputadorComponente());
+                        String componenteLocal = String.format("Banco de Dados da Azure: ID Componente: %d", listaComponentes.get(0).getIdComputadorComponente());
                         gravar.criarLog(componenteLocal);
-                        String mensagemRamLocal = String.format("Banco de Dados da Azure: Dados coletados da RAM:", ramConvertida);
+                        String mensagemRamLocal = String.format("Banco de Dados da Azure: Dados coletados da RAM: %s", ramConvertida);
                         gravar.criarLog(mensagemRamLocal);
                         
                         Double percentualRamUso = memoria.getEmUso() / Double.valueOf(memoria.getTotal()) * 100;
@@ -398,7 +398,7 @@ public class Monitoramento extends javax.swing.JFrame {
                                         computador.getidComputador());
                             dadosCpu.setForeground(Color.yellow);
                             finalizarProcessos();
-                            String mensagemSlack70 = String.format("Componente CPU passou de 70%");
+                            String mensagemSlack70 = String.format("Componente CPU passou de 70%%");
                             gravar.criarLog(mensagemSlack70);
                             String mensagemSlackProcessos = String.format("Finalizando Processos");
                             gravar.criarLog(mensagemSlackProcessos);
@@ -409,7 +409,7 @@ public class Monitoramento extends javax.swing.JFrame {
                                     + "(?, getdate(), 'CPU ultrapassou 90% de uso')",
                                         computador.getidComputador());
                             dadosCpu.setForeground(Color.RED);
-                            String mensagemSlack90 = String.format("Componente CPU passou de 90%");
+                            String mensagemSlack90 = String.format("Componente CPU passou de 90%%");
                             gravar.criarLog(mensagemSlack90);
                             reiniciarMaquina();
                         }
@@ -429,7 +429,7 @@ public class Monitoramento extends javax.swing.JFrame {
                                     + "(?, getdate(), 'CPU ultrapassou 90% de uso')",
                                         computador.getidComputador());
                             dadosRam.setForeground(Color.RED);
-                            String mensagemSlack90 = String.format("Componente CPU passou de 90%");
+                            String mensagemSlack90 = String.format("Componente CPU passou de 90%%");
                             gravar.criarLog(mensagemSlack90);
                             reiniciarMaquina();
                         }
@@ -440,9 +440,9 @@ public class Monitoramento extends javax.swing.JFrame {
                                 + "(?, ?, getdate(), 'Ativo')",
                                 listaComponentes.get(1).getIdComputadorComponente(), cpuUso);
                         
-                        String componente1Azure = String.format("Banco de Dados Azure: ID Componente:", listaComponentes.get(0).getIdComputadorComponente());
+                        String componente1Azure = String.format("Banco de Dados Azure: ID Componente: %d", listaComponentes.get(1).getIdComputadorComponente());
                         gravar.criarLog(componente1Azure);
-                        String mensagemCpuAzure = String.format("Banco de Dados Azure: Dados coletados da RAM:", cpuUso);
+                        String mensagemCpuAzure = String.format("Banco de Dados Azure: Dados coletados da RAM: %.2f", cpuUso);
                         gravar.criarLog(mensagemCpuAzure);
                         
                         monitorarLocal.update(
@@ -451,9 +451,9 @@ public class Monitoramento extends javax.swing.JFrame {
                                 + "(?, ?, now(), 'Ativo')",
                                 listaComponentesLocal.get(1).getIdComputadorComponente(), Double.valueOf(cpuUso));
                         
-                        String componente1Local = String.format("Banco de Dados Local: ID Componente:", listaComponentes.get(1).getIdComputadorComponente());
+                        String componente1Local = String.format("Banco de Dados Local: ID Componente: %d", listaComponentes.get(1).getIdComputadorComponente());
                         gravar.criarLog(componente1Local);
-                        String mensagemCPULocal = String.format("Banco de Dados Local: Dados coletados da CPU:", cpuUso);
+                        String mensagemCPULocal = String.format("Banco de Dados Local: Dados coletados da CPU: %.2f", cpuUso);
                         gravar.criarLog(mensagemCPULocal);
 
                         for (int i = 0; i < discos.size(); i++) {
@@ -465,9 +465,9 @@ public class Monitoramento extends javax.swing.JFrame {
                                     listaComponentes.get(2 + i).getIdComputadorComponente(), discoConvertido);
                             
                             
-                            String componente3Azure = String.format("Banco de Dados Azure: ID Componente:", listaComponentes.get(2+i).getIdComputadorComponente());
+                            String componente3Azure = String.format("Banco de Dados Azure: ID Componente: %d", listaComponentes.get(2+i).getIdComputadorComponente());
                             gravar.criarLog(componente3Azure);
-                            String mensagemDiscoAzure = String.format("Banco de Dados Azure: Dados coletados do Disco:", discoConvertido);
+                            String mensagemDiscoAzure = String.format("Banco de Dados Azure: Dados coletados do Disco: %s", discoConvertido);
                             gravar.criarLog(mensagemDiscoAzure);
                             
                             monitorarLocal.update(
@@ -476,9 +476,9 @@ public class Monitoramento extends javax.swing.JFrame {
                                     + "(?, ?, now(), 'Ativo')",
                                     listaComponentesLocal.get(2 + i).getIdComputadorComponente(), Double.valueOf(discoConvertido));
                             
-                            String componente3Local = String.format("Banco de Dados Local: ID Componente:", listaComponentes.get(2+i).getIdComputadorComponente());
+                            String componente3Local = String.format("Banco de Dados Local: ID Componente: %d", listaComponentes.get(2+i).getIdComputadorComponente());
                             gravar.criarLog(componente3Local);
-                            String mensagemDiscoLocal = String.format("Banco de Dados Local: Dados coletados do Disco:", discoConvertido);
+                            String mensagemDiscoLocal = String.format("Banco de Dados Local: Dados coletados do Disco: %.2f", discoConvertido);
                             gravar.criarLog(mensagemDiscoLocal);
                             
                             Double percentualDiscoUso = discos.get(i).getBytesDeEscritas() / Double.valueOf(discos.get(i).getTamanho()) * 100;
@@ -489,7 +489,7 @@ public class Monitoramento extends javax.swing.JFrame {
                                         computador.getidComputador());
                                 
                                 dadosDisco.setForeground(Color.yellow);
-                                String slack70Disco = String.format("Disco Maior que 70%");
+                                String slack70Disco = String.format("Disco Maior que 70%%");
                                 gravar.criarLog(slack70Disco);
                             }
 
@@ -499,7 +499,7 @@ public class Monitoramento extends javax.swing.JFrame {
                                         computador.getidComputador());
                                 
                                 dadosDisco.setForeground(Color.RED);
-                                String slack90Disco = String.format("Disco Maior que 90%");
+                                String slack90Disco = String.format("Disco Maior que 90%%");
                                 gravar.criarLog(slack90Disco);
                             }
                         }

@@ -478,7 +478,7 @@ public class Monitoramento extends javax.swing.JFrame {
                             
                             String componente3Local = String.format("Banco de Dados Local: ID Componente: %d", listaComponentes.get(2+i).getIdComputadorComponente());
                             gravar.criarLog(componente3Local);
-                            String mensagemDiscoLocal = String.format("Banco de Dados Local: Dados coletados do Disco: %.2f", discoConvertido);
+                            String mensagemDiscoLocal = String.format("Banco de Dados Local: Dados coletados do Disco: %s", discoConvertido);
                             gravar.criarLog(mensagemDiscoLocal);
                             
                             Double percentualDiscoUso = discos.get(i).getBytesDeEscritas() / Double.valueOf(discos.get(i).getTamanho()) * 100;

@@ -161,6 +161,9 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="checkReiniciarActionPerformed"/>
       </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="checkReiniciar.setToolTipText(&quot;Reinciar a m&#xe1;quina caso o consume de CPU ou RAM chegue a 90%&quot;);"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

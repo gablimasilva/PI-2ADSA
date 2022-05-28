@@ -29,7 +29,7 @@ public class Monitoramento extends javax.swing.JFrame {
     private Looca looca;
 
     public Monitoramento(Computador computador) {
-        checkReiniciar.setToolTipText("Reinciar a máquina caso o consume de CPU ou RAM chegue a 90%");
+        
         this.computador = computador;
         // Deixando a tela no centro;
         cadastrarComponentes();
@@ -98,6 +98,7 @@ public class Monitoramento extends javax.swing.JFrame {
         hostName.setText("| ___________________");
 
         checkReiniciar.setText("Reinciar maquina");
+        checkReiniciar.setToolTipText("Reinciar a máquina caso o consume de CPU ou RAM chegue a 90%");
         checkReiniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkReiniciarActionPerformed(evt);
@@ -392,6 +393,9 @@ public class Monitoramento extends javax.swing.JFrame {
                         Double percentualRamUso = memoria.getEmUso() / Double.valueOf(memoria.getTotal()) * 100;
 
                         if (monitoramentoCpu.monitorarCpu70(cpuUso)) {
+                            monitorar.update("INSERT INTO incidente (fkComputador, dataHora, descricao) VALUES"
+                                    + "(?, getdate(), 'CPU ultrapassou 70% de uso')",
+                                        computador.getidComputador());
                             dadosCpu.setForeground(Color.yellow);
                             finalizarProcessos();
                             String mensagemSlack70 = String.format("Componente CPU passou de 70%");
@@ -401,6 +405,9 @@ public class Monitoramento extends javax.swing.JFrame {
                         }
 
                         if (monitoramentoCpu.monitorarCpu90(cpuUso)) {
+                            monitorar.update("INSERT INTO incidente (fkComputador, dataHora, descricao) VALUES"
+                                    + "(?, getdate(), 'CPU ultrapassou 90% de uso')",
+                                        computador.getidComputador());
                             dadosCpu.setForeground(Color.RED);
                             String mensagemSlack90 = String.format("Componente CPU passou de 90%");
                             gravar.criarLog(mensagemSlack90);
@@ -408,6 +415,9 @@ public class Monitoramento extends javax.swing.JFrame {
                         }
 
                         if (monitoramentoRam.monitorarRam70(percentualRamUso)) {
+                            monitorar.update("INSERT INTO incidente (fkComputador, dataHora, descricao) VALUES"
+                                    + "(?, getdate(), 'RAM ultrapassou 70% de uso')",
+                                        computador.getidComputador());
                             dadosRam.setForeground(Color.yellow);
                             finalizarProcessos();
                             String mensagemSlackProcessos = String.format("Finalizando Processos");
@@ -415,6 +425,9 @@ public class Monitoramento extends javax.swing.JFrame {
                         }
 
                         if (monitoramentoRam.monitorarRam90(percentualRamUso)) {
+                            monitorar.update("INSERT INTO incidente (fkComputador, dataHora, descricao) VALUES"
+                                    + "(?, getdate(), 'CPU ultrapassou 90% de uso')",
+                                        computador.getidComputador());
                             dadosRam.setForeground(Color.RED);
                             String mensagemSlack90 = String.format("Componente CPU passou de 90%");
                             gravar.criarLog(mensagemSlack90);
@@ -451,6 +464,7 @@ public class Monitoramento extends javax.swing.JFrame {
                                     + "(?, ?, getdate(), 'Ativo')",
                                     listaComponentes.get(2 + i).getIdComputadorComponente(), discoConvertido);
                             
+                            
                             String componente3Azure = String.format("Banco de Dados Azure: ID Componente:", listaComponentes.get(2+i).getIdComputadorComponente());
                             gravar.criarLog(componente3Azure);
                             String mensagemDiscoAzure = String.format("Banco de Dados Azure: Dados coletados do Disco:", discoConvertido);
@@ -470,12 +484,20 @@ public class Monitoramento extends javax.swing.JFrame {
                             Double percentualDiscoUso = discos.get(i).getBytesDeEscritas() / Double.valueOf(discos.get(i).getTamanho()) * 100;
                             
                             if (monitoramentoDiscos.get(i).monitorarDisco70(percentualDiscoUso)) {
+                                monitorar.update("INSERT INTO incidente (fkComputador, dataHora, descricao) VALUES"
+                                    + "(?, getdate(), 'Disco ultrapassou 70% de uso')",
+                                        computador.getidComputador());
+                                
                                 dadosDisco.setForeground(Color.yellow);
                                 String slack70Disco = String.format("Disco Maior que 70%");
                                 gravar.criarLog(slack70Disco);
                             }
 
                             if (monitoramentoDiscos.get(i).monitorarDisco90(percentualDiscoUso)) {
+                                monitorar.update("INSERT INTO incidente (fkComputador, dataHora, descricao) VALUES"
+                                    + "(?, getdate(), 'Disco ultrapassou 90% de uso')",
+                                        computador.getidComputador());
+                                
                                 dadosDisco.setForeground(Color.RED);
                                 String slack90Disco = String.format("Disco Maior que 90%");
                                 gravar.criarLog(slack90Disco);

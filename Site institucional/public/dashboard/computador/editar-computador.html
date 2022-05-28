@@ -23,7 +23,7 @@
 
 </head>
 
-<body onload="validarSessao(), ListarLojas()">
+<body onload="validarSessao(), ListarLojas(), aoIniciar()">
     <div class="janela">
         <div class="header-left">
             <img src="../../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview.png" alt="logo" width="40%">
@@ -184,7 +184,12 @@
 </html>
 
 <script>
-
+    let computador;
+    function aoIniciar() {
+        const url = new URLSearchParams(window.location.search);
+        computador = url.get("idComputador");
+        console.log(computador)
+    }
     function mask(e, id, mask) {
         var tecla = (window.event) ? event.keyCode : e.which;
         if ((tecla > 47 && tecla < 58)) {
@@ -229,7 +234,6 @@
         fetch(`/usuarios/listarLojas/${sessionStorage.ID_EMPRESA}`)
             .then(res => res.json())
             .then(res => {
-                console.log(res);
                 res.forEach(lojas => {
                     var option = document.createElement("option");
                     option.innerHTML = lojas.RazaoSocial;
@@ -287,25 +291,14 @@
             return false;
         }
 
-        fetch(`/usuarios/cadastrarMaquina/`, {
+        fetch(`/usuarios/atualizarComputador/${computador}`, {
             method: "POST",
             body: formulario
-        }).then(function (resposta) {
-
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-                window.alert("Cadastro realizado com sucesso!");
-                limparFormulario();
-                finalizarAguardar();
-            } else {
-                throw ("Houve um erro ao tentar realizar o cadastro!");
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            finalizarAguardar();
-        });
-
+        }).then((res) =>{
+        })
+        //await finalizarAguardar();
+        alert("Atualização realizada com sucesso!")
+        location.reload();
         return false;
     }
 

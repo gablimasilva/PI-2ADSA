@@ -23,7 +23,7 @@
 
 </head>
 
-<body onload="validarSessao()">
+<body onload="validarSessao(), aoIniciar()">
     <div class="janela">
         <div class="header-left">
             <img src="../../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview.png" alt="logo" width="40%">
@@ -189,7 +189,7 @@
                                 <button onclick="return cancelar() " class="btn">Cancelar</button>
                             </div>
                             <div >
-                                <button class="btn">Alterar</button>
+                                <button onclick="return atualizarLoja()" class="btn">Alterar</button>
                             </div>
                         </div>
                     </form>
@@ -211,6 +211,12 @@
 
 </html>
 <script>
+    let loja;
+    function aoIniciar() {
+        const urlParams = new URLSearchParams(window.location.search);
+        loja = urlParams.get("idLoja");
+    }
+
     function cancelar() {
         limparFormulario();
         window.location = "./crud-loja.html";
@@ -250,8 +256,10 @@
     function limparFormulario() {
         document.getElementById("form_cadastro").reset();
     }
-    function cadastrarLoja() {
+
+    function atualizarLoja() {
         aguardar();
+        alert("Aaaa")
 
         var formulario = new URLSearchParams(new FormData(document.getElementById("form_cadastro")));
 
@@ -310,25 +318,14 @@
             return false;
         }
 
-        fetch(`/usuarios/cadastrarLoja/${sessionStorage.ID_EMPRESA}`, {
+        fetch(`/usuarios/atualizarLoja/${loja}`, {
             method: "POST",
             body: formulario
-        }).then(function (resposta) {
-
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-                window.alert("Cadastro realizado com sucesso!");
-                limparFormulario();
-                finalizarAguardar();
-            } else {
-                throw ("Houve um erro ao tentar realizar o cadastro!");
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            finalizarAguardar();
-        });
-
+        }).then((res) =>{
+        })
+        //await finalizarAguardar();
+        location.reload();
+        alert("Atualização realizada com sucesso!")
         return false;
     }
 

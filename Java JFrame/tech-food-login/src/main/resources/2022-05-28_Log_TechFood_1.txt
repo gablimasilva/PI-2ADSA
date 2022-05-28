@@ -1,0 +1,1048 @@
+2022/05/28 00:08:06 -- Slack logado com sucesso
+2022/05/28 00:09:09 -- Sistema Operacional:Ubuntu
+2022/05/28 00:09:09 -- ComputadorComponente{idComputadorComponente=118, fkComputador=20, fkComponente=3, totalComponente=465.8, unidadeMedida=GB},
+2022/05/28 00:08:06 -- Logado com sucesso 
+2022/05/28 00:09:09 -- Gustavo
+2022/05/28 00:09:09 -- Em Uso: 7.58%
+2022/05/28 00:09:09 -- Em Uso: 10,8 GiB   |  Total: 465,8 GiB
+2022/05/28 00:09:09 -- Em Uso: 6,8 GiB   |  Total: 7,6 GiB
+2022/05/28 00:09:09 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 00:09:09 -- Banco de Dados da Azure: Dados coletados da RAM: 6.8 
+2022/05/28 00:09:09 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 00:09:09 -- Banco de Dados Azure: Dados coletados da RAM: 11,21
+2022/05/28 00:09:09 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 00:09:09 -- Banco de Dados Local: Dados coletados da CPU: 11,21
+2022/05/28 00:09:09 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 00:09:09 -- Banco de Dados Azure: Dados coletados do Disco: 10.8 
+2022/05/28 00:09:09 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 00:09:09 -- Banco de Dados Local: Dados coletados do Disco: 10.8 
+2022/05/28 00:09:09 -- Gustavo
+2022/05/28 00:09:09 -- Em Uso: 2.14%
+2022/05/28 00:09:09 -- Em Uso: 10,8 GiB   |  Total: 465,8 GiB
+2022/05/28 00:09:09 -- Em Uso: 6,8 GiB   |  Total: 7,6 GiB
+2022/05/28 00:09:09 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 00:09:09 -- Banco de Dados da Azure: Dados coletados da RAM: 6.8 
+2022/05/28 00:09:09 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 00:09:09 -- Banco de Dados Azure: Dados coletados da RAM: 12,16
+2022/05/28 00:09:09 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 00:09:09 -- Banco de Dados Local: Dados coletados da CPU: 12,16
+2022/05/28 00:09:09 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 00:09:09 -- Banco de Dados Azure: Dados coletados do Disco: 10.8 
+2022/05/28 00:09:09 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 00:09:09 -- Banco de Dados Local: Dados coletados do Disco: 10.8 
+2022/05/28 00:09:09 -- Gustavo
+2022/05/28 00:09:09 -- Em Uso: 3.41%
+2022/05/28 00:09:09 -- Em Uso: 10,8 GiB   |  Total: 465,8 GiB
+2022/05/28 00:09:09 -- Em Uso: 6,8 GiB   |  Total: 7,6 GiB
+2022/05/28 00:09:09 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 00:09:09 -- Banco de Dados da Azure: Dados coletados da RAM: 6.8 
+2022/05/28 00:09:17 -- Mensagem enviada para o Slack, Mensagem:Ram alcançou 70%
+2022/05/28 00:09:09 -- Processo finalizado com sucesso
+2022/05/28 00:09:09 -- PID:3640
+2022/05/28 00:09:09 -- Nome do Processo:firefox
+2022/05/28 00:09:09 -- Processo finalizado com sucesso
+2022/05/28 00:09:09 -- PID:2696
+2022/05/28 00:09:09 -- Nome do Processo:pulseaudio
+2022/05/28 00:09:09 -- Processo finalizado com sucesso
+2022/05/28 00:09:09 -- PID:12440
+2022/05/28 00:09:09 -- Nome do Processo:slack
+2022/05/28 00:09:09 -- Processo finalizado com sucesso
+2022/05/28 00:09:09 -- PID:2785
+2022/05/28 00:09:09 -- Nome do Processo:Xorg
+2022/05/28 00:09:09 -- Processo finalizado com sucesso
+2022/05/28 00:09:09 -- PID:12513
+2022/05/28 00:09:09 -- Nome do Processo:slack
+2022/05/28 00:09:09 -- Processo finalizado com sucesso
+2022/05/28 00:09:09 -- PID:12652
+2022/05/28 00:09:09 -- Nome do Processo:Isolated Web Co
+2022/05/28 00:09:09 -- Processo finalizado com sucesso
+2022/05/28 00:09:09 -- PID:32112
+2022/05/28 00:09:09 -- Nome do Processo:teams-for-linux
+2022/05/28 00:09:09 -- Processo finalizado com sucesso
+2022/05/28 00:09:09 -- PID:2985
+2022/05/28 00:09:09 -- Nome do Processo:gnome-shell
+2022/05/28 00:09:09 -- Processo finalizado com sucesso
+2022/05/28 00:09:09 -- PID:12787
+2022/05/28 00:09:09 -- Nome do Processo:Isolated Web Co
+2022/05/28 00:09:09 -- Finalizando Processos
+2022/05/28 00:09:09 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 00:09:09 -- Banco de Dados Azure: Dados coletados da RAM: 11,54
+2022/05/28 00:09:09 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 00:09:09 -- Banco de Dados Local: Dados coletados da CPU: 11,54
+2022/05/28 00:09:09 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 00:09:09 -- Banco de Dados Azure: Dados coletados do Disco: 10.8 
+2022/05/28 00:09:09 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 00:09:09 -- Banco de Dados Local: Dados coletados do Disco: 10.8 
+2022/05/28 00:09:09 -- Gustavo
+2022/05/28 00:09:09 -- Em Uso: 3.88%
+2022/05/28 00:09:09 -- Em Uso: 10,8 GiB   |  Total: 465,8 GiB
+2022/05/28 00:09:09 -- Em Uso: 6,8 GiB   |  Total: 7,6 GiB
+2022/05/28 00:09:09 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 00:09:09 -- Banco de Dados da Azure: Dados coletados da RAM: 6.8 
+2022/05/28 00:09:09 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 00:09:09 -- Banco de Dados Azure: Dados coletados da RAM: 5,10
+2022/05/28 00:09:09 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 00:09:09 -- Banco de Dados Local: Dados coletados da CPU: 5,10
+2022/05/28 00:09:09 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 00:09:09 -- Banco de Dados Azure: Dados coletados do Disco: 10.8 
+2022/05/28 00:09:09 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 00:09:09 -- Banco de Dados Local: Dados coletados do Disco: 10.8 
+2022/05/28 00:09:09 -- Gustavo
+2022/05/28 00:09:09 -- Em Uso: 6.55%
+2022/05/28 00:09:09 -- Em Uso: 10,8 GiB   |  Total: 465,8 GiB
+2022/05/28 00:09:09 -- Em Uso: 6,8 GiB   |  Total: 7,6 GiB
+2022/05/28 00:09:09 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 00:09:09 -- Banco de Dados da Azure: Dados coletados da RAM: 6.8 
+2022/05/28 00:09:09 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 00:09:09 -- Banco de Dados Azure: Dados coletados da RAM: 7,49
+2022/05/28 00:09:09 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 00:09:09 -- Banco de Dados Local: Dados coletados da CPU: 7,49
+2022/05/28 00:09:09 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 00:09:09 -- Banco de Dados Azure: Dados coletados do Disco: 10.8 
+2022/05/28 00:09:09 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 00:09:09 -- Banco de Dados Local: Dados coletados do Disco: 10.8 
+2022/05/28 00:09:09 -- Gustavo
+2022/05/28 00:09:09 -- Em Uso: 3.02%
+2022/05/28 00:09:09 -- Em Uso: 10,8 GiB   |  Total: 465,8 GiB
+2022/05/28 00:09:09 -- Em Uso: 6,8 GiB   |  Total: 7,6 GiB
+2022/05/28 00:09:09 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 00:09:09 -- Banco de Dados da Azure: Dados coletados da RAM: 6.9 
+2022/05/28 00:09:17 -- Mensagem enviada para o Slack, Mensagem:Ram alcançou 70%
+2022/05/28 00:09:09 -- Processo finalizado com sucesso
+2022/05/28 00:09:09 -- PID:3640
+2022/05/28 00:09:09 -- Nome do Processo:firefox
+2022/05/28 00:09:09 -- Processo finalizado com sucesso
+2022/05/28 00:09:09 -- PID:71237
+2022/05/28 00:09:09 -- Nome do Processo:gedit
+2022/05/28 00:09:09 -- Processo finalizado com sucesso
+2022/05/28 00:09:09 -- PID:2696
+2022/05/28 00:09:09 -- Nome do Processo:pulseaudio
+2022/05/28 00:09:09 -- Processo finalizado com sucesso
+2022/05/28 00:09:09 -- PID:12440
+2022/05/28 00:09:09 -- Nome do Processo:slack
+2022/05/28 00:09:09 -- Processo finalizado com sucesso
+2022/05/28 00:09:09 -- PID:2785
+2022/05/28 00:09:09 -- Nome do Processo:Xorg
+2022/05/28 00:09:09 -- Processo finalizado com sucesso
+2022/05/28 00:09:09 -- PID:12513
+2022/05/28 00:09:09 -- Nome do Processo:slack
+2022/05/28 00:09:09 -- Processo finalizado com sucesso
+2022/05/28 00:09:09 -- PID:12652
+2022/05/28 00:09:09 -- Nome do Processo:Isolated Web Co
+2022/05/28 00:09:09 -- Processo finalizado com sucesso
+2022/05/28 00:09:09 -- PID:32112
+2022/05/28 00:09:09 -- Nome do Processo:teams-for-linux
+2022/05/28 00:09:09 -- Processo finalizado com sucesso
+2022/05/28 00:09:09 -- PID:2985
+2022/05/28 00:09:09 -- Nome do Processo:gnome-shell
+2022/05/28 00:09:09 -- Processo finalizado com sucesso
+2022/05/28 00:09:09 -- PID:12787
+2022/05/28 00:09:09 -- Nome do Processo:Isolated Web Co
+2022/05/28 00:09:09 -- Finalizando Processos
+2022/05/28 00:09:09 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 00:09:09 -- Banco de Dados Azure: Dados coletados da RAM: 12,00
+2022/05/28 00:09:09 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 00:09:09 -- Banco de Dados Local: Dados coletados da CPU: 12,00
+2022/05/28 00:09:09 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 00:09:09 -- Banco de Dados Azure: Dados coletados do Disco: 10.8 
+2022/05/28 00:09:09 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 00:09:09 -- Banco de Dados Local: Dados coletados do Disco: 10.8 
+2022/05/28 00:09:09 -- Gustavo
+2022/05/28 00:09:09 -- Em Uso: 12.66%
+2022/05/28 00:09:09 -- Em Uso: 10,9 GiB   |  Total: 465,8 GiB
+2022/05/28 00:09:09 -- Em Uso: 6,9 GiB   |  Total: 7,6 GiB
+2022/05/28 00:09:09 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 00:09:09 -- Banco de Dados da Azure: Dados coletados da RAM: 6.9 
+2022/05/28 00:09:09 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 00:09:09 -- Banco de Dados Azure: Dados coletados da RAM: 23,40
+2022/05/28 00:09:09 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 00:09:09 -- Banco de Dados Local: Dados coletados da CPU: 23,40
+2022/05/28 00:09:09 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 00:09:09 -- Banco de Dados Azure: Dados coletados do Disco: 10.8 
+2022/05/28 00:09:09 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 00:09:09 -- Banco de Dados Local: Dados coletados do Disco: 10.8 
+2022/05/28 00:09:09 -- Gustavo
+2022/05/28 00:09:09 -- Em Uso: 1.02%
+2022/05/28 00:09:09 -- Em Uso: 10,9 GiB   |  Total: 465,8 GiB
+2022/05/28 00:09:09 -- Em Uso: 6,9 GiB   |  Total: 7,6 GiB
+2022/05/28 00:09:09 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 00:09:09 -- Banco de Dados da Azure: Dados coletados da RAM: 6.9 
+2022/05/28 00:09:17 -- Mensagem enviada para o Slack, Mensagem:Ram alcançou 90%
+2022/05/28 00:09:09 -- Erro de leitura
+2022/05/28 15:03:59 -- Slack logado com sucesso
+2022/05/28 15:23:43 -- Slack logado com sucesso
+2022/05/28 15:23:52 -- Sistema Operacional:Ubuntu
+2022/05/28 15:23:56 -- ComputadorComponente{idComputadorComponente=118, fkComputador=20, fkComponente=3, totalComponente=465.8, unidadeMedida=GB},
+2022/05/28 15:23:56 -- Logado com sucesso 
+2022/05/28 15:24:00 -- Gustavo
+2022/05/28 15:24:00 -- Em Uso: 11.54%
+2022/05/28 15:24:00 -- Em Uso: 919,5 MiB   |  Total: 465,8 GiB
+2022/05/28 15:24:00 -- Em Uso: 4,5 GiB   |  Total: 7,6 GiB
+2022/05/28 15:24:01 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:24:01 -- Banco de Dados da Azure: Dados coletados da RAM: 4.5 
+2022/05/28 15:24:02 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:24:02 -- Banco de Dados Azure: Dados coletados da RAM: 10,91
+2022/05/28 15:24:02 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:24:02 -- Banco de Dados Local: Dados coletados da CPU: 10,91
+2022/05/28 15:24:02 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:24:02 -- Banco de Dados Azure: Dados coletados do Disco: 919.3 
+2022/05/28 15:24:02 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:24:02 -- Banco de Dados Local: Dados coletados do Disco: 919.3 
+2022/05/28 15:24:11 -- Gustavo
+2022/05/28 15:24:11 -- Em Uso: 1.74%
+2022/05/28 15:24:11 -- Em Uso: 920,2 MiB   |  Total: 465,8 GiB
+2022/05/28 15:24:11 -- Em Uso: 4,5 GiB   |  Total: 7,6 GiB
+2022/05/28 15:24:12 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:24:12 -- Banco de Dados da Azure: Dados coletados da RAM: 4.5 
+2022/05/28 15:24:12 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:24:12 -- Banco de Dados Azure: Dados coletados da RAM: 1,99
+2022/05/28 15:24:12 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:24:12 -- Banco de Dados Local: Dados coletados da CPU: 1,99
+2022/05/28 15:24:13 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:24:13 -- Banco de Dados Azure: Dados coletados do Disco: 919.9 
+2022/05/28 15:24:13 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:24:13 -- Banco de Dados Local: Dados coletados do Disco: 919.9 
+2022/05/28 15:24:22 -- Gustavo
+2022/05/28 15:24:22 -- Em Uso: 1.14%
+2022/05/28 15:24:22 -- Em Uso: 920,8 MiB   |  Total: 465,8 GiB
+2022/05/28 15:24:22 -- Em Uso: 4,5 GiB   |  Total: 7,6 GiB
+2022/05/28 15:24:23 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:24:23 -- Banco de Dados da Azure: Dados coletados da RAM: 4.5 
+2022/05/28 15:24:23 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:24:23 -- Banco de Dados Azure: Dados coletados da RAM: 1,39
+2022/05/28 15:24:23 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:24:23 -- Banco de Dados Local: Dados coletados da CPU: 1,39
+2022/05/28 15:24:24 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:24:24 -- Banco de Dados Azure: Dados coletados do Disco: 920.7 
+2022/05/28 15:24:24 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:24:24 -- Banco de Dados Local: Dados coletados do Disco: 920.7 
+2022/05/28 15:24:33 -- Gustavo
+2022/05/28 15:24:33 -- Em Uso: 4.18%
+2022/05/28 15:24:33 -- Em Uso: 921,8 MiB   |  Total: 465,8 GiB
+2022/05/28 15:24:33 -- Em Uso: 4,5 GiB   |  Total: 7,6 GiB
+2022/05/28 15:24:33 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:24:33 -- Banco de Dados da Azure: Dados coletados da RAM: 4.5 
+2022/05/28 15:24:34 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:24:34 -- Banco de Dados Azure: Dados coletados da RAM: 1,51
+2022/05/28 15:24:34 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:24:34 -- Banco de Dados Local: Dados coletados da CPU: 1,51
+2022/05/28 15:24:34 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:24:34 -- Banco de Dados Azure: Dados coletados do Disco: 921.4 
+2022/05/28 15:24:34 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:24:34 -- Banco de Dados Local: Dados coletados do Disco: 921.4 
+2022/05/28 15:24:43 -- Gustavo
+2022/05/28 15:24:43 -- Em Uso: 1.25%
+2022/05/28 15:24:43 -- Em Uso: 922,9 MiB   |  Total: 465,8 GiB
+2022/05/28 15:24:43 -- Em Uso: 4,5 GiB   |  Total: 7,6 GiB
+2022/05/28 15:24:44 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:24:44 -- Banco de Dados da Azure: Dados coletados da RAM: 4.5 
+2022/05/28 15:24:44 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:24:44 -- Banco de Dados Azure: Dados coletados da RAM: 1,75
+2022/05/28 15:24:44 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:24:44 -- Banco de Dados Local: Dados coletados da CPU: 1,75
+2022/05/28 15:24:45 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:24:45 -- Banco de Dados Azure: Dados coletados do Disco: 922.5 
+2022/05/28 15:24:45 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:24:45 -- Banco de Dados Local: Dados coletados do Disco: 922.5 
+2022/05/28 15:24:54 -- Gustavo
+2022/05/28 15:24:54 -- Em Uso: 3.40%
+2022/05/28 15:24:54 -- Em Uso: 924,0 MiB   |  Total: 465,8 GiB
+2022/05/28 15:24:54 -- Em Uso: 4,5 GiB   |  Total: 7,6 GiB
+2022/05/28 15:24:55 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:24:55 -- Banco de Dados da Azure: Dados coletados da RAM: 4.5 
+2022/05/28 15:24:55 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:24:55 -- Banco de Dados Azure: Dados coletados da RAM: 0,75
+2022/05/28 15:24:55 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:24:55 -- Banco de Dados Local: Dados coletados da CPU: 0,75
+2022/05/28 15:24:56 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:24:56 -- Banco de Dados Azure: Dados coletados do Disco: 923.4 
+2022/05/28 15:24:56 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:24:56 -- Banco de Dados Local: Dados coletados do Disco: 923.4 
+2022/05/28 15:25:05 -- Gustavo
+2022/05/28 15:25:05 -- Em Uso: 11.45%
+2022/05/28 15:25:05 -- Em Uso: 926,8 MiB   |  Total: 465,8 GiB
+2022/05/28 15:25:05 -- Em Uso: 4,5 GiB   |  Total: 7,6 GiB
+2022/05/28 15:25:06 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:25:06 -- Banco de Dados da Azure: Dados coletados da RAM: 4.5 
+2022/05/28 15:25:06 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:25:06 -- Banco de Dados Azure: Dados coletados da RAM: 5,73
+2022/05/28 15:25:06 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:25:06 -- Banco de Dados Local: Dados coletados da CPU: 5,73
+2022/05/28 15:25:07 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:25:07 -- Banco de Dados Azure: Dados coletados do Disco: 925.4 
+2022/05/28 15:25:07 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:25:07 -- Banco de Dados Local: Dados coletados do Disco: 925.4 
+2022/05/28 15:25:16 -- Gustavo
+2022/05/28 15:25:16 -- Em Uso: 2.40%
+2022/05/28 15:25:16 -- Em Uso: 927,2 MiB   |  Total: 465,8 GiB
+2022/05/28 15:25:16 -- Em Uso: 4,6 GiB   |  Total: 7,6 GiB
+2022/05/28 15:25:17 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:25:17 -- Banco de Dados da Azure: Dados coletados da RAM: 4.6 
+2022/05/28 15:25:18 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:25:18 -- Banco de Dados Azure: Dados coletados da RAM: 1,13
+2022/05/28 15:25:18 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:25:18 -- Banco de Dados Local: Dados coletados da CPU: 1,13
+2022/05/28 15:25:19 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:25:19 -- Banco de Dados Azure: Dados coletados do Disco: 927.1 
+2022/05/28 15:25:19 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:25:19 -- Banco de Dados Local: Dados coletados do Disco: 927.1 
+2022/05/28 15:25:28 -- Gustavo
+2022/05/28 15:25:28 -- Em Uso: 3.86%
+2022/05/28 15:25:28 -- Em Uso: 929,0 MiB   |  Total: 465,8 GiB
+2022/05/28 15:25:28 -- Em Uso: 4,6 GiB   |  Total: 7,6 GiB
+2022/05/28 15:25:29 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:25:29 -- Banco de Dados da Azure: Dados coletados da RAM: 4.6 
+2022/05/28 15:25:29 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:25:29 -- Banco de Dados Azure: Dados coletados da RAM: 5,56
+2022/05/28 15:25:29 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:25:29 -- Banco de Dados Local: Dados coletados da CPU: 5,56
+2022/05/28 15:25:30 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:25:30 -- Banco de Dados Azure: Dados coletados do Disco: 928.7 
+2022/05/28 15:25:30 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:25:30 -- Banco de Dados Local: Dados coletados do Disco: 928.7 
+2022/05/28 15:25:39 -- Gustavo
+2022/05/28 15:25:39 -- Em Uso: 9.58%
+2022/05/28 15:25:39 -- Em Uso: 929,8 MiB   |  Total: 465,8 GiB
+2022/05/28 15:25:39 -- Em Uso: 4,6 GiB   |  Total: 7,6 GiB
+2022/05/28 15:25:40 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:25:40 -- Banco de Dados da Azure: Dados coletados da RAM: 4.6 
+2022/05/28 15:25:41 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:25:41 -- Banco de Dados Azure: Dados coletados da RAM: 7,60
+2022/05/28 15:25:41 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:25:41 -- Banco de Dados Local: Dados coletados da CPU: 7,60
+2022/05/28 15:25:42 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:25:42 -- Banco de Dados Azure: Dados coletados do Disco: 929.7 
+2022/05/28 15:25:42 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:25:42 -- Banco de Dados Local: Dados coletados do Disco: 929.7 
+2022/05/28 15:31:27 -- Slack logado com sucesso
+2022/05/28 15:31:42 -- Sistema Operacional:Ubuntu
+2022/05/28 15:31:45 -- ComputadorComponente{idComputadorComponente=118, fkComputador=20, fkComponente=3, totalComponente=465.8, unidadeMedida=GB},
+2022/05/28 15:31:45 -- Logado com sucesso 
+2022/05/28 15:31:49 -- Gustavo
+2022/05/28 15:31:49 -- Em Uso: 11.37%
+2022/05/28 15:31:49 -- Em Uso: 1014,9 MiB   |  Total: 465,8 GiB
+2022/05/28 15:31:49 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:31:50 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:31:50 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:31:51 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:31:51 -- Banco de Dados Azure: Dados coletados da RAM: 8,36
+2022/05/28 15:31:51 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:31:51 -- Banco de Dados Local: Dados coletados da CPU: 8,36
+2022/05/28 15:31:52 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:31:52 -- Banco de Dados Azure: Dados coletados do Disco: 1014.6 
+2022/05/28 15:31:52 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:31:52 -- Banco de Dados Local: Dados coletados do Disco: 1014.6 
+2022/05/28 15:32:01 -- Gustavo
+2022/05/28 15:32:01 -- Em Uso: 1.63%
+2022/05/28 15:32:01 -- Em Uso: 1015,7 MiB   |  Total: 465,8 GiB
+2022/05/28 15:32:01 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:32:02 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:32:02 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:32:02 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:32:02 -- Banco de Dados Azure: Dados coletados da RAM: 1,00
+2022/05/28 15:32:02 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:32:02 -- Banco de Dados Local: Dados coletados da CPU: 1,00
+2022/05/28 15:32:03 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:32:03 -- Banco de Dados Azure: Dados coletados do Disco: 1015.5 
+2022/05/28 15:32:03 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:32:03 -- Banco de Dados Local: Dados coletados do Disco: 1015.5 
+2022/05/28 15:32:12 -- Gustavo
+2022/05/28 15:32:12 -- Em Uso: 0.63%
+2022/05/28 15:32:12 -- Em Uso: 1017,0 MiB   |  Total: 465,8 GiB
+2022/05/28 15:32:12 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:32:13 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:32:13 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:32:14 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:32:14 -- Banco de Dados Azure: Dados coletados da RAM: 5,78
+2022/05/28 15:32:14 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:32:14 -- Banco de Dados Local: Dados coletados da CPU: 5,78
+2022/05/28 15:32:14 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:32:14 -- Banco de Dados Azure: Dados coletados do Disco: 1017.0 
+2022/05/28 15:32:14 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:32:14 -- Banco de Dados Local: Dados coletados do Disco: 1017.0 
+2022/05/28 15:32:23 -- Gustavo
+2022/05/28 15:32:23 -- Em Uso: 5.49%
+2022/05/28 15:32:23 -- Em Uso: 1017,3 MiB   |  Total: 465,8 GiB
+2022/05/28 15:32:23 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:32:24 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:32:24 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:32:25 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:32:25 -- Banco de Dados Azure: Dados coletados da RAM: 2,25
+2022/05/28 15:32:25 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:32:25 -- Banco de Dados Local: Dados coletados da CPU: 2,25
+2022/05/28 15:32:25 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:32:25 -- Banco de Dados Azure: Dados coletados do Disco: 1017.2 
+2022/05/28 15:32:25 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:32:25 -- Banco de Dados Local: Dados coletados do Disco: 1017.2 
+2022/05/28 15:32:34 -- Gustavo
+2022/05/28 15:32:34 -- Em Uso: 2.12%
+2022/05/28 15:32:34 -- Em Uso: 1017,5 MiB   |  Total: 465,8 GiB
+2022/05/28 15:32:34 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:32:36 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:32:36 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:32:37 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:32:37 -- Banco de Dados Azure: Dados coletados da RAM: 1,87
+2022/05/28 15:32:37 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:32:37 -- Banco de Dados Local: Dados coletados da CPU: 1,87
+2022/05/28 15:32:37 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:32:37 -- Banco de Dados Azure: Dados coletados do Disco: 1017.4 
+2022/05/28 15:32:37 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:32:37 -- Banco de Dados Local: Dados coletados do Disco: 1017.4 
+2022/05/28 15:32:46 -- Gustavo
+2022/05/28 15:32:46 -- Em Uso: 1.37%
+2022/05/28 15:32:46 -- Em Uso: 1018,3 MiB   |  Total: 465,8 GiB
+2022/05/28 15:32:46 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:32:47 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:32:47 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:32:48 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:32:48 -- Banco de Dados Azure: Dados coletados da RAM: 0,50
+2022/05/28 15:32:48 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:32:48 -- Banco de Dados Local: Dados coletados da CPU: 0,50
+2022/05/28 15:32:48 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:32:48 -- Banco de Dados Azure: Dados coletados do Disco: 1018.2 
+2022/05/28 15:32:48 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:32:48 -- Banco de Dados Local: Dados coletados do Disco: 1018.2 
+2022/05/28 15:32:57 -- Gustavo
+2022/05/28 15:32:57 -- Em Uso: 1.25%
+2022/05/28 15:32:57 -- Em Uso: 1018,7 MiB   |  Total: 465,8 GiB
+2022/05/28 15:32:57 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:32:58 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:32:58 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:32:59 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:32:59 -- Banco de Dados Azure: Dados coletados da RAM: 1,75
+2022/05/28 15:32:59 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:32:59 -- Banco de Dados Local: Dados coletados da CPU: 1,75
+2022/05/28 15:32:59 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:32:59 -- Banco de Dados Azure: Dados coletados do Disco: 1018.5 
+2022/05/28 15:32:59 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:32:59 -- Banco de Dados Local: Dados coletados do Disco: 1018.5 
+2022/05/28 15:33:08 -- Gustavo
+2022/05/28 15:33:08 -- Em Uso: 1.49%
+2022/05/28 15:33:08 -- Em Uso: 1019,8 MiB   |  Total: 465,8 GiB
+2022/05/28 15:33:08 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:33:09 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:33:09 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:33:10 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:33:10 -- Banco de Dados Azure: Dados coletados da RAM: 7,05
+2022/05/28 15:33:10 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:33:10 -- Banco de Dados Local: Dados coletados da CPU: 7,05
+2022/05/28 15:33:10 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:33:10 -- Banco de Dados Azure: Dados coletados do Disco: 1019.3 
+2022/05/28 15:33:10 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:33:10 -- Banco de Dados Local: Dados coletados do Disco: 1019.3 
+2022/05/28 15:33:19 -- Gustavo
+2022/05/28 15:33:19 -- Em Uso: 1.38%
+2022/05/28 15:33:19 -- Em Uso: 1020,3 MiB   |  Total: 465,8 GiB
+2022/05/28 15:33:19 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:33:20 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:33:20 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:33:20 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:33:20 -- Banco de Dados Azure: Dados coletados da RAM: 11,96
+2022/05/28 15:33:20 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:33:20 -- Banco de Dados Local: Dados coletados da CPU: 11,96
+2022/05/28 15:33:21 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:33:21 -- Banco de Dados Azure: Dados coletados do Disco: 1020.2 
+2022/05/28 15:33:21 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:33:21 -- Banco de Dados Local: Dados coletados do Disco: 1020.2 
+2022/05/28 15:33:30 -- Gustavo
+2022/05/28 15:33:30 -- Em Uso: 4.20%
+2022/05/28 15:33:30 -- Em Uso: 1021,4 MiB   |  Total: 465,8 GiB
+2022/05/28 15:33:30 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:33:31 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:33:31 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:33:32 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:33:32 -- Banco de Dados Azure: Dados coletados da RAM: 14,74
+2022/05/28 15:33:32 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:33:32 -- Banco de Dados Local: Dados coletados da CPU: 14,74
+2022/05/28 15:33:32 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:33:32 -- Banco de Dados Azure: Dados coletados do Disco: 1021.4 
+2022/05/28 15:33:32 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:33:32 -- Banco de Dados Local: Dados coletados do Disco: 1021.4 
+2022/05/28 15:33:41 -- Gustavo
+2022/05/28 15:33:41 -- Em Uso: 2.15%
+2022/05/28 15:33:41 -- Em Uso: 1022,1 MiB   |  Total: 465,8 GiB
+2022/05/28 15:33:41 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:33:42 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:33:42 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:33:43 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:33:43 -- Banco de Dados Azure: Dados coletados da RAM: 10,19
+2022/05/28 15:33:43 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:33:43 -- Banco de Dados Local: Dados coletados da CPU: 10,19
+2022/05/28 15:33:44 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:33:44 -- Banco de Dados Azure: Dados coletados do Disco: 1022.1 
+2022/05/28 15:33:44 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:33:44 -- Banco de Dados Local: Dados coletados do Disco: 1022.1 
+2022/05/28 15:33:53 -- Gustavo
+2022/05/28 15:33:53 -- Em Uso: 5.02%
+2022/05/28 15:33:53 -- Em Uso: 1024,0 MiB   |  Total: 465,8 GiB
+2022/05/28 15:33:53 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:33:53 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:33:53 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:33:54 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:33:54 -- Banco de Dados Azure: Dados coletados da RAM: 6,08
+2022/05/28 15:33:54 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:33:54 -- Banco de Dados Local: Dados coletados da CPU: 6,08
+2022/05/28 15:33:54 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:33:54 -- Banco de Dados Azure: Dados coletados do Disco: 1023.2 
+2022/05/28 15:33:54 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:33:54 -- Banco de Dados Local: Dados coletados do Disco: 1023.2 
+2022/05/28 15:34:03 -- Gustavo
+2022/05/28 15:34:03 -- Em Uso: 10.92%
+2022/05/28 15:34:03 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:34:03 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:34:04 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:34:04 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:34:04 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:34:04 -- Banco de Dados Azure: Dados coletados da RAM: 2,25
+2022/05/28 15:34:04 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:34:04 -- Banco de Dados Local: Dados coletados da CPU: 2,25
+2022/05/28 15:34:05 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:34:05 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:34:05 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:34:05 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:34:14 -- Gustavo
+2022/05/28 15:34:14 -- Em Uso: 0.88%
+2022/05/28 15:34:14 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:34:14 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:34:14 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:34:14 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:34:15 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:34:15 -- Banco de Dados Azure: Dados coletados da RAM: 3,49
+2022/05/28 15:34:15 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:34:15 -- Banco de Dados Local: Dados coletados da CPU: 3,49
+2022/05/28 15:34:16 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:34:16 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:34:16 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:34:16 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:34:25 -- Gustavo
+2022/05/28 15:34:25 -- Em Uso: 0.88%
+2022/05/28 15:34:25 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:34:25 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:34:26 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:34:26 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:34:27 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:34:27 -- Banco de Dados Azure: Dados coletados da RAM: 0,88
+2022/05/28 15:34:27 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:34:27 -- Banco de Dados Local: Dados coletados da CPU: 0,88
+2022/05/28 15:34:28 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:34:28 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:34:28 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:34:28 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:34:37 -- Gustavo
+2022/05/28 15:34:37 -- Em Uso: 1.50%
+2022/05/28 15:34:37 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:34:37 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:34:38 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:34:38 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:34:38 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:34:38 -- Banco de Dados Azure: Dados coletados da RAM: 1,25
+2022/05/28 15:34:38 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:34:38 -- Banco de Dados Local: Dados coletados da CPU: 1,25
+2022/05/28 15:34:39 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:34:39 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:34:39 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:34:39 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:34:48 -- Gustavo
+2022/05/28 15:34:48 -- Em Uso: 1.00%
+2022/05/28 15:34:48 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:34:48 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:34:48 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:34:48 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:34:49 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:34:49 -- Banco de Dados Azure: Dados coletados da RAM: 0,38
+2022/05/28 15:34:49 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:34:49 -- Banco de Dados Local: Dados coletados da CPU: 0,38
+2022/05/28 15:34:50 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:34:50 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:34:50 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:34:50 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:34:59 -- Gustavo
+2022/05/28 15:34:59 -- Em Uso: 1.39%
+2022/05/28 15:34:59 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:34:59 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:35:00 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:35:00 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:35:01 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:35:01 -- Banco de Dados Azure: Dados coletados da RAM: 0,89
+2022/05/28 15:35:01 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:35:01 -- Banco de Dados Local: Dados coletados da CPU: 0,89
+2022/05/28 15:35:01 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:35:01 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:35:01 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:35:01 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:35:10 -- Gustavo
+2022/05/28 15:35:10 -- Em Uso: 6.06%
+2022/05/28 15:35:10 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:35:10 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:35:11 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:35:11 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:35:11 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:35:11 -- Banco de Dados Azure: Dados coletados da RAM: 5,26
+2022/05/28 15:35:11 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:35:11 -- Banco de Dados Local: Dados coletados da CPU: 5,26
+2022/05/28 15:35:12 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:35:12 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:35:12 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:35:12 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:35:21 -- Gustavo
+2022/05/28 15:35:21 -- Em Uso: 1.00%
+2022/05/28 15:35:21 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:35:21 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:35:21 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:35:21 -- Banco de Dados da Azure: Dados coletados da RAM: 5.0 
+2022/05/28 15:35:22 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:35:22 -- Banco de Dados Azure: Dados coletados da RAM: 5,26
+2022/05/28 15:35:22 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:35:22 -- Banco de Dados Local: Dados coletados da CPU: 5,26
+2022/05/28 15:35:23 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:35:23 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:35:23 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:35:23 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:35:32 -- Gustavo
+2022/05/28 15:35:32 -- Em Uso: 0.88%
+2022/05/28 15:35:32 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:35:32 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:35:33 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:35:33 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:35:34 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:35:34 -- Banco de Dados Azure: Dados coletados da RAM: 2,13
+2022/05/28 15:35:34 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:35:34 -- Banco de Dados Local: Dados coletados da CPU: 2,13
+2022/05/28 15:35:35 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:35:35 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:35:35 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:35:35 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:35:44 -- Gustavo
+2022/05/28 15:35:44 -- Em Uso: 1.50%
+2022/05/28 15:35:44 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:35:44 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:35:44 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:35:44 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:35:45 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:35:45 -- Banco de Dados Azure: Dados coletados da RAM: 1,50
+2022/05/28 15:35:45 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:35:45 -- Banco de Dados Local: Dados coletados da CPU: 1,50
+2022/05/28 15:35:46 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:35:46 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:35:46 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:35:46 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:35:55 -- Gustavo
+2022/05/28 15:35:55 -- Em Uso: 9.80%
+2022/05/28 15:35:55 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:35:55 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:35:56 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:35:56 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:35:56 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:35:56 -- Banco de Dados Azure: Dados coletados da RAM: 1,26
+2022/05/28 15:35:56 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:35:57 -- Banco de Dados Local: Dados coletados da CPU: 1,26
+2022/05/28 15:35:57 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:35:57 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:35:57 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:35:57 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:36:06 -- Gustavo
+2022/05/28 15:36:06 -- Em Uso: 7.63%
+2022/05/28 15:36:06 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:36:06 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:36:07 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:36:07 -- Banco de Dados da Azure: Dados coletados da RAM: 4.8 
+2022/05/28 15:36:08 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:36:08 -- Banco de Dados Azure: Dados coletados da RAM: 11,70
+2022/05/28 15:36:08 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:36:08 -- Banco de Dados Local: Dados coletados da CPU: 11,70
+2022/05/28 15:36:08 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:36:08 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:36:08 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:36:08 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:36:18 -- Gustavo
+2022/05/28 15:36:18 -- Em Uso: 4.06%
+2022/05/28 15:36:18 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:36:18 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:36:18 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:36:18 -- Banco de Dados da Azure: Dados coletados da RAM: 4.8 
+2022/05/28 15:36:19 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:36:19 -- Banco de Dados Azure: Dados coletados da RAM: 0,88
+2022/05/28 15:36:19 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:36:19 -- Banco de Dados Local: Dados coletados da CPU: 0,88
+2022/05/28 15:36:20 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:36:20 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:36:20 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:36:20 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:36:29 -- Gustavo
+2022/05/28 15:36:29 -- Em Uso: 0.75%
+2022/05/28 15:36:29 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:36:29 -- Em Uso: 4,8 GiB   |  Total: 7,6 GiB
+2022/05/28 15:36:30 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:36:30 -- Banco de Dados da Azure: Dados coletados da RAM: 4.8 
+2022/05/28 15:36:30 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:36:30 -- Banco de Dados Azure: Dados coletados da RAM: 0,88
+2022/05/28 15:36:30 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:36:30 -- Banco de Dados Local: Dados coletados da CPU: 0,88
+2022/05/28 15:36:31 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:36:31 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:36:31 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:36:31 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:36:40 -- Gustavo
+2022/05/28 15:36:40 -- Em Uso: 1.00%
+2022/05/28 15:36:40 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:36:40 -- Em Uso: 4,8 GiB   |  Total: 7,6 GiB
+2022/05/28 15:36:41 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:36:41 -- Banco de Dados da Azure: Dados coletados da RAM: 4.8 
+2022/05/28 15:36:42 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:36:42 -- Banco de Dados Azure: Dados coletados da RAM: 0,75
+2022/05/28 15:36:42 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:36:42 -- Banco de Dados Local: Dados coletados da CPU: 0,75
+2022/05/28 15:36:42 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:36:42 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:36:42 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:36:42 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:36:51 -- Gustavo
+2022/05/28 15:36:51 -- Em Uso: 7.14%
+2022/05/28 15:36:51 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:36:51 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:36:52 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:36:52 -- Banco de Dados da Azure: Dados coletados da RAM: 4.8 
+2022/05/28 15:36:52 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:36:52 -- Banco de Dados Azure: Dados coletados da RAM: 5,95
+2022/05/28 15:36:52 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:36:52 -- Banco de Dados Local: Dados coletados da CPU: 5,95
+2022/05/28 15:36:53 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:36:53 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:36:53 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:36:53 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:37:02 -- Gustavo
+2022/05/28 15:37:02 -- Em Uso: 6.83%
+2022/05/28 15:37:02 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:37:02 -- Em Uso: 4,8 GiB   |  Total: 7,6 GiB
+2022/05/28 15:37:03 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:37:03 -- Banco de Dados da Azure: Dados coletados da RAM: 4.8 
+2022/05/28 15:37:03 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:37:03 -- Banco de Dados Azure: Dados coletados da RAM: 2,38
+2022/05/28 15:37:03 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:37:03 -- Banco de Dados Local: Dados coletados da CPU: 2,38
+2022/05/28 15:37:04 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:37:04 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:37:04 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:37:04 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:37:13 -- Gustavo
+2022/05/28 15:37:13 -- Em Uso: 8.52%
+2022/05/28 15:37:13 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:37:13 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:37:14 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:37:14 -- Banco de Dados da Azure: Dados coletados da RAM: 4.8 
+2022/05/28 15:37:14 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:37:14 -- Banco de Dados Azure: Dados coletados da RAM: 1,75
+2022/05/28 15:37:14 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:37:14 -- Banco de Dados Local: Dados coletados da CPU: 1,75
+2022/05/28 15:37:15 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:37:15 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:37:15 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:37:15 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:37:24 -- Gustavo
+2022/05/28 15:37:24 -- Em Uso: 8.59%
+2022/05/28 15:37:24 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:37:24 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:37:25 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:37:25 -- Banco de Dados da Azure: Dados coletados da RAM: 4.8 
+2022/05/28 15:37:26 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:37:26 -- Banco de Dados Azure: Dados coletados da RAM: 3,70
+2022/05/28 15:37:26 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:37:26 -- Banco de Dados Local: Dados coletados da CPU: 3,70
+2022/05/28 15:37:27 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:37:27 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:37:27 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:37:27 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:37:36 -- Gustavo
+2022/05/28 15:37:36 -- Em Uso: 2.27%
+2022/05/28 15:37:36 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:37:36 -- Em Uso: 4,8 GiB   |  Total: 7,6 GiB
+2022/05/28 15:37:36 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:37:36 -- Banco de Dados da Azure: Dados coletados da RAM: 4.8 
+2022/05/28 15:37:37 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:37:37 -- Banco de Dados Azure: Dados coletados da RAM: 9,03
+2022/05/28 15:37:37 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:37:37 -- Banco de Dados Local: Dados coletados da CPU: 9,03
+2022/05/28 15:37:38 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:37:38 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:37:38 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:37:38 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:37:47 -- Gustavo
+2022/05/28 15:37:47 -- Em Uso: 8.91%
+2022/05/28 15:37:47 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:37:47 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:37:47 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:37:47 -- Banco de Dados da Azure: Dados coletados da RAM: 4.8 
+2022/05/28 15:37:48 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:37:48 -- Banco de Dados Azure: Dados coletados da RAM: 1,00
+2022/05/28 15:37:48 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:37:48 -- Banco de Dados Local: Dados coletados da CPU: 1,00
+2022/05/28 15:37:49 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:37:49 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:37:49 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:37:49 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:37:58 -- Gustavo
+2022/05/28 15:37:58 -- Em Uso: 5.65%
+2022/05/28 15:37:58 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:37:58 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:37:58 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:37:58 -- Banco de Dados da Azure: Dados coletados da RAM: 4.8 
+2022/05/28 15:37:59 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:37:59 -- Banco de Dados Azure: Dados coletados da RAM: 1,00
+2022/05/28 15:37:59 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:37:59 -- Banco de Dados Local: Dados coletados da CPU: 1,00
+2022/05/28 15:38:00 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:38:00 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:38:00 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:38:00 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:38:09 -- Gustavo
+2022/05/28 15:38:09 -- Em Uso: 9.64%
+2022/05/28 15:38:09 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:38:09 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:38:10 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:38:10 -- Banco de Dados da Azure: Dados coletados da RAM: 4.8 
+2022/05/28 15:38:10 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:38:10 -- Banco de Dados Azure: Dados coletados da RAM: 3,75
+2022/05/28 15:38:10 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:38:10 -- Banco de Dados Local: Dados coletados da CPU: 3,75
+2022/05/28 15:38:11 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:38:11 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:38:11 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:38:11 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:38:20 -- Gustavo
+2022/05/28 15:38:20 -- Em Uso: 3.40%
+2022/05/28 15:38:20 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:38:20 -- Em Uso: 4,8 GiB   |  Total: 7,6 GiB
+2022/05/28 15:38:21 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:38:21 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:38:21 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:38:21 -- Banco de Dados Azure: Dados coletados da RAM: 8,24
+2022/05/28 15:38:21 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:38:21 -- Banco de Dados Local: Dados coletados da CPU: 8,24
+2022/05/28 15:38:22 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:38:22 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:38:22 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:38:22 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:38:31 -- Gustavo
+2022/05/28 15:38:31 -- Em Uso: 2.36%
+2022/05/28 15:38:31 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:38:31 -- Em Uso: 4,8 GiB   |  Total: 7,6 GiB
+2022/05/28 15:38:31 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:38:31 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:38:32 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:38:32 -- Banco de Dados Azure: Dados coletados da RAM: 4,13
+2022/05/28 15:38:32 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:38:32 -- Banco de Dados Local: Dados coletados da CPU: 4,13
+2022/05/28 15:38:33 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:38:33 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:38:33 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:38:33 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:38:42 -- Gustavo
+2022/05/28 15:38:42 -- Em Uso: 1.39%
+2022/05/28 15:38:42 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:38:42 -- Em Uso: 4,8 GiB   |  Total: 7,6 GiB
+2022/05/28 15:38:42 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:38:42 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:38:43 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:38:43 -- Banco de Dados Azure: Dados coletados da RAM: 8,89
+2022/05/28 15:38:43 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:38:43 -- Banco de Dados Local: Dados coletados da CPU: 8,89
+2022/05/28 15:38:43 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:38:43 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:38:43 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:38:43 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:38:52 -- Gustavo
+2022/05/28 15:38:52 -- Em Uso: 7.31%
+2022/05/28 15:38:52 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:38:52 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:38:53 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:38:53 -- Banco de Dados da Azure: Dados coletados da RAM: 4.8 
+2022/05/28 15:38:54 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:38:54 -- Banco de Dados Azure: Dados coletados da RAM: 11,98
+2022/05/28 15:38:54 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:38:54 -- Banco de Dados Local: Dados coletados da CPU: 11,98
+2022/05/28 15:38:55 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:38:55 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:38:55 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:38:55 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:39:04 -- Gustavo
+2022/05/28 15:39:04 -- Em Uso: 3.62%
+2022/05/28 15:39:04 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:39:04 -- Em Uso: 4,8 GiB   |  Total: 7,6 GiB
+2022/05/28 15:39:05 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:39:05 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:39:06 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:39:06 -- Banco de Dados Azure: Dados coletados da RAM: 2,61
+2022/05/28 15:39:06 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:39:06 -- Banco de Dados Local: Dados coletados da CPU: 2,61
+2022/05/28 15:39:07 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:39:07 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:39:07 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:39:07 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:39:16 -- Gustavo
+2022/05/28 15:39:16 -- Em Uso: 5.83%
+2022/05/28 15:39:16 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:39:16 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:39:17 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:39:17 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:39:18 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:39:18 -- Banco de Dados Azure: Dados coletados da RAM: 7,40
+2022/05/28 15:39:18 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:39:18 -- Banco de Dados Local: Dados coletados da CPU: 7,40
+2022/05/28 15:39:18 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:39:18 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:39:18 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:39:18 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:39:27 -- Gustavo
+2022/05/28 15:39:27 -- Em Uso: 13.51%
+2022/05/28 15:39:27 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:39:27 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:39:28 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:39:28 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:39:29 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:39:29 -- Banco de Dados Azure: Dados coletados da RAM: 12,47
+2022/05/28 15:39:29 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:39:29 -- Banco de Dados Local: Dados coletados da CPU: 12,47
+2022/05/28 15:39:30 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:39:30 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:39:30 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:39:30 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:39:39 -- Gustavo
+2022/05/28 15:39:39 -- Em Uso: 1.99%
+2022/05/28 15:39:39 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:39:39 -- Em Uso: 4,8 GiB   |  Total: 7,6 GiB
+2022/05/28 15:39:39 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:39:39 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:39:40 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:39:40 -- Banco de Dados Azure: Dados coletados da RAM: 9,06
+2022/05/28 15:39:40 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:39:40 -- Banco de Dados Local: Dados coletados da CPU: 9,06
+2022/05/28 15:39:41 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:39:41 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:39:41 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:39:41 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:39:50 -- Gustavo
+2022/05/28 15:39:50 -- Em Uso: 3.15%
+2022/05/28 15:39:50 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:39:50 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:39:50 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:39:50 -- Banco de Dados da Azure: Dados coletados da RAM: 4.8 
+2022/05/28 15:39:51 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:39:51 -- Banco de Dados Azure: Dados coletados da RAM: 2,01
+2022/05/28 15:39:51 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:39:51 -- Banco de Dados Local: Dados coletados da CPU: 2,01
+2022/05/28 15:39:51 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:39:51 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:39:51 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:39:51 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:40:01 -- Gustavo
+2022/05/28 15:40:01 -- Em Uso: 0.88%
+2022/05/28 15:40:01 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:40:01 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:40:01 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:40:01 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:40:02 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:40:02 -- Banco de Dados Azure: Dados coletados da RAM: 0,75
+2022/05/28 15:40:02 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:40:02 -- Banco de Dados Local: Dados coletados da CPU: 0,75
+2022/05/28 15:40:03 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:40:03 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:40:03 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:40:03 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:40:12 -- Gustavo
+2022/05/28 15:40:12 -- Em Uso: 9.98%
+2022/05/28 15:40:12 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:40:12 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:40:12 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:40:12 -- Banco de Dados da Azure: Dados coletados da RAM: 4.8 
+2022/05/28 15:40:12 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:40:12 -- Banco de Dados Azure: Dados coletados da RAM: 7,26
+2022/05/28 15:40:12 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:40:12 -- Banco de Dados Local: Dados coletados da CPU: 7,26
+2022/05/28 15:40:13 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:40:13 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:40:13 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:40:13 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:40:22 -- Gustavo
+2022/05/28 15:40:22 -- Em Uso: 9.47%
+2022/05/28 15:40:22 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:40:22 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:40:23 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:40:23 -- Banco de Dados da Azure: Dados coletados da RAM: 4.8 
+2022/05/28 15:40:23 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:40:23 -- Banco de Dados Azure: Dados coletados da RAM: 11,00
+2022/05/28 15:40:23 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:40:23 -- Banco de Dados Local: Dados coletados da CPU: 11,00
+2022/05/28 15:40:24 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:40:24 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:40:24 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:40:24 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:40:33 -- Gustavo
+2022/05/28 15:40:33 -- Em Uso: 10.77%
+2022/05/28 15:40:33 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:40:33 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:40:34 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:40:34 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:40:34 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:40:34 -- Banco de Dados Azure: Dados coletados da RAM: 7,11
+2022/05/28 15:40:34 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:40:34 -- Banco de Dados Local: Dados coletados da CPU: 7,11
+2022/05/28 15:40:35 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:40:35 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:40:35 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:40:35 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:40:44 -- Gustavo
+2022/05/28 15:40:44 -- Em Uso: 7.05%
+2022/05/28 15:40:44 -- Em Uso: 1,0 GiB   |  Total: 465,8 GiB
+2022/05/28 15:40:44 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:40:45 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:40:45 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:40:45 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:40:45 -- Banco de Dados Azure: Dados coletados da RAM: 8,71
+2022/05/28 15:40:45 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:40:45 -- Banco de Dados Local: Dados coletados da CPU: 8,71
+2022/05/28 15:40:46 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:40:46 -- Banco de Dados Azure: Dados coletados do Disco: 1.0 
+2022/05/28 15:40:46 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:40:46 -- Banco de Dados Local: Dados coletados do Disco: 1.0 
+2022/05/28 15:40:55 -- Gustavo
+2022/05/28 15:40:55 -- Em Uso: 11.04%
+2022/05/28 15:40:55 -- Em Uso: 1,1 GiB   |  Total: 465,8 GiB
+2022/05/28 15:40:55 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:40:56 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:40:56 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:40:57 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:40:57 -- Banco de Dados Azure: Dados coletados da RAM: 3,80
+2022/05/28 15:40:57 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:40:57 -- Banco de Dados Local: Dados coletados da CPU: 3,80
+2022/05/28 15:40:57 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:40:57 -- Banco de Dados Azure: Dados coletados do Disco: 1.1 
+2022/05/28 15:40:57 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:40:57 -- Banco de Dados Local: Dados coletados do Disco: 1.1 
+2022/05/28 15:41:06 -- Gustavo
+2022/05/28 15:41:06 -- Em Uso: 7.05%
+2022/05/28 15:41:06 -- Em Uso: 1,1 GiB   |  Total: 465,8 GiB
+2022/05/28 15:41:06 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:41:07 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:41:07 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:41:08 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:41:08 -- Banco de Dados Azure: Dados coletados da RAM: 3,38
+2022/05/28 15:41:08 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:41:08 -- Banco de Dados Local: Dados coletados da CPU: 3,38
+2022/05/28 15:41:08 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:41:08 -- Banco de Dados Azure: Dados coletados do Disco: 1.1 
+2022/05/28 15:41:08 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:41:08 -- Banco de Dados Local: Dados coletados do Disco: 1.1 
+2022/05/28 15:41:17 -- Gustavo
+2022/05/28 15:41:17 -- Em Uso: 2.99%
+2022/05/28 15:41:17 -- Em Uso: 1,1 GiB   |  Total: 465,8 GiB
+2022/05/28 15:41:17 -- Em Uso: 4,9 GiB   |  Total: 7,6 GiB
+2022/05/28 15:41:18 -- Banco de Dados da Azure: ID Componente: 116
+2022/05/28 15:41:18 -- Banco de Dados da Azure: Dados coletados da RAM: 4.9 
+2022/05/28 15:41:18 -- Banco de Dados Azure: ID Componente: 117
+2022/05/28 15:41:18 -- Banco de Dados Azure: Dados coletados da RAM: 5,70
+2022/05/28 15:41:18 -- Banco de Dados Local: ID Componente: 117
+2022/05/28 15:41:18 -- Banco de Dados Local: Dados coletados da CPU: 5,70
+2022/05/28 15:41:19 -- Banco de Dados Azure: ID Componente: 118
+2022/05/28 15:41:19 -- Banco de Dados Azure: Dados coletados do Disco: 1.1 
+2022/05/28 15:41:19 -- Banco de Dados Local: ID Componente: 118
+2022/05/28 15:41:19 -- Banco de Dados Local: Dados coletados do Disco: 1.1 

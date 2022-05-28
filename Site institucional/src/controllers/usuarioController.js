@@ -79,7 +79,8 @@ function listarComputadores(req, res) {
 }
 
 function listarTodosComputadores(req, res) {
-    usuarioModel.listarTodosComputadores()
+    var fkLoja = req.params.fkLoja;
+    usuarioModel.listarTodosComputadores(fkLoja)
         .then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
@@ -426,6 +427,75 @@ function buscarInfoComputador(req, res) {
 }
 
 
+function atualizarLoja(req, res) {
+    var idLoja = req.params.idLoja;
+    var nomeLoja = req.body.nomeLoja;
+    var gerente = req.body.gerenteLoja;
+    var cnpjLoja = req.body.cnpjLoja;
+    var cepLoja = req.body.cepLoja;
+    var estado = req.body.estado;
+    var cidade = req.body.cidade;
+    var bairro = req.body.bairro;
+    var logradouro = req.body.logradouro;
+    var numeroRua = req.body.numeroRuaLoja;
+    var complemento = req.body.complementoLoja;
+    var emailLoja = req.body.emailLoja;
+    var telefoneLoja = req.body.telefoneLoja;
+
+    usuarioModel.atualizarLoja(idLoja,nomeLoja,gerente,cnpjLoja,cepLoja,estado,cidade,bairro,logradouro,numeroRua,complemento,emailLoja,telefoneLoja)
+        .then(function (resultado) {
+                res.json(resultado);
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function atualizarUsuario(req, res) {
+    var idUsuario = req.params.idUsuario;
+    var cargo = req.body.cargo;
+    var nome = req.body.nome;
+    var email = req.body.email;
+    var senha = req.body.senha;
+
+    usuarioModel.atualizarUsuario(idUsuario,cargo,nome,email,senha)
+        .then(function (resultado) {
+                res.json(resultado);
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function atualizarComputador(req, res) {
+    var idComputador = req.params.idComputador;
+    var tipoComputador = req.body.tipoComputador;
+    var loja = req.body.loja;
+    var ip = req.body.ip;
+    var so = req.body.so;
+    var hostname = req.body.hostname;
+    var mac = req.body.mac;
+    var local = req.body.local;
+    var senha = req.body.senha;
+
+    usuarioModel.atualizarComputador(idComputador,tipoComputador,loja,ip,so,hostname,mac,local,senha)
+        .then(function (resultado) {
+                res.json(resultado);
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 
 
 module.exports = {
@@ -443,5 +513,8 @@ module.exports = {
     listarTodosComputadores,
     buscarInfoLoja,
     buscarInfoUsuario,
-    buscarInfoComputador
+    buscarInfoComputador,
+    atualizarLoja,
+    atualizarUsuario,
+    atualizarComputador
 }

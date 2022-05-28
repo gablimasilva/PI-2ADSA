@@ -45,12 +45,13 @@ function buscarInfoComputador(idComputador) {
     return database.executar(instrucao);
 }
 
-function listarTodosComputadores() {
+function listarTodosComputadores(fkLoja) {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     var instrucao = `
     select RazaoSocial,idComputador,HostnameComputador,IpComputador from [dbo].[computador]
 	join [dbo].[loja]
-		on fkLoja = idLoja;
+		on fkLoja = idLoja
+        where fkLoja = ${fkLoja};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -127,6 +128,56 @@ function cadastrarUsuario(cargo, fkEmpresa, nome, email, senha) {
     return database.executar(instrucao);
 }
 
+function atualizarLoja(idLoja,nomeLoja,gerente,cnpjLoja,cepLoja,estado,cidade,bairro,logradouro,numeroRua,complemento,emailLoja,telefoneLoja) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():");
+    var instrucao = `
+        UPDATE Loja SET
+        RazaoSocial = '${nomeLoja}',
+        CNPJLoja = '${cnpjLoja}',
+        GerenteLoja = '${gerente}',
+        CEPLoja = '${cepLoja}',
+        Estado = '${estado}',
+        Cidade = '${cidade}',
+        Bairro = '${bairro}',
+        Logradouro = '${logradouro}',
+        NumeroRua = '${numeroRua}',
+        Complemento = '${complemento}',
+        EmailLoja = '${emailLoja}',
+        Telefone = '${telefoneLoja}' where idLoja = ${idLoja}
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function atualizarUsuario(idUsuario,cargo,nomeUsuario,emailUsuario,senhaUsuario) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():");
+    var instrucao = `
+        UPDATE Usuario SET
+        nomeUsuario = '${nomeUsuario}',
+        emailUsuario = '${emailUsuario}',
+        senhaUsuario = '${senhaUsuario}',
+        fkCargo = '${cargo}' where idUsuario = ${idUsuario}
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function atualizarComputador(idComputador,tipoComputador,loja,ip,so,hostname,mac,local,senha) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():");
+    var instrucao = `
+        UPDATE Computador SET
+        fkLoja = '${loja}',
+        fkTipoComputador = '${tipoComputador}',
+        IpComputador = '${ip}',
+        SistemaOperacional = '${so}',
+        HostnameComputador = '${hostname}',
+        EnderecoMACComputador = '${mac}',
+        LocalComputador = '${local}',
+        senhaComputador = '${senha}' where idComputador = ${idComputador}
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
 
 
 module.exports = {
@@ -143,5 +194,8 @@ module.exports = {
     listarTodosComputadores,
     buscarInfoLoja,
     buscarInfoUsuario,
-    buscarInfoComputador
+    buscarInfoComputador,
+    atualizarLoja,
+    atualizarUsuario,
+    atualizarComputador
 };

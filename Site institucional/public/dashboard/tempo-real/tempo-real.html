@@ -61,7 +61,7 @@
             </div>
 
             <div class="btn-nav-yellow">
-                <a href="../tempo-real.html">
+                <a href="./tempo-real.html">
                     <i class="material-icons">show_chart</i>
                     <h3>Tempo Real</h3>
                 </a>
@@ -441,6 +441,7 @@
             data: {
                 labels: [`${await inserirHoraCPU(4)}`, `${await inserirHoraCPU(3)}`, `${await inserirHoraCPU(2)}`, `${await inserirHoraCPU(1)}`, `${await inserirHoraCPU(0)}`],
                 datasets: [{
+                    label: "CPU",
                     data: [`${await inserirDadosCPU(4)}`, `${await inserirDadosCPU(3)}`, `${await inserirDadosCPU(2)}`
                         , `${await inserirDadosCPU(1)}`, `${await inserirDadosCPU(0)}`],
                     backgroundColor: [
@@ -464,14 +465,6 @@
                         ticks: {
                             color: 'white'
                         }
-                    }
-                },
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                    title: {
-                        display: true,
                     }
                 }
             },
@@ -522,6 +515,7 @@
             data: {
                 labels: [`${await inserirHoraRAM(4)}`, `${await inserirHoraRAM(3)}`, `${await inserirHoraRAM(2)}`, `${await inserirHoraRAM(1)}`, `${await inserirHoraRAM(0)}`],
                 datasets: [{
+                    label: "RAM",
                     data: [`${await inserirDadosRAM(4)}`, `${await inserirDadosRAM(3)}`, `${await inserirDadosRAM(2)}`
                         , `${await inserirDadosRAM(1)}`, `${await inserirDadosRAM(0)}`],
                     backgroundColor: [
@@ -547,15 +541,6 @@
                         }
                     }
                 },
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                    title: {
-                        display: true,
-                        
-                    }
-                }
             },
         });
     }
@@ -592,6 +577,7 @@
 
     async function inserirHoraDisco(count) {
         var disco = await buscarHoraDisco()
+        
         var hora = `${disco[count].minuto}` +":" + `${disco[count].segundo}`
         return await hora;
     }
@@ -607,6 +593,7 @@
                 labels: [`${await inserirHoraDisco(4)}`, `${await inserirHoraDisco(3)}`, 
                 `${await inserirHoraDisco(2)}`, `${await inserirHoraDisco(1)}`, `${await inserirHoraDisco(0)}`],
                 datasets: [{
+                    label: "Disco",
                     data: [`${await inserirDadosDISCO(4)}`, `${await inserirDadosDISCO(3)}`, `${await inserirDadosDISCO(2)}`
                         , `${await inserirDadosDISCO(1)}`, `${await inserirDadosDISCO(0)}`],
                     backgroundColor: [
@@ -632,14 +619,6 @@
                         }
                     }
                 },
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                    title: {
-                        display: true,
-                    }
-                }
             },
         });
     }

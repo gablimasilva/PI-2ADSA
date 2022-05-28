@@ -125,7 +125,6 @@
     async function listarUsuarios(){
         var usuarios = await fetch(`/usuarios/listarUsuarios/${sessionStorage.ID_EMPRESA}`);
         usuarios = await usuarios.json();
-        await console.log(usuarios);
         var cargo = '';
         usuarios.forEach(async (usuario) => {
             if(usuario.fkCargo == 1){
@@ -135,6 +134,7 @@
             } else if(usuario.fkCargo == 3){
                 cargo = 'Colaborador';
             }
+            console.log(usuario)
             document.getElementById("idScroll").innerHTML += 
             `<div class="dados_btn_usuario">
                 <div class="dados_usuario">
@@ -142,7 +142,7 @@
                     <span>${cargo}</span>
                 </div>
                 <div class="btn_usuario">
-                    <a style="text-decoration: none;" href="./visualizar-usuario.html">
+                    <a style="text-decoration: none;" onclick="irParaVisualizacao(${usuario.idUsuario})">
                         <button class="btnVisualizar">
                             <i class="material-icons">visibility</i>
                             Visualizar
@@ -164,6 +164,10 @@
         });
 
 
+    }
+
+    function irParaVisualizacao(idUsuario){
+        window.location = `./visualizar-usuario.html?idUsuario=${idUsuario}`
     }
     
 

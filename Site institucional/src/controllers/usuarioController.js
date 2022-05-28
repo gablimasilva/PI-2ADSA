@@ -368,9 +368,48 @@ function cadastrarUsuario(req, res) {
     }
 }
 
-function buscarLojas(req, res) {
+function buscarInfoLoja(req, res) {
     var idLoja = req.params.idLoja;
-    usuarioModel.buscarLojas(idLoja)
+
+    usuarioModel.buscarInfoLoja(idLoja)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function buscarInfoUsuario(req, res) {
+    var idUsuario = req.params.idUsuario;
+
+    usuarioModel.buscarInfoUsuario(idUsuario)
+        .then(function (resultado) {
+            if (resultado.length > 0) {
+                res.status(200).json(resultado);
+            } else {
+                res.status(204).send("Nenhum resultado encontrado!")
+            }
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function buscarInfoComputador(req, res) {
+    var idComputador = req.params.idComputador;
+
+    usuarioModel.buscarInfoComputador(idComputador)
         .then(function (resultado) {
             if (resultado.length > 0) {
                 res.status(200).json(resultado);
@@ -388,6 +427,7 @@ function buscarLojas(req, res) {
 
 
 
+
 module.exports = {
     entrar,
     entrarUsuario,
@@ -401,5 +441,7 @@ module.exports = {
     listarComputadores,
     listarUsuarios,
     listarTodosComputadores,
-    buscarLojas
+    buscarInfoLoja,
+    buscarInfoUsuario,
+    buscarInfoComputador
 }

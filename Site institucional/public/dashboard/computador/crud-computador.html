@@ -137,7 +137,7 @@
                     <span id="id_ip${computador.idComputador}">${computador.IpComputador}</span>
                 </div>
                 <div class="btn_computador">
-                    <a style="text-decoration: none;" href="./visualizar-computador.html">
+                    <a style="text-decoration: none;" onclick="irParaVisualizacao(${computador.idComputador})">
                         <button class="btnVisualizar">
                             <i class="material-icons">visibility</i>
                             Visualizar
@@ -158,6 +158,10 @@
             </div>`
             
         });
+    }
+
+    function irParaVisualizacao(idComputador){
+        window.location = `./visualizar-computador.html?idComputador=${idComputador}`
     }
 
 

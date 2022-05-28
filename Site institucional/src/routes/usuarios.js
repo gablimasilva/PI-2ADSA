@@ -27,8 +27,16 @@ router.get("/listarTodosComputadores/", function (req, res) {
     usuarioController.listarTodosComputadores(req, res);
 });
 
-router.get("/buscarLoja/:idLoja", function (req, res) {
-    usuarioController.buscarLojas(req, res);
+router.get("/buscarInfoLoja/:idLoja", function (req, res) {
+    usuarioController.buscarInfoLoja(req, res);
+});
+
+router.get("/buscarInfoUsuario/:idUsuario", function (req, res) {
+    usuarioController.buscarInfoUsuario(req, res);
+});
+
+router.get("/buscarInfoComputador/:idComputador", function (req, res) {
+    usuarioController.buscarInfoComputador(req, res);
 });
 
 router.post("/cadastrar", function (req, res) {

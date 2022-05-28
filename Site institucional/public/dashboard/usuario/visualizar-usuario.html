@@ -23,7 +23,7 @@
 
 </head>
 
-<body onload="validarSessao()">
+<body onload="validarSessao(), aoIniciar()">
     <div class="janela">
         <div class="header-left">
             <img src="../../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview.png" alt="logo" width="40%">
@@ -99,11 +99,11 @@
                     <form id="form_cadastro" method="post" onsubmit="return cadastrarUsuario()">
                         <div class="cad_comp1">
                             <h4>Nome:</h4>
-                            <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled name="nome" type="text" placeholder="Digite o nome do usuário">
+                            <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled id="nome" name="nome" type="text" placeholder="Digite o nome do usuário">
                         </div>
                         <div class="cad_comp1">
                             <h4>Cargo:</h4>
-                            <select style="background: #dddddd; color: rgb(73, 70, 70)" disabled name="cargo">
+                            <select style="background: #dddddd; color: rgb(73, 70, 70)" disabled id="cargo" name="cargo">
                                 <option selected hidden value="value">Selecione o cargo</option>
                                 <option value="1">Gerente</option>
                                 <option value="2">Analista</option>
@@ -112,7 +112,7 @@
                         </div>
                         <div class="cad_comp1">
                             <h4>E-mail:</h4>
-                            <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled name="email" type="email" placeholder="meuemail@provedor.com">
+                            <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled id="email" name="email" type="email" placeholder="meuemail@provedor.com">
                         </div>
                         <div class="align_btn">
                             <div>
@@ -135,6 +135,23 @@
 </html>
 
 <script>
+    let usuario;
+    function aoIniciar() {
+        const urlParams = new URLSearchParams(window.location.search);
+        usuario = urlParams.get("idUsuario");
+
+        preencherFormulario(usuario);
+    }
+
+    async function preencherFormulario(usuario){
+        var user = await fetch(`/usuarios/buscarInfoUsuario/${usuario}`);
+        user = await user.json();
+
+        console.log(cargo)
+        document.getElementById("nome").value = user[0].nomeUsuario;
+        document.getElementById("cargo").value = user[0].fkCargo;
+        document.getElementById("email").value = user[0].emailUsuario;
+    }
     
     function cancelar() {
         limparFormulario();

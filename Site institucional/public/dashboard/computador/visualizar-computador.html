@@ -23,7 +23,7 @@
 
 </head>
 
-<body onload="validarSessao(), ListarLojas()">
+<body onload="validarSessao(),aoIniciar()">
     <div class="janela">
         <div class="header-left">
             <img src="../../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview.png" alt="logo" width="40%">
@@ -100,40 +100,40 @@
                         <div class="align_form">
                             <div class="form_1">
                                 <div class="cad_comp">
-                                    <h4>Loja:</h4>
-                                    <select style="background: #dddddd; color: rgb(73, 70, 70)" disabled name="loja" id="loja">
+                                    <h4 style="display: none;">Loja:</h4>
+                                    <select style="background: #dddddd; color: rgb(73, 70, 70);display: none" disabled name="loja" id="loja">
                                         <option selected hidden value="value">Selecione a Loja</option>
                                     </select>
                                 </div>
                                 <div class="cad_comp">
                                     <h4>IP do computador:</h4>
-                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled name="ip" onkeypress="return mask(event, this, '###.###.###.###')"
+                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled id="ip" name="ip" onkeypress="return mask(event, this, '###.###.###.###')"
                                         maxlength="15" placeholder=" 000.000.000.000">
                                 </div>
                                 <div class="cad_comp">
                                     <h4>Sistema Operacional:</h4>
-                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled  name="so" type="text"
+                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled id="so" name="so" type="text"
                                         placeholder=" Digite o sistema operacional do computador">
                                 </div>
                                 <div class="cad_comp">
                                     <h4>Hostname:</h4>
-                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled name="hostname" type="text" placeholder=" Digite o Hostname do computador">
+                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled id="hostname" name="hostname" type="text" placeholder=" Digite o Hostname do computador">
                                 </div>
                                 <div class="cad_comp">
                                     <h4>Endereço MAC:</h4>
-                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled name="mac" type="text" maxlength="17" placeholder=" 00:00:00:00:00:00">
+                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled id="mac" name="mac" type="text" maxlength="17" placeholder=" 00:00:00:00:00:00">
                                 </div>
                             </div>
                             <div class="form_2">
                                 <!--INPUT LOCAL-->
                                 <div class="cad_comp">
                                     <h4>Local:</h4>
-                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled name="local" type="text" placeholder=" Digite o local do computador">
+                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled id="local" name="local" type="text" placeholder=" Digite o local do computador">
                                 </div>
                                 <!--SELECT TIPOCOMPUTADOR-->
                                 <div class="cad_comp">
                                     <h4>Tipo:</h4>
-                                    <select style="background: #dddddd; color: rgb(73, 70, 70)" disabled name="tipoComputador">
+                                    <select style="background: #dddddd; color: rgb(73, 70, 70)" disabled id="tipoComputador" name="tipoComputador">
                                         <option selected hidden value="value"> Selecione o tipo</option>
                                         <option value="1">Totem</option>
                                         <option value="2">Comum</option>
@@ -143,12 +143,12 @@
                                 <!--INPUT SENHA-->
                                 <div style="display: none;" class="cad_comp">
                                     <h4>Senha:</h4>
-                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled name="senha" type="password" placeholder="********">
+                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled id="senha" name="senha" type="password" placeholder="********">
                                 </div>
                                 <!--INPUT CONFIRMAÇÃO SENHA-->
                                 <div style="display: none;" class="cad_comp">
                                     <h4>Confirmação de senha:</h4>
-                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled name="confirmacaoSenha" type="password" placeholder="********">
+                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled id="confirmacaoSenha" name="confirmacaoSenha" type="password" placeholder="********">
                                 </div>
                             </div>
                         </div>
@@ -184,6 +184,27 @@
 </html>
 
 <script>
+    let computador
+    async function aoIniciar() {
+        const urlParams = await new URLSearchParams(window.location.search);
+        computador = urlParams.get("idComputador");
+        await ListarLojas();
+        await preencherFormulario(computador);
+    }
+
+    async function preencherFormulario(computador){
+        var compu = await fetch(`/usuarios/buscarInfoComputador/${computador}`);
+        compu = await compu.json();
+        console.log(compu);
+
+        document.getElementById("tipoComputador").value = compu[0].fkTipoComputador;
+        document.getElementById("loja").value = compu[0].fkLoja;
+        document.getElementById("ip").value = compu[0].IpComputador;
+        document.getElementById("so").value = compu[0].SistemaOperacional;
+        document.getElementById("hostname").value = compu[0].HostnameComputador;
+        document.getElementById("mac").value = compu[0].EnderecoMACComputador;
+        document.getElementById("local").value = compu[0].LocalComputador;
+    }
 
     function cancelar() {
         limparFormulario();
@@ -229,7 +250,6 @@
         fetch(`/usuarios/listarLojas/${sessionStorage.ID_EMPRESA}`)
             .then(res => res.json())
             .then(res => {
-                console.log(res);
                 res.forEach(lojas => {
                     var option = document.createElement("option");
                     option.innerHTML = lojas.RazaoSocial;

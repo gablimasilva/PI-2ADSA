@@ -101,27 +101,27 @@
                             <div class="form_1">
                                 <div class="cad_comp">
                                     <h4>Razão social:</h4>
-                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled name="nomeLoja" type="text" placeholder="Digite a Razão Social">
+                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled  id="nomeLoja" name="nomeLoja" type="text" placeholder="Digite a Razão Social">
                                 </div>
                                 <div class="cad_comp">
                                     <h4>Gerente:</h4>
-                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled name="gerenteLoja" type="text" placeholder="Digite o nome do gerente da Loja">
+                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled id="gerenteLoja" name="gerenteLoja" type="text" placeholder="Digite o nome do gerente da Loja">
                                 </div>
                                 <div class="cad_comp">
                                     <h4>CEP:</h4>
-                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled name="cepLoja" onkeypress="return mask(event, this, '##.###-###')" maxlength="10" placeholder=" 00.000-000">
+                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled id="cepLoja" name="cepLoja" onkeypress="return mask(event, this, '##.###-###')" maxlength="10" placeholder=" 00.000-000">
                                 </div>
                                 <div class="cad_comp">
                                     <h4>Número :</h4>
-                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled name="numeroRuaLoja" type="text" placeholder="Digite o numero">
+                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled id="numeroRuaLoja" name="numeroRuaLoja" type="text" placeholder="Digite o numero">
                                 </div>
                                 <div class="cad_comp">
                                     <div class="cad_comp">
                                         <h4>Bairro:</h4>
-                                        <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled name="bairro" type="text" placeholder="Digite o bairro">
+                                        <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled id="bairro" name="bairro" type="text" placeholder="Digite o bairro">
                                     </div>
                                     <h4>Estado:</h4>
-                                    <select style="background: #dddddd; color: rgb(73, 70, 70)" disabled name="estado">
+                                    <select style="background: #dddddd; color: rgb(73, 70, 70)" disabled id="estado" name="estado">
                                         <option value="--">--Digite o estado--</option>
                                         <option value="AC">Acre</option>
                                         <option value="AL">Alagoas</option>
@@ -156,27 +156,27 @@
                             <div class="form_2">
                                 <div class="cad_comp">
                                     <h4>CNPJ:</h4>
-                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled name="cnpjLoja" onkeypress="return mask(event, this, '##.###.###/####-##')" maxlength="18" placeholder=" 00.000.000/0000-00">
+                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" id="cnpjLoja" disabled name="cnpjLoja" onkeypress="return mask(event, this, '##.###.###/####-##')" maxlength="18" placeholder=" 00.000.000/0000-00">
                                 </div>
                                 <div class="cad_comp">
                                     <h4>E-mail:</h4>
-                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled name="emailLoja" type="text" placeholder="meuemail@provedor.com">
+                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" id="emailLoja" disabled name="emailLoja" type="text" placeholder="meuemail@provedor.com">
                                 </div>
                                 <div class="cad_comp">
                                     <h4>Telefone:</h4>
-                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled name="telefoneLoja" onkeypress="return mask(event, this, '(##)#####-####')" maxlength="14" placeholder=" (00)00000-0000">
+                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled id="telefoneLoja" name="telefoneLoja" onkeypress="return mask(event, this, '(##)#####-####')" maxlength="14" placeholder=" (00)00000-0000">
                                 </div>
                                 <div class="cad_comp">
                                     <h4>Logradouro:</h4>
-                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled name="logradouro" type="text" placeholder="Digite o logradouro">
+                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled id="logradouro" name="logradouro" type="text" placeholder="Digite o logradouro">
                                 </div>
                                 <div class="cad_comp">
                                     <h4>Complemento:</h4>
-                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled name="complementoLoja" type="text" placeholder="Digite o complemento">
+                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled id="complementoLoja" name="complementoLoja" type="text" placeholder="Digite o complemento">
                                 </div>
                                 <div class="cad_comp">
                                     <h4>Cidade:</h4>
-                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled name="cidade" type="text" placeholder="Digite a cidade">
+                                    <input style="background: #dddddd; color: rgb(73, 70, 70)" disabled id="cidade" name="cidade" type="text" placeholder="Digite a cidade">
                                 </div>
                             </div>
                         </div>
@@ -216,8 +216,23 @@
     }
 
     async function preencherFormulario(idLoja){
-        var loja = await fetch(`/usuarios/buscarLoja/${idLoja}`);
+        var loja = await fetch(`/usuarios/buscarInfoLoja/${idLoja}`);
         loja = await loja.json();
+        await console.log(loja);
+        await console.log(loja[0].RazaoSocial);
+
+        document.getElementById("nomeLoja").value = loja[0].RazaoSocial;
+        document.getElementById("gerenteLoja").value = loja[0].GerenteLoja;
+        document.getElementById("cnpjLoja").value = loja[0].CNPJLoja;
+        document.getElementById("cepLoja").value = loja[0].CEPLoja;
+        document.getElementById("estado").value = loja[0].Estado;
+        document.getElementById("cidade").value = loja[0].Cidade;
+        document.getElementById("bairro").value = loja[0].Bairro;
+        document.getElementById("logradouro").value = loja[0].Logradouro;
+        document.getElementById("numeroRuaLoja").value = loja[0].NumeroRua;
+        document.getElementById("complementoLoja").value = loja[0].Complemento;
+        document.getElementById("emailLoja").value = loja[0].EmailLoja;
+        document.getElementById("telefoneLoja").value = loja[0].Telefone;
     }
 
     function cancelar() {

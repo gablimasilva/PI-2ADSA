@@ -27,7 +27,25 @@ function listarUsuarios(fkEmpresa) {
     return database.executar(instrucao);
 }
 
-function listarTodosComputadores(fkEmpresa) {
+function buscarInfoUsuario(idUsuario) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    var instrucao = `
+        SELECT * FROM Usuario where IdUsuario = ${idUsuario};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function buscarInfoComputador(idComputador) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+    var instrucao = `
+        SELECT * FROM Computador where IdComputador = ${idComputador};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function listarTodosComputadores() {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     var instrucao = `
     select RazaoSocial,idComputador,HostnameComputador,IpComputador from [dbo].[computador]
@@ -57,11 +75,9 @@ function entrar(emailLoja, senhaLoja) {
 }
 
 
-function buscarLojas(idLoja) {
-    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ", emailLoja, senhaLoja)
-    var instrucao = `
-        select * from [dbo].[loja] where idLoja = '${idLoja}';
-    `;
+function buscarInfoLoja(idLoja) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function entrar(): ")
+    var instrucao = `select * from [dbo].[loja] where idLoja = ${idLoja};`;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
@@ -125,5 +141,7 @@ module.exports = {
     listarComputadores,
     listarUsuarios,
     listarTodosComputadores,
-    buscarLojas
+    buscarInfoLoja,
+    buscarInfoUsuario,
+    buscarInfoComputador
 };

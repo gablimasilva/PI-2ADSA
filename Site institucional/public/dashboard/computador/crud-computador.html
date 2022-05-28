@@ -126,7 +126,7 @@
 <script>
 
     async function listarComputadores(){
-        var computadores = await fetch(`/usuarios/listarTodosComputadores`);
+        var computadores = await fetch(`/usuarios/listarTodosComputadores/${sessionStorage.ID_EMPRESA}`);
         computadores = await computadores.json();
         computadores.forEach(async (computador) => {
             document.getElementById("scroll").innerHTML += 
@@ -143,7 +143,7 @@
                             Visualizar
                         </button>
                     </a>
-                    <a style="text-decoration: none;" href="./editar-computador.html">
+                    <a style="text-decoration: none;" href="./editar-computador.html?idComputador=${computador.idComputador}">
                         <button class="btnEditar">
                         <i class="material-icons">edit</i>
                         Editar

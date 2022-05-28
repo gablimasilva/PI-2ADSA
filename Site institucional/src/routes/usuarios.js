@@ -23,7 +23,7 @@ router.get("/listarComputadores/:fkLoja", function (req, res) {
     usuarioController.listarComputadores(req, res);
 });
 
-router.get("/listarTodosComputadores/", function (req, res) {
+router.get("/listarTodosComputadores/:fkLoja", function (req, res) {
     usuarioController.listarTodosComputadores(req, res);
 });
 
@@ -62,6 +62,19 @@ router.post("/autenticar", function (req, res) {
 router.post("/autenticarUsuario", function (req, res) {
     usuarioController.entrarUsuario(req, res);
 });
+
+router.post("/atualizarLoja/:idLoja", function (req, res) {
+    usuarioController.atualizarLoja(req, res);
+});
+
+router.post("/atualizarUsuario/:idUsuario", function (req, res) {
+    usuarioController.atualizarUsuario(req, res);
+});
+
+router.post("/atualizarComputador/:idComputador", function (req, res) {
+    usuarioController.atualizarComputador(req, res);
+});
+
 
 
 

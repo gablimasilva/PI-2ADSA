@@ -70,7 +70,7 @@ function buscarDISCO(maquina) {
 }
 
 function buscarIncidentes(maquina) {
-    instrucaoSql = `select count(idIncidentes) as "contagem" from incidentes join registroComponente on idRegistroComponente = fkRegistroComponente join computadorComponente on idComputadorComponente = fkComputadorComponente join componente on fkComponente = idComponente where fkComputador = ${maquina};`;
+    instrucaoSql = `select count(idIncidente) as "contagem" from incidente where fkComputador = ${maquina};`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -85,21 +85,21 @@ function buscarLocal(maquina) {
 
 function buscarIntervaloDeIncidentes(maquina) {
 
-    instrucaoSql = `SELECT cast(datediff(minute,min(incidentes.dataHora),max(incidentes.dataHora))/count(incidentes.dataHora) as int) as 'valor' from incidentes join registroComponente on idRegistroComponente = fkRegistroComponente join computadorComponente on idComputadorComponente = fkComputadorComponente join componente on fkComponente = idComponente where (idComponente = 1 or idComponente = 2 or idComponente = 3) and fkComputador = ${maquina};`
+    instrucaoSql = `SELECT cast(datediff(minute,min(incidente.dataHora),max(incidente.dataHora))/count(incidente.dataHora) as int) as 'valor' from incidente join computador on idComputador = incidente.fkComputador join computadorComponente on computadorComponente.fkComputador = idComputador where (fkComponente = 1 or fkComponente = 2 or fkComponente = 3) and incidente.fkComputador = ${maquina};`
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
 function buscarIntervaloDeIncidentesPorCategoria(maquina, categoria) {
-    instrucaoSql = `select count(idIncidentes) as "incidentes" from incidentes join registroComponente on idRegistroComponente = fkRegistroComponente join computadorComponente on idComputadorComponente = fkComputadorComponente join componente on fkComponente = idComponente where idComponente = ${categoria} and fkComputador = ${maquina};`;
+    instrucaoSql = `select count(idIncidente) as "incidentes" from incidente join computador on incidente.fkComputador = idComputador join computadorComponente on idComputador = computadorComponente.fkComputador where fkComponente = ${categoria} and incidente.fkComputador = ${maquina};`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
 
 function buscarIncidentesLoja(loja) {
-    instrucaoSql = `SELECT count(IdIncidentes) as 'contagem' from [dbo].[incidentes] join [dbo].[registroComponente] on idRegistroComponente = fkRegistroComponente join [dbo].[computadorComponente] on idComputadorComponente = fkComputadorComponente join [dbo].[componente] on fkComponente = idComponente join [dbo].[computador] on idComputador = fkComputador where fkLoja = ${loja};`;
+    instrucaoSql = `SELECT count(IdIncidente) as 'contagem' from [dbo].[incidente] join [dbo].[computador] on idComputador = incidente.fkComputador where fkLoja = ${loja};`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -173,7 +173,7 @@ function buscarHoraCPU(maquina) {
 }
 
 function listarAlertas(loja) {
-    instrucaoSql = `select incidentes.descricao, incidentes.dataHora, computador.idComputador from incidentes join registroComponente on idRegistroComponente = fkRegistroComponente join computadorComponente on idComputadorComponente = fkComputadorComponente join computador on idComputador = fkComputador where fkLoja = ${loja} order by incidentes.idIncidentes desc;`;
+    instrucaoSql = `select incidente.descricao, incidente.dataHora, computador.idComputador from incidente join computador on idComputador = fkComputador where fkLoja = ${loja} order by incidente.idIncidente desc;`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

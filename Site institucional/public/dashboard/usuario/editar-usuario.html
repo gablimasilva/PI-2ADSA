@@ -23,7 +23,7 @@
 
 </head>
 
-<body onload="validarSessao()">
+<body onload="validarSessao(), aoIniciar()">
     <div class="janela">
         <div class="header-left">
             <img src="../../img/logo_techFood_logo_marrom_fundo_branco-removebg-preview.png" alt="logo" width="40%">
@@ -152,7 +152,14 @@
 
 <script>
 
-function cancelar() {
+    let usuario;
+    function aoIniciar() {
+        const url = new URLSearchParams(window.location.search);
+        usuario = url.get("idUsuario");
+
+    }
+
+    function cancelar() {
         limparFormulario();
         window.location = "./crud-usuario.html";
         return false;
@@ -228,25 +235,14 @@ function cancelar() {
             return false;
         }
 
-        fetch(`/usuarios/cadastrarUsuario/${sessionStorage.ID_EMPRESA}`, {
+        fetch(`/usuarios/atualizarUsuario/${usuario}`, {
             method: "POST",
             body: formulario
-        }).then(function (resposta) {
-
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-                window.alert("Cadastro realizado com sucesso!");
-                limparFormulario();
-                finalizarAguardar();
-            } else {
-                throw ("Houve um erro ao tentar realizar o cadastro!");
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            finalizarAguardar();
-        });
-
+        }).then((res) =>{
+        })
+        //await finalizarAguardar();
+        alert("Atualização realizada com sucesso!")
+        location.reload();
         return false;
     }
 

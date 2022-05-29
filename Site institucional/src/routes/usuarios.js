@@ -75,6 +75,18 @@ router.post("/atualizarComputador/:idComputador", function (req, res) {
     usuarioController.atualizarComputador(req, res);
 });
 
+router.post("/deletarComputador/:idComputador", function (req, res) {
+    usuarioController.deletarComputador(req, res);
+});
+
+router.post("/deletarUsuario/:idUsuario", function (req, res) {
+    usuarioController.deletarUsuario(req, res);
+});
+
+router.post("/deletarLoja/:idLoja", function (req, res) {
+    usuarioController.deletarLoja(req, res);
+});
+
 
 
 

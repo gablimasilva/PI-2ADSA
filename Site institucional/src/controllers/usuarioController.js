@@ -496,6 +496,51 @@ function atualizarComputador(req, res) {
         );
 }
 
+function deletarComputador(req, res) {
+    var idComputador = req.params.idComputador;
+
+    usuarioModel.deletarComputador(idComputador)
+        .then(function (resultado) {
+                res.json(resultado);
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function deletarUsuario(req, res) {
+    var idUsuario = req.params.idUsuario;
+
+    usuarioModel.deletarUsuario(idUsuario)
+        .then(function (resultado) {
+                res.json(resultado);
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function deletarLoja(req, res) {
+    var idLoja = req.params.idLoja;
+
+    usuarioModel.deletarLoja(idLoja)
+        .then(function (resultado) {
+                res.json(resultado);
+        }).catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 
 
 module.exports = {
@@ -516,5 +561,8 @@ module.exports = {
     buscarInfoComputador,
     atualizarLoja,
     atualizarUsuario,
-    atualizarComputador
+    atualizarComputador,
+    deletarComputador,
+    deletarUsuario,
+    deletarLoja
 }

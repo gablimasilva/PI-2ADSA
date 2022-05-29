@@ -134,7 +134,6 @@
             } else if(usuario.fkCargo == 3){
                 cargo = 'Colaborador';
             }
-            console.log(usuario)
             document.getElementById("idScroll").innerHTML += 
             `<div class="dados_btn_usuario">
                 <div class="dados_usuario">
@@ -155,7 +154,7 @@
                     </button>
                     </a>
                     
-                    <button class="btnExcluir">
+                    <button onclick="deletarUsuario(${usuario.idUsuario})" class="btnExcluir">
                         <i class="material-icons">delete</i>
                         Excluir
                     </button>
@@ -168,6 +167,15 @@
 
     function irParaVisualizacao(idUsuario){
         window.location = `./visualizar-usuario.html?idUsuario=${idUsuario}`
+    }
+
+    function deletarUsuario(idUsuario){
+        fetch(`/usuarios/deletarUsuario/${idUsuario}`, {
+            method: "POST"
+        }).then((res) =>{
+        })
+        alert("Usuário deletado com sucesso!")
+        location.reload();
     }
     
 

@@ -51,7 +51,7 @@ function listarTodosComputadores(fkLoja) {
     select RazaoSocial,idComputador,HostnameComputador,IpComputador from [dbo].[computador]
 	join [dbo].[loja]
 		on fkLoja = idLoja
-        where fkLoja = ${fkLoja};
+        where fkEmpresa = ${fkLoja};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -179,6 +179,30 @@ function atualizarComputador(idComputador,tipoComputador,loja,ip,so,hostname,mac
     return database.executar(instrucao);
 }
 
+function deletarComputador(idComputador) {
+    var instrucao = `
+        DELETE FROM computador where idComputador = ${idComputador} 
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function deletarUsuario(idUsuario) {
+    var instrucao = `
+        DELETE FROM usuario where idUsuario = ${idUsuario} 
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function deletarLoja(idLoja) {
+    var instrucao = `
+        DELETE FROM loja where idLoja = ${idLoja} 
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 
 module.exports = {
     entrar,
@@ -197,5 +221,8 @@ module.exports = {
     buscarInfoComputador,
     atualizarLoja,
     atualizarUsuario,
-    atualizarComputador
+    atualizarComputador,
+    deletarComputador,
+    deletarUsuario,
+    deletarLoja
 };

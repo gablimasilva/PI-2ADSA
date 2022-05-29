@@ -150,7 +150,7 @@
                     </button>
                     </a>
                     
-                    <button class="btnExcluir">
+                    <button onclick="deletarComputador(${computador.idComputador})" class="btnExcluir">
                         <i class="material-icons">delete</i>
                         Excluir
                     </button>
@@ -162,6 +162,15 @@
 
     function irParaVisualizacao(idComputador){
         window.location = `./visualizar-computador.html?idComputador=${idComputador}`
+    }
+
+    function deletarComputador(idComputador){
+        fetch(`/usuarios/deletarComputador/${idComputador}`, {
+            method: "POST"
+        }).then((res) =>{
+        })
+        alert("Computador deletado com sucesso!")
+        location.reload();
     }
 
 

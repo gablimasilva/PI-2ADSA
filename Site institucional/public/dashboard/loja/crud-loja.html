@@ -148,7 +148,7 @@
                     </button>
                     </a>
                     
-                    <button class="btnExcluir">
+                    <button onclick="deletarLoja(${loja.idLoja})" class="btnExcluir">
                         <i class="material-icons">delete</i>
                         Excluir
                     </button>
@@ -160,6 +160,15 @@
 
     function irParaVisualizacao(idLoja){
         window.location = `./visualizar-loja.html?idLoja=${idLoja}`
+    }
+
+    function deletarLoja(idLoja){
+        fetch(`/usuarios/deletarLoja/${idLoja}`, {
+            method: "POST"
+        }).then((res) =>{
+        })
+        alert("Loja deletada com sucesso!")
+        location.reload();
     }
 
 

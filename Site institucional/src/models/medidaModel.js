@@ -92,7 +92,7 @@ function buscarIntervaloDeIncidentes(maquina) {
 }
 
 function buscarIntervaloDeIncidentesPorCategoria(maquina, categoria) {
-    instrucaoSql = `select count(idIncidente) as "incidentes" from incidente join computador on incidente.fkComputador = idComputador join computadorComponente on idComputador = computadorComponente.fkComputador where fkComponente = ${categoria} and incidente.fkComputador = ${maquina};`;
+    instrucaoSql = `select count(idIncidente) as incidentes from incidente where fkComputador = ${maquina} and descricao like '%${categoria}%';`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

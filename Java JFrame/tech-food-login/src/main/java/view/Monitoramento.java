@@ -371,7 +371,7 @@ public class Monitoramento extends javax.swing.JFrame {
                         monitorar.update(
                                 "INSERT INTO registroComponente (fkComputadorComponente, ValorConsumido, DataHora, statusComputador)"
                                 + "VALUES"
-                                + "(?, ?, getdate(), 'Ativo')",
+                                + "(?, ?, DATEADD(HOUR,-3,GETDATE()), 'Ativo')",
                                 listaComponentes.get(0).getIdComputadorComponente(), ramConvertida);
                         
                         String componenteAzure = String.format("Banco de Dados da Azure: ID Componente: %d", listaComponentes.get(0).getIdComputadorComponente());
@@ -394,7 +394,7 @@ public class Monitoramento extends javax.swing.JFrame {
 
                         if (monitoramentoCpu.monitorarCpu70(cpuUso)) {
                             monitorar.update("INSERT INTO incidente (fkComputador, dataHora, descricao) VALUES"
-                                    + "(?, getdate(), 'CPU ultrapassou 70% de uso')",
+                                    + "(?, DATEADD(HOUR,-3,GETDATE()), 'CPU ultrapassou 70% de uso')",
                                         computador.getidComputador());
                             dadosCpu.setForeground(Color.yellow);
                             finalizarProcessos();
@@ -406,7 +406,7 @@ public class Monitoramento extends javax.swing.JFrame {
 
                         if (monitoramentoCpu.monitorarCpu90(cpuUso)) {
                             monitorar.update("INSERT INTO incidente (fkComputador, dataHora, descricao) VALUES"
-                                    + "(?, getdate(), 'CPU ultrapassou 90% de uso')",
+                                    + "(?, DATEADD(HOUR,-3,GETDATE()), 'CPU ultrapassou 90% de uso')",
                                         computador.getidComputador());
                             dadosCpu.setForeground(Color.RED);
                             String mensagemSlack90 = String.format("Componente CPU passou de 90%%");
@@ -416,7 +416,7 @@ public class Monitoramento extends javax.swing.JFrame {
 
                         if (monitoramentoRam.monitorarRam70(percentualRamUso)) {
                             monitorar.update("INSERT INTO incidente (fkComputador, dataHora, descricao) VALUES"
-                                    + "(?, getdate(), 'RAM ultrapassou 70% de uso')",
+                                    + "(?, DATEADD(HOUR,-3,GETDATE()), 'RAM ultrapassou 70% de uso')",
                                         computador.getidComputador());
                             dadosRam.setForeground(Color.yellow);
                             finalizarProcessos();
@@ -426,7 +426,7 @@ public class Monitoramento extends javax.swing.JFrame {
 
                         if (monitoramentoRam.monitorarRam90(percentualRamUso)) {
                             monitorar.update("INSERT INTO incidente (fkComputador, dataHora, descricao) VALUES"
-                                    + "(?, getdate(), 'CPU ultrapassou 90% de uso')",
+                                    + "(?, DATEADD(HOUR,-3,GETDATE()), 'CPU ultrapassou 90% de uso')",
                                         computador.getidComputador());
                             dadosRam.setForeground(Color.RED);
                             String mensagemSlack90 = String.format("Componente CPU passou de 90%%");
@@ -437,7 +437,7 @@ public class Monitoramento extends javax.swing.JFrame {
                         monitorar.update(
                                 "INSERT INTO registroComponente (fkComputadorComponente, ValorConsumido, DataHora, statusComputador)"
                                 + "VALUES"
-                                + "(?, ?, getdate(), 'Ativo')",
+                                + "(?, ?, DATEADD(HOUR,-3,GETDATE()), 'Ativo')",
                                 listaComponentes.get(1).getIdComputadorComponente(), cpuUso);
                         
                         String componente1Azure = String.format("Banco de Dados Azure: ID Componente: %d", listaComponentes.get(1).getIdComputadorComponente());
@@ -461,7 +461,7 @@ public class Monitoramento extends javax.swing.JFrame {
                             monitorar.update(
                                     "INSERT INTO registroComponente (fkComputadorComponente, ValorConsumido, DataHora, statusComputador)"
                                     + "VALUES"
-                                    + "(?, ?, getdate(), 'Ativo')",
+                                    + "(?, ?, DATEADD(HOUR,-3,GETDATE()), 'Ativo')",
                                     listaComponentes.get(2 + i).getIdComputadorComponente(), discoConvertido);
                             
                             
@@ -485,7 +485,7 @@ public class Monitoramento extends javax.swing.JFrame {
                             
                             if (monitoramentoDiscos.get(i).monitorarDisco70(percentualDiscoUso)) {
                                 monitorar.update("INSERT INTO incidente (fkComputador, dataHora, descricao) VALUES"
-                                    + "(?, getdate(), 'Disco ultrapassou 70% de uso')",
+                                    + "(?, DATEADD(HOUR,-3,GETDATE()), 'Disco ultrapassou 70% de uso')",
                                         computador.getidComputador());
                                 
                                 dadosDisco.setForeground(Color.yellow);
@@ -495,7 +495,7 @@ public class Monitoramento extends javax.swing.JFrame {
 
                             if (monitoramentoDiscos.get(i).monitorarDisco90(percentualDiscoUso)) {
                                 monitorar.update("INSERT INTO incidente (fkComputador, dataHora, descricao) VALUES"
-                                    + "(?, getdate(), 'Disco ultrapassou 90% de uso')",
+                                    + "(?, DATEADD(HOUR,-3,GETDATE()), 'Disco ultrapassou 90% de uso')",
                                         computador.getidComputador());
                                 
                                 dadosDisco.setForeground(Color.RED);

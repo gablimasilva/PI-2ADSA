@@ -428,7 +428,7 @@
 
     async function inserirHoraCPU(count) {
         var cpu = await buscarHoraCPU()
-        var hora = `${cpu[count].minuto}` +":" + `${cpu[count].segundo}`
+        var hora = `${cpu[count].hora}` +":" + `${cpu[count].minuto}` +":" + `${cpu[count].segundo}`
         return await hora;
     }
 
@@ -439,10 +439,10 @@
         var ax_chartLine = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: [`${await inserirHoraCPU(4)}`, `${await inserirHoraCPU(3)}`, `${await inserirHoraCPU(2)}`, `${await inserirHoraCPU(1)}`, `${await inserirHoraCPU(0)}`],
+                labels: [`${await inserirHoraCPU(3)}`, `${await inserirHoraCPU(2)}`, `${await inserirHoraCPU(1)}`, `${await inserirHoraCPU(0)}`],
                 datasets: [{
                     label: "CPU",
-                    data: [`${await inserirDadosCPU(4)}`, `${await inserirDadosCPU(3)}`, `${await inserirDadosCPU(2)}`
+                    data: [`${await inserirDadosCPU(3)}`, `${await inserirDadosCPU(2)}`
                         , `${await inserirDadosCPU(1)}`, `${await inserirDadosCPU(0)}`],
                     backgroundColor: [
                         'rgb(13, 44, 84)',
@@ -502,7 +502,7 @@
 
     async function inserirHoraRAM(count) {
         var ram = await buscarHoraRAM()
-        var hora = `${ram[count].minuto}` +":" + `${ram[count].segundo}`
+        var hora = `${ram[count].hora}` +":" +`${ram[count].minuto}` +":" + `${ram[count].segundo}`
         return await hora;
     }
 
@@ -513,10 +513,10 @@
         var ax_chartLine = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: [`${await inserirHoraRAM(4)}`, `${await inserirHoraRAM(3)}`, `${await inserirHoraRAM(2)}`, `${await inserirHoraRAM(1)}`, `${await inserirHoraRAM(0)}`],
+                labels: [`${await inserirHoraRAM(3)}`, `${await inserirHoraRAM(2)}`, `${await inserirHoraRAM(1)}`, `${await inserirHoraRAM(0)}`],
                 datasets: [{
                     label: "RAM",
-                    data: [`${await inserirDadosRAM(4)}`, `${await inserirDadosRAM(3)}`, `${await inserirDadosRAM(2)}`
+                    data: [`${await inserirDadosRAM(3)}`, `${await inserirDadosRAM(2)}`
                         , `${await inserirDadosRAM(1)}`, `${await inserirDadosRAM(0)}`],
                     backgroundColor: [
                         'rgb(216, 17, 89)',
@@ -578,7 +578,7 @@
     async function inserirHoraDisco(count) {
         var disco = await buscarHoraDisco()
         
-        var hora = `${disco[count].minuto}` +":" + `${disco[count].segundo}`
+        var hora = `${disco[count].hora}` +":" +`${disco[count].minuto}` +":" + `${disco[count].segundo}`
         return await hora;
     }
 
@@ -590,11 +590,11 @@
         var ax_chartLine = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: [`${await inserirHoraDisco(4)}`, `${await inserirHoraDisco(3)}`, 
+                labels: [`${await inserirHoraDisco(3)}`, 
                 `${await inserirHoraDisco(2)}`, `${await inserirHoraDisco(1)}`, `${await inserirHoraDisco(0)}`],
                 datasets: [{
                     label: "Disco",
-                    data: [`${await inserirDadosDISCO(4)}`, `${await inserirDadosDISCO(3)}`, `${await inserirDadosDISCO(2)}`
+                    data: [`${await inserirDadosDISCO(3)}`, `${await inserirDadosDISCO(2)}`
                         , `${await inserirDadosDISCO(1)}`, `${await inserirDadosDISCO(0)}`],
                     backgroundColor: [
                         'rgb(0, 166, 237)',

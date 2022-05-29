@@ -134,7 +134,8 @@ function buscarIP(maquina) {
 }
 
 function buscarHoraDISCO(maquina) {
-    instrucaoSql = `select top 5 DATEPART(minute, DataHora) as 'minuto',
+    instrucaoSql = `select top 5 DATEPART(hour, DataHora) as 'hora',
+    DATEPART(minute, DataHora) as 'minuto',
 	DATEPART(second, DataHora) as 'segundo' from [dbo].[registroComponente]
 		join [dbo].[computadorComponente]
 			on fkComputadorComponente = idComputadorComponente
@@ -147,7 +148,8 @@ function buscarHoraDISCO(maquina) {
 }
 
 function buscarHoraRAM(maquina) {
-    instrucaoSql = `select top 5 DATEPART(minute, DataHora) as 'minuto',
+    instrucaoSql = `select top 5 DATEPART(hour, DataHora) as 'hora',
+    DATEPART(minute, DataHora) as 'minuto',
 	DATEPART(second, DataHora) as 'segundo' from [dbo].[registroComponente]
 		join [dbo].[computadorComponente]
 			on fkComputadorComponente = idComputadorComponente
@@ -160,7 +162,8 @@ function buscarHoraRAM(maquina) {
 }
 
 function buscarHoraCPU(maquina) {
-    instrucaoSql = `select top 5 DATEPART(minute, DataHora) as 'minuto',
+    instrucaoSql = `select top 5 DATEPART(hour, DataHora) as 'hora',
+    DATEPART(minute, DataHora) as 'minuto',
 	DATEPART(second, DataHora) as 'segundo' from [dbo].[registroComponente]
 		join [dbo].[computadorComponente]
 			on fkComputadorComponente = idComputadorComponente

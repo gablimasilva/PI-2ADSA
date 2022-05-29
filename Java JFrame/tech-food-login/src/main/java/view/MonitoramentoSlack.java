@@ -22,7 +22,7 @@ public class MonitoramentoSlack {
                    
     public Boolean validarMetrica(Integer percentualDeAlerta, Double percentualCapturado, String mensagem) {
       percentuais.add(percentualCapturado);
-        if (percentuais.size() >= 5) {
+        if (percentuais.size() >= 15) {
             for (Double double1 : percentuais) {
                 if (double1 >= percentualDeAlerta){
                     try {

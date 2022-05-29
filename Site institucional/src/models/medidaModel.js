@@ -180,17 +180,13 @@ function listarAlertas(loja) {
 }
 
 function buscarRelatorioMaquina(fkComputador, dateInicio, dateFim, fkComponente) {
-    var ram = auxiliarRelatorioMaquina(1);
-    var cpu = auxiliarRelatorioMaquina(2);
-    var disco = auxiliarRelatorioMaquina(3);
-    
-    instrucaoSql = `select registroComponente.idRegistroComponente as idRegistro,
-                            registroComponente.DataHora, 
+      instrucaoSql = `select registroComponente.idRegistroComponente as idRegistro,
+                            convert(varchar, DataHora, 103) as data,
+                            convert(varchar, DataHora, 8) as hora, 
+                            registroComponente.ValorConsumido,
                             computador.HostnameComputador, 
-                            computadorComponente.fkComponente,
-                            (${ram}) as ram,
-                            (${cpu}) as cpu,
-                            (${disco}) as disco                           
+                            computadorComponente.TotalComponente,
+                            computadorComponente.fkComponente
                             from registroComponente 
     join computadorComponente
         on fkComputadorComponente = idComputadorComponente
@@ -199,21 +195,11 @@ function buscarRelatorioMaquina(fkComputador, dateInicio, dateFim, fkComponente)
                     where fkComputador = ${fkComputador}
                         and DataHora between '${dateInicio}' 
                             and '${dateFim}'
-                                and fkComponente = ${fkComponente}`
+                                and fkComponente = ${fkComponente}`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 
-}
-
-function auxiliarRelatorioMaquina(fkComponente) {
-    instrucaoSql = `select top 1 valorConsumido from registroComponente
-                        join computadorComponente
-                            on fkComputadorComponente = idComputadorComponente
-                                where idRegistroComponente = idRegistro
-                                    and fkComponente = ${fkComponente}`
-
-    return instrucaoSql;
 }
 
 module.exports = {

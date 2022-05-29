@@ -92,7 +92,7 @@
             <div class="title">
                 <h2>Dashboard / Relatórios</h3>
             </div>
-            <form id="form_cadastro" method="post" onsubmit="return gerarRelatorio()">
+            <form id="form_cadastro" method="post" onsubmit="return enviar()">
                 <div class="align_selects">
                     <div class="cad_comp">
                         <select name="loja" id="id_loja" onchange="selecionarLoja()">
@@ -128,22 +128,14 @@
                 <div class="table">
                     <h4>Histórico de registros</h4>
                     <div class="scroll">
-                        <table>
+                        <table id="relatorio">
                             <tr>
                                 <th class="tb-title">HostnameComputador</th>
                                 <th class="tb-title">Data</th>
                                 <th class="tb-title">Hora</th>
                                 <th class="tb-title">CPU(%)</th>
                                 <th class="tb-title">Memória(GB)</th>
-                                <th class="tb-title">Disco(%)</th>
-                            </tr>
-                            <tr>
-                                <th>0</th>
-                                <th>0</th>
-                                <th>0</th>
-                                <th>0</th>
-                                <th>0</th>
-                                <th>0</th>
+                                <th class="tb-title">Disco</th>
                             </tr>
                         </table>
                     </div>
@@ -229,21 +221,59 @@
             })
     }
 
-    function gerarRelatorio() {
+    async function gerarRelatorio() {
 
+        var dadosRam = await buscarDadosComponente(1);
+        var dadosCpu = await buscarDadosComponente(2);
+        var dadosDisco = await buscarDadosComponente(3);
+
+
+        for (let i = 0; i < dadosRam.length; i++) {
+            var tabelaRelatorio = document.getElementById('relatorio');
+            var dadosHostname = document.createElement('th');
+            var dadoCpu = document.createElement('th');
+            var dadoDisco = document.createElement('th');
+            var dadoRam = document.createElement('th');
+            var hora = document.createElement('th');
+            var data = document.createElement('th');
+            dadoCpu.innerHTML = dadosCpu[i].ValorConsumido.toFixed(2);
+            dadoDisco.innerHTML = dadosDisco[i].ValorConsumido;
+            dadoRam.innerHTML = dadosRam[i].ValorConsumido;
+            data.innerHTML = dadosCpu[i].data;
+            hora.innerHTML = dadosCpu[i].hora;
+            var tr = document.createElement('tr');
+            dadosHostname.innerHTML = dadosRam[i].HostnameComputador;
+            tr.append(dadosHostname);
+            tr.append(data);
+            tr.append(hora);
+            tr.append(dadoCpu);
+            tr.append(dadoRam);
+            tr.append(dadoDisco);
+
+            tabelaRelatorio.append(tr);
+        }
+        console.log(dadosRam);
+        console.log(dadosCpu);
+        console.log(dadosDisco);
+    }
+
+    async function buscarDadosComponente(fkComponente) {
         var formulario = new URLSearchParams(new FormData(document.getElementById("form_cadastro")));
 
         var computador = formulario.get("fkComputador");
         var dateInicio = formulario.get("dateInicio");
         var dateFim = formulario.get("dateFim");
-
-        fetch(`/medidas/buscarRelatorioMaquina/${computador}/1`, {
+        var res = await fetch(`/medidas/buscarRelatorioMaquina/${computador}/${fkComponente}`, {
             method: "POST",
             body: formulario
-        }).then(res => res.json())
-            .then(res => {
-                console.log(res);
-            }).catch(e => console.log(e));
+        })
+        res = await res.json();
+
+        return res;
+    }
+
+    function enviar() {
+        gerarRelatorio();
         return false;
     }
 

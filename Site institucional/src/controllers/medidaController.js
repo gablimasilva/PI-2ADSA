@@ -390,6 +390,29 @@ function listarAlertas(req, res) {
     });
 }
 
+function buscarRelatorioMaquina(req, res) {
+    var fkComputador = req.params.fkComputador;
+    var fkComponente = req.params.fkComponente;
+    var dateInicio = req.body.dateInicio;
+    var dateFim = req.body.dateFim;
+
+    console.log(`Buscando relatório das máquinas`);
+
+    medidaModel.buscarRelatorioMaquina(fkComputador, dateInicio, dateFim, fkComponente).then(function (resultado){
+        console.log("resultado", resultado);
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+    
+}
+
 module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
@@ -411,5 +434,6 @@ module.exports = {
     buscarHoraDISCO,
     buscarHoraRAM,
     buscarHoraCPU,
+    buscarRelatorioMaquina,
     listarAlertas
 }

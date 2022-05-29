@@ -179,6 +179,43 @@ function listarAlertas(loja) {
     return database.executar(instrucaoSql);
 }
 
+function buscarRelatorioMaquina(fkComputador, dateInicio, dateFim, fkComponente) {
+    var ram = auxiliarRelatorioMaquina(1);
+    var cpu = auxiliarRelatorioMaquina(2);
+    var disco = auxiliarRelatorioMaquina(3);
+    
+    instrucaoSql = `select registroComponente.idRegistroComponente as idRegistro,
+                            registroComponente.DataHora, 
+                            computador.HostnameComputador, 
+                            computadorComponente.fkComponente,
+                            (${ram}) as ram,
+                            (${cpu}) as cpu,
+                            (${disco}) as disco                           
+                            from registroComponente 
+    join computadorComponente
+        on fkComputadorComponente = idComputadorComponente
+            join computador
+                on fkComputador = idComputador
+                    where fkComputador = ${fkComputador}
+                        and DataHora between '${dateInicio}' 
+                            and '${dateFim}'
+                                and fkComponente = ${fkComponente}`
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+
+}
+
+function auxiliarRelatorioMaquina(fkComponente) {
+    instrucaoSql = `select top 1 valorConsumido from registroComponente
+                        join computadorComponente
+                            on fkComputadorComponente = idComputadorComponente
+                                where idRegistroComponente = idRegistro
+                                    and fkComponente = ${fkComponente}`
+
+    return instrucaoSql;
+}
+
 module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
@@ -200,5 +237,6 @@ module.exports = {
     buscarHoraDISCO,
     buscarHoraRAM,
     buscarHoraCPU,
-    listarAlertas
+    listarAlertas,
+    buscarRelatorioMaquina
 }

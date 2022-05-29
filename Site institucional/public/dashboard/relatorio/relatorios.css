@@ -150,3 +150,21 @@ tr th {
     border-collapse: collapse;
     height: 30px;
 }
+
+.btnCriar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    text-align: center;
+    border: 0;
+    border-radius: 5px;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 8px;
+    color: black;
+    background-color: rgb(0, 166, 237);
+    width: 120px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}

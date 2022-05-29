@@ -87,4 +87,8 @@ router.get("/listarAlertas/:loja", function (req, res) {
     medidaController.listarAlertas(req, res);
 })
 
+router.post("/buscarRelatorioMaquina/:fkComputador/:fkComponente", function(req, res) {
+    medidaController.buscarRelatorioMaquina(req, res);
+})
+
 module.exports = router;

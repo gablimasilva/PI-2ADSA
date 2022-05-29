@@ -92,30 +92,38 @@
             <div class="title">
                 <h2>Dashboard / Relatórios</h3>
             </div>
-            <div class="align_selects">
-                <div class="cad_comp">
-                    <select name="loja" id="id_loja" onchange="selecionarLoja()">
-                        <option selected hidden value="value">- Selecione a loja -</option>
-                    </select>
-                </div>
-                <div class="cad_comp">
-                    <select name="computador" id="id_computador" onchange="exibirMaquina()">
-                        <option selected hidden value="value">- Selecione o computador -</option>
-                    </select>
-                </div>
-                <div class="cad_comp1">
-                    <div>
+            <form id="form_cadastro" method="post" onsubmit="return gerarRelatorio()">
+                <div class="align_selects">
+                    <div class="cad_comp">
+                        <select name="loja" id="id_loja" onchange="selecionarLoja()">
+                            <option selected hidden value="value">- Selecione a loja -</option>
+                        </select>
+                    </div>
+                    <div class="cad_comp">
+                        <select name="fkComputador" id="id_computador" onchange="exibirMaquina()">
+                            <option selected hidden value="value">- Selecione o computador -</option>
+                        </select>
+                    </div>
+                    <div class="cad_comp1">
                         <div>
-                            <p>Ínicio:</p>
-                            <input type="date" id="data-incial" name="data-incial">
+                            <div>
+                                <p>Ínicio:</p>
+                                <input type="date" id="data-incial" name="dateInicio">
+                            </div>
+                            <div>
+                                <p>Fim:</p>
+                                <input type="date" id="data-final" name="dateFim">
+                            </div>
                         </div>
-                        <div>
-                            <p>Fim:</p>
-                            <input type="date" id="data-final" name="data-final">
-                        </div>
+                        <a style="text-decoration: none;" href="./cadastro-computador.html">
+                            <button class="btnCriar">
+                                <i class="material-icons">add</i>
+                                Pesquisar
+                            </button>
+                        </a>
                     </div>
                 </div>
-            </div>
+            </form>
             <div class="fundo_cad">
                 <div class="table">
                     <h4>Histórico de registros</h4>
@@ -220,5 +228,26 @@
                 }
             })
     }
+
+    function gerarRelatorio() {
+
+        var formulario = new URLSearchParams(new FormData(document.getElementById("form_cadastro")));
+
+        var computador = formulario.get("fkComputador");
+        var dateInicio = formulario.get("dateInicio");
+        var dateFim = formulario.get("dateFim");
+
+        fetch(`/medidas/buscarRelatorioMaquina/${computador}/1`, {
+            method: "POST",
+            body: formulario
+        }).then(res => res.json())
+            .then(res => {
+                console.log(res);
+            }).catch(e => console.log(e));
+        return false;
+    }
+
+
+
 
 </script>

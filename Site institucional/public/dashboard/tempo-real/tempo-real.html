@@ -577,8 +577,8 @@
 
     async function inserirHoraDisco(count) {
         var disco = await buscarHoraDisco()
-        
         var hora = `${disco[count].hora}` +":" +`${disco[count].minuto}` +":" + `${disco[count].segundo}`
+        console.log(hora)
         return await hora;
     }
 
@@ -663,12 +663,24 @@
                 chart3.data.datasets[0].data.push(parseFloat(res))
                 chart3.update();
             })
-            /*inserirHoraDISCO(0).then(res => {
+            inserirHoraCPU(0).then(res => {
+                const chart1 = Chart.getChart("canvas_grafico_CPU")
+                chart1.data.labels.shift();
+                chart1.data.labels.push(res)
+                chart1.update();
+            })
+            inserirHoraRAM(0).then(res => {
+                const chart2 = Chart.getChart("canvas_grafico_RAM")
+                chart2.data.labels.shift();
+                chart2.data.labels.push(res)
+                chart2.update();
+            })
+            inserirHoraDisco(0).then(res => {
                 const chart3 = Chart.getChart("canvas_grafico_Discos")
-                chart3.data.labels[0].shift();
-                chart3.data.labels[0].push(parseFloat(res))
+                chart3.data.labels.shift();
+                chart3.data.labels.push(res)
                 chart3.update();
-            })*/
+            })
             inserirIntervaloDeIncidentesPorCategoria('CPU').then(res => {
                 const chart4 = Chart.getChart("canvas_grafico_categoria")
                 chart4.data.datasets[0].data[0] = res;

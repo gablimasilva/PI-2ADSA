@@ -111,7 +111,7 @@ function buscarRegistroComponentes(maquina) {
                         from [dbo].[registroComponente] 
                             join [dbo].[computadorComponente] 
                                 on fkComputadorComponente = idComputadorComponente 
-                                    where fkComputador = 14 and DATEPART(DAY, DataHora) = DATEPART(DAY,DATEADD(HOUR,-3,GETDATE()));`;
+                                    where fkComputador = ${maquina} and DATEPART(DAY, DataHora) = DATEPART(DAY,DATEADD(HOUR,-3,GETDATE()));`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);

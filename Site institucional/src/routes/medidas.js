@@ -31,6 +31,10 @@ router.get("/buscarDISCO/:maquina", function (req, res) {
     medidaController.buscarDISCO(req, res);
 })
 
+router.get("/buscarRegistroComponentes/:idComputador", function (req, res) {
+    medidaController.buscarRegistroComponentes(req, res);
+})
+
 router.get("/buscarFkComponenteDISCO/:fkComponente", function (req, res) {
     medidaController.buscarFkComponenteDISCO(req, res);
 })

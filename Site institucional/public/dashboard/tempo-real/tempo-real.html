@@ -112,8 +112,9 @@
                     </div>
                 </div>
                 <div class="item-regua-maior-top">
-                    <h5>Tempo de atividade</h5>
-                    <p id="id_computadores_offline">0:00:00:00</p>
+                    <h5>Tempo de atividade Diario</h5>
+                    <p id="id_computadores_offline"><span id="day">0</span><span id="hour">:00</span>:<span
+                            id="minute">00</span>:<span id="second">00</span></p>             
                 </div>
                 <div class="item-regua-top">
                     <h5>Local</h5>
@@ -171,7 +172,48 @@
     let lojaSelecionada;
     let maquinaSelecionada;
 
+    let hour = 0;
+    let minute = 0;
+    let second = 0;
+    let millisecond = 0;
+    async function verificarVar() {
+        setInterval(async () => {
+            let hour = 0;
+            let minute = 0;
+            let dadoRegistro = await fetch(`/medidas/buscarRegistroComponentes/${computadorAtual}`);
+            dados = await dadoRegistro.json();
+            qtdregistros = dados[0].qtdDados;
+            console.log("qtd registros divido" + qtdregistros);
+            console.log("qtd registros n dividido" + dados[0].qtdDados);
 
+            valorTotal = (qtdregistros / 3) * 5;
+            // totalHora = new Date(valorTotal);
+            if (valorTotal > 0) {
+                while (valorTotal >= 3600) {
+                    valorTotal -= 3600;
+                    hour++;
+                    console.log("Valor na hora"+valorTotal);
+                }
+                while (valorTotal >= 60) {
+                    valorTotal -= 60;
+                    minute++;
+                    console.log("Valor no minuto"+valorTotal);
+
+                }
+                second = valorTotal;
+                console.log("Valor no segundo"+valorTotal);
+                valorTotal = 0;
+            }
+
+
+            document.getElementById('hour').innerText = returnData(hour);
+            document.getElementById('minute').innerText = returnData(minute);
+            document.getElementById('second').innerText = returnData(second.toFixed(0));
+        }, 1000)
+    }
+    function returnData(input) {
+      return input > 10 ? input : `0${input}`
+    }
     function aoIniciar() {
         const params = new URL(location.href).searchParams;
         computadorAtual = params.get("idComputador");
@@ -306,6 +348,7 @@
         inserirLocal();
         inserirIncidentes();
         inserirIP();
+        verificarVar();
 
 
         clearInterval(intervalo);

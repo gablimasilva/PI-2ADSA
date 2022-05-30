@@ -105,6 +105,18 @@ function buscarIncidentesLoja(loja) {
     return database.executar(instrucaoSql);
 }
 
+function buscarRegistroComponentes(maquina) {
+    instrucaoSql = `select count(dataHora) as 'qtdDados', 
+                    DATEADD(SECOND,-20,DATEADD(HOUR,-3,GETDATE())) as 'atual' 
+                        from [dbo].[registroComponente] 
+                            join [dbo].[computadorComponente] 
+                                on fkComputadorComponente = idComputadorComponente 
+                                    where fkComputador = 14 and DATEPART(DAY, DataHora) = DATEPART(DAY,DATEADD(HOUR,-3,GETDATE()));`;
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 function buscarStatusComputador(maquina) {
     instrucaoSql = `select top 1 dataHora from registroComponente join computadorComponente on idComputadorComponente = fkComputadorComponente where fkComputador = ${maquina} order by idRegistroComponente desc;`;
 
@@ -227,5 +239,6 @@ module.exports = {
     buscarHoraRAM,
     buscarHoraCPU,
     listarAlertas,
-    buscarRelatorioMaquina
+    buscarRelatorioMaquina,
+    buscarRegistroComponentes
 }
